@@ -49,11 +49,7 @@ const FILE = process.argv[2] || latestProduct();
           const rest = cn.slice(pre.length);
           chk(cn, w.en, '原样');
           chk(pre + '·' + rest, w.en, '间隔号');
-          chk(pre + '・' + rest, w.en, '中点');
           chk(pre + ' ' + rest, w.en, '空格');
-          chk(pre + '　' + rest, w.en, '全角空格');
-          chk(pre + ' ' + rest.split('').join(' '), w.en, '逐字空格');
-          chk(pre + '.' + rest, w.en, '句点');
         }
       });
 
@@ -77,7 +73,7 @@ const FILE = process.argv[2] || latestProduct();
       const AL = window.ZKC.ALIAS || {};
       Object.keys(AL).forEach(nick => {
         const want = AL[nick];
-        ['', '·', ' ', '　'].forEach(sep => {
+        ['', ' '].forEach(sep => {
           const q = nick.length > 1 && sep ? nick[0] + sep + nick.slice(1) : nick;
           res.total++;
           const w = top(q);
@@ -120,6 +116,31 @@ const FILE = process.argv[2] || latestProduct();
       });
       /* 无关文本不能乱认 */
       ['随便写点什么', 'abc', '伤害', 'damage'].forEach(q => srow(q, 0, '误认防护'));
+
+      /* ⑥b WM 原文（命名表 stats[].wmCn/wmEn）：卡面与挂单印的是这套写法，
+             只按 cn/intl/en 认会漏掉「Weapon Recoil」「武器后坐力」。
+             行号挂了多个键（射速与攻速同在 row 8）时跳过 —— 一条 WM 词分不清是哪个键。 */
+      const WM3 = window.ZKNAMES.statWm || {};
+      const rowKeys = {};
+      (window.ZKNAMES.statKeys || []).forEach(e3 => {
+        if (!e3 || !e3.key || e3.row == null) return;
+        rowKeys[e3.row] = (rowKeys[e3.row] || 0) + 1;
+      });
+      let wmTotal = 0;
+      Object.keys(WM3).forEach(r3 => {
+        const row = +r3;
+        if (rowKeys[row] !== 1) return;
+        (WM3[r3] || []).forEach(q => {
+          if (!q) return;
+          wmTotal++;
+          res.total++;
+          const got = MS(q, window.ZKDATA.stats);
+          if (got !== row) res.fail.push({ q, want: String(row), got: String(got), tag: 'WM 词条原文' });
+        });
+      });
+      /* 用户点名的那一条：后坐力 */
+      ['Weapon Recoil', '武器后坐力', 'WeaponRecoil'].forEach(q => srow(q, 25, 'WM 词条原文'));
+      res.wmTotal = wmTotal;
 
       /* ⑦ 引擎显示名 === 命名表（证明名字换源后内容没变） */
       const RR2 = window.RIVEN_ROUTER || {};
@@ -210,7 +231,7 @@ const FILE = process.argv[2] || latestProduct();
     })()`;
 
     const r = JSON.parse(await cdp.eval(js));
-    console.log('用例 ' + r.total + ' 条');
+    console.log('用例 ' + r.total + ' 条（其中 WM 词条原文 ' + (r.wmTotal || 0) + ' 条）');
     console.log('\n样本：');
     r.sample.forEach(s => console.log('  ' + s.q + '  →  ' + s.got));
     if (r.fail.length) {

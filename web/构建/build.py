@@ -111,6 +111,46 @@ data = read('data/data.json')
 _NAMES_ALL = json.loads(read('src/data/names.json'))
 NAMES = {k: _NAMES_ALL[k] for k in ('types', 'typeAlias', 'variants', 'factions', 'alias', 'statKeys')}
 NAMES['meta'] = _NAMES_ALL.get('meta', {})
+# 词条行号 -> [WM 中文原文, WM 英文原文]。命名表 stats[] 里现成就有（wmCn/wmEn），
+# 但 zkdata 的词条记录没有这两列，所以按行号单带一份给识别/名字匹配用。
+# 卡面写的是 WM 用词：「Weapon Recoil」而不是「Recoil」、「武器后坐力」而不是「后坐力」，
+# 只按 cn/intl/en 匹配会漏掉这些写法。
+# 只带「多出来的写法」：与 cn/intl/en 或 statKeys 里任何已有名字重复的一律不塞，别把
+# 同一串名字存两遍。
+def _nmw(s):
+    return re.sub(r'[\s\-_·・.()（）\[\]【】:：/\\\'"“”‘’]+', '', str(s or '')).lower()
+
+
+_known = {}
+for _s in _NAMES_ALL.get('stats', []):
+    _r = str(_s['row'])
+    _known.setdefault(_r, set())
+    for _k in ('cn', 'intl', 'en'):
+        _v = _nmw(_s.get(_k))
+        if _v:
+            _known[_r].add(_v)
+for _e in _NAMES_ALL.get('statKeys', []):
+    if not _e.get('key') or _e.get('row') is None:
+        continue
+    _r = str(_e['row'])
+    _known.setdefault(_r, set())
+    for _k in ('cn', 'short', 'en', 'enFull', 'eng'):
+        _v = _nmw(_e.get(_k))
+        if _v:
+            _known[_r].add(_v)
+    for _a in (_e.get('alias') or []):
+        _v = _nmw(_a)
+        if _v:
+            _known[_r].add(_v)
+
+NAMES['statWm'] = {}
+for _s in _NAMES_ALL.get('stats', []):
+    _r = str(_s['row'])
+    _kn = _known.get(_r, set())
+    _pair = ['' if _nmw(_s.get('wmCn')) in _kn else (_s.get('wmCn') or ''),
+             '' if _nmw(_s.get('wmEn')) in _kn else (_s.get('wmEn') or '')]
+    if _pair[0] or _pair[1]:
+        NAMES['statWm'][_r] = _pair
 NAMES_JS = 'window.ZKNAMES=' + json.dumps(NAMES, ensure_ascii=False, separators=(',', ':')) + ';'
 
 _zk_names = json.loads(read('src/data/zkdata.js').split('=', 1)[1].rstrip().rstrip(';'))

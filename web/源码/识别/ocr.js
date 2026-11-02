@@ -2,7 +2,11 @@
   'use strict';
   var ZK = window.ZKDATA || {};
   var STATS = ZK.stats || [], WEAPONS = ZK.weapons || [];
-  var AFFIX_TABLE = STATS.map(function (s) { return { cn: s.cn, intl: s.intl, en: s.en, drow: s.row }; });
+  var STAT_WM = (window.ZKNAMES && window.ZKNAMES.statWm) || {};
+  var AFFIX_TABLE = STATS.map(function (s) {
+    var w = STAT_WM[s.row] || STAT_WM[String(s.row)] || [];
+    return { cn: s.cn, intl: s.intl, en: s.en, wmCn: w[0] || '', wmEn: w[1] || '', drow: s.row };
+  });
   function dispLang() {
     try { return window.ZKLANGI ? (window.ZKLANGI() | 0) : 1; } catch (e) { return 1; }
   }
@@ -315,11 +319,8 @@
         }
       }
     }
-    if (typeof window !== 'undefined') window.__settleRankDbg = { n: rows.length, rows: rows, combos: combos,
-      cur: cur ? cur.cn : null, curBad: null, best: best ? { rank: best.rank, w: best.w && best.w.cn, bad: best.probe.bad, worst: best.probe.worst } : null };
     if (!best || best.probe.bad > 0) return null;    // 没有自洽的解 不做改动
     var curProbe = cur ? scaleProbe(rowsFor(combos[0]), cur, rank, combos[0].pos, combos[0].neg) : null;
-    if (typeof window !== 'undefined' && window.__settleRankDbg) window.__settleRankDbg.curBad = curProbe ? curProbe.bad : null;
     if (curProbe && curProbe.bad === 0) return null; // 现状自洽 不动
     if (curProbe && curProbe.bad <= 1 && best.rank !== rank && rankCostOf(levelText, rank) === 0) return null;
     if (best.probe.bad >= (curProbe ? curProbe.bad : 1e9)) return null;
@@ -1082,7 +1083,7 @@ function rankAffix(name) {
     for (const row of AFFIX_TABLE) {
       let bestCol = null, bestS = 0, bestAlias = null, endsSuffix = false;
       if (aliasCn && norm(row.cn) === norm(aliasCn)) { bestS = 100; bestCol = 'cn'; bestAlias = row.cn; }
-      for (const [col, raw] of [['cn', row.cn], ['intl', row.intl], ['en', row.en]]) {
+      for (const [col, raw] of [['cn', row.cn], ['intl', row.intl], ['en', row.en], ['cn', row.wmCn], ['en', row.wmEn]]) {
         if (cnOnly && col === 'en') continue;
         const _aliasPool = col === 'en' ? colAliases(raw).concat(affixEnAliases(raw)) : colAliases(raw);
         for (const alias of _aliasPool) {
@@ -2105,70 +2106,116 @@ function parseAffixes(lines) {
   }
   return out;
 }
-function parseFreeText(text) {
-  if (!text || !String(text).trim()) return null;
-  var t = String(text).replace(/\s+/g, '');
-  var out = { weapon: null, affixes: [] };
-  var fw = findWeapon(t);
-  var wm = fw ? fw.w : null;
-  if (wm) out.weapon = { idx: WEAPONS.indexOf(wm), cn: wm.cn, intl: wm.intl, en: wm.en, cat: wm.cat };
-  var cands = [], usedRow = {}, usedSpan = [];
-  for (var r = 0; r < AFFIX_TABLE.length; r++) {
+var _ftCandsCache = null;
+function _ftCands() {
+  if (_ftCandsCache) return _ftCandsCache;
+  var cands = [], r, names, k, _al, _ai, s2, _sh, _rowSel, _sr, _nm;
+  for (r = 0; r < AFFIX_TABLE.length; r++) {
     var row = AFFIX_TABLE[r];
-    var names = [row.cn];
+    names = [row.cn];
     if (row.intl && row.intl !== row.cn) names.push(row.intl);
     if (row.en && row.en !== row.cn && row.en !== row.intl) {
       names.push(row.en);
-      var _al = affixEnAliases(row.en);
-      for (var _ai = 0; _ai < _al.length; _ai++) names.push(_al[_ai]);
+      _al = affixEnAliases(row.en);
+      for (_ai = 0; _ai < _al.length; _ai++) names.push(_al[_ai]);
     }
-    for (var k = 0; k < names.length; k++) if (names[k] && names[k].length >= 2) cands.push({ row: row.drow, nm: names[k].replace(/\s+/g, '').toLowerCase(), len: names[k].replace(/\s+/g, '').length });
+    if (row.wmCn && row.wmCn !== row.cn && row.wmCn !== row.intl) names.push(row.wmCn);
+    if (row.wmEn && row.wmEn !== row.en) names.push(row.wmEn);
+    for (k = 0; k < names.length; k++) {
+      _nm = String(names[k] == null ? '' : names[k]).replace(/\s+/g, '');
+      if (_nm.length >= 2) cands.push({ row: row.drow, nm: _nm.toLowerCase(), len: _nm.length });
+    }
   }
-  for (var s2 = 0; s2 < SHORTHAND.length; s2++) {
-    var _sh = SHORTHAND[s2];
-    if (_sh.k && _sh.k.length >= 2) {
-      var _rowSel = _sh.rows;
-      if (_sh.k === '伤害' || _sh.k === 'damage') _rowSel = [{ r: (out.weapon && out.weapon.cat === '近战') ? 3 : 2, pos: true }];
-      for (var _sr = 0; _sr < _rowSel.length; _sr++) cands.push({ row: _rowSel[_sr].r, nm: _sh.k.toLowerCase(), len: _sh.k.length });
+  for (s2 = 0; s2 < SHORTHAND.length; s2++) {
+    _sh = SHORTHAND[s2];
+    if (!_sh.k || _sh.k.length < 2) continue;
+    _rowSel = _sh.rows;
+    for (_sr = 0; _sr < _rowSel.length; _sr++) {
+      cands.push({ row: _rowSel[_sr].r, nm: _sh.k.toLowerCase(), len: _sh.k.length, sh: 1 });
     }
   }
   cands.sort(function (a, b) { return b.len - a.len; });
-  var tL = t.toLowerCase();
-  var hits = [];
-  for (var c2 = 0; c2 < cands.length; c2++) {
-    var it = cands[c2], idx = tL.indexOf(it.nm), guard = 0;
-    while (idx >= 0 && guard++ < 60) {
-      var overlap = false;
-      for (var s = 0; s < usedSpan.length; s++) { var sp = usedSpan[s]; if (idx < sp.end && idx + it.len > sp.start) { overlap = true; break; } }
-      if (!overlap) break;
+  _ftCandsCache = cands;
+  return cands;
+}
+function _ftHits(s, cands, wcat) {
+  var tL = s.toLowerCase(), hits = [], used = [], seen = {}, c, it, idx, guard, sp, row, over;
+  for (c = 0; c < cands.length; c++) {
+    it = cands[c];
+    row = it.row;
+    if (it.sh && /^(伤害|damage)$/i.test(it.nm)) row = (wcat === '近战') ? 3 : 2;
+    if (seen[row]) continue;
+    idx = tL.indexOf(it.nm); guard = 0;
+    while (idx >= 0 && guard++ < 80) {
+      over = false;
+      for (sp = 0; sp < used.length; sp++) if (idx < used[sp].e && idx + it.len > used[sp].s) { over = true; break; }
+      if (!over) break;
       idx = tL.indexOf(it.nm, idx + 1);
     }
-    if (idx < 0 || usedRow[it.row]) continue;
-    usedRow[it.row] = true; usedSpan.push({ start: idx, end: idx + it.len });
-    hits.push({ row: it.row, name: it.nm, start: idx, end: idx + it.len });
+    if (idx < 0) continue;
+    seen[row] = 1;
+    used.push({ s: idx, e: idx + it.len });
+    hits.push({ row: row, name: it.nm, start: idx, end: idx + it.len });
   }
   hits.sort(function (a, b) { return a.start - b.start; });
-  var _info = [], _aftN = 0, _preN = 0;
-  for (var h = 0; h < hits.length; h++) {
-    var Ht = hits[h];
-    var _mA = /^\s*([+\-−–—\u2010‑﹣×xX✕⨯*±]?\s*\d{1,4}(?:\.\d{1,3})?%?)/.exec(t.slice(Ht.end));
-    var _mP = /([+\-−–—\u2010‑﹣×xX✕⨯*±]?\s*\d{1,4}(?:\.\d{1,3})?%?)(?:[\u4e00-\u9fff])?\s*$/.exec(t.slice(0, Ht.start));
-    var _a1 = (_mA && _mA[1]) ? _mA[1] : null, _p1 = (_mP && _mP[1]) ? _mP[1] : null;
-    if (_a1) _aftN++; if (_p1) _preN++;
-    _info.push({ Ht: Ht, aft: _a1, pre: _p1 });
+  return hits;
+}
+function _ftNums(s) {
+  var out = [], re = /[+\-−–—\u2010‑﹣×xX✕⨯*]?\s*\d{1,4}(?:\.\d{1,3})?%?/g, m, txt;
+  while ((m = re.exec(s))) {
+    txt = m[0];
+    if (!/\d/.test(txt)) continue;
+    out.push({ s: m.index, e: m.index + txt.length, txt: txt });
   }
-  var _afterMode = _aftN >= _preN;
-  for (var h = 0; h < _info.length; h++) {
-    var _it = _info[h];
-    var _sel = _afterMode ? (_it.aft != null ? _it.aft : _it.pre) : (_it.pre != null ? _it.pre : _it.aft);
-    if (!_sel) continue;
-    var isNeg = _sel.indexOf('-') >= 0 || /[−–—\u2010‑﹣]/.test(_sel);
-    var isMul = /[×xX✕⨯*]/.test(_sel);
-    var value = Math.abs(parseFloat(String(_sel).replace(/[^\d.]/g, '')));
-    if (!isFinite(value)) continue;
-    out.affixes.push({ row: _it.Ht.row, sign: isMul ? '×' : (isNeg ? '-' : '+'), value: value, isPct: NON_PCT_ROWS.indexOf(_it.Ht.row) < 0, namePart: _it.Ht.name });
+  return out;
+}
+function parseFreeText(text) {
+  if (!text || !String(text).trim()) return null;
+  var rawT = String(text);
+  var out = { weapon: null, affixes: [] };
+  var fw = findWeapon(rawT.replace(/\s+/g, ''));
+  var wm = fw ? fw.w : null;
+  if (wm) out.weapon = { idx: WEAPONS.indexOf(wm), cn: wm.cn, intl: wm.intl, en: wm.en, cat: wm.cat };
+  var wcat = wm ? wm.cat : null;
+  var cands = _ftCands();
+  var segs = rawT.split(/[\n\r\/|丨]+/);
+  var usedRow = {}, si, hi, ni, s, hits, nums, Ht, hitOf, v, n0, d, lidx, ridx, bestL, bestR, pick;
+  for (si = 0; si < segs.length; si++) {
+    s = segs[si].replace(/\s+/g, '');
+    if (!s) continue;
+    hits = _ftHits(s, cands, wcat);
+    if (!hits.length) continue;
+    nums = _ftNums(s);
+    hitOf = [];
+    for (ni = 0; ni < nums.length; ni++) {
+      n0 = nums[ni]; lidx = -1; ridx = -1; bestL = 99; bestR = 99;
+      for (hi = 0; hi < hits.length; hi++) {
+        if (hits[hi].end <= n0.s) {
+          d = n0.s - hits[hi].end;
+          if (d <= 2 && d < bestL) { bestL = d; lidx = hi; }
+        } else if (hits[hi].start >= n0.e) {
+          d = hits[hi].start - n0.e;
+          if (d <= 2 && d < bestR) { bestR = d; ridx = hi; }
+        }
+      }
+      pick = (lidx >= 0 && hitOf[lidx] === undefined) ? lidx : (ridx >= 0 ? ridx : lidx);
+      if (pick < 0 || hitOf[pick] !== undefined) continue;
+      hitOf[pick] = n0;
+    }
+    for (hi = 0; hi < hits.length; hi++) {
+      Ht = hits[hi]; v = hitOf[hi];
+      if (!v || usedRow[Ht.row]) continue;
+      var _sel = v.txt;
+      var isNeg = _sel.indexOf('-') >= 0 || /[−–—\u2010‑﹣]/.test(_sel);
+      var isMul = /[×xX✕⨯*]/.test(_sel);
+      var value = Math.abs(parseFloat(String(_sel).replace(/[^\d.]/g, '')));
+      if (!isFinite(value)) continue;
+      usedRow[Ht.row] = 1;
+      out.affixes.push({ row: Ht.row, sign: isMul ? '×' : (isNeg ? '-' : '+'), value: value,
+                         isPct: NON_PCT_ROWS.indexOf(Ht.row) < 0, namePart: Ht.name });
+    }
   }
-  var _em = extractMeta(t);
+  var _em = extractMeta(rawT);
   if (_em && _em.rolls != null) out.rolls = _em.rolls;
   return (out.weapon || out.affixes.length) ? out : null;
 }
@@ -2758,6 +2805,11 @@ function parseShorthand(text) {
       var _al2 = affixEnAliases(at.en);
       for (var _ai2 = 0; _ai2 < _al2.length; _ai2++) { var _alN = _al2[_ai2].replace(/\s+/g, ''); if (_alN.length >= 2) AFFIX_NAMES.push({ r: at.drow, nm: _alN }); }
     }
+    var _wmP = [at.wmCn, at.wmEn];
+    for (var _wi = 0; _wi < _wmP.length; _wi++) {
+      var _wn = String(_wmP[_wi] || '').replace(/\s+/g, '');
+      if (_wn.length >= 2) AFFIX_NAMES.push({ r: at.drow, nm: _wn });
+    }
   }
   AFFIX_NAMES.sort(function (a, b) { return b.nm.length - a.nm.length; });
   var list = [], i = 0;
@@ -2784,7 +2836,7 @@ function parseShorthand(text) {
         else if (!_nch || !/[A-Za-z\u4e00-\u9fff]/.test(_nch)) _negNow = true;
       }
       var _rowsD = hit.rows;
-      if (hit.k === '伤害' || hit.k === 'damage') _rowsD = [{ r: (wm && wm.cat === '近战') ? 3 : 2, pos: true }];
+      if (hit.k === '伤害' || /^damage$/i.test(hit.k)) _rowsD = [{ r: (wm && wm.cat === '近战') ? 3 : 2, pos: true }];
       for (var q = 0; q < _rowsD.length; q++) list.push({ r: _rowsD[q].r, pos: _negNow ? false : _rowsD[q].pos });
       i += hit.k.length;
     } else i++;
@@ -3430,36 +3482,6 @@ function affixConflicted(a) {
       conflicts: lastConflicts
     };
   }
-  window.__dbgOn = false;
-  function ensureDbgBtn() {
-    var b = document.getElementById('ocrDbgBtn');
-    if (b) return b;
-    b = document.createElement('button');
-    b.id = 'ocrDbgBtn';
-    b.type = 'button';
-    b.textContent = '显示识别';
-    b.style.cssText = 'position:fixed;left:max(8px,env(safe-area-inset-left));bottom:max(8px,env(safe-area-inset-bottom));z-index:100000;transform:none;background:#222;color:#7fff9a;font:12px/1.4 monospace;padding:4px 10px;border:1px solid #444;border-radius:6px;cursor:pointer;';
-    b.onclick = function () {
-      window.__dbgOn = !window.__dbgOn;
-      b.textContent = window.__dbgOn ? '隐藏识别' : '显示识别';
-      var d = document.getElementById('__dbgbox');
-      if (d) d.style.display = window.__dbgOn ? 'block' : 'none';
-    };
-    document.body.appendChild(b);
-    return b;
-  }
-  function setDbg(html, isHtml) {
-    var d = document.getElementById('__dbgbox');
-    if (!d) {
-      d = document.createElement('div');
-      d.id = '__dbgbox';
-      d.style.cssText = 'position:fixed;left:8px;bottom:44px;z-index:99999;max-width:720px;max-height:60vh;overflow:auto;background:#111;color:#7fff9a;font:12px/1.5 monospace;padding:8px;border:1px solid #444;white-space:pre-wrap;border-radius:6px;';
-      document.body.appendChild(d);
-    }
-    if (isHtml) { d.textContent = ''; d.innerHTML = html; }
-    else { d.textContent = html; }
-    d.style.display = window.__dbgOn ? 'block' : 'none';
-  }
   function recognize(opts) {
     opts = opts || {};
     lastConflicts = { level: null, name: null, affix: [] };
@@ -3481,56 +3503,12 @@ function affixConflicted(a) {
         if (req === OCR_REQ) currentImage = templated;   // 仅当本请求仍是最新时才改写全局
         var rows = res.rows;
         var c = classifyWithGlobal(rows);
-        try {
-          window.__dbgRows = rows.map(function (r) { return r.yc.toFixed(0) + ':' + r.text; });
-          ensureDbgBtn();
-          var html = '【原始行·预判组合:' + (window.__comboGuess || '?') + '·分界线y:' + (window.__divY || '?') + '】\n' + rows.map(function (r) { return r.yc.toFixed(0) + ':' + r.text; }).join('\n');
-          if (window.__stepImages) {
-            html += '\n\n=== ①对齐后 ===\n';
-            html += '<img src="' + window.__stepImages.aligned + '" style="max-width:200px;display:block;">\n';
-            html += '=== ②二值掩膜（颜色掩膜）===\n';
-            html += '<img src="' + window.__stepImages.mask + '" style="max-width:200px;display:block;">\n';
-            html += '=== ③④分界线+分区框（红线=分界线，黄框=分区，绿框=det文字框）===\n';
-            html += '<img src="' + window.__stepImages.zones + '" style="max-width:200px;display:block;">\n';
-          }
-          /* 识别模块的明细也并进「显示识别」面板 */
-          var P = window.__ocrLast;
-          if (P) {
-            var _e = function (s) {
-              return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
-                return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c];
-              });
-            };
-            html += '\n\n=== 识别明细（本机推理）===\n';
-            html += '引擎：' + _e(P.engine) + '\n';
-            html += '模型：' + _e(P.model) + '\n';
-            html += 'det输入 ' + _e(P.detInput) + '　阈值 ' + P.detTh + '　置信下限 ' + P.confMin + '\n';
-            html += '文字框 ' + P.boxes + ' → 行组 ' + P.groups + ' → 保留 ' + P.lines + ' 行（丢弃 ' + P.dropped + '）\n';
-            html += '耗时 ' + Math.round(P.ms.total) + 'ms（加载 ' + Math.round(P.ms.load)
-              + ' · det ' + Math.round(P.ms.det) + ' · rec ' + Math.round(P.ms.rec) + '）\n';
-            html += '预判组合 ' + _e(P.combo) + '　分界线 y ' + P.divY
-              + '　极性 ' + _e(P.pol ? (P.pol.pol + (P.pol.lowConf ? '（低置信）' : '')) : '未识别') + '\n';
-            html += '<table style="border-collapse:collapse;font-size:11px;margin-top:4px;">'
-              + '<tr style="color:#8af"><th align="left">y</th><th align="left">x</th>'
-              + '<th align="left">conf</th><th align="left">zone</th><th align="left">text</th></tr>';
-            for (var _pi = 0; _pi < P.items.length; _pi++) {
-              var _it = P.items[_pi];
-              html += '<tr><td>' + _it.y + '</td><td>' + _it.x + '</td>'
-                + '<td>' + (Number(_it.conf) || 0).toFixed(2) + '</td>'
-                + '<td>' + _e(_it.zone || '—') + '</td>'
-                + '<td>' + _e(_it.text) + '</td></tr>';
-            }
-            html += '</table>';
-          }
-          setDbg(html, true);
-        } catch (e) { ZKHTML.warn('识别/ocr.js:4411', e); }
         var _ftRows = (res && res.rows) ? res.rows.slice() : [];
         var polInfo = (res && res.pol) || null;
         var finish = function () {
           if (req !== OCR_REQ) return Promise.reject(new Error('识别被更新的截图取代，已丢弃旧结果'));
           var __tp = (typeof window !== 'undefined' && window.__ocrProfile) ? performance.now() : 0;
           var _rp = buildFromRaw(c.levelText, c.nameText, c.affixText, c.affixY, c.mrText, c.rollsText);
-          if (typeof window !== 'undefined') window.__rawP = _rp;   /* 诊断：finalize 的入参（查等级/武器被谁改了） */
           var _r = finalize(_rp, 'onnx');
           var _fr = freeFallback(_r, _ftRows, 'onnx');   // 全图兜底：仅当现有结果太差才介入，成功路径原样返回
           attachNumVerify(_fr);                          // 数值复读结论挂到词条上（不确定的标 uncertain）
@@ -3674,7 +3652,12 @@ function affixConflicted(a) {
       if (res.affixes.length === 2) {
         for (var _zz2 = 0; _zz2 < res.affixes.length; _zz2++) if (res.affixes[_zz2].sign === '-') res.affixes[_zz2].sign = '+';
       } else if (res.affixes.length === 4) {
-        if (res.affixes[3].sign === '+') res.affixes[3].sign = '-';
+        var _hasNeg4 = false;
+        for (var _q4 = 0; _q4 < 4; _q4++) {
+          var _a4 = res.affixes[_q4];
+          if (_a4.sign === '-' && _a4.drow !== RECOIL_ROW) { _hasNeg4 = true; break; }
+        }
+        if (!_hasNeg4 && res.affixes[3].sign === '+') res.affixes[3].sign = '-';
       }
       if (_useSh && /[0-9]/.test(raw)) {
         var _nums = [], _reN = /\d{1,5}(?:\.\d{1,3})?/g, _mN;
@@ -3717,5 +3700,4 @@ function affixConflicted(a) {
       }
     }
   };
-  try { ensureDbgBtn(); } catch (e) { ZKHTML.warn('识别/ocr.js:4663', e); }
 })();

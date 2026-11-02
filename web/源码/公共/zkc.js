@@ -240,6 +240,19 @@ window.ZKC = (function (g) {
         if (n && _skN[n] == null) _skN[n] = e.key;
       }
     }
+    var wm = NM.statWm || {}, cnt = {};
+    for (var c = 0; c < SK.length; c++)
+      if (SK[c] && SK[c].key && SK[c].row != null) cnt[+SK[c].row] = (cnt[+SK[c].row] || 0) + 1;
+    for (var k2 = 0; k2 < SK.length; k2++) {
+      var e2 = SK[k2];
+      if (!e2 || !e2.key || e2.row == null || cnt[+e2.row] > 1) continue;
+      var pair = wm[e2.row] || wm[String(e2.row)];
+      if (!pair) continue;
+      for (var m2 = 0; m2 < pair.length; m2++) {
+        var n2 = norm(pair[m2]);
+        if (n2 && _skN[n2] == null) _skN[n2] = e2.key;
+      }
+    }
   })();
   function statRowName(row, lang) {
     var arr = (g.ZKDATA && g.ZKDATA.stats) || [], i, st;

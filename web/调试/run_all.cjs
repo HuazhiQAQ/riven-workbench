@@ -69,6 +69,7 @@ const SUITE = {
   physpool:     { file: '_probe_physpool.cjs',    ext: true, args: 1 },
   rivenname:    { file: '_probe_rivenname.cjs',   ext: true, args: 1 },
   rowsmeta:     { file: '_probe_rowsmeta.cjs',    ext: true, args: 1 },
+  textparse:    { file: '_probe_textparse.cjs',   ext: true, args: 1, must: /✅ 全部通过/ },
   typenames:    { file: '_probe_typenames.cjs',   ext: true, args: 1 },
   numcheck:     { file: '_probe_numcheck.cjs',    ext: true, args: 1, manual: true },   /* 需人工给卡图 */
   washpool:     { file: '_probe_washpool.cjs',    ext: true, args: 1 },
