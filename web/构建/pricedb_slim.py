@@ -37,6 +37,8 @@ SLUG_PATCH = {
     '近战伤害': 'base_damage_/_melee_damage',
     # 挂单里有、但定价池没收录（rw 的 row 27/31 为 null），补一个只用来看的 slug
     '初始连击': 'initial_combo',
+    # 交易站叫法：对「异变感染体」的伤害 = 对异变体（Infested），不能落到科普斯
+    '对异变感染体的伤害': 'damage_vs_infested',
 }
 
 # 词条行号 -> 命名表键（与 RULES.ZK_ROW2STAT 同口径，16/17/18/42/43/44 都归 fac）
@@ -245,19 +247,36 @@ def main():
                         it[f] = rint(it[f])
                 single_cnt += 1
 
-    # ④ stats：slug -> 命名表键（显示名从 names.json 取）
-    stat_key = {}
-    for slug in db['stats']:
-        key = None
-        for kk, ss in key2slug.items():
-            if ss == slug:
-                key = kk
-                break
-        if key is None:
-            key = name2key.get(db['stats'][slug]) or db['stats'][slug]
-        stat_key[slug] = key
-    stat_key['initial_combo'] = 'combo'
-    db['stats'] = stat_key
+    # ④ stats：slug -> 词条行号（不是名字，也不是通用键）
+    #    显示名由 ZKDATA.stats[行号].cn 提供 —— 六个派系各自显示自己的名字，
+    #    不会被 fac 这一个通用键压成「对派系伤害」
+    #    行号一律用「原中文名反查词条表」，不用库自带的 rw（rw 的 43/44 是反的）
+    cn2row = {}
+    for s in tab['stats']:
+        cn2row[s['cn']] = s['row']
+    slug_rows = {}
+    for slug, cn in (db['stats'] or {}).items():
+        r = cn2row.get(cn)
+        if r:
+            slug_rows[slug] = r
+        else:
+            stat['bad_label'].append('行号反查不到：' + cn)
+    slug_rows['initial_combo'] = 27
+    db['stats'] = slug_rows
+
+    # rw（行号 -> slug）跟着反查结果重建，顺带修掉 43/44 对调
+    old_rw = db.get('rw') or {}
+    new_rw = {}
+    for row, slug in old_rw.items():
+        if not slug:
+            new_rw[row] = None          # 27/31 本来就没收录
+    for slug, r in slug_rows.items():
+        if slug == 'initial_combo':
+            continue                    # 只是展示用的伪 slug，不进 rw
+        new_rw[str(r)] = slug
+    if old_rw.get('3'):
+        new_rw['3'] = 'base_damage_/_melee_damage'   # 近战伤害与基础伤害共用
+    db['rw'] = dict(sorted(new_rw.items(), key=lambda kv: int(kv[0])))
 
     body = json.dumps(db, ensure_ascii=False, separators=(',', ':'))
     old_sz = os.path.getsize(DB)

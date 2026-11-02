@@ -3476,7 +3476,7 @@ function affixConflicted(a) {
     function onnxPath() {
       OCR_PROGRESS({ status: '正在识别…' });
       var base = img0, fullCanvas = base && base.__fullCanvas;
-      return onnxFullRows(img0).then(function (res) {
+      return onnxFullRows(img0, { onProgress: onProg }).then(function (res) {
         var templated = res.templated;   // 切到模板坐标（456x600），classifyRows 读 naturalHeight/height
         if (req === OCR_REQ) currentImage = templated;   // 仅当本请求仍是最新时才改写全局
         var rows = res.rows;
@@ -3484,14 +3484,43 @@ function affixConflicted(a) {
         try {
           window.__dbgRows = rows.map(function (r) { return r.yc.toFixed(0) + ':' + r.text; });
           ensureDbgBtn();
-          var html = '【ONNX原始行·预判组合:' + (window.__comboGuess || '?') + '·分界线y:' + (window.__divY || '?') + '】\n' + rows.map(function (r) { return r.yc.toFixed(0) + ':' + r.text; }).join('\n');
+          var html = '【原始行·预判组合:' + (window.__comboGuess || '?') + '·分界线y:' + (window.__divY || '?') + '】\n' + rows.map(function (r) { return r.yc.toFixed(0) + ':' + r.text; }).join('\n');
           if (window.__stepImages) {
             html += '\n\n=== ①对齐后 ===\n';
             html += '<img src="' + window.__stepImages.aligned + '" style="max-width:200px;display:block;">\n';
-            html += '=== ②颜色掩膜 ===\n';
+            html += '=== ②二值掩膜（颜色掩膜）===\n';
             html += '<img src="' + window.__stepImages.mask + '" style="max-width:200px;display:block;">\n';
-            html += '=== ③④分界线+分区框（红线=分界线，黄框=分区）===\n';
+            html += '=== ③④分界线+分区框（红线=分界线，黄框=分区，绿框=det文字框）===\n';
             html += '<img src="' + window.__stepImages.zones + '" style="max-width:200px;display:block;">\n';
+          }
+          /* 识别模块的明细也并进「显示识别」面板 */
+          var P = window.__ocrLast;
+          if (P) {
+            var _e = function (s) {
+              return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+                return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c];
+              });
+            };
+            html += '\n\n=== 识别明细（本机推理）===\n';
+            html += '引擎：' + _e(P.engine) + '\n';
+            html += '模型：' + _e(P.model) + '\n';
+            html += 'det输入 ' + _e(P.detInput) + '　阈值 ' + P.detTh + '　置信下限 ' + P.confMin + '\n';
+            html += '文字框 ' + P.boxes + ' → 行组 ' + P.groups + ' → 保留 ' + P.lines + ' 行（丢弃 ' + P.dropped + '）\n';
+            html += '耗时 ' + Math.round(P.ms.total) + 'ms（加载 ' + Math.round(P.ms.load)
+              + ' · det ' + Math.round(P.ms.det) + ' · rec ' + Math.round(P.ms.rec) + '）\n';
+            html += '预判组合 ' + _e(P.combo) + '　分界线 y ' + P.divY
+              + '　极性 ' + _e(P.pol ? (P.pol.pol + (P.pol.lowConf ? '（低置信）' : '')) : '未识别') + '\n';
+            html += '<table style="border-collapse:collapse;font-size:11px;margin-top:4px;">'
+              + '<tr style="color:#8af"><th align="left">y</th><th align="left">x</th>'
+              + '<th align="left">conf</th><th align="left">zone</th><th align="left">text</th></tr>';
+            for (var _pi = 0; _pi < P.items.length; _pi++) {
+              var _it = P.items[_pi];
+              html += '<tr><td>' + _it.y + '</td><td>' + _it.x + '</td>'
+                + '<td>' + (Number(_it.conf) || 0).toFixed(2) + '</td>'
+                + '<td>' + _e(_it.zone || '—') + '</td>'
+                + '<td>' + _e(_it.text) + '</td></tr>';
+            }
+            html += '</table>';
           }
           setDbg(html, true);
         } catch (e) { ZKHTML.warn('识别/ocr.js:4411', e); }
@@ -3515,7 +3544,7 @@ function affixConflicted(a) {
           return _fr;
         };
         if (!fullCanvas) return finish();
-        return onnxFullRows(fullCanvas, { numCheck: false }).then(function (r2) {
+        return onnxFullRows(fullCanvas, { numCheck: false, onProgress: onProg }).then(function (r2) {
           c = mergeClassified(classifyWithGlobal(r2.rows || []), c);
           _ftRows = _ftRows.concat(r2.rows || []);
           if (!polInfo && r2 && r2.pol) polInfo = r2.pol;
@@ -3543,6 +3572,7 @@ function affixConflicted(a) {
   };
   window.RivenOCR = {
     loadImage: loadImage, recognize: recognize, hasImage: hasImage,
+    __regions: REGIONS_PCT,   /* 识别模块读它做 zone 分区，口径与 loadImage 返回值一致 */
     parseRivenName: parseRivenName,
     _settle: { settleScale: settleScale, probe: scaleProbe, family: familyOf, rows: settleRowsOf,
                rankCostOf: rankCostOf, w: SETTLE_W,

@@ -32,7 +32,7 @@ async function main() {
     }
     if (!ok) throw new Error('页面没就绪');
     if (OFF) await cdp.eval('window.__ocrNumCheck = false');
-    /* 分阶段耗时只在 __ocrProfile 打开时才记账（ocr_onnx.js 的 __P） */
+    /* 分阶段耗时只在 __ocrProfile 打开时才记账（ocr_engine.js 的 __P） */
     await cdp.eval('window.__ocrProfile = true');
 
     for (const card of cards) {

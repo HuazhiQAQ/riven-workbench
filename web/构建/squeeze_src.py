@@ -67,7 +67,7 @@ BUILD_FILES = [
     '源码/识别/preprocess.js',
     '源码/识别/polar_templates.js',
     '源码/识别/polar.js',
-    '源码/识别/ocr_onnx.js',
+    '源码/识别/ocr_engine.js',
     '源码/识别/ocr.js',
     '源码/公共/_rules.js',
     '源码/引擎/riven-engine.js',

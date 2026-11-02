@@ -4,8 +4,8 @@
   20261026 起 Tesseract / PaddleOCR 两条联网引擎已整条下线：实现、接口、
     文案都从 src/ocr/ocr.js 里删掉了（不再有"入口即抛错"的桩），OCR 只走
     内嵌的 onnxruntime-web 一条路。
-  python build.py                 -> riven-workbench-web.html   含双卡对比（默认）
-  python build.py --plain         -> riven-workbench-web-plain.html（备用版）
+  python build.py                 -> riven-sim-web.html   含双卡对比（默认）
+  python build.py --plain         -> riven-sim-web-plain.html（备用版）
   python build.py <目标路径>       （--plain 也适用）
   ⚠ 本脚本产出的是中间件（还没有内嵌 ONNX 运行时）。交付前必须再跑：
       python build/embed-ort.py --src <上一步产物> --out <xxx-完全离线.html>
@@ -55,8 +55,8 @@ _POS = [a for a in sys.argv[1:] if not a.startswith('--')]
 # 默认输出到脚本自己旁边（工具包归档里能直接跑）；
 # 要覆盖正式交付文件就显式传路径：python build.py <目标.html>
 OUT = (_POS[0] if _POS
-       else os.path.join(SRC, 'dist', 'riven-workbench-web.html' if REAL
-                        else 'riven-workbench-web-plain.html'))
+       else os.path.join(SRC, 'dist', 'riven-sim-web.html' if REAL
+                        else 'riven-sim-web-plain.html'))
 
 
 # 归档版把 src/ 下的目录改成了中文名（源码/公共/填表/…），但本脚本里全是 src/xxx 的老写法。
@@ -147,13 +147,11 @@ def _rb(p):
         return f.read()
 
 _models_dir = _zhp('src', 'ocr', 'models')
-# （武器错配 2 张、段位/次数误读 5 张、rec 数字误读若干，0 张变好），已回退 v3。
-# v3 det 配方 = 短边 736（limit_side_len），ocr_onnx.js 的 detPrep 维持原样；
-# 输入/输出张量名 v3/v4 一致（x / sigmoid_0.tmp_0 / softmax_5.tmp_0）。
-# `set OCR_VER=v6` 换成 PP-OCRv6_tiny（实验支线）：det 1.70MB / rec 4.26MB / 字典 6906 行
-# 比 v3 省 6.5MB 模型体积。
-# 输入名都是 x，输出名不同：v3 = sigmoid_0.tmp_0 / softmax_5.tmp_0，v6 = fetch_name_0；
-_OCR_VER = os.environ.get('OCR_VER', 'v3').strip().lower()
+# 模型包两套，都从本目录 models/ 读取，运行期不联网：
+#   v3 = ch_PP-OCRv3 det/rec + 6625 行字典，det 短边 736，det 阈值 0.30
+#   v6 = PP-OCRv6_tiny det/rec（1.70MB / 4.26MB）+ 6906 行字典，det 阈值 0.25
+# 两者输入名都是 x，输出名不同：v3 = sigmoid_0.tmp_0 / softmax_5.tmp_0，v6 = fetch_name_0。
+_OCR_VER = os.environ.get('OCR_VER', 'v6').strip().lower()   # 默认 PP-OCRv6_tiny（唯一在库的模型）
 _OCR_PACK = {
     'v3': ('ch_PP-OCRv3_det_infer.onnx', 'ch_PP-OCRv3_rec_infer.onnx',
            'ppocr_keys.txt', 6625, 'pm1', 0.30),
@@ -169,9 +167,9 @@ if _OCR_VER not in _OCR_PACK:
 _det_f, _rec_f, _keys_f, _keys_n, _rec_norm, _det_th = _OCR_PACK[_OCR_VER]
 # 模型编码保持原来的裸 base64（只是文件大 1.7MB，不动它的字节）。
 # 需要给 v3 也压时用 `set GZ_MODELS=1` 强制开；
-# 读取侧看 window.ONNX_MODELS.gz 开关解压（ocr_onnx.js 的 b64ToU8(b64, gz)）。
+# 读取侧看 window.ONNX_MODELS.gz 开关解压（ocr_engine.js 的 b64ToU8(b64, gz)）。
 def _gz(path):
-    # V12：mtime 必须钉成 0。
+    # mtime 必须钉成 0。
     # 同一份源码隔两分钟构建一次就会得到两个 md5 —— 产物不可复现
     # diff 全是噪声，「两次构建结果一致」这条校验也就没法当验收标准。
     return gzip.compress(_rb(path), 9, mtime=0)
@@ -205,20 +203,23 @@ assert len(_keys) == _keys_n, ('字典项数异常: %d（%s 应为 %d 行 = blan
 print('OCR 模型: %s（det %.2f MB / rec %.2f MB / 字典 %d 行 / rec 归一化 %s / det 阈值 %.2f）'
       % (_OCR_VER, len(_det_raw) / 1048576.0, len(_rec_raw) / 1048576.0,
          len(_keys), _rec_norm, _det_th))
-_onnx_engine = read('src/ocr/ocr_onnx.js')
+# 唯一识别模块 —— ocr_engine.js（det+rec 单通道 + 本地内嵌 .onnx，完全离线）。
+_onnx_engine = read('src/ocr/ocr_engine.js')
 _onnx_bootstrap = (
     'window.ONNX_MODELS={det:"' + _det_b64 + '",rec:"' + _rec_b64 + '",gz:'
     + ('1' if _USE_GZ else '0') + '};\n'
     + 'window.ONNX_KEYS=' + json.dumps(_keys, ensure_ascii=False) + ';\n'
-    + 'window.ONNX_CFG={ver:"' + _OCR_VER + '",recNorm:"' + _rec_norm
+    + 'window.ONNX_CFG={ver:"' + _OCR_VER + '",engine:"local",recNorm:"' + _rec_norm
     + '",detTh:' + ('%.2f' % _det_th) + '};\n'
 )
 # 顺序：模型常量 【公共预处理层 preprocess.js】 【极性识别 polar_templates.js + polar.js】
-# ONNX engine 主识别逻辑。
-# preprocess.js 只认图片不认引擎，必须先于 ocr_onnx.js / ocr.js 定义
-# 这样裁剪对齐那一层与识别引擎彻底解耦（换引擎不用动预处理）。
-# polar_templates.js 定义 window.POLAR_REFS（三张 32x32 标准极性图标），polar.js 消费它
-# 两者须在 ocr_onnx.js 之前就位（onnxFullRows 里 fitToTemplate 后立刻调 PolarOCR.detect）。
+# 【唯一识别模块 ocr_engine.js】 【业务消费层 ocr.js】。
+# preprocess.js 只认图片不认引擎，必须先于 ocr_engine.js / ocr.js 定义，
+# 这样裁剪对齐、二值掩膜、分界线那一层与识别引擎彻底解耦（换引擎不用动预处理）。
+# polar_templates.js 定义 window.POLAR_REFS（三张 32x32 标准极性图标），polar.js 消费它，
+# 两者须在 ocr_engine.js 之前就位（onnxFullRows 里 fitToTemplate 后立刻调 PolarOCR.detect）。
+# ocr_engine.js 提供 onnxFullRows / onnxDetOnly / ortBoot / onnxEnsure 等接口，
+# 接口名不动，ocr.js / app.js / modpanel.js 的消费点一个都不用改。
 # 分隔形态：段首 1 个 '\n'、每个段间 1 个 '\n'、段末 1 个 '\n'。
 # 源文件自己都以 '\n' 收尾，所以这里每处只补一个分隔换行 —— 补两个就多出空行
 # JS 层面靠
@@ -443,7 +444,7 @@ js = js.replace('__RIVENIMG__', RIVEN_URI)
 # 标识符，但没有 '__JS__'，所以先替其他都不会被牵连。
 html = (tpl.replace('__CSS__', css)
         .replace('__COMMON_JS__', read('src/common/common.js'))
-        # V11：ZKDATA 数据块单独成文件（源码/data/zkdata.js），构建期原地内联
+        # ZKDATA 数据块单独成文件（源码/data/zkdata.js），构建期原地内联
         .replace('__ZKNAMES_JS__', NAMES_JS)
         .replace('__ZKDATA_JS__', read('src/data/zkdata.js'))
         .replace('__RULES_JS__', _rules)

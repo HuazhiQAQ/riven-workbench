@@ -106,7 +106,12 @@ const FILE = process.argv[2] || latestProduct();
        '对科普斯伤害', '对科普斯 的 伤害'].forEach(q => srow(q, 16, '词条归一'));
       /* 另外两个派系 */
       ['Damage vs. Grineer', '对克隆尼伤害', 'damage to grineer'].forEach(q => srow(q, 17, '词条归一'));
-      ['Damage vs. Infested', 'damage to infested'].forEach(q => srow(q, 18, '词条归一'));
+      ['Damage vs. Infested', 'damage to infested', '对异变感染体的伤害',
+       '对异变感染体伤害', '对感染体的伤害'].forEach(q => srow(q, 18, '词条归一'));
+      /* 交易站三个新派系（价库里各占一行，不能互相串） */
+      ['对科腐者的伤害', 'Damage vs Techrot'].forEach(q => srow(q, 43, '词条归一'));
+      ['对炽蛇军的伤害', 'Damage vs Scaldra'].forEach(q => srow(q, 44, '词条归一'));
+      ['对奥罗金的伤害'].forEach(q => srow(q, 42, '词条归一'));
       /* 词条自己的名字必须还能回到自己那一行（滚动区 2~34） */
       window.ZKDATA.stats.forEach(s2 => {
         if (s2.row > 34) return;
@@ -172,9 +177,28 @@ const FILE = process.argv[2] || latestProduct();
           res.fail.push({ q: '价库 slug ' + JSON.stringify(s), want: '纯 slug', got: s, tag: '价库名' });
           return;
         }
-        const kk = (PDB.stats || {})[s] || s;
-        const nm = ZC3.statNameByKey(kk, 0);
-        if (!nm || nm === kk) res.fail.push({ q: '价库 slug ' + s, want: '能落到命名表', got: kk, tag: '价库名' });
+        const row = (PDB.stats || {})[s];
+        if (row == null) {
+          res.fail.push({ q: '价库 slug ' + s, want: 'stats 里有行号', got: '缺', tag: '价库名' });
+          return;
+        }
+        const zr = (window.ZKDATA && window.ZKDATA.stats) || [];
+        const hit = zr.filter(x => x && +x.row === +row)[0];
+        if (!hit || !hit.cn) {
+          res.fail.push({ q: '价库 slug ' + s + ' 行 ' + row, want: '词条表里有这一行', got: '没有', tag: '价库名' });
+        }
+      });
+
+      /* ⑩ 六个派系各自显示自己的名字，不能被 fac 一个通用键压平 */
+      const FAC = [['damage_vs_corpus', '对科普斯'], ['damage_vs_grineer', '对克隆尼'],
+                   ['damage_vs_infested', '对异变体'], ['damage_to_orokin', '对奥罗金'],
+                   ['damage_to_scaldra', '对炽蛇军'], ['damage_to_techrot', '对科腐者']];
+      FAC.forEach(p => {
+        res.total++;
+        const nm = window.ZKPRICEREF && window.ZKPRICEREF.statName ? window.ZKPRICEREF.statName(p[0]) : '';
+        if (!nm || nm.indexOf(p[1]) < 0) {
+          res.fail.push({ q: '价库派系名 ' + p[0], want: '含「' + p[1] + '」', got: nm, tag: '派系名' });
+        }
       });
 
       /* 样本：用户报的三种写法 */

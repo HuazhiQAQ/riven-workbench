@@ -205,11 +205,11 @@
 |---|---|
 | `源码/识别/preprocess.js` | 公共预处理层，只认图片不认引擎：紫色边框扫描 → 凸包 + 最小外接矩形旋正 → 贴模板 632×800 → 亮度掩膜 / 对比度自适应 → 去孤立碎块 → 多尺度缩放 |
 | `源码/识别/polar_templates.js` + `polar.js` | **极性识别（图标链路，不走文字 OCR）**，见 3.6 |
-| `源码/识别/ocr_onnx.js` | ONNX det + rec 本地推理 + 多尺度投票 |
+| `源码/识别/ocr_engine.js` | ONNX det + rec 本地推理 + 多尺度投票 |
 | `源码/识别/ocr.js` | 分区、解析、投票、落对照表（读字后的逻辑） |
 
-- `build.py` 注入顺序：`ONNX 模型常量 → preprocess.js → polar_templates.js → polar.js → ocr_onnx.js → ocr.js`。
-  公共层只认图片不认引擎，必须先于识别引擎定义；极性模板须先于 `ocr_onnx.js` 就位
+- `build.py` 注入顺序：`ONNX 模型常量 → preprocess.js → polar_templates.js → polar.js → ocr_engine.js → ocr.js`。
+  公共层只认图片不认引擎，必须先于识别引擎定义；极性模板须先于 `ocr_engine.js` 就位
   （`onnxFullRows` 里 fitToTemplate 后立刻调 `PolarOCR.detect`）。
 - **只有一条识别路径：本地 ONNX**。`recognize(opts)` 不接受 `engine` 参数，失败即报错，没有联网兜底。
 - ONNX 运行时三级兜底（内嵌 → 同目录 `./ort/` → CDN 常量）；离线三件套（运行时模块 / wasm 胶水 /

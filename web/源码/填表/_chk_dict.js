@@ -45,7 +45,7 @@ const WM_NAME_RULES = grab('var WM_NAME_RULES = ');
 let fail = 0;
 const bad = (m) => { console.log('  ✗ ' + m); fail++; };
 
-/* ---------- 复刻 _gen.js 的逻辑（改了那边，这里要同步改） ---------- */
+/* ---------- 与 _gen.js 逻辑保持一致（改了那边，这里要同步改） ---------- */
 function wmNormName(s) {
   var t = String(s || '').replace(/[\s　]+/g, '').replace(/[·・･]/g, '\u00b7').toLowerCase();
   var z = t.replace(/[a-z0-9._\-'"]+/g, '');

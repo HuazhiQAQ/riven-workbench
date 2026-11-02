@@ -169,10 +169,11 @@
 
   function statName(slug) {
     var D = db();
-    var k = (D && D.stats) ? D.stats[slug] : null;   /* 价库里只存键，名字全部从命名表取 */
-    if (!k) return slug;
-    if (window.ZKC && window.ZKC.statNameByKey) return window.ZKC.statNameByKey(k, 0);
-    return k;
+    var row = (D && D.stats) ? D.stats[slug] : null;   /* 价库只存行号，名字来自词条表 */
+    if (row == null) return slug;
+    var arr = (window.ZKDATA && window.ZKDATA.stats) || [], i;
+    for (i = 0; i < arr.length; i++) if (+arr[i].row === +row) return arr[i].cn || slug;
+    return slug;
   }
 
   /* 派系词条（对 Corpus / Grineer / Infested / Orokin / Scaldra / Techrot）在 WM 上 */

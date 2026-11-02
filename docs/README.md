@@ -83,7 +83,7 @@
 │   │   ├── 数据/                      zkdata.js（武器库 637 把）/ zkprice.js / zkpricedb.js / names.json
 │   │   ├── 引擎/                      收益引擎 + 武器库（riven-engine.js / weapon-db.js / zkasm.js / riven-router.js / stances.js / zkmods.js / zkarcs.js）
 │   │   ├── 框架/                      template.html / style.css / app.js / theme.js / stattable.js / weptable.js / pricetable.js / priceref.js / modpanel.js …
-│   │   ├── 识别/                      ocr.js / ocr_onnx.js / preprocess.js / polar*.js / models/
+│   │   ├── 识别/                      ocr.js / ocr_engine.js / preprocess.js / polar*.js / models/
 │   │   ├── 资源/                      卡面底图等静态资源
 │   │   └── 填表/                      WM 填表（wm-fill-core.js / 词库 / _wmdict.py）
 │   ├── 构建/                          build.py embed-ort.py squeeze_src.py strip_html.py export.py gen-basedata.py gen_names.py pricedb_slim.py pricedb_fixcombos.py _audit_js.py

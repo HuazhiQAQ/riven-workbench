@@ -22,7 +22,7 @@ function ckind(n, got, needle) {
   console.log((ok ? '  ✓ ' : '  ✗ ') + n + ' = ' + JSON.stringify(String(got).slice(0, 150)) + (ok ? '' : '（期望含 ' + JSON.stringify(needle) + '）'));
   ok ? pass++ : fail++;
 }
-const FILE = process.argv[2] || path.join(__dirname, '..', 'dist', '20261029-riven-workbench-v8.html');
+const FILE = process.argv[2] || path.join(__dirname, '..', 'dist', '20261029-riven-sim-v8.html');
 
 const WANT = ['impact', 'cold', 'heat', 'toxin', 'electricity', 'radiation', 'magnetic'];
 

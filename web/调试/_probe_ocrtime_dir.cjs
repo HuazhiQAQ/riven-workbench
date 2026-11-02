@@ -1,7 +1,7 @@
 'use strict';
 /* _probe_ocrtime_dir.cjs —— 对目录下每张卡逐张分段计时（引擎唤醒/检测det/识别rec/字段解析）
  *   node debug/_probe_ocrtime_dir.cjs <图片目录> [<产物.html>]
- * 分段来自页内开关 window.__ocrProfile（仅当为 true 时，ocr_onnx.js/onnxFullRows 与 ocr.js/finish 记录）
+ * 分段来自页内开关 window.__ocrProfile（仅当为 true 时，ocr_engine.js/onnxFullRows 与 ocr.js/finish 记录）
  * 排除单字母测试对 A.png/B.png → 跑 16 张。 */
 const fs = require('fs');
 const path = require('path');
@@ -9,7 +9,7 @@ const { openPage, toFileUrl } = require('./cdp.cjs');
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 const DIR = process.argv[2] || 'D:/桌面/紫卡测试';
-const FILE = process.argv[3] || path.join(__dirname, '..', 'dist', '20261029-riven-workbench-v8.html');
+const FILE = process.argv[3] || path.join(__dirname, '..', 'dist', '20261029-riven-sim-v8.html');
 const SKIP = new Set(['A.png', 'B.png']); // 单字母测试对，排除
 
 function mimeOf(n) {
