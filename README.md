@@ -15,7 +15,7 @@
 
 | 文件 | 说明 |
 |------|------|
-| `web/产物/20261031紫卡模拟器V10.html` | **主版**：双服行情参考 + 页内「倾向口径」切换，约 15 MB |
+| `web/产物/20261103紫卡模拟器V11.html` | **主版**：双服行情参考 + 页内「倾向口径」切换，约 15 MB |
 | `web/dist/riven-workbench-web.html` | **英文名分发版**：同一份构建，英文文件名便于分享，约 15 MB |
 | `web/产物/识别流程原理讲解_鳄神案例.html` | OCR 识别流程原理讲解页（18 步，图文自包含） |
 
@@ -142,7 +142,7 @@ var MKEY = ZKC.statMap('short');    // 面板简称表：整体由表生成
 直接用浏览器打开：
 
 ```
-web/产物/20261031紫卡模拟器V10.html
+web/产物/20261103紫卡模拟器V11.html
 ```
 
 这是一份自包含单文件网页（JS / CSS / OCR 模型全部内联），断网也能用。另有 `web/dist/riven-workbench-web.html`（英文名分发版，同一构建）与 `web/产物/识别流程原理讲解_鳄神案例.html`（识别流程原理讲解）。倾向口径（全库统一 1.2 / 各武器历史倾向）为**页内切换**，不单独出文件。
@@ -158,21 +158,21 @@ cd web
 python 构建/squeeze_src.py --apply
 
 # 1) 组装源码 → 中间产物（OCR 模型用 v6，并 gzip 压缩以减小体积）
-OCR_VER=v6 GZ_MODELS=1 python 构建/build.py 产物/20261031紫卡模拟器V10.html
+OCR_VER=v6 GZ_MODELS=1 python 构建/build.py 产物/20261103紫卡模拟器V11.html
 
 # 2) 内嵌 OCR 运行时并去掉注释 → 最终交付件
-python 构建/embed-ort.py --src 产物/20261031紫卡模拟器V10.html \
-                          --out 产物/20261031紫卡模拟器V10.html --strip
+python 构建/embed-ort.py --src 产物/20261103紫卡模拟器V11.html \
+                          --out 产物/20261103紫卡模拟器V11.html --strip
 
 # 3) 同步到仓库根，作为站点首页（GitHub Pages 根路径直出的就是它）
-cp 产物/20261031紫卡模拟器V10.html ../index.html
+cp 产物/20261103紫卡模拟器V11.html ../index.html
 ```
 
 > **第 3 步不能漏**：根 `index.html` 是主版的**副本**，站点根路径直出的是它。只更新 `产物/` 而不同步，线上仍是旧版。两份内容相同时 git 按 sha 去重，仓库不会因此多存一份 15 MB（`.gitattributes` 里给 `/index.html` 标了 `-text`，防止 `core.autocrlf` 改字节导致去重失效）。
 
 > 第 1 步输出的是**未嵌 OCR 运行时的中间态**，并会覆盖同名产物，必须接第 2 步。
 >
-> `build.py` 不带路径参数时默认输出到 `web/dist/riven-workbench-web.html`；要更新正式交付件就显式传 `产物/20261031紫卡模拟器V10.html`。
+> `build.py` 不带路径参数时默认输出到 `web/dist/riven-workbench-web.html`；要更新正式交付件就显式传 `产物/20261103紫卡模拟器V11.html`。
 >
 > `embed-ort.py` 内嵌的 ONNX 运行时优先读取本地的 `运行时/`；该目录已从仓库省略（约 14 MB 的 wasm 缓存），重建时加 `--force-download` 即可从 CDN 拉取（需联网）。交付的 `产物/*.html` 本身已内嵌 ONNX，断网可用。
 >

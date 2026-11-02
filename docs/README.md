@@ -13,7 +13,7 @@
 | 项 | 值 |
 |---|---|
 | xlsm | `tools/riven-source-6.0.xlsm` |
-| 网页版·主力（完全离线） | `web/产物/20261031紫卡模拟器V10.html`（约 15 MB，单文件） |
+| 网页版·主力（完全离线） | `web/产物/20261103紫卡模拟器V11.html`（约 15 MB，单文件） |
 | 识别流程讲解 | `web/产物/识别流程原理讲解_鳄神案例.html`（18 步，图文自包含） |
 | Sheet7 src | `源码快照/Sheet7_当前源码_UTF8.vba`（UTF-8 + CRLF，可直接 inject） |
 
@@ -244,9 +244,9 @@ $PY 融合数值验证.py            $X 24          ★ 融合产物数值是不
 
   ```
   python 构建/squeeze_src.py --apply                                             # ① 清注释
-  OCR_VER=v6 GZ_MODELS=1 python 构建/build.py 产物/20261031紫卡模拟器V10.html      # ② 组装源码
-  python 构建/embed-ort.py --src 产物/20261031紫卡模拟器V10.html \
-                          --out 产物/20261031紫卡模拟器V10.html --strip         # ③ 内嵌 ORT + 去注释
+  OCR_VER=v6 GZ_MODELS=1 python 构建/build.py 产物/20261103紫卡模拟器V11.html      # ② 组装源码
+  python 构建/embed-ort.py --src 产物/20261103紫卡模拟器V11.html \
+                          --out 产物/20261103紫卡模拟器V11.html --strip         # ③ 内嵌 ORT + 去注释
   ```
 
   - **`--strip` 是交付形态**：去掉全部注释但**保留行数**（`构建/strip_html.py`），报错行号能对回源码。

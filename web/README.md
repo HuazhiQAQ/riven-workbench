@@ -41,7 +41,7 @@
 用任意现代浏览器打开：
 
 ```
-产物/20261031紫卡模拟器V10.html
+产物/20261103紫卡模拟器V11.html
 ```
 
 自包含单文件（JS / CSS / OCR 模型全部内联），不需要安装任何东西，断网也能用。
@@ -60,11 +60,11 @@ python 构建/squeeze_src.py --apply
 # 2) 组装源码 → 中间产物
 #    ⚠ OCR_VER=v6 必须带上！build.py 的默认是 v3，而交付件用的是 v6 模型
 #      （ppocr_keys_v6.txt 行数不同）。不带会得到识别更慢、丢词条的「假新版」。
-OCR_VER=v6 GZ_MODELS=1 python 构建/build.py 产物/20261031紫卡模拟器V10.html
+OCR_VER=v6 GZ_MODELS=1 python 构建/build.py 产物/20261103紫卡模拟器V11.html
 
 # 3) 内嵌 OCR 运行时并去掉注释 → 最终交付件
-python 构建/embed-ort.py --src 产物/20261031紫卡模拟器V10.html \
-                          --out 产物/20261031紫卡模拟器V10.html --strip
+python 构建/embed-ort.py --src 产物/20261103紫卡模拟器V11.html \
+                          --out 产物/20261103紫卡模拟器V11.html --strip
 ```
 
 > `build.py` 不带路径参数时默认写 `dist/riven-workbench-web.html`（英文名分发版）。
@@ -89,8 +89,8 @@ node 调试/_probe_price.cjs            # 价值表
 node 调试/lang_e2e.cjs                # 三语言（数据名 + 卡面词条名）
 
 # OCR 侧（改分区 / 复读 / 护栏后跑）—— 需显式传产物与卡图
-node 调试/_probe_numcheck.cjs 产物/20261031紫卡模拟器V10.html 测试/卡图/c2.png
-node 调试/_probe_zrows.cjs    产物/20261031紫卡模拟器V10.html 测试/卡图/c4.png
+node 调试/_probe_numcheck.cjs 产物/20261103紫卡模拟器V11.html 测试/卡图/c2.png
+node 调试/_probe_zrows.cjs    产物/20261103紫卡模拟器V11.html 测试/卡图/c4.png
 
 # 挂单侧（改 wm-fill-core.js 后跑）
 node 调试/_probe_fill.cjs             # 只看断言；--verbose 连日志一起打

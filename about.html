@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Warframe 紫卡模拟器 V10 · 离线单文件工具</title>
+<title>Warframe 紫卡模拟器 V11 · 离线单文件工具</title>
 <style>
 :root{
   --bg:#f7f8fa; --card:#fff; --bd:#e3e6ec; --tx:#1a1d24; --mut:#6b7280;
@@ -43,13 +43,13 @@ a{color:var(--acc)}
 <body>
 <div class="wrap">
 
-<h1>Warframe 紫卡模拟器 V10</h1>
+<h1>Warframe 紫卡模拟器 V11</h1>
 <p class="sub">面向《Warframe（星际战甲）》紫卡 / 裂罅 Mod 的<strong>离线单文件</strong>工具：双击即开、断网可用，OCR 与收益引擎全部内嵌。</p>
 
 <div class="card">
   <strong>直接打开成品</strong><span class="tag">无需安装 · 无需联网</span>
   <div class="btns">
-    <a class="btn" href="web/产物/20261031紫卡模拟器V10.html">主版 · 15 MB</a>
+    <a class="btn" href="web/产物/20261103紫卡模拟器V11.html">主版 · 15 MB</a>
     <a class="btn ghost" href="web/产物/识别流程原理讲解_鳄神案例.html">识别流程原理讲解 · 3.0 MB</a>
   </div>
   <p style="color:var(--mut);font-size:13px;margin:12px 0 0">
@@ -90,14 +90,14 @@ a{color:var(--acc)}
 python 构建/squeeze_src.py --apply
 
 # 1) 组装源码 → 中间产物（第 1 步的输出还没嵌 OCR 运行时，必须接第 2 步）
-OCR_VER=v6 GZ_MODELS=1 python 构建/build.py 产物/20261031紫卡模拟器V10.html
+OCR_VER=v6 GZ_MODELS=1 python 构建/build.py 产物/20261103紫卡模拟器V11.html
 
 # 2) 内嵌 OCR 模型 + 去注释 → 最终交付件
-python 构建/embed-ort.py --src 产物/20261031紫卡模拟器V10.html \
-                          --out 产物/20261031紫卡模拟器V10.html --strip
+python 构建/embed-ort.py --src 产物/20261103紫卡模拟器V11.html \
+                          --out 产物/20261103紫卡模拟器V11.html --strip
 
 # 3) 同步到仓库根做站点首页（Pages 根路径直出的是它）
-cp 产物/20261031紫卡模拟器V10.html ../index.html</pre>
+cp 产物/20261103紫卡模拟器V11.html ../index.html</pre>
 <p style="color:var(--mut);font-size:13px">
   两步即可：第 1 步产出的是未嵌 OCR 运行时的中间态，第 2 步才内嵌运行时并去注释。
   第 3 步漏了的话，线上站点还是旧版。
