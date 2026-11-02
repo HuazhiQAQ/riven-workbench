@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>WM 仿真（裸页 · 给 _probe_fill.cjs 用）</title>
+<style>
+  body { font: 13px/1.5 system-ui, sans-serif; margin: 0; padding: 16px; background: #f6f7f9; }
+  .riven-preview { border: 1px solid #ccd; padding: 8px; border-radius: 6px; background: #fff; }
+  .riven-preview__attributes { list-style: none; margin: 6px 0 0; padding: 0; }
+  .riven-preview__attributes li { padding: 2px 0; border-bottom: 1px dotted #ddd; }
+  .riven-preview__attributes b { display: inline-block; min-width: 76px; }
+  form.auction-create { background: #fff; padding: 14px; border-radius: 8px;
+                       border: 1px solid #dde; margin-bottom: 14px; }
+  form.auction-create > div { margin: 6px 0; }
+  label { display: inline-block; min-width: 130px; font-weight: 600; }
+  .seeker--H546a { display: inline-block; min-width: 280px; border: 1px solid #bbc;
+                   border-radius: 4px; padding: 2px 4px; background: #fafafa; }
+  .seeker--H546a.focused--QvkMD { border-color: #37c; }
+  .dropdown--l05xz { border: 1px solid #99a; background: #fff; max-height: 180px;
+                      overflow: auto; margin-top: 2px; }
+  .dropdown--l05xz ul { list-style: none; margin: 0; padding: 0; }
+  .dropdown--l05xz li { padding: 2px 8px; cursor: pointer; }
+  .dropdown--l05xz li:hover { background: #eef; }
+  .seeker--H546a button { float: right; }
+  .auction-create__stats { border-bottom: 1px dashed #e0e0e0; }
+  input[type=number] { width: 90px; }
+  input[type=text] { width: 220px; }
+</style>
+</head>
+<body>
+<!-- 只装仿真页 + 填表核心，不带任何自动运行逻辑。
+     用例由 调试/_probe_fill.cjs 通过 CDP 一条条驱动。 -->
+<script>window.ZKHTML = window.ZKHTML || { warn: function () {} };</script>
+<script src="wm-sim.js"></script>
+<script src="../源码/填表/wm-fill-core.js"></script>
+</body>
+</html>

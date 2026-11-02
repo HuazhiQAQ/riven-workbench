@@ -1,0 +1,1431 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<title>Warframe 紫卡模拟器 · 画纸芊鸾版 —— 洗卡模拟器 / 数值计算器 / 倾向区间表</title>
+<script>__THEME_JS__</script>
+<script>__COMMON_JS__</script>
+<style>__CSS__</style>
+<style id="pg-route-css">
+  html[data-route] main > .sec{ display:none; }
+  html[data-route="ranges"] #ranges,
+  html[data-route="calc"]   #calc,
+  html[data-route="open"]   #open,
+  html[data-route="dmg"]    #dmg,
+  html[data-route="choose"] #choose,
+  html[data-route="price"]  #price,
+  html[data-route="about"]  #about{ display:block; }
+  html[data-route] main > .sec{ scroll-margin-top:0; padding-bottom:8px; }
+  .pg-pager{
+    display:flex; align-items:center; gap:10px;
+    margin:8px 0 26px; padding:12px 0 0;
+    border-top:1px solid var(--border);
+  }
+  .pg-btn{
+    display:inline-flex; align-items:baseline; gap:6px;
+    max-width:46%; padding:9px 14px;
+    border:1px solid var(--border); border-radius:var(--r-sm);
+    background:var(--surface); color:var(--text-dim);
+    font-size:var(--fs-12); font-weight:600; text-decoration:none;
+    transition:color var(--t), border-color var(--t), background var(--t);
+  }
+  .pg-btn b{ color:var(--text); font-weight:700; }
+  .pg-btn:hover{ color:var(--ui-text); border-color:var(--ui-border); background:var(--ui-bg); }
+  .pg-btn:hover b{ color:var(--ui-text); }
+  .pg-btn.next{ margin-left:auto; text-align:right; }
+  .pg-btn[aria-disabled="true"]{ opacity:.35; pointer-events:none; }
+  .pg-idx{
+    flex:0 0 auto; font-family:var(--f-mono); font-size:var(--fs-11);
+    color:var(--text-mute); letter-spacing:.08em;
+  }
+  @media (max-width:700px){
+    .pg-pager{ flex-wrap:wrap; }
+    .pg-btn{ max-width:100%; font-size:var(--fs-11); padding:8px 10px; }
+    .pg-idx{ order:-1; width:100%; text-align:center; }
+  }
+</style>
+<script id="pg-route-early">
+(function(){
+  var IDS = ['ranges','calc','open','dmg','choose','price','about'];
+  var m = (location.hash || '').match(/^#\/?([a-z]+)/i);
+  var id = m && IDS.indexOf(m[1]) >= 0 ? m[1] : 'ranges';
+  document.documentElement.setAttribute('data-route', id);
+  try{ if (location.hash !== '#/' + id) history.replaceState(null, '', '#/' + id); }catch(e){}
+})();
+</script>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false"><defs>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+<symbol id="i-undo" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9 9 0 0 0-6.4 2.6L3 8"/><path d="M3 3v5h5"/></symbol>
+<symbol id="i-redo" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-9-9 9 9 0 0 1 6.4 2.6L21 8"/><path d="M21 3v5h-5"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+<symbol id="i-dice" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8.5 8.5h.01M15.5 15.5h.01M12 12h.01"/></symbol>
+<symbol id="i-reroll" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 3v6h-6"/><path d="M12 8v4l3 2"/></symbol>
+<symbol id="i-fuse" viewBox="0 0 24 24"><path d="M8 3v6M16 3v6"/><path d="M5 9h14l-2 5H7z"/><path d="M12 14v7"/></symbol>
+<symbol id="i-calc" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h4"/></symbol>
+<symbol id="i-table" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></symbol>
+<symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="i-unlock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 7.5-2"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4"/></symbol>
+<symbol id="i-lang" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/></symbol>
+<symbol id="i-scan" viewBox="0 0 24 24"><path d="M3 8V5a2 2 0 0 1 2-2h3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M8 21H5a2 2 0 0 1-2-2v-3"/><path d="M3 12h18"/></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13"/></symbol>
+</defs></svg>
+<header class="app-head">
+  <div class="hh-inner">
+    <div class="hh-brand">
+      <h1>Warframe 紫卡模拟器<span class="badge-edition">画纸芊鸾版</span></h1>
+      <p class="hh-sub">倾向数值区间表（<span data-du-only>倾向统一 <span data-disp-text></span></span><span data-dv-only>按各武器自己的倾向</span>）· 数值分析器 · 融合洗卡模拟器</p>
+    </div>
+    <div class="hh-tools">
+      <div class="hh-btns">
+        <button type="button" class="ico" id="themeBtn" data-a="theme" title="切换明暗主题" aria-label="切换明暗主题"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-moon"/></svg><span>主题</span></button>
+      </div>
+    </div>
+  </div>
+</header>
+<nav class="top-nav" id="topNav" aria-label="版块导航">
+  <div class="nav-inner">
+    <a href="#ranges" class="active" data-nav><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-table"/></svg>倾向数值区间表</a>
+    <a href="#calc" data-nav><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-calc"/></svg>分析识别计算器</a>
+    <a href="#open" data-nav><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dice"/></svg>开卡洗卡融合模拟器</a>
+    <a href="#dmg" data-nav><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-target"/></svg>紫卡收益计算器</a>
+    <a href="#choose" data-nav><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-fuse"/></svg>洗卡左右建议器</a>
+    <a href="#price" data-nav><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-list"/></svg>紫卡价值表</a>
+        <a href="#about" data-nav><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-book"/></svg>口径与词汇</a>
+  </div>
+</nav>
+<main class="wrap">
+  <section id="ranges" class="sec">
+    <div class="sec-h">
+      <span class="sec-n">01</span>
+      <div><h2>倾向数值区间表</h2><p>一把武器在「2正 / 3正 × 带不带负面 × 各等级」下，每条词条能洗出的最小 / 平均 / 最大。<span data-du-only>倾向已统一为 <span data-disp-text></span>。</span><span data-dv-only>倾向按各武器自己的数值算。</span></p></div>
+      <div class="fn-sort" style="margin-left:auto;display:flex;gap:6px"><button type="button" class="btn sm ghost" data-a="fnmove" data-fn="ranges" data-b="up" title="把本功能上移">↑</button><button type="button" class="btn sm ghost" data-a="fnmove" data-fn="ranges" data-b="down" title="把本功能下移">↓</button></div>
+    </div>
+    <div class="ranger">
+      <aside class="r-side">
+        <div class="r-card">
+          <label class="fl" for="rgQ"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-search"/></svg>搜索武器</label>
+          <input type="text" id="rgQ" placeholder="打字筛选，上下键选，Enter 确认" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="rgCands">
+          <div class="cands" id="rgCands" role="listbox" aria-label="武器候选"></div>
+        </div>
+        <div class="r-card r-sticky">
+          <label class="fl">当前武器</label>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <div class="r-wname" id="rgName">—</div>
+            <button type="button" class="btn sm" data-a="washFromRange" title="把这把武器带到模拟洗卡（03）开始洗">洗一下</button>
+          </div>
+          <div class="r-wmeta" id="rgMeta">—</div>
+          <div class="fld" id="rgVarWrap" style="display:none">
+            <label class="fl" for="rgVar">变体</label>
+            <select id="rgVar"></select>
+          </div>
+          <div class="r-ctl">
+            <div class="fld">
+              <label class="fl" id="rgPosLbl">正面词条数</label>
+              <div class="seg sm" id="rgPos" role="group" aria-labelledby="rgPosLbl">
+                <button type="button" data-a="rgpos" data-i="2">2正</button>
+                <button type="button" data-a="rgpos" data-i="3">3正</button>
+              </div>
+            </div>
+            <div class="fld">
+              <label class="fl" id="rgNegLbl">负面</label>
+              <div class="seg sm" id="rgNeg" role="group" aria-labelledby="rgNegLbl">
+                <button type="button" data-a="rgneg" data-i="0">不带</button>
+                <button type="button" data-a="rgneg" data-i="1">带 1 负</button>
+              </div>
+            </div>
+            <div class="fld">
+              <label class="fl" for="rgRank">等级</label>
+              <select id="rgRank"></select>
+            </div>
+          </div>
+          <div class="r-note" id="rgNote"></div>
+          <p class="hint" style="margin-top:8px">冲击 / 穿刺 / 切割只在武器<strong>自带</strong>该类型伤害时才洗得出来；洗不出来的词条在下面两张表里显示为 <span class="mono">- - -</span>（划掉、灰显）。<strong>元素词条没有这条限制</strong>。</p>
+        </div>
+        <div class="r-card">
+          <label class="fl" id="rgCatLbl">按武器类型</label>
+          <div class="seg wrap" id="rgCat" role="group" aria-labelledby="rgCatLbl"></div>
+                    <div class="r-wlist" id="rgList" role="listbox" aria-label="同类型武器（按倾向降序）"></div>
+        </div>
+      </aside>
+      <div class="r-main">
+        <div class="r-combo" id="rgCombo"></div>
+        <div class="r-tables">
+          <div class="r-tbl pos">
+            <div class="r-th"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg>正面词条<span class="r-th-n" id="rgPosCount"></span></div>
+            <div class="r-scroll">
+              <table class="r-t"><thead><tr><th>词条</th><th class="n">最小</th><th class="n">平均</th><th class="n">最大</th></tr></thead>
+              <tbody id="rgPosBody"></tbody></table>
+            </div>
+          </div>
+          <div class="r-tbl neg">
+            <div class="r-th"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-alert"/></svg>负面词条<span class="r-th-n" id="rgNegCount"></span></div>
+            <div class="r-scroll">
+              <table class="r-t"><thead><tr><th>词条</th><th class="n">最小</th><th class="n">平均</th><th class="n">最大</th></tr></thead>
+              <tbody id="rgNegBody"></tbody></table>
+            </div>
+          </div>
+        </div>
+        <div class="r-fuserow">
+          <div class="r-tbl fuse" id="rgFuseWrap">
+            <div class="r-th"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-fuse"/></svg>融合专属词条<span class="r-th-n">洗不出来，只能靠融合得到；数值走同一套公式</span></div>
+            <div class="r-scroll">
+              <table class="r-t"><thead><tr><th>词条</th><th class="n">最小</th><th class="n">平均</th><th class="n">最大</th></tr></thead>
+              <tbody id="rgFuseBody"></tbody></table>
+            </div>
+          </div>
+          <div class="r-tbl rcp" id="rgRcpWrap">
+            <div class="r-th"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-table"/></svg>合成配方</div>
+            <div class="r-scroll">
+              <table class="r-t"><thead><tr><th>基础属性1</th><th>基础属性2</th><th>融合属性</th></tr></thead>
+              <tbody id="rgRcpBody"></tbody></table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>__SGX_JS__</script>
+    <div class="sgx" id="sgx">
+      <div class="sgx-h">
+        <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-table"/></svg>
+        <h3 id="sgxTitle">属性数值速查</h3>
+        <em id="sgxNote">按 基准值 × 布局系数 × 倾向 × 浮动 实时算出，满级口径；后两列为负词条扣减值</em>
+        <span class="sgx-sel" id="sgxSel" hidden></span>
+        <span class="sgx-cnt" id="sgxCnt">—</span>
+      </div>
+      <div class="sgx-cats" id="sgxCats" role="group" aria-label="武器类别"></div>
+      <div class="sgx-sub"><b id="sgxSubN">普通词条</b><em id="sgxSubNe">任何紫卡都可能洗出</em></div>
+      <div class="sgx-scroll">
+        <table class="sgx-t">
+          <thead><tr id="sgxHeadN"></tr></thead>
+          <tbody id="sgxBodyN"></tbody>
+        </table>
+      </div>
+      <div class="sgx-sub"><b id="sgxSubF">融合词条</b><em id="sgxSubFe">只能靠融合得到，洗不出来</em></div>
+      <div class="sgx-scroll">
+        <table class="sgx-t">
+          <thead><tr id="sgxHeadF"></tr></thead>
+          <tbody id="sgxBodyF"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <section id="calc" class="sec">
+    <div class="sec-h">
+      <span class="sec-n">02</span>
+      <div><h2>分析识别计算器</h2><p>检验一张卡洗出来的最终成果：对中差值、评级、等级换算，以及换个倾向会变成什么样。</p></div>
+      <div class="fn-sort" style="margin-left:auto;display:flex;gap:6px"><button type="button" class="btn sm ghost" data-a="fnmove" data-fn="calc" data-b="up" title="把本功能上移">↑</button><button type="button" class="btn sm ghost" data-a="fnmove" data-fn="calc" data-b="down" title="把本功能下移">↓</button></div>
+    </div>
+    <div class="card ocr-card">
+      <h3><span class="dot dot-gold"></span>识别截图 <em>选一张紫卡截图，武器名与数值自动填进下面的计算器</em></h3>
+                  <div class="ocr-duo">
+        <div class="ocr-col">
+          <div class="ocr-label">原图</div>
+          <div class="ocr-zone" id="ocrZone" role="button" tabindex="0" aria-label="选择或粘贴紫卡截图">
+            <svg class="ic ocr-ic" aria-hidden="true" focusable="false"><use href="#i-scan"/></svg>
+            <b>点击选择截图</b>
+            <span>也可以直接 <kbd>Ctrl</kbd>+<kbd>V</kbd> 粘贴，或把图片拖进来</span>
+          </div>
+          <div class="ocr-preview" id="ocrPreview" hidden>
+            <canvas id="ocrCanvas" width="300" height="379"></canvas>
+            <button type="button" class="btn ghost sm" data-a="ocr-clear" style="margin-top:8px;"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-trash"/></svg>清除</button>
+          </div>
+        </div>
+        <div class="ocr-col">
+          <div class="ocr-label">掩膜+分界线</div>
+          <div class="ocr-mask" id="ocrMask">
+            <canvas id="ocrMaskCanvas" width="300" height="379"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="ocr-bottom">
+        <div class="ocr-textrow">
+          <div class="ocr-inputwrap">
+          <input type="text" id="ocrText" class="ocr-text" placeholder="或输入文字，如：双暴多负触托里德丨托里德 Acri-cron丨多140暴230托里德" autocomplete="off" spellcheck="false" data-a="ocr-text" />
+            <button type="button" class="ocr-clear" id="ocrTextClear" data-a="ocr-text-clear" title="清除输入" aria-label="清除输入" tabindex="-1">❌</button>
+          </div>
+          <button type="button" class="btn ghost sm" id="ocrTextGo" data-a="ocr-text-go"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-reroll"/></svg>生成</button>
+        </div>
+        <button type="button" class="btn" id="ocrGo" data-a="ocr-go" disabled><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-scan"/></svg>识别并填入计算器</button>
+        <div class="ocr-statusrow">
+          <div class="ocr-status" id="ocrStatus" role="status" aria-live="polite"></div>
+          <button type="button" class="btn ghost sm ocr-fix" id="ocrFix" data-a="ocr-fix" hidden
+                  title="认错武器了？点这里输入正确的武器名，强制矫正">修</button>
+        </div>
+      </div>
+      <div class="ocr-warnlist" id="ocrWarn" role="status" aria-live="polite"></div>
+      <input type="file" id="ocrFile" accept="image/*" hidden>
+      <style>
+      .ocr-hist{--bh:var(--surface-2);margin-top:14px;border-top:1px solid var(--border-soft);padding-top:10px}
+      .ocr-hist-bar{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+      .ocr-hist-bar b{font-size:var(--fs-14);color:var(--text-strong)}
+      .ocr-hist-bar span{font-size:var(--fs-12);color:var(--text-mute);margin-right:auto}
+      .ocr-hist-empty{font-size:var(--fs-13);color:var(--text-mute);padding:8px 0}
+      .ocr-hist-item{border:1px solid var(--border-soft);border-radius:var(--r-sm);padding:8px 10px;margin-bottom:8px;background:var(--surface-2);display:flex;align-items:center;gap:10px}
+      .ocr-hist-main{flex:1;min-width:0}
+      .ocr-hist-head{display:flex;flex-wrap:wrap;gap:6px;align-items:baseline;font-size:var(--fs-13)}
+      .ocr-hist-head b{color:var(--text-dim)}
+      .ocr-hist-head strong{color:var(--brand-text);font-size:var(--fs-14)}
+      .ocr-hist-head span{color:var(--text-mute)}
+      .ocr-warn{color:var(--p-amber-400);font-style:normal;font-size:var(--fs-12)}
+      .ocr-warnlist{margin-top:8px;display:flex;flex-direction:column;gap:4px}
+      .ocr-warn.tip{color:var(--text-mute);font-style:italic}
+      .ocr-bad{color:var(--p-red-300)}
+      .ocr-hist-aff{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:4px 10px;font-size:var(--fs-12)}
+      .ocr-pos{color:var(--p-green-300)}
+      .ocr-neg{color:var(--p-red-300)}
+      .ocr-miss{color:var(--p-amber-400)}
+      .ocr-hist-refill{flex:0 0 auto;display:flex;align-items:center;gap:8px}
+      .ocr-hist-refill .btn{display:inline-flex;align-items:center;justify-content:center;min-height:30px;white-space:nowrap}
+      .ocr-hist-thumb{flex:0 0 auto;width:54px;height:54px;border-radius:6px;overflow:hidden;cursor:zoom-in;background:#000;border:1px solid var(--border-soft);position:relative;line-height:0}
+      .ocr-hist-thumb img{display:block;width:100%;height:100%;object-fit:contain}
+      .ocr-hist-thumb::after{content:'\200B';position:absolute;right:2px;bottom:2px;font-size:10px;opacity:.75}
+      .ocr-zoom-mask{position:fixed;inset:0;background:rgba(8,10,18,.88);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
+      .ocr-zoom-box{background:var(--surface-2);border:1px solid var(--border-soft);border-radius:12px;padding:14px;max-width:92vw;max-height:92vh;display:flex;flex-direction:column;gap:12px}
+      .ocr-zoom-img{max-width:88vw;max-height:70vh;object-fit:contain;border-radius:6px}
+      .ocr-zoom-bar{display:flex;gap:8px;justify-content:center}
+      .ocr-zoom-bar .btn{font-size:var(--fs-13)}
+      .pr-card{margin-top:14px}
+      .pr-empty{font-size:var(--fs-13);color:var(--text-mute);padding:6px 0;line-height:1.7}
+      .pr-head{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin:2px 0 10px;font-size:var(--fs-13)}
+      .pr-head b{font-size:var(--fs-14);color:var(--brand-text)}
+      .pr-head span{color:var(--text-dim)}
+      .pr-negtag{color:var(--p-red-300);font-style:normal}
+      .pr-oktag{color:var(--p-green-300);font-style:normal}
+      .pr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+      .pr-cell{border:1px solid var(--border-soft);border-radius:var(--r-sm);padding:10px 12px;background:var(--surface-2);display:flex;flex-direction:column;gap:1px}
+      .pr-cell.hero{border-color:var(--brand);box-shadow:inset 0 0 0 1px var(--brand)}
+      .pr-l{font-size:var(--fs-12);color:var(--text-mute)}
+      .pr-v{font-size:24px;font-weight:700;color:var(--text-strong);line-height:1.25;
+        font-variant-numeric:tabular-nums;white-space:nowrap;letter-spacing:-.3px}
+      .pr-cell.hero .pr-v{color:var(--brand-text)}
+      .pr-v small{font-size:12px;font-weight:400;margin-left:3px;color:var(--text-dim);letter-spacing:0}
+      .pr-s{font-size:var(--fs-11);color:var(--text-mute)}
+      .pr-split{border:1px solid var(--p-amber-400);border-radius:var(--r-sm);padding:10px 12px;
+        background:var(--surface-2);display:flex;flex-direction:column;gap:4px}
+      .pr-split b{font-size:var(--fs-13);color:var(--p-amber-400)}
+      .pr-split span{font-size:var(--fs-12);color:var(--text-dim);line-height:1.7}
+      .pr-split span b{font-size:inherit;color:var(--text-strong);font-weight:600}
+      .pr-meta{font-size:var(--fs-12);color:var(--text-mute);margin:8px 0 0;line-height:1.7}
+      .pr-meta b{color:var(--text-dim);font-weight:600}
+      .pr-ev{margin-top:10px;border-top:1px solid var(--border-soft);padding-top:8px}
+      .pr-ev-h{font-size:var(--fs-12);color:var(--text-mute);margin-bottom:5px}
+      .pr-ev ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+      .pr-ev li{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;font-size:var(--fs-12);
+        padding:4px 8px;background:var(--surface-2);border-radius:var(--r-xs)}
+      .pr-ev li>b{color:var(--brand-text);font-variant-numeric:tabular-nums;min-width:62px}
+      .pr-sim{font-size:var(--fs-11);color:var(--text-mute);white-space:nowrap}
+      .pr-aff{color:var(--text-dim);flex:1;min-width:0}
+      .pr-tip{font-size:var(--fs-11);color:var(--text-mute);margin:8px 0 0;line-height:1.7}
+      .pr-cap{color:var(--p-amber-400)}
+      @media (max-width:720px){.pr-grid{grid-template-columns:1fr}}
+      </style>
+      <div class="ocr-hist-bar"><b>本次识别历史</b><span>仅本次打开有效，刷新即清空</span><button type="button" class="btn ghost sm" id="ocrHistClear">清空历史记录</button></div>
+      <div class="ocr-hist" id="ocrHist" role="region" aria-label="本次识别历史"></div>
+    </div>
+    <div class="card" id="calc-body"></div>
+  </section>
+  <section id="open" class="sec">
+    <div class="sec-h">
+      <span class="sec-n">03</span>
+      <div><h2>开卡洗卡融合模拟器</h2><p>随机抽一把看平均水平，或搜名字自选一把 —— 都能在右边继续洗、融合。</p></div>
+      <div class="fn-sort" style="margin-left:auto;display:flex;gap:6px"><button type="button" class="btn sm ghost" data-a="fnmove" data-fn="open" data-b="up" title="把本功能上移">↑</button><button type="button" class="btn sm ghost" data-a="fnmove" data-fn="open" data-b="down" title="把本功能下移">↓</button></div>
+    </div>
+    <div class="card owide">
+      <h3><span class="dot dot-gold"></span>开紫卡 / 选武器 <em>随机抽一把，或搜名字从候选里挑</em></h3>
+      <div class="owide-grid">
+        <div class="ow-main">
+          <div class="field">
+            <label class="fl" for="q1"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-search"/></svg>搜索武器</label>
+            <input type="text" id="q1" placeholder="输入关键字：托里德 / 赤毒布拉玛 / Torid（上下键选，Enter 确认）" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="cands1">
+          </div>
+          <div class="cands" id="cands1" role="listbox" aria-label="武器候选"></div>
+          <div class="btnrow">
+            <select data-a="opencat" id="openCatSel" title="按类别随机开卡" style="min-width:116px">
+              <option value="">全部</option>
+              <option value="近战">近战</option>
+              <option value="步枪">步枪</option>
+              <option value="霰弹">霰弹</option>
+              <option value="手枪">手枪</option>
+              <option value="曲翼">曲翼</option>
+              <option value="同伴武器">同伴武器</option>
+              <option value="Zaw">Zaw</option>
+              <option value="组合枪">组合枪</option>
+            </select>
+            <button type="button" class="btn" data-a="open"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dice"/></svg>开紫卡</button>
+            <button type="button" class="btn gold" data-a="copy2calc" data-b="1"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-copy"/></svg>复制到计算器</button>
+          </div>
+          <div id="c2" class="cardbody"></div>
+          <div class="pick-hint" id="pickHint"></div>
+        </div>
+        <div class="ow-side">
+          <div class="on-head">开 N 次 <em>每次等概率随机抽一把武器 + 一组词条；榜单按「分数 × 国际服中位价」排，贵的武器优先展出，同一把武器只留最好的一张，点一行就整套（含武器）套过去</em></div>
+          <div class="on-bar">
+            <button type="button" class="btn ghost sm" id="onMinus" title="减一档（÷2）">−</button>
+            <input type="number" id="onN" value="1000" min="10" max="20000" step="100" aria-label="模拟开卡次数">
+            <button type="button" class="btn ghost sm" id="onPlus" title="加一档（×2）">+</button>
+            <button type="button" class="btn" id="onRun"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-dice"/></svg>开 N 次</button>
+          </div>
+          <div class="on-stat" id="onStat"></div>
+          <div class="on-list" id="onList"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card owide">
+      <h3><span class="dot dot-gold"></span>继续洗卡 <em>跟随左边最近选中的武器（开紫卡或搜索）；标记「锁定」的词条原样保留，组合类型也会冻结</em></h3>
+      <div class="owide-grid">
+        <div class="ow-main">
+          <div class="btnrow">
+            <button type="button" class="btn" data-a="rerollActive"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-reroll"/></svg>洗卡</button>
+            <button type="button" class="btn ghost" data-a="undo"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-undo"/></svg>撤销</button>
+            <button type="button" class="btn gold" data-a="copy2calc" data-b="act"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-copy"/></svg>复制到计算器</button>
+          </div>
+          <div id="c2wrap"></div>
+          <div id="fusewrap"></div>
+        </div>
+        <div class="ow-side">
+          <div class="on-head">洗 N 次 <em>武器不变，四条词条与数值整套重抽（锁定的槽保留）；只留分数最高的 10 张，点一行就整套套用</em></div>
+          <div class="on-bar">
+            <button type="button" class="btn ghost sm" id="rnMinus" title="减一档（÷2）">−</button>
+            <input type="number" id="rnN" value="1000" min="10" max="50000" step="100" aria-label="模拟洗卡次数">
+            <button type="button" class="btn ghost sm" id="rnPlus" title="加一档（×2）">+</button>
+            <button type="button" class="btn" id="rnRun"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-reroll"/></svg>洗 N 次</button>
+          </div>
+          <div class="on-stat" id="rnStat"></div>
+          <div class="on-list" id="rnList"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card cmpc" data-cmp="act">
+      <div class="cmp-h">
+        <h3><span class="dot dot-cyan"></span>洗卡前 / 当前</h3>
+        <div class="cmp-stat" data-stat></div>
+      </div>
+      <div class="cmp">
+        <div class="cmp-side">
+          <span class="cmp-lab">洗卡前</span>
+          <div class="cmp-body" id="cmpBefore2"></div>
+        </div>
+        <div class="cmp-side now">
+          <span class="cmp-lab">当前</span>
+          <div class="cmp-body" id="cmpAfter2"></div>
+        </div>
+      </div>
+      <div class="cmp-act">
+        <button type="button" class="btn" data-a="rerollActive"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-reroll"/></svg>洗卡</button>
+        <button type="button" class="btn ghost" id="cmpUndo2" data-a="undo" disabled><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-undo"/></svg>撤销</button>
+        <button type="button" class="btn gold" data-a="copy2calc" data-b="act"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-copy"/></svg>复制到计算器</button>
+      </div>
+    </div>
+  </section>
+  <section id="dmg" class="sec">
+    <div class="sec-h">
+      <span class="sec-n">04</span>
+      <div><h2>紫卡收益计算器</h2><p>输武器名 → 自动定流派 → 看这张卡在最优口径下强多少。近战给范围与连击，枪械给弹匣与穿透，面板分开算。</p></div>
+      <div class="fn-sort" style="margin-left:auto;display:flex;gap:6px"><button type="button" class="btn sm ghost" data-a="fnmove" data-fn="dmg" data-b="up" title="把本功能上移">↑</button><button type="button" class="btn sm ghost" data-a="fnmove" data-fn="dmg" data-b="down" title="把本功能下移">↓</button></div>
+    </div>
+    <div class="g-layout">
+      <aside class="g-side">
+        <div class="card">
+          <h3><span class="dot dot-gold"></span>武器 <em id="g-dbcount"></em></h3>
+          <input id="g-q" type="text" placeholder="中文或英文名，如 玻之武杖 / torid" autocomplete="off">
+          <div class="g-hits" id="g-hits"></div>
+          <div id="g-wsum"></div>
+          <p class="g-hint">在 02 区点击「导入收益计算」可将该卡及其武器一并导入此处。</p>
+        </div>
+        "
+<div class="card" id="g-asmcard" hidden>
+          <h3><span class="dot dot-cyan"></span>组装台 <em id="g-asmsub"></em></h3>
+          <div id="g-asm"></div>
+          <p class="g-hint" id="g-asmhint"></p>
+        </div>
+<div class="card">
+          <h3><span class="dot dot-gold"></span>紫卡词条 <em id="g-tier"></em></h3>
+          <div id="g-boxes" class="g-boxes"></div>
+        </div>
+        <div class="card" id="g-mbcard" hidden>
+          <h3><span class="dot dot-gold"></span>配卡 <em id="g-mblab"></em></h3>
+          <div class="autowarn" id="g-mbwarn">
+            <svg class="ic autowarn-ic" aria-hidden="true" focusable="false"><use href="#i-alert"/></svg>
+            <div class="autowarn-tx">
+              <b class="autowarn-h" id="g-mbwarn-h">自动配装提醒</b>
+              <span class="autowarn-b" id="g-mbwarn-b">配装由系统生成，不代表真实配卡；可以自由配装探索玩法，注意辨别以免损失。</span>
+            </div>
+          </div>
+          <div class="g-mbbar">
+            <select id="g-mbarch" title="按哪个流派的标准配卡装填（「自动」= 跟着当前最优流派）"></select>
+            <button type="button" class="btn sm ghost" id="g-mbfill">按流派装填</button>
+            <button type="button" class="btn sm ghost" id="g-mbfillnr" title="按流派标准配卡装填，但不给紫卡留格（8 格全装普通 MOD）">无紫卡装填</button>
+            <button type="button" class="btn sm ghost" id="g-mbclr">全部卸下</button>
+          </div>
+          <div class="g-mbsec">
+            <div class="g-mbsech"><span>配卡 · 1–8</span><em>7 张 + 紫卡</em></div>
+            <div class="g-mbslots" id="g-mbslots"></div>
+          </div>
+          <div class="g-mbhr"></div>
+          <div class="g-mbsec">
+            <div class="g-mbsech"><span>特殊功能槽</span><em>只收 Exilus</em></div>
+            <div class="g-mbslots" id="g-mbexi"></div>
+          </div>
+          <div class="g-mbhr"></div>
+          <div class="g-mbsec">
+            <div class="g-mbsech"><span>赋能槽</span><em id="g-mbarclab">按生效目标</em></div>
+            <div class="g-mbslots" id="g-mbarc"></div>
+          <div class="g-mbhr"></div>
+        <div class="card g-stcard" id="g-stcard" hidden>
+          <h3><span class="dot dot-gold"></span>近战架势 <em>只改平A 与秒伤，不改词条</em></h3>
+          <div class="g-mbslots" id="g-sttile"></div>
+          <div id="g-stlistbox"></div>
+          <p class="g-hint" id="g-stnote"></p>
+        </div>
+          </div>
+          <div class="g-mbpick picker" id="g-mbpick" hidden>
+            <div class="g-mbphd pkhd">
+              <b id="g-mbpickt">选 MOD</b>
+              <input id="g-mbq" type="text" placeholder="搜索（中文 / 英文）" autocomplete="off">
+              <span class="hint" id="g-mbpcount"></span>
+              <button type="button" class="g-mbpx ghost" id="g-mbpx">关闭</button>
+            </div>
+            <div class="pktabs" id="g-mbtabs"></div>
+            <div class="pkpool" id="g-mbpool"></div>
+            <div class="g-mblist pklist" id="g-mblist"></div>
+          </div>
+          <p class="g-hint" id="g-mbhint"></p>
+        </div>
+        <div class="card">
+          <h3><span class="dot dot-cyan"></span>武器面板 <em id="g-panellab"></em></h3>
+          <div id="g-panel" class="wpanel"></div>
+        </div>
+        <div class="card">
+          <h3><span class="dot dot-cyan"></span>你在打什么</h3>
+          <div class="tgtbar"><div class="tg2" id="g-steel"></div><div class="tg1" id="g-tg"></div></div>
+          <p class="g-hint" id="g-tghint"></p>
+        </div>
+        <div class="card">
+          <h3><span class="dot dot-gold"></span>进阶微调 <em>手填 · 可选</em></h3>
+          <details class="g-advd">
+            <summary>我的配卡 / 敌人细节（留空＝按上面目标档算）</summary>
+            <div class="g-advlab">敌人 <span>填了才盖，清空即回到目标档</span></div>
+            <div class="g-advgrid" id="g-advenemy"></div>
+            <div class="g-advlab">额外 MOD <span>叠加在流派自带配卡之上，不是整套替换</span></div>
+            <div class="g-advgrid" id="g-advmods"></div>
+            <p class="g-hint" id="g-advhint"></p>
+          </details>
+        </div>
+        </div>
+      </aside>
+      <div class="g-main">
+        <div class="g-big" id="g-big"></div>
+        <div class="card">
+          <h3><span class="dot dot-cyan"></span>流派对照 <em id="g-archsub">按这张卡在该流派下的净增幅排序</em></h3>
+          <div id="g-archs"></div>
+          <p class="g-hint" id="g-archnote"></p>
+        </div>
+        <div class="card" id="g-elemproccard" hidden>
+          <h3><span class="dot dot-cyan"></span>元素 / 异常 <em id="g-elemproclab"></em></h3>
+          <div id="g-elemproc"></div>
+        </div>
+        <div class="card" id="g-clearcard" hidden>
+          <h3><span class="dot dot-gold"></span>清场通道 <em id="g-clearlab"></em></h3>
+          <div id="g-clear"></div>
+          <p class="g-hint">「主目标」= 被直接命中的那一只（直击 + 径向两段相加）；其余几行是<b>打给周围敌人</b>的量。
+            径向溅射按「范围内每只敌人各吃一份」算，额外敌人数取目标的怪群密度（0~1，与「元素异常」卡的群体列同一口径），
+            边缘衰减按武器数据里的衰减系数折成面积加权平均（线性 100% → 边缘）。
+            <b>半径本身不进这个数</b>：没有怪群规模数据，拿半径乘一个人造密度就是自造参数 ——
+            半径只在「爆炸半径」词条的净增幅里生效，覆盖面积单独列在下面。
+            这一份<b>不进评分、不改分档</b>，评级仍是单目标口径。</p>
+        </div>
+        <div class="card">
+          <h3><span class="dot dot-gold"></span>没被选中的流派 <em>为什么它们不在上面</em></h3>
+          <div id="g-rejected"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="choose" class="sec">
+    <div class="sec-h">
+      <span class="sec-n">05</span>
+      <div><h2>洗卡左右建议器</h2><p>洗卡时左边一张、右边一张各截一张图 → 分别粘进两个框 → 点一次识别（先 A 后 B）。两张卡必定是同一把武器，武器与等级只填一份；每边 4 条词条可下拉改、数值可改。图像漏行时点「粘贴文字」按行补齐。下面的卡面板、结论与报告都用同一套收益引擎现场算，改任意一格立刻重算。</p></div>
+      <div class="fn-sort" style="margin-left:auto;display:flex;gap:6px"><button type="button" class="btn sm ghost" data-a="fnmove" data-fn="choose" data-b="up" title="把本功能上移">↑</button><button type="button" class="btn sm ghost" data-a="fnmove" data-fn="choose" data-b="down" title="把本功能下移">↓</button></div>
+    </div>
+    <div id="dmgAB">  <div class="status" id="eng">引擎加载中…（内嵌 ONNX + 收益引擎，首次需几秒，就绪前「识别」不可点）</div>
+  <section class="panel">
+    <h2>双卡对比 <span class="tag">A = 左边那张 · B 自己贴，贴了才进对比</span></h2>
+    <div class="grid2">
+      <div class="box" id="panA" data-side="A">
+        <div class="boxhead"><b>A 卡</b><span class="tag" id="tagA">左 · 当前接收</span></div>
+        <div class="dupe">
+          <div class="drop" id="dropA"><div class="dz-hint">点击选图 / 拖拽到此处<br>或 Ctrl+V 粘贴截图</div></div>
+          <input type="file" id="fileA" accept="image/*" hidden>
+          <div class="boxfoot"><button id="clrA" class="ghost">清空 A</button><button id="txbA" class="ghost">粘贴文字</button><span class="status" id="stA"></span></div>
+          <div class="txbox" id="txwA">
+            <textarea id="txA" rows="5" spellcheck="false" placeholder="一行一条，例如：&#10;+2.8 穿透&#10;+91.9% 触发几率&#10;+133.2% 暴击几率&#10;-40.8% 弹匣容量"></textarea>
+            <div class="txrow"><button id="txgoA">解析这段文字</button><span class="hint">图像漏行时用它补齐；走同一套词条规则，不碰图像</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="box" id="panB" data-side="B">
+        <div class="boxhead"><b>B 卡</b><span class="tag" id="tagB">右</span></div>
+        <div class="drop" id="dropB"><div class="dz-hint">点击选图 / 拖拽到此处<br>或 Ctrl+V 粘贴截图</div></div>
+        <input type="file" id="fileB" accept="image/*" hidden>
+        <div class="boxfoot"><button id="clrB" class="ghost">清空 B</button><button id="txbB" class="ghost">粘贴文字</button><span class="status" id="stB"></span></div>
+        <div class="txbox" id="txwB">
+          <textarea id="txB" rows="5" spellcheck="false" placeholder="一行一条，例如：&#10;+119.7% 暴击伤害&#10;+2.7 穿透&#10;×1.46 对科普斯的伤害&#10;-40.8% 弹匣容量"></textarea>
+          <div class="txrow"><button id="txgoB">解析这段文字</button><span class="hint">图像漏行时用它补齐；走同一套词条规则，不碰图像</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="actionbar">
+      <button id="runAll" disabled>开始识别</button>
+      <span class="hint" id="runhint">两侧都有图 → 依次识别 A、B；只有一侧有图 → 只识别那一侧。</span>
+    </div>
+  </section>
+  <section class="panel dupe">
+    <h2>基础信息 <span class="tag">两张卡共用</span></h2>
+    <div class="bgrid">
+      <div class="fld"><span>武器</span>
+        <div class="wpick">
+          <input id="wq" type="text" placeholder="搜索：中文 / 英文 / 国际服名" autocomplete="off">
+          <div class="wlist" id="wlist"></div>
+        </div>
+      </div>
+      <div class="fld"><span>等级</span>
+        <input type="number" id="rk" min="0" max="8" step="1" value="8"><em>0–8（强化等级）</em>
+      </div>
+    </div>
+    <div class="binfo" id="binfo"></div>
+    <div class="match" id="match"></div>
+    <div class="asmbox" id="asmbox" hidden></div>
+  </section>
+  <div class="grid2">
+    <section class="panel cardpanel" id="cpA">
+      <div class="cp-head"><span class="nm">卡 A 面板</span><span class="meta" id="cpmA"></span></div>
+      <div class="rows" id="rowsA"></div>
+      <div class="score" id="scoreA"></div>
+    </section>
+    <section class="panel cardpanel" id="cpB">
+      <div class="cp-head"><span class="nm">卡 B 面板</span><span class="meta" id="cpmB"></span></div>
+      <div class="rows" id="rowsB"></div>
+      <div class="score" id="scoreB"></div>
+    </section>
+  </div>
+  <section class="panel">
+    <h2>结论 <span class="tag">A 单卡也出；贴了 B 就变成「留哪张」</span></h2>
+    <div id="repConc"><div class="empty">选好武器、填好词条后自动生成。</div></div>
+  </section>
+  <section class="panel" id="mbpanel">
+    <h2>配卡 <em class="mbmeta" id="capbox">已装 <b id="mbcnt">0</b> 张 · 容量 <b id="capuse">0</b> / <b id="capmax">60</b></em></h2>
+    <div class="autowarn" id="mbwarn">
+      <svg class="ic autowarn-ic" aria-hidden="true" focusable="false"><use href="#i-alert"/></svg>
+      <div class="autowarn-tx">
+        <b class="autowarn-h" id="mbwarn-h">自动配装提醒</b>
+        <span class="autowarn-b" id="mbwarn-b">配装由系统生成，不代表真实配卡；可以自由配装探索玩法，注意辨别以免损失。</span>
+      </div>
+    </div>
+    <div class="modbar">
+      <select id="afsel" title="按哪个流派配卡"></select>
+      <button id="afgo">按流派装填</button>
+      <button id="afgonr" class="ghost" title="按流派标准配卡装填，但不给紫卡留格（8 格全装普通 MOD）">无紫卡装填</button>
+      <button id="mclr" class="ghost">全部卸下</button>
+      <span class="hint" id="mcount"></span>
+    </div>
+    <div class="hint" id="afmsg" style="margin:-4px 0 8px"></div>
+    <div class="mbsech"><span>配卡 · 1–8</span><em id="mbsub">7 张 + 紫卡</em></div>
+    <div class="slots" id="slots"></div>
+    <div class="setline" id="setline"></div>
+    <div class="mbhr"></div>
+    <div class="mbsech"><span>特殊功能槽</span><em>只收 Exilus</em></div>
+    <div class="slots" id="sexil"></div>
+    <div class="mbhr"></div>
+    <div class="mbsech"><span>赋能槽</span><em id="arclab">按生效目标</em></div>
+    <div class="aslots" id="aslots"></div>
+    <div class="buff-head" id="stancehead" style="display:none">架势 <em>近战专属 · 只改平A 与秒伤，不改词条</em></div>
+    <div class="aslots" id="sslots" style="display:none"></div>
+    <div id="stlistbox"></div>
+    <div class="picker" id="picker" hidden>
+      <div class="pkhd">
+        <b id="pktitle">选择 MOD</b>
+        <input id="mq" type="text" placeholder="搜索（中文 / 英文）" autocomplete="off">
+        <span class="hint" id="pcount"></span>
+        <button id="pkclose" class="ghost">关闭</button>
+      </div>
+      <div class="pktabs" id="pktabs"></div>
+      <div class="pkpool" id="pkpool"></div>
+      <div class="pklist" id="modlist"></div>
+    </div>
+    <div class="tgtsec dupe">
+      <div class="tgt-h">你在打什么 <em>护甲与派系都跟着它走</em></div>
+      <div class="tgtbar" id="tgtbar"></div>
+      <details class="advd" id="advd">
+        <summary>进阶微调 <em>手填 · 可选</em></summary>
+        <div class="advlab">敌人 <span>填了才盖，清空即回到目标档</span></div>
+        <div class="advgrid" id="advenemy"></div>
+        <div class="advlab">额外 MOD <span>叠加在配卡与流派默认配卡之上</span></div>
+        <div class="advgrid" id="advmods"></div>
+        <div class="advhint" id="advhint"></div>
+      </details>
+    </div>
+    <div class="wpanel" id="wpanel"></div>
+  </section>
+  <section class="panel" id="dmpElem" hidden>
+    <h2>元素 / 异常 <span class="tag" id="dmpElemlab">A 卡口径</span></h2>
+    <div id="dmpElemBody"></div>
+  </section>
+  <section class="panel" id="dmpClear" hidden>
+    <h2>清场通道 <span class="tag" id="dmpClearlab">A 卡口径</span></h2>
+    <div id="dmpClearBody"></div>
+    <div class="note">「主目标」= 被直接命中的那一只（直击 + 径向两段相加）；其余几行是
+      <b>打给周围敌人</b>的量。径向按「范围内每只敌人各吃一份」算，额外敌人数取目标的怪群密度、
+      边缘衰减折成面积加权平均。<b>半径本身不进这个数</b>：没有怪群规模数据，
+      拿半径乘一个人造密度就是自造参数 —— 半径只在「爆炸半径」词条的增幅里生效。
+      这一份<b>不进评分、不改分档</b>，评级仍是单目标口径。</div>
+  </section>
+  <section class="panel">
+    <h2>相关报告 <span class="tag">A 单卡或 A/B 对比，改上面任意一格即刻重算</span></h2>
+    <div id="repBody"><div class="empty">在上方选好武器、填好词条后自动生成。</div></div>
+  </section>
+  </div>
+  </section>
+  <section id="price" class="sec">
+    <div class="sec-h">
+      <span class="sec-n">06</span>
+      <div><h2>紫卡价值表</h2><p>两服<b>同一套列、同一个顺序</b>，只留两边都算得出来的指标（国际服取官方周成交，国服取在售挂单）。切服会顺手换右上角语言，反过来也一样；名单一样长，没货的武器勾一下开关就出来。</p></div>
+      <div class="fn-sort" style="margin-left:auto;display:flex;gap:6px"><button type="button" class="btn sm ghost" data-a="fnmove" data-fn="price" data-b="up" title="把本功能上移">↑</button><button type="button" class="btn sm ghost" data-a="fnmove" data-fn="price" data-b="down" title="把本功能下移">↓</button></div>
+    </div>
+    <div class="pr-wrap">
+      <div class="prx-store">
+        <div class="prx-seg" id="priceStore" role="tablist" aria-label="服务器">
+          <button type="button" class="prx-sbtn on" role="tab" data-s="intl">国际服<small>官方周成交</small></button>
+          <button type="button" class="prx-sbtn" role="tab" data-s="cn">国服<small>在售挂单</small></button>
+        </div>
+        <span class="prx-src" id="priceSrc"></span>
+      </div>
+      <div class="pr-cards" id="priceCards"></div>
+      <div class="pr-bar">
+        <input type="text" id="priceQ" placeholder="搜武器：托里德 / tuolide / tld / Torid" autocomplete="off">
+        <select id="priceType" aria-label="武器类型"><option value="">全部类型</option></select>
+        <select id="priceConf" aria-label="可信度"><option value="">全部可信度</option><option>高</option><option>中</option><option>低</option><option>无数据</option></select>
+        <label class="pr-chk" title="两服名单一样长，没成交 / 没在售的武器默认收起来"><input type="checkbox" id="priceShowEmpty"> <span id="priceEmptyLab">显示 0 成交的武器</span></label>
+        <button type="button" class="btn sm ghost" id="priceCsv">导出 CSV</button>
+        <div class="prx-colpick">
+          <button type="button" class="btn sm ghost" id="priceColBtn" aria-haspopup="true" aria-expanded="false">列 <b id="priceColNum"></b> ▾</button>
+          <div class="prx-colmenu" id="priceColMenu"></div>
+        </div>
+        <span class="pr-count" id="priceStat"></span>
+      </div>
+      <div class="pr-box">
+        <table class="pr-tbl" id="priceTbl"><thead><tr id="priceTh"></tr></thead><tbody id="priceTb"></tbody></table>
+        <div class="pr-empty" id="priceEmpty" hidden>没有符合条件的武器</div>
+      </div>
+    </div>
+      <div class="prx-combo" id="priceSingle" hidden>
+        <div class="prx-combo-hd"><b>单词条热度</b><span id="priceSingleDesc">在售挂单里单个词条的出现率与行情表现，分正面 / 负面两张榜；「提升」= 贵组占比 ÷ 便宜组占比（&gt;1 说明越贵的卡里越常见）；占位 / 钓鱼挂单已剔除</span></div>
+        <div class="sgx-cats" id="priceSingleCats" role="group" aria-label="词条方向"></div>
+        <div class="pr-bar">
+          <input type="text" id="priceSingleQ" placeholder="搜词条…" autocomplete="off">
+          <span class="pr-count" id="priceSingleStat"></span>
+        </div>
+        <div class="pr-box prx-combo-box">
+          <table class="pr-tbl" id="priceSingleTbl"><thead><tr id="priceSingleTh"></tr></thead><tbody id="priceSingleTb"></tbody></table>
+          <div class="pr-empty" id="priceSingleEmpty" hidden>样本不足，暂无单词条热度</div>
+        </div>
+      </div>
+      <div class="prx-combo" id="priceCombo" hidden>
+        <div class="prx-combo-hd"><b>词条组合价格排名</b><span id="priceComboDesc">在售挂单按「正词条组合 + 负词条」聚合，默认按中位价从高到低；搜索与排序独立，不受上面的武器表影响</span></div>
+        <div class="sgx-cats" id="priceComboCats" role="group" aria-label="武器类别"></div>
+        <div class="pr-bar">
+          <input type="text" id="priceComboQ" placeholder="搜词条 / 武器…" autocomplete="off">
+          <span class="pr-count" id="priceComboStat"></span>
+        </div>
+        <div class="pr-box prx-combo-box">
+          <table class="pr-tbl" id="priceComboTbl"><thead><tr id="priceComboTh"></tr></thead><tbody id="priceComboTb"></tbody></table>
+          <div class="pr-empty" id="priceComboEmpty" hidden>该类型暂无足够样本</div>
+        </div>
+      </div>
+  </section>
+  <section id="about" class="sec">
+    <div class="sec-h">
+      <span class="sec-n">07</span>
+      <div><h2>口径与词汇</h2><p>数值是怎么算出来的、哪些词条不会出现、名词都是什么意思。</p></div>
+    </div>
+    <div class="card">
+      <h3><span class="dot dot-gold"></span>数值口径</h3>
+      <div class="grid4">
+        <div class="sum"><span>数值公式</span><b>基准值 × 组合系数 × 倾向 × 浮动</b></div>
+        <div class="sum"><span>理论值口径</span><b>÷ 9 ×(1 + 等级)，满级时两者相等</b></div>
+      </div>
+      <p class="hint">连击类（初始连击 / 连击持续时间 / 额外连击数几率 / 概率不获得连击数）与攻击范围是<strong>近战专属</strong>，远程武器的池里不会出现；「概率不获得连击数」只能当负面出。</p>
+      <p class="hint">冲击 / 穿刺 / 切割三条只看<strong>武器伤害构成里有没有这一类型</strong>：没有就不出现对应物理词条（01 倾向／区间表照常列出、数值格填 <span class="mono">- - -</span> 灰显；02 词条下拉与 03 开卡洗卡直接不进池）。<strong>元素词条没有这条限制</strong>：十种元素在任何武器上都能洗出。</p>
+      <div class="consts" id="consts"></div>
+    </div>
+    <div class="card">
+      <h3><span class="dot dot-cyan"></span>词汇表</h3>
+      <div class="gloss">
+        <div><b>紫卡 / Riven</b><span>带随机词条与随机数值的武器 Mod，词条组合与数值都可重洗</span></div>
+        <div><b>倾向 (Disposition)</b><span>直接乘在数值上的系数，<span data-du-only>全库武器统一 <b><span data-disp-text></span></b></span><span data-dv-only>各武器有自己的数值（默认 <b><span data-disp-text></span></b>）</span>；计算器里可手填别的值（如<b>最后时光的武器倾向表</b>里的存档值）做对比</span></div>
+        <div><b>基准值</b><span>「数据」表里某个词条在某个武器类型下的原始系数，是整套计算的起点</span></div>
+        <div><b>组合系数</b><span>2增益0减益 / 2增益1减益 / 3增益0减益 / 3增益1减益 四种，增益与减益各有一个系数</span></div>
+        <div><b>浮动</b><span>0.9 ~ 1.1 之间的随机乘数，决定同一张卡洗两次数值不一样</span></div>
+        <div><b>融合</b><span>把卡面上两条词条换成一条融合词条。换的只是<b>词条</b>，数值按同一套公式算（浮动不重新随机，取两个材料里较高的那个）；一张卡最多带一条</span></div>
+        <div><b>永正 / 永负</b><span>永正＝只当正面出（融合词条、元素伤害等）；永负＝只当负面出（概率不获得连击数）</span></div>
+        <div><b>空基准值</b><span>这类武器根本没有这条属性（如步枪没有初始连击），空格不是 0，直接不进词条池</span></div>
+        <div><b>物理词条</b><span>冲击 / 穿刺 / 切割只在武器<b>自带</b>该类型伤害时可洗出。这是与「空基准值」并列的第二种「洗不出来」：空基准值＝这类武器没有这条属性，物理词条＝属性存在、但这把武器的伤害里没有它</span></div>
+        <div><b>本体 / 变体</b><span>本体＝能开出自己那把紫卡的武器；变体＝同族衍生版（Prime / 赤毒 / 信条 / 棱晶 / 亡魂 / 破坏者 / 组合枪另一形态…）。变体装本体紫卡，卡名仍是本体的名字</span></div>
+        <div><b>派系伤害</b><span>对科普斯 / 克隆尼 / 异变体 / 奥罗金 / 科腐者 / 炽蛇军。表里 1.45 是<b>倍率</b>（＝+45%＝伤害变 1.45 倍），按 ×1.45 显示</span></div>
+        <div><b>武器后坐力</b><span>方向相反的一条：正面槽是<b>武器后坐力降低</b>（显示 −90%，好事），负面槽是<b>武器后坐力增加</b>（显示 +44%，坏事）</span></div>
+        <div><b>对中差值</b><span>当前数值相对理论中值的偏离；正面取 当前÷中值−1，负面取 1−当前÷中值</span></div>
+        <div><b>理论最小 / 中值 / 最大</b><span>把浮动取 0.9 / 1.0 / 1.1 算出的区间在当前等级下的值</span></div>
+        <div><b>锁定</b><span>重洗时原样保留该词条，并冻结整张卡的组合类型</span></div>
+        <div><b>历史倾向</b><span>这把武器在倾向变动还在时自己的倾向值，收在<b>最后时光的武器倾向表</b>里；计算器选武器时自动填进「对比历史倾向」，用来和<span data-du-only>当前生效的 <b><span data-disp-text></span></b></span><span data-dv-only>该武器自己的 <b><span data-disp-text></span></b></span> 对照</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3><span class="dot dot-gold"></span>基础数值表</h3>
+      <p class="hint">51 条词条按 Excel「数据」sheet 原列顺序：国服/国际服/英文名、核心词、英文前缀、后缀，后五列为各武器类型基准值。单位遵循紫卡总规则：派系行显示 ×倍率，穿透/初始连击/连击持续时间/范围 为绝对值不带 %，其余为 %；空值显示 −。点 ▾ 收起。</p>
+      <details open class="calc-fold">
+        <summary class="calc-sub"><span class="dot dot-gold"></span>全部词条基准值<span class="fold-arr"></span></summary>
+        <div class="calc-fold-body">
+          <style>
+            .basval-wrap{max-height:440px;overflow:auto;border:1px solid rgba(255,255,255,.1);border-radius:8px}
+            .basval-tbl{width:100%;border-collapse:collapse;font-size:12px}
+            .basval-tbl th,.basval-tbl td{padding:4px 8px;border-bottom:1px solid rgba(255,255,255,.07);text-align:left;white-space:nowrap}
+            .basval-tbl th{position:sticky;top:0;background:#1c2233;color:#cfe3ff;font-weight:600;z-index:1}
+            .basval-tbl tbody tr:hover{background:rgba(255,255,255,.05)}
+          </style>
+          <div class="basval-wrap"><table class="basval-tbl" id="basvalTbl"></table></div>
+        </div>
+      </details>
+    </div>
+    <div class="card">
+      <h3><span class="dot dot-gold"></span>最后时光的武器倾向表 <em>倾向变动还在时各武器的倾向值存档，按星级分列 · 供查考</em></h3>
+      <div class="disp-filter" id="dispFilter">
+        <button type="button" class="disp-tab on" data-t="全部">全部</button>
+        <button type="button" class="disp-tab" data-t="近战">近战</button>
+        <button type="button" class="disp-tab" data-t="步枪">步枪</button>
+        <button type="button" class="disp-tab" data-t="霰弹">霰弹</button>
+        <button type="button" class="disp-tab" data-t="手枪">手枪</button>
+        <button type="button" class="disp-tab" data-t="曲翼">曲翼</button>
+        <button type="button" class="disp-tab" data-t="zaw">zaw</button>
+        <button type="button" class="disp-tab" data-t="同伴武器">同伴武器</button>
+        <button type="button" class="disp-tab" data-t="组合枪">组合枪</button>
+      </div>
+      <div class="disp-note" id="dispNote"></div>
+      <div class="disp-tbl" id="dispTbl"></div>
+      <style>
+        .disp-note{font-size:11.5px;line-height:1.7;color:var(--text-dim);margin:-2px 0 10px;padding:6px 10px;border-left:3px solid var(--brand-border);background:var(--brand-bg);border-radius:0 6px 6px 0}
+        .disp-note b{color:var(--brand-text);font-weight:700}
+        .disp-filter{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+        .disp-tab{background:var(--chip-bg);border:1px solid var(--border);color:var(--text-dim);border-radius:999px;padding:5px 13px;font-size:12px;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
+        .disp-tab:hover{background:var(--hover-row);color:var(--text)}
+        .disp-tab.on{background:var(--brand);border-color:transparent;color:var(--on-brand);font-weight:700}
+        .disp-tbl{display:grid;grid-template-columns:repeat(6,minmax(150px,1fr));gap:10px;overflow-x:auto;padding-bottom:6px}
+        .disp-col{border:1px solid var(--border);border-radius:8px;display:flex;flex-direction:column;min-width:0;background:var(--surface-2)}
+        .disp-col-h{padding:8px;text-align:center;border-bottom:1px solid var(--border-soft)}
+        .disp-pips{display:flex;gap:3px;justify-content:center;margin-bottom:3px}
+        .disp-pip{width:9px;height:9px;border-radius:50%;background:var(--border-strong)}
+        .disp-pip.on{background:var(--brand)}
+        .disp-num{font-size:17px;font-weight:800;color:var(--text-strong)}
+        .disp-cnt{font-size:11px;color:var(--text-mute);margin-top:2px}
+        .disp-list{overflow:auto;max-height:420px;padding:4px 8px;display:flex;flex-direction:column;gap:1px}
+        .disp-item{display:flex;justify-content:space-between;gap:8px;font-size:12px;line-height:1.65;color:var(--text);border-bottom:1px solid var(--border-soft)}
+        .disp-item:hover{background:var(--hover-row)}
+        .disp-w{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        .disp-d{color:var(--brand-text);flex:0 0 auto;font-variant-numeric:tabular-nums;font-weight:700}
+        .disp-empty{color:var(--text-mute);text-align:center;padding:10px 0;font-size:12px}
+      </style>
+    </div>
+  </section>
+  <footer class="foot">
+    <div class="shortcuts">
+      <span><kbd>Ctrl</kbd>+<kbd>Z</kbd> 撤销</span>
+      <span><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd> 重做</span>
+      <span><kbd>上</kbd><kbd>下</kbd> 在候选里移动</span>
+      <span><kbd>Enter</kbd> 选中候选</span>
+      <span><kbd>Ctrl</kbd>+<kbd>V</kbd> 粘贴截图识别</span>
+    </div>
+  </footer>
+</main>
+<div class="fusepop" id="fusPop" role="dialog" aria-label="融合产物" aria-hidden="true"></div>
+<script>__ZKNAMES_JS__;__ZKDATA_JS__;__PRICE_JS__;__BASEDATA__;__RULES_JS__</script>
+<script>__ZKC_JS__</script>
+<script>__OCRJS__</script>
+<script>__ZKSTANCE____RIVEN_ENGINE__</script>
+<script>__WEAPON_DB__</script>
+<script>__ZKASM__</script>
+<script>__RIVEN_ROUTER__</script>
+<script>__ZKMODS____ZKARCS__</script>
+<script>__CARDSPLIT_JS__</script>
+<script>__MODPANEL_JS__</script>
+__WMCORE_B64__
+<script>__JS__</script>
+  <style>
+  .lang-float{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:9990;transform:none;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+  .lang-float-toggle{width:46px;height:46px;border-radius:50%;border:1px solid var(--border-soft);background:var(--surface-2);color:var(--text-strong);font-size:var(--fs-13);cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center}
+  .lang-float-toggle:hover{border-color:var(--brand-text);color:var(--brand-text)}
+  .lang-float-panel{background:var(--surface-2);border:1px solid var(--border-soft);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.4);padding:6px;display:flex;flex-direction:column;gap:2px;min-width:90px}
+  .lang-float-panel[hidden]{display:none}
+  .lang-float-panel button{background:none;border:0;color:var(--text-soft);font-size:var(--fs-13);padding:8px 12px;border-radius:6px;cursor:pointer;text-align:left}
+  .lang-float-panel button:hover{background:var(--surface-2);color:var(--text-strong)}
+  .lang-float-panel button.on{color:var(--brand-text);font-weight:600}
+  .riven-rec{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+  .radar-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin-top:12px}
+  .radar-item{text-align:center}
+  .radar-name{margin-bottom:4px;color:var(--text-dim);font-size:12px}
+  .radar-link{cursor:pointer;text-decoration:underline dotted;color:var(--text)}
+  .radar-link:hover{color:#7dd3fc}
+  .radar-mismatch{margin-left:6px;color:#f87171;font-size:11px;font-weight:bold}
+  .radar-item canvas{max-width:100%;height:auto;background:var(--inset);border:1px solid var(--border-soft);border-radius:var(--r-md)}
+  .radar-legend{margin-top:2px;font-size:11px;color:var(--text-dim)}
+  .radar-legend .rl-min{color:#4ade80}.radar-legend .rl-mid{color:#facc15}.radar-legend .rl-max{color:#f87171}
+  .decomp{display:grid;grid-template-columns:minmax(160px,.85fr) 1.5fr;gap:12px;margin-top:10px;align-items:stretch}
+  .decomp>*{min-width:0}
+  .decomp-sum{background:var(--surface-2);border:1px solid var(--border-soft);border-radius:10px;
+    padding:12px 10px;text-align:center;display:flex;flex-direction:column;justify-content:center;
+    gap:2px;box-sizing:border-box}
+  .decomp-num{font-size:26px;font-weight:800;font-family:var(--f-mono);color:var(--brand-text);line-height:1.15}
+  .decomp-unit{font-size:var(--fs-11);color:var(--text-dim);margin-top:2px}
+  .decomp-rate{font-size:var(--fs-12);margin-top:8px;line-height:1.5}
+  .decomp-rate.gain{color:#4ade80}.decomp-rate.loss{color:#f87171}
+  #dmg .g-asmrow{display:grid;grid-template-columns:46px minmax(0,1fr);gap:6px;align-items:center;margin-bottom:6px}
+  #dmg .g-asmrow>label{font-size:11px;color:var(--text-dim)}
+  #dmg .g-asmrow select{width:100%;padding:4px 6px;min-height:28px;font-size:var(--fs-12);text-align:left;cursor:pointer}
+  #dmg #g-asmhint{margin-top:2px;font-size:11px;line-height:1.75;color:var(--text-dim)}
+  #dmg #g-asmhint b{color:var(--text-strong);font-family:var(--f-mono);font-weight:600}
+  #dmg .g-asmsep{opacity:.45;margin:0 5px}
+  #dmg .g-asmnote{margin:6px 0 0;font-size:10px;line-height:1.6;color:var(--text-dim);opacity:.8}
+  .decomp-tbl th:not(:first-child),.decomp-tbl td:not(:first-child){text-align:right}
+  .decomp-tbl td.decomp-eq{font-size:var(--fs-11);color:var(--text-dim);font-family:var(--f-sans)}
+  .decomp-tbl td.dk-cell{width:1%;white-space:nowrap;padding:2px 4px}
+  .decomp-tbl .dk-in{width:78px;padding:3px 6px;min-height:26px;font-size:var(--fs-12);font-family:var(--f-mono);
+    text-align:right;border:1px solid var(--border-soft);background:var(--surface);color:var(--text-strong);border-radius:6px}
+  .decomp-tbl .dk-in:focus{outline:none;border-color:var(--brand-text)}
+  .decomp-tbl .dk-in.mod{border-color:var(--brand-text);box-shadow:0 0 0 1px var(--brand-text) inset;color:var(--brand-text);font-weight:700}
+  .decomp-tbl tr.decomp-total td{border-top:1px solid var(--border);font-weight:700;color:var(--text-strong)}
+  @media (max-width:560px){
+    .decomp{grid-template-columns:1fr}
+    .decomp-tbl tr:first-child{display:none}
+    .decomp-tbl{display:block}
+    .decomp-tbl tr{display:grid;grid-template-columns:1fr auto;grid-template-areas:"n v" "i i" "f f";
+      align-items:baseline;gap:2px 10px;padding:7px 0;border-bottom:1px solid var(--border-soft)}
+    table.decomp-tbl td{border:0;padding:0;text-align:left;font-family:var(--f-sans)}
+    table.decomp-tbl td:nth-child(1){grid-area:n;font-weight:600;color:var(--text)}
+    table.decomp-tbl td:nth-child(2){grid-area:i}
+    table.decomp-tbl td:nth-child(3){grid-area:f;color:var(--text-dim);font-size:var(--fs-11)}
+    table.decomp-tbl td:nth-child(4){grid-area:v;text-align:right;font-weight:700;font-family:var(--f-mono)}
+    table.decomp-tbl td.dk-cell{width:auto;white-space:normal;padding:0}
+    .decomp-tbl .dk-in{width:100%;margin:2px 0;text-align:left}
+    table.decomp-tbl tr.decomp-total td.dk-cell-total{display:none}
+    table.decomp-tbl tr.decomp-total{border-bottom:0}
+    table.decomp-tbl tr.decomp-total td{border-top:0}
+  }
+  .rec-block{background:var(--surface-2);border:1px solid var(--border-soft);border-radius:10px;padding:12px}
+  .rec-h{display:block;font-size:var(--fs-13);color:var(--text-strong);margin-bottom:8px;font-weight:600}
+  .rec-row{display:flex;align-items:center;gap:6px;margin:4px 0;flex-wrap:wrap}
+  .rec-t{flex:none;min-width:52px;font-size:var(--fs-12);font-weight:700;color:var(--brand-text);padding:2px 6px;border-radius:4px;background:var(--surface-2);text-align:center}
+  .rec-t.rec-warn{color:#e8a838;background:rgba(232,168,56,.12)}
+  .rec-tag{font-size:var(--fs-12);padding:2px 8px;border-radius:5px;background:var(--surface-2);border:1px solid var(--border-soft);color:var(--text-soft)}
+  @media(max-width:720px){.riven-rec{grid-template-columns:1fr}}
+  </style>
+  <div class="lang-float" id="langFloat">
+    <div class="lang-float-panel" id="langFloatPanel" hidden>
+      <button type="button" data-a="lang" data-i="0">国服</button>
+      <button type="button" data-a="lang" data-i="1">国际服</button>
+      <button type="button" data-a="lang" data-i="2">English</button>
+    </div>
+    <button type="button" class="lang-float-toggle" id="langFloatToggle" aria-haspopup="true" aria-expanded="false" title="切换语言">语言</button>
+  </div>
+  <script>
+__LANGFLOAT_JS__  </script>
+  <script>
+__STATTABLE_JS__  </script>
+  <script>
+__WEPTABLE_JS__  </script>
+  <script>
+__PRICETABLE_JS__  </script>
+  <script>
+__PRICEDB_JS__  </script>
+  <script>
+__PRICEREF_JS__  </script>
+<style id="sb-sidebar-css">
+:root{ --sbW:236px; }
+@media (min-width:901px){
+  html{ --sbW:236px; }
+  html.sb-collapsed{ --sbW:64px; }
+  body{ padding-left:var(--sbW); }
+  .top-nav{
+    position:fixed; left:0; top:0; bottom:0; right:auto;
+    width:var(--sbW); height:100vh; height:100dvh;
+    display:flex; flex-direction:column;
+    border-bottom:0; border-right:1px solid var(--border);
+    background:var(--surface);
+    backdrop-filter:none; -webkit-backdrop-filter:none;
+    z-index:70; overflow:hidden;
+    transition:width .22s var(--ease);
+  }
+  .nav-inner{
+    flex:1 1 auto; width:100%; max-width:none; margin:0;
+    display:flex; flex-direction:column; align-items:stretch; gap:2px;
+    padding:10px 10px 6px;
+    overflow-y:auto; overflow-x:hidden;
+    white-space:normal;
+  }
+  .top-nav a{
+    width:100%; flex:0 0 auto;
+    min-height:40px;
+    padding:0 12px;
+    border-bottom:0; border-left:2px solid transparent;
+    border-radius:var(--r-sm);
+    white-space:nowrap; overflow:hidden;
+    transition:color var(--t), background var(--t), border-color var(--t);
+  }
+  .top-nav a:hover{ background:var(--surface-2); }
+  .top-nav a.active{
+    color:var(--ui-text);
+    background:var(--ui-bg);
+    border-left-color:var(--ui);
+    border-bottom-color:transparent;
+  }
+  .top-nav a .ic{ flex:0 0 auto; }
+  .sb-head{
+    flex:0 0 auto; display:flex; align-items:center; gap:8px;
+    padding:12px 10px 10px 14px; margin:0;
+    border-bottom:1px solid var(--border-soft);
+    font-size:var(--fs-11); font-weight:700; letter-spacing:.14em;
+    color:var(--text-mute); text-transform:uppercase; white-space:nowrap;
+  }
+  .sb-head>span{ flex:1 1 auto; overflow:hidden; }
+  .sb-toggle{
+    flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center;
+    width:26px; height:26px; padding:0; margin:0;
+    border:1px solid var(--border-strong); border-radius:var(--r-xs);
+    background:var(--surface); color:var(--text-dim);
+    cursor:pointer; transition:color var(--t), border-color var(--t), background var(--t);
+  }
+  .sb-toggle:hover{ color:var(--ui-text); border-color:var(--ui-border); background:var(--ui-bg); }
+  .sb-toggle:focus-visible{ outline:2px solid var(--ui); outline-offset:1px; }
+  .sb-toggle .ic{ width:14px; height:14px; flex:0 0 auto; stroke:currentColor; fill:none; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
+  html.sb-collapsed .nav-inner{ padding:10px 8px 6px; }
+  html.sb-collapsed .top-nav a{
+    font-size:0; gap:0; padding:0; justify-content:center;
+  }
+  html.sb-collapsed .top-nav a .ic{ font-size:19px; }
+  html.sb-collapsed .sb-head{ justify-content:center; padding:12px 0 10px; }
+  html.sb-collapsed .sb-head>span{ display:none; }
+  html.sb-collapsed .sb-toggle .ic{ transform:rotate(180deg); }
+  .sec{ scroll-margin-top:20px; }
+}
+@media (max-width:900px){
+  body{ padding-left:0; }
+  .sb-head,.sb-toggle{ display:none !important; }
+  .top-nav{
+    position:sticky; top:0; left:auto; right:auto; bottom:auto;
+    width:auto; height:auto; flex-direction:row;
+    border-right:0; border-bottom:1px solid var(--border);
+    overflow:visible;
+  }
+  .nav-inner{
+    flex:1 1 auto; flex-direction:row; gap:4px;
+    padding:0 var(--sp-3);
+    overflow-x:auto; overflow-y:hidden; white-space:nowrap;
+  }
+  .top-nav a{
+    width:auto; min-height:var(--navH); padding:0 11px;
+    font-size:var(--fs-12);
+    border-left:0; border-bottom:2px solid transparent; border-radius:0;
+  }
+  .top-nav a .ic{ display:none; }
+  .top-nav a.active{
+    background:transparent;
+    border-left-color:transparent;
+    border-bottom-color:var(--ui);
+  }
+}
+</style>
+<script id="sb-sidebar-js">
+(function(){
+  var nav = document.getElementById('topNav');
+  if (!nav) return;
+  var inner = nav.querySelector('.nav-inner');
+  var head = null;
+  if (inner && !nav.querySelector('.sb-head')) {
+    head = document.createElement('div');
+    head.className = 'sb-head';
+    head.innerHTML = '<span>版块目录</span>';
+    nav.insertBefore(head, inner);
+  } else {
+    head = nav.querySelector('.sb-head');
+  }
+  [].forEach.call(nav.querySelectorAll('a'), function(a){
+    var t = (a.textContent || '').trim();
+    if (t) { a.setAttribute('title', t); a.setAttribute('aria-label', t); }
+  });
+  if (!document.getElementById('sbToggle')) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.id = 'sbToggle';
+    btn.className = 'sb-toggle';
+    btn.setAttribute('aria-label','收起目录');
+    btn.setAttribute('title','收起目录（Ctrl/⌘+B）');
+    btn.innerHTML = '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>';
+    btn.addEventListener('click', function(){
+      var collapsed = document.documentElement.classList.toggle('sb-collapsed');
+      btn.setAttribute('aria-label', collapsed ? '展开目录' : '收起目录');
+      btn.setAttribute('title', collapsed ? '展开目录（Ctrl/⌘+B）' : '收起目录（Ctrl/⌘+B）');
+      btn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      try { localStorage.setItem('zk-sb-collapsed', collapsed ? '1' : '0'); } catch(e){}
+      window.dispatchEvent(new Event('resize'));
+    });
+    (head || nav).appendChild(btn);
+    btn.setAttribute('aria-expanded','true');
+  }
+  try {
+    if (localStorage.getItem('zk-sb-collapsed') === '1') {
+      document.documentElement.classList.add('sb-collapsed');
+      var t = document.getElementById('sbToggle');
+      if (t) {
+        t.setAttribute('title','展开目录（Ctrl/⌘+B）');
+        t.setAttribute('aria-label','展开目录');
+        t.setAttribute('aria-expanded','false');
+      }
+    }
+  } catch(e){}
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'b' || e.key === 'B')) {
+      e.preventDefault();
+      var t2 = document.getElementById('sbToggle');
+      if (t2) t2.click();
+    }
+  });
+})();
+</script>
+<script id="pg-route-js">
+(function(){
+  var IDS = ['ranges','calc','open','dmg','choose','price','about'];
+  var html = document.documentElement;
+  var nav = document.getElementById('topNav');
+  var links = nav ? [].slice.call(nav.querySelectorAll('a')) : [];
+  var NAME = {};
+  links.forEach(function(a){
+    var id = (a.getAttribute('href')||'').replace(/^#\/?/,'');
+    if (IDS.indexOf(id) >= 0) NAME[id] = (a.textContent||'').trim();
+  });
+  IDS.forEach(function(id){
+    if (NAME[id]) return;
+    var h = document.querySelector('#'+id+' .sec-h h2');
+    NAME[id] = h ? (h.textContent||'').trim() : id;
+  });
+  function current(){
+    var m = (location.hash||'').match(/^#\/?([a-z]+)/i);
+    return m && IDS.indexOf(m[1]) >= 0 ? m[1] : 'ranges';
+  }
+  function paintActive(id){
+    links.forEach(function(a){
+      a.classList.toggle('active', (a.getAttribute('href')||'').replace(/^#\/?/,'') === id);
+    });
+  }
+  var pager = document.createElement('nav');
+  pager.className = 'pg-pager';
+  pager.setAttribute('aria-label','版块翻页');
+  var mainEl = document.querySelector('main.wrap');
+  var footer = mainEl ? mainEl.querySelector('footer') : null;
+  if (mainEl) { mainEl.insertBefore(pager, footer || null); }
+  function renderPager(id){
+    var i = IDS.indexOf(id);
+    var prev = i > 0 ? IDS[i-1] : null;
+    var next = i < IDS.length-1 ? IDS[i+1] : null;
+    pager.innerHTML =
+      '<a class="pg-btn prev" href="#/'+(prev||id)+'"'+(prev?'':' aria-disabled="true"')+'>← 上一版块 <b>'+(prev?NAME[prev]:'到头了')+'</b></a>'+
+      '<span class="pg-idx">'+String(i+1).padStart(2,'0')+' / '+String(IDS.length).padStart(2,'0')+'</span>'+
+      '<a class="pg-btn next" href="#/'+(next||id)+'"'+(next?'':' aria-disabled="true"')+'><b>'+(next?NAME[next]:'到头了')+'</b> 下一版块 →</a>';
+  }
+  var lastRoute = null;
+  function apply(id, opts){
+    html.setAttribute('data-route', id);
+    paintActive(id);
+    renderPager(id);
+    document.title = NAME[id] + ' · Warframe 紫卡模拟器' + ((window.ZKC && typeof ZKC.isUnified === 'function' && !ZKC.isUnified()) ? ' · 倾向版' : '');
+    try{ window.dispatchEvent(new Event('resize')); }catch(e){}
+    if (!opts || !opts.keepScroll) {
+      try{ window.scrollTo({top:0, behavior:'auto'}); }catch(e){ window.scrollTo(0,0); }
+    }
+    lastRoute = id;
+  }
+  function syncFromHash(){
+    var id = current();
+    if (id === lastRoute) { paintActive(id); return; }
+    apply(id);
+  }
+  links.forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = (a.getAttribute('href')||'').replace(/^#\/?/,'');
+      if (IDS.indexOf(id) < 0) return;
+      e.preventDefault();
+      if (current() === id) { apply(id); return; }
+      location.hash = '#/' + id;
+    });
+  });
+  document.addEventListener('click', function(e){
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    var id = (a.getAttribute('href')||'').replace(/^#\/?/,'');
+    if (IDS.indexOf(id) < 0) return;
+    e.preventDefault();
+    if (current() === id) { apply(id); return; }
+    location.hash = '#/' + id;
+  }, true);
+  var nativeSIV = Element.prototype.scrollIntoView;
+  if (nativeSIV) {
+    Element.prototype.scrollIntoView = function(){
+      var el = this, id = null;
+      while (el && el.nodeType === 1) {
+        if (el.id && IDS.indexOf(el.id) >= 0) { id = el.id; break; }
+        el = el.parentElement;
+      }
+      if (id && id !== current()) { try { location.hash = '#/' + id; } catch(e){} return; }
+      try { return nativeSIV.apply(this, arguments); } catch(e) {}
+    };
+  }
+  window.addEventListener('hashchange', syncFromHash);
+  window.addEventListener('popstate', syncFromHash);
+  var guard = false;
+  if (window.MutationObserver) {
+    var mo = new MutationObserver(function(){
+      if (guard) return;
+      guard = true;
+      paintActive(current());
+      setTimeout(function(){ guard = false; }, 0);
+    });
+    links.forEach(function(a){ mo.observe(a, { attributes: true, attributeFilter: ['class'] }); });
+  }
+  window.addEventListener('scroll', function(){
+    var id = current();
+    requestAnimationFrame(function(){ paintActive(id); });
+  }, true);
+  apply(current(), {keepScroll:true});
+  syncFromHash();
+  window.addEventListener('load', function(){ paintActive(current()); renderPager(current()); });
+})();
+</script>
+<script id="open-search-top">
+</script>
+<style id="sb-right-css">
+@media (min-width:901px){
+  html{ --sbW:236px; }
+  html.sb-collapsed{ --sbW:64px; }
+  body{ padding-left:0 !important; padding-right:var(--sbW); }
+  .top-nav{
+    left:auto !important; right:0 !important;
+    border-right:0 !important;
+    border-left:1px solid var(--border) !important;
+  }
+  .top-nav a{ border-left:0 !important; border-right:2px solid transparent; }
+  .top-nav a.active{
+    border-left-color:transparent !important;
+    border-right-color:var(--ui);
+  }
+  .sb-head{ flex-direction:row-reverse; padding:12px 14px 10px 10px; }
+  html.sb-collapsed .sb-head{ padding:12px 0 10px; }
+  .sb-toggle .ic{ transform:rotate(180deg); }
+  html.sb-collapsed .sb-toggle .ic{ transform:rotate(0deg); }
+  .sb-foot{
+    flex:0 0 auto;
+    display:flex; flex-direction:column; gap:9px;
+    padding:12px 12px 10px;
+    border-top:1px solid var(--border-soft);
+    background:var(--surface);
+  }
+  .sb-row{ display:flex; align-items:center; gap:8px; min-width:0; }
+  .sb-lbl{
+    flex:0 0 auto; width:30px;
+    font-size:var(--fs-11); font-weight:700; letter-spacing:.04em;
+    color:var(--text-mute);
+  }
+  .sb-seg{
+    flex:1 1 auto; min-width:0;
+    display:flex; gap:2px; padding:2px;
+    border:1px solid var(--border-soft); border-radius:var(--r-sm);
+    background:var(--surface-2);
+  }
+  .sb-seg button{
+    flex:1 1 0; min-width:0;
+    height:23px; padding:0 4px;
+    border:0; border-radius:calc(var(--r-sm) - 2px);
+    background:transparent; color:var(--text-dim);
+    font-family:inherit; font-size:var(--fs-11); font-weight:700;
+    line-height:1; white-space:nowrap;
+    overflow:hidden; text-overflow:ellipsis;
+    cursor:pointer;
+    transition:color var(--t), background var(--t);
+  }
+  .sb-seg button:hover{ color:var(--text); background:var(--inset); }
+  .sb-seg button.on{ color:var(--ui-on); background:var(--ui); }
+  .sb-seg button:focus-visible{ outline:2px solid var(--ui); outline-offset:1px; }
+  .sb-stamp{
+    display:flex; align-items:center; gap:6px;
+    padding-top:8px; margin-top:1px;
+    border-top:1px solid var(--border-soft);
+    font-size:var(--fs-11); color:var(--text-mute); white-space:nowrap;
+  }
+  .sb-stamp i{
+    width:6px; height:6px; border-radius:50%;
+    background:var(--ui); flex:0 0 auto;
+  }
+  .sb-stamp em{ margin-left:auto; font-style:normal; opacity:.65; }
+  .sb-mini{ display:none; gap:5px; }
+  html.sb-collapsed .sb-foot{ padding:10px 0; align-items:center; gap:6px; }
+  html.sb-collapsed .sb-row,
+  html.sb-collapsed .sb-stamp{ display:none !important; }
+  html.sb-collapsed .sb-mini{ display:flex; }
+  .sb-mini button{
+    width:28px; height:28px;
+    display:inline-flex; align-items:center; justify-content:center;
+    border:1px solid var(--border-strong); border-radius:var(--r-xs);
+    background:transparent; color:var(--text-dim); cursor:pointer;
+    transition:color var(--t), border-color var(--t), background var(--t);
+  }
+  .sb-mini button:hover{ color:var(--ui-text); border-color:var(--ui-border); background:var(--ui-bg); }
+  .sb-mini button:focus-visible{ outline:2px solid var(--ui); outline-offset:1px; }
+  .sb-mini button .ic{ width:15px; height:15px; }
+  .hh-btns{ display:none !important; }
+  .lang-float{ display:none !important; }
+}
+@media (max-width:900px){
+  body{ padding-right:0 !important; }
+  .sb-foot{ display:none !important; }
+}
+</style>
+<script id="sb-right-js">
+(function(){
+  var nav = document.getElementById('topNav');
+  if (!nav) return;
+  if (document.getElementById('sbFoot')) return;
+  var html = document.documentElement;
+  function curTheme(){
+    return html.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+  }
+  function curLang(){
+    try {
+      var v = window.ZKLANGI ? (window.ZKLANGI() | 0) : -1;
+      return (v >= 0 && v <= 2) ? v : -1;
+    } catch (e) { return -1; }
+  }
+  var foot = document.createElement('div');
+  foot.className = 'sb-foot';
+  foot.id = 'sbFoot';
+  foot.innerHTML =
+    '<div class="sb-row">' +
+      '<span class="sb-lbl">主题</span>' +
+      '<div class="sb-seg" role="group" aria-label="明暗主题">' +
+        '<button type="button" data-zk-t="light">明亮</button>' +
+        '<button type="button" data-zk-t="dark">暗黑</button>' +
+      '</div>' +
+    '</div>' +
+    '<div class="sb-row">' +
+      '<span class="sb-lbl">倾向口径</span>' +
+      '<div class="sb-seg" role="group" aria-label="倾向口径">' +
+        '<button type="button" data-zk-d="u" title="全库倾向统一按 1.2 计算">现行版</button>' +
+        '<button type="button" data-zk-d="v" title="每把武器按自己的倾向计算">倾向版</button>' +
+      '</div>' +
+    '</div>' +
+    '<div class="sb-row">' +
+      '<span class="sb-lbl">语言</span>' +
+      '<div class="sb-seg" role="group" aria-label="界面语言">' +
+        '<button type="button" data-zk-l="0" title="国服 · 中文译名">国服</button>' +
+        '<button type="button" data-zk-l="1" title="国际服 · 英文原名，界面中文">国际服</button>' +
+        '<button type="button" data-zk-l="2" title="English · 全英文界面">EN</button>' +
+      '</div>' +
+    '</div>' +
+    '<div class="sb-mini">' +
+      '<button type="button" data-zk-t="toggle" title="切换明暗主题" aria-label="切换明暗主题">' +
+        '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-moon"/></svg></button>' +
+      '<button type="button" data-zk-d="cycle" title="切换倾向口径（现行版 / 倾向版）" aria-label="切换倾向口径">' +
+        '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h12M12 4l4 4-4 4M20 16H8M12 12l-4 4 4 4"/></svg></button>' +
+      '<button type="button" data-zk-l="cycle" title="切换语言" aria-label="切换语言">' +
+        '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-lang"/></svg></button>' +
+    '</div>' +
+    '<div class="sb-stamp"><i></i>全功能重构版<em>v3.0</em></div>';
+  nav.appendChild(foot);
+  function sync(){
+    var t = curTheme(), L = curLang(), i, n;
+    n = foot.querySelectorAll('.sb-seg [data-zk-t]');
+    for (i = 0; i < n.length; i++) n[i].classList.toggle('on', n[i].getAttribute('data-zk-t') === t);
+    n = foot.querySelectorAll('.sb-seg [data-zk-l]');
+    for (i = 0; i < n.length; i++) n[i].classList.toggle('on', +n[i].getAttribute('data-zk-l') === L);
+    var du = (window.ZKC && typeof ZKC.isUnified === 'function') ? ZKC.isUnified() : true;
+    n = foot.querySelectorAll('.sb-seg [data-zk-d]');
+    for (i = 0; i < n.length; i++) n[i].classList.toggle('on', n[i].getAttribute('data-zk-d') === (du ? 'u' : 'v'));
+    var mu = foot.querySelector('.sb-mini [data-zk-t] use');
+    if (mu) mu.setAttribute('href', t === 'light' ? '#i-sun' : '#i-moon');
+  }
+  window.addEventListener('zkdispchange', sync);
+  function applyTheme(t){
+    if (curTheme() === t) return;
+    var ok = false;
+    try { if (typeof window.setTheme === 'function') { window.setTheme(t); ok = true; } } catch (e) {}
+    if (!ok) {
+      var b = document.getElementById('themeBtn');
+      if (b) { b.click(); if (curTheme() !== t) b.click(); }
+    }
+    sync();
+  }
+  function applyLang(v){
+    v = v | 0;
+    if (curLang() === v) { sync(); return; }
+    var p = document.querySelector('#langFloatPanel button[data-i="' + v + '"]') ||
+            document.querySelector('[data-a="lang"][data-i="' + v + '"]');
+    if (p) { try { p.click(); } catch (e) {} }
+    sync();
+  }
+  function applyDisp(v){
+    if (!(window.ZKC && typeof ZKC.setDispMode === 'function')) return;
+    var u = (v === 'cycle') ? !ZKC.isUnified() : (v === 'u');
+    ZKC.setDispMode(u ? 'u' : 'v');
+    sync();
+  }
+  foot.addEventListener('click', function(e){
+    var b = e.target;
+    while (b && b !== foot && !(b.tagName === 'BUTTON')) b = b.parentNode;
+    if (!b || b === foot) return;
+    var tt = b.getAttribute('data-zk-t');
+    if (tt) {
+      applyTheme(tt === 'toggle' ? (curTheme() === 'light' ? 'dark' : 'light') : tt);
+      return;
+    }
+    var ll = b.getAttribute('data-zk-l');
+    if (ll) {
+      if (ll === 'cycle') { var L = curLang(); applyLang(L < 0 ? 0 : (L + 1) % 3); }
+      else { applyLang(+ll); }
+      return;
+    }
+    var dd = b.getAttribute('data-zk-d');
+    if (dd) { applyDisp(dd); }
+  });
+  if (window.MutationObserver) {
+    try {
+      new MutationObserver(sync).observe(html, { attributes: true, attributeFilter: ['data-theme'] });
+      var lp = document.getElementById('langFloatPanel');
+      if (lp) new MutationObserver(sync).observe(lp, { attributes: true, subtree: true, attributeFilter: ['class'] });
+    } catch (e) {}
+  }
+  sync();
+  document.addEventListener('DOMContentLoaded', sync);
+  window.addEventListener('load', sync);
+  window.addEventListener('hashchange', sync);
+})();
+</script>
+</body>
+</html>

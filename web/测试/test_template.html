@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>紫卡识别 · 测试页（识别引擎：本地 ONNX）</title>
+<style>
+  :root {
+    --bg: #f5f6fa; --panel: #ffffff; --text: #1f2330; --muted: #6b7280;
+    --accent: #4f6ef7; --accent-dark: #3b55d9; --border: #e2e5ef;
+    --ok: #16a34a; --err: #dc2626; --warn: #b45309;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Segoe UI", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 24px; }
+  .container { max-width: 1240px; margin: 0 auto; }
+  h1 { font-size: 22px; margin-bottom: 4px; }
+  .subtitle { color: var(--muted); font-size: 13px; margin-bottom: 20px; line-height: 1.7; }
+  .grid { display: grid; grid-template-columns: 460px 1fr; gap: 16px; align-items: start; }
+  @media (max-width: 980px) { .grid { grid-template-columns: 1fr; } }
+  .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+  .panel h2 { font-size: 15px; margin-bottom: 12px; color: var(--accent-dark); }
+  #dropZone {
+    border: 2px dashed var(--border); border-radius: 10px; min-height: 220px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: border-color .2s, background .2s; overflow: hidden; position: relative;
+  }
+  #dropZone.dragover { border-color: var(--accent); background: #eef1ff; }
+  #dropZone img { max-width: 100%; max-height: 420px; object-fit: contain; }
+  .dz-hint { color: var(--muted); font-size: 14px; text-align: center; line-height: 1.8; }
+  .controls { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  button { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 9px 18px; font-size: 14px; cursor: pointer; }
+  button:hover { background: var(--accent-dark); }
+  button:disabled { background: #b9c2f5; cursor: not-allowed; }
+  button.secondary { background: #eef1ff; color: var(--accent-dark); }
+  button.secondary:hover { background: #dfe5ff; }
+  label.opt { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 5px; }
+  select { border: 1px solid var(--border); border-radius: 6px; padding: 5px 7px; font-size: 13px; background: #fff; }
+  #progressWrap { margin-top: 12px; display: none; }
+  #progressBarOuter { background: var(--border); border-radius: 6px; height: 10px; overflow: hidden; }
+  #progressBar { background: linear-gradient(90deg, #4f6ef7, #7c5cf7); height: 100%; width: 0%; transition: width .2s; }
+  #progressText { font-size: 12px; color: var(--muted); margin-top: 6px; }
+  #status { font-size: 13px; margin-top: 10px; min-height: 18px; }
+  .status-ok { color: var(--ok); } .status-err { color: var(--err); }
+  .zname { font-weight: 600; margin-bottom: 6px; font-size: 13px; }
+  #pv { border: 1px solid var(--border); border-radius: 6px; background: #222; display: block; margin-top: 4px; }
+  .card-fields { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+  .field { display: flex; gap: 8px; align-items: baseline; font-size: 14px; flex-wrap: wrap; }
+  .field .k { color: var(--muted); white-space: nowrap; min-width: 64px; }
+  .field .v { font-weight: 600; }
+  .field .alt { color: var(--muted); font-weight: 400; font-size: 12.5px; }
+  .miss { color: var(--err); font-weight: 400; }
+  .warn { color: var(--warn); font-weight: 600; }
+  table.affix { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 6px; }
+  table.affix th, table.affix td { border: 1px solid var(--border); padding: 6px 8px; text-align: left; vertical-align: top; }
+  table.affix th { background: #f0f3ff; color: var(--accent-dark); font-weight: 600; white-space: nowrap; }
+  table.affix td.num { white-space: nowrap; font-weight: 600; }
+  .neg { color: var(--err); } .pos { color: var(--ok); }
+  .rawline { color: var(--muted); font-size: 11.5px; }
+  .rawbox { width: 100%; min-height: 54px; border: 1px solid var(--border); border-radius: 8px; padding: 8px; font-size: 13px; line-height: 1.5; resize: vertical; margin-top: 6px; }
+  .actions { margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .warnbox { margin: 8px 0; padding: 6px 10px; background: #fef3c7; border: 1px solid #f59e0b; border-radius: 6px; font-size: 12.5px; color: #92400e; line-height:1.6; }
+  .final { margin-top: 14px; }
+  .final pre { margin: 0; background: #0f1424; color: #d7e3ff; border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; font-size: 14.5px; line-height: 1.9; font-family: inherit; white-space: pre-wrap; }
+  .tip { margin-top: 14px; font-size: 12.5px; color: var(--muted); line-height: 1.8; background: #f0f3ff; border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+  .tip b { color: var(--accent-dark); }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>紫卡识别 · 测试页</h1>
+  <div class="subtitle">
+    使用与网页版相同的纯前端识别引擎（PP-OCRv3 ONNX + 公共预处理层），零安装、100% 本地运行，图片不上传。
+    自动检测卡片主体、旋正并贴模板，再识别等级 / 武器名 / 词条并对照内置数据库（与计算器同源，含「心智之殁」等整词纠错）。
+    引擎：本地 ONNX（内嵌运行时），单一路径，无兜底。
+  </div>
+
+  <div class="grid">
+    <div class="panel">
+      <h2>① 输入图片</h2>
+      <div id="dropZone">
+        <div class="dz-hint">点击选择图片 / 拖拽图片到此处<br>也可以直接 <b>Ctrl + V</b> 粘贴截图</div>
+      </div>
+      <input type="file" id="fileInput" accept="image/*" hidden>
+
+      <div class="controls">
+        <button id="startBtn" disabled>识别</button>
+        <button id="clearBtn" class="secondary">清空</button>
+      </div>
+
+      <div id="progressWrap">
+        <div id="progressBarOuter"><div id="progressBar"></div></div>
+        <div id="progressText">准备中…</div>
+      </div>
+      <div id="status"></div>
+
+      <div id="previewWrap" style="display:none;margin-top:12px;">
+        <div class="zname">定位 + 分区预览（黄框 = 识别实际使用的三个分区：等级 / 武器名 / 词条）</div>
+        <canvas id="pv" width="316" height="400"></canvas>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>② 识别 + 对照结果</h2>
+      <div id="resultBox" class="card-fields">
+        <div style="color:var(--muted);font-size:13px;">尚未识别。左侧载入卡片图后自动识别（也可点「识别」重跑）。</div>
+      </div>
+      <div class="actions">
+        <button id="copyBtn" class="secondary">复制最终结果</button>
+        <button id="downloadBtn" class="secondary">下载为 TXT</button>
+      </div>
+      <details>
+        <summary>原始识别文本（可手动修正后重新解析）</summary>
+        <div style="font-size:12px;color:var(--muted);margin-top:6px;">等级</div>
+        <textarea id="raw_level" class="rawbox"></textarea>
+        <div style="font-size:12px;color:var(--muted);margin-top:6px;">武器名（中文 + 空格 + 英文）</div>
+        <textarea id="raw_name" class="rawbox"></textarea>
+        <div style="font-size:12px;color:var(--muted);margin-top:6px;">词条（每行一条：符号+数值%+名称）</div>
+        <textarea id="raw_affix" class="rawbox" style="min-height:110px"></textarea>
+        <div class="actions"><button id="reparseBtn" class="secondary">按修改后的文本重新解析</button></div>
+      </details>
+      <div id="altBox" style="display:none;margin-top:10px;background:#fdf6e3;border:1px solid #e0c97f;border-radius:10px;padding:10px 12px;font-size:12.5px;line-height:1.7;color:#7a5b00;"></div>
+      <div class="tip">
+        <b>说明</b><br>
+        · 首次使用 ONNX 引擎会从 CDN 下载 onnxruntime-web（约几 MB）并加载内嵌的 PP-OCRv3 模型，之后有缓存；<br>
+        · 词条符号：+ 加成 / − 负面 / × 倍率，自动对照国服 / 国际服 / 英文三种名称；模糊匹配前两名分差过小时标记 <b>⚠</b> 并列出候选；<br>
+        · 识别结果若个别词条有误，可直接在下方原始文本里改（如把误读的字修正），再点「按修改后的文本重新解析」，无需重跑 OCR；<br>
+        · 左下角「显示识别」按钮可展开 ONNX 原始行与对齐 / 掩膜 / 分区图（调试用）。
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>window.ZKDATA=__ZKDATA__;</script>
+<script>
+__OCRJS__
+</script>
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var dropZone = $('dropZone'), fileInput = $('fileInput'), startBtn = $('startBtn'), clearBtn = $('clearBtn');
+  var copyBtn = $('copyBtn'), downloadBtn = $('downloadBtn'), reparseBtn = $('reparseBtn');
+  var resultBox = $('resultBox'), statusEl = $('status');
+  var progressWrap = $('progressWrap'), progressBar = $('progressBar'), progressText = $('progressText');
+  var previewWrap = $('previewWrap'), pv = $('pv'), altBox = $('altBox');
+  var raw = { level: $('raw_level'), name: $('raw_name'), affix: $('raw_affix') };
+
+  var pendingFile = null, lastResult = null, lastEngine = 'onnx', currentName = 'image.png';
+
+  function setStatus(msg, cls) { statusEl.textContent = msg; statusEl.className = cls ? 'status-' + cls : ''; }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); }
+  function fmtAffixName(a) {
+    var sign = (a.sign === '-' || a.sign === '−' || a.sign === '–') ? '-'
+      : (a.sign === '×' || a.sign === 'x' || a.sign === 'X' || a.sign === '*' || a.sign === '✕') ? '×' : '+';
+    return sign + a.value + (a.isPct ? '%' : '');
+  }
+
+  /* ---------- 图片输入 ---------- */
+  dropZone.addEventListener('click', function () { fileInput.click(); });
+  fileInput.addEventListener('change', function (e) { if (e.target.files[0]) loadFile(e.target.files[0]); });
+  dropZone.addEventListener('dragover', function (e) { e.preventDefault(); dropZone.classList.add('dragover'); });
+  dropZone.addEventListener('dragleave', function () { dropZone.classList.remove('dragover'); });
+  dropZone.addEventListener('drop', function (e) {
+    e.preventDefault(); dropZone.classList.remove('dragover');
+    var f = e.dataTransfer.files && e.dataTransfer.files[0];
+    if (f && f.type.startsWith('image/')) loadFile(f);
+  });
+  window.addEventListener('paste', function (e) {
+    var items = e.clipboardData && e.clipboardData.items;
+    if (!items) return;
+    for (var i = 0; i < items.length; i++) { if (items[i].type.startsWith('image/')) { loadFile(items[i].getAsFile()); break; } }
+  });
+
+  function loadFile(file) {
+    pendingFile = file; currentName = file.name || 'clipboard.png';
+    var url = URL.createObjectURL(file);
+    var img = new Image();
+    img.onload = function () {
+      dropZone.innerHTML = '';
+      img.style.cssText = 'max-width:100%;max-height:420px;object-fit:contain;';
+      dropZone.appendChild(img);
+      startBtn.disabled = false;
+      setStatus('图片已载入：' + currentName + '（' + img.naturalWidth + '×' + img.naturalHeight + '），开始识别…', '');
+      run();
+    };
+    img.onerror = function () { setStatus('图片加载失败', 'err'); };
+    img.src = url;
+  }
+
+  /* ---------- 预览 ---------- */
+  function drawPreview(info) {
+    var c = info && info.canvas; if (!c) return;
+    pv.width = c.width; pv.height = c.height;
+    var ctx = pv.getContext('2d');
+    ctx.drawImage(c, 0, 0);
+    var reg = info.regions || {};
+    ctx.lineWidth = Math.max(1, c.width / 160);
+    ctx.strokeStyle = '#ffd400';
+    ['level', 'name', 'affix'].forEach(function (k) {
+      var r = reg[k]; if (!r) return;
+      ctx.strokeRect(r.left * c.width, r.top * c.height, (r.right - r.left) * c.width, (r.bottom - r.top) * c.height);
+    });
+    previewWrap.style.display = 'block';
+  }
+
+  /* ---------- 渲染结果 ---------- */
+  function renderResult(p, engine) {
+    var html = '';
+    html += '<div class="field"><span class="k">卡面等级</span><span class="v">' + (p.levelRaw ? esc(p.levelRaw) : '<span class="miss">未识别</span>') + '</span>';
+    if (p.conflicts && p.conflicts.level) html += ' <span class="warn">⚠ 识别不一致</span>';
+    html += '</div>';
+
+    if (p.weapon) {
+      html += '<div class="field"><span class="k">武器名</span><span class="v">' + esc(p.weapon.cn || '(无中文名)') + '</span>';
+      if (p.weapon.en) html += ' <span class="alt">' + esc(p.weapon.en) + '</span>';
+      if (p.weapon.ambiguous) html += ' <span class="warn">⚠ 候选过于接近</span>';
+      html += '<br><span class="alt">对照：国服 <b>' + esc(p.weapon.cn) + '</b> ｜ 国际服 <b>' + esc(p.weapon.intl) + '</b> ｜ 英文 <b>' + esc(p.weapon.en) + '</b>（' + (p.weapon.inferred ? '按词条推断' : '匹配') + ' ' + p.weapon.score + '%）</span>';
+      if (p.weaponCats && p.weaponCats.length) html += ' <span class="alt">类别推断：' + p.weaponCats.map(esc).join('/') + '</span>';
+      html += '</div>';
+    } else if (p.weaponRaw && (p.weaponRaw.cn || p.weaponRaw.en)) {
+      html += '<div class="field"><span class="k">武器名</span><span class="miss">未匹配对照表：' + esc(p.weaponRaw.cn || '') + (p.weaponRaw.en ? (' (' + esc(p.weaponRaw.en) + ')') : '') + '</span></div>';
+    } else {
+      html += '<div class="field"><span class="k">武器名</span><span class="miss">未识别</span></div>';
+    }
+
+    if (p.rivenGen) {
+      html += '<div class="field"><span class="k">紫卡生成名</span><span class="v">' + esc(p.rivenGen) + '</span>';
+      if (p.nameCheck && !p.nameCheck.ok) html += ' <span class="warn">⚠ 与卡面拉丁名不一致</span>';
+      html += '</div>';
+    }
+
+    var pos = 0, neg = 0;
+    (p.affixes || []).forEach(function (a) { if (a.sign === '-' || a.sign === '×' || a.sign === 'x' || a.sign === 'X') neg++; else pos++; });
+    var combo = '未知';
+    if (pos === 3 && neg === 0) combo = '3+0';
+    else if (pos === 3 && neg === 1) combo = '3+1';
+    else if (pos === 2 && neg === 1) combo = '2+1';
+    else if (pos === 2 && neg === 0) combo = '2+0';
+    html += '<div class="field"><span class="k">组合类型</span><span class="v">' + combo + '</span></div>';
+
+    html += '<table class="affix"><thead><tr><th>#</th><th>数值</th><th>词条名称</th><th>对照表匹配</th><th>原始</th></tr></thead><tbody>';
+    if (!p.affixes || !p.affixes.length) html += '<tr><td colspan="5" class="miss">未解析出词条</td></tr>';
+    (p.affixes || []).forEach(function (a, i) {
+      var valCls = (a.sign === '-' || a.sign === '×') ? 'neg' : 'pos';
+      html += '<tr><td>' + (i + 1) + '</td>'
+        + '<td class="num ' + valCls + '">' + esc(fmtAffixName(a)) + '</td>'
+        + '<td>' + esc(a.name || a.nameRaw || '') + (a.ambiguous ? ' <span class="warn">⚠</span>' : '') + '</td>'
+        + '<td>' + (a.name ? esc(a.name) : '<span class="miss">未匹配</span>') + '</td>'
+        + '<td class="rawline">' + esc(a.nameRaw || '') + '</td></tr>';
+    });
+    html += '</tbody></table>';
+
+    if (p.dropped > 0) html += '<div class="warnbox">⚠ 另有 ' + p.dropped + ' 条疑似锁图标误读，已被排除，请确认是否需要手动补。</div>';
+    if (p.conflicts && p.conflicts.affix && p.conflicts.affix.length) html += '<div class="warnbox">⚠ 有 ' + p.conflicts.affix.length + ' 条词条双重识别不一致，请核对。</div>';
+
+    try {
+      var lines = window.RivenOCR._t.finalResultLines(p);
+      html += '<div class="final"><div class="zname">最终结果</div><pre id="finalOut">' + esc(lines.join('\n')) + '</pre></div>';
+    } catch (e) { /* finalResultLines 依赖模块级 lastConflicts，失败也不影响上面 */ }
+
+    resultBox.innerHTML = html;
+    lastResult = p; lastEngine = engine;
+
+    raw.level.value = (p.levelRaw || '');
+    raw.name.value = ((p.weaponRaw && p.weaponRaw.cn) || '') + ((p.weaponRaw && p.weaponRaw.en) ? (' ' + p.weaponRaw.en) : '');
+    raw.affix.value = (p.affixes || []).map(function (a) { return fmtAffixName(a) + ' ' + a.nameRaw; }).join('\n');
+    setStatus('识别完成 ✓（引擎：' + (engine || 'onnx') + '） 结果不对可修正下方原始文本后点「重新解析」', 'ok');
+  }
+
+  /* ---------- 主流程 ---------- */
+  async function run() {
+    if (!pendingFile || !window.RivenOCR) return;
+    startBtn.disabled = true;
+    progressWrap.style.display = 'block';
+    progressBar.style.width = '0%';
+    try {
+      setStatus('正在载入图片…', '');
+      var url = URL.createObjectURL(pendingFile);
+      var info = await window.RivenOCR.loadImage(url);
+      drawPreview(info);
+      setStatus('正在识别…', '');
+      var res = await window.RivenOCR.recognize({
+        onProgress: function (m) { if (m && m.status) progressText.textContent = m.status; }
+      });
+      progressBar.style.width = '100%';
+      progressText.textContent = '完成';
+      renderResult(res, res.engineUsed);
+    } catch (e) {
+      console.error(e);
+      setStatus('识别失败：' + (e && e.message ? e.message : e), 'err');
+    } finally {
+      startBtn.disabled = !pendingFile;
+    }
+  }
+
+  startBtn.addEventListener('click', run);
+
+  clearBtn.addEventListener('click', function () {
+    pendingFile = null; lastResult = null;
+    fileInput.value = '';
+    dropZone.innerHTML = '<div class="dz-hint">点击选择图片 / 拖拽图片到此处<br>也可以直接 <b>Ctrl + V</b> 粘贴截图</div>';
+    resultBox.innerHTML = '<div style="color:var(--muted);font-size:13px;">尚未识别。左侧载入卡片图后自动识别（也可点「识别」重跑）。</div>';
+    raw.level.value = ''; raw.name.value = ''; raw.affix.value = '';
+    previewWrap.style.display = 'none';
+    altBox.style.display = 'none'; altBox.innerHTML = '';
+    progressWrap.style.display = 'none';
+    setStatus('', '');
+    startBtn.disabled = true;
+  });
+
+  reparseBtn.addEventListener('click', function () {
+    if (!window.RivenOCR || !window.RivenOCR._t) return;
+    try {
+      var p = window.RivenOCR._t.buildFromRaw(raw.level.value, raw.name.value, raw.affix.value, null);
+      var res = window.RivenOCR._t.finalize(p, lastEngine || 'onnx');
+      renderResult(res, lastEngine || 'onnx');
+      setStatus('已按修改后的文本重新解析', 'ok');
+    } catch (e) {
+      setStatus('重新解析失败：' + (e && e.message ? e.message : e), 'err');
+    }
+  });
+
+  copyBtn.addEventListener('click', function () {
+    if (!lastResult || !window.RivenOCR) return;
+    try {
+      var lines = window.RivenOCR._t.finalResultLines(lastResult);
+      navigator.clipboard.writeText(lines.join('\n')).then(
+        function () { setStatus('已复制最终结果到剪贴板 ✓', 'ok'); },
+        function () { setStatus('复制失败，请手动选择文本', 'err'); }
+      );
+    } catch (e) { setStatus('复制失败，请手动选择文本', 'err'); }
+  });
+
+  downloadBtn.addEventListener('click', function () {
+    if (!lastResult || !window.RivenOCR) return;
+    try {
+      var lines = window.RivenOCR._t.finalResultLines(lastResult);
+      var blob = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = currentName.replace(/\.[^.]+$/, '') + '-识别结果.txt';
+      a.click();
+    } catch (e) { setStatus('下载失败：' + (e && e.message ? e.message : e), 'err'); }
+  });
+
+  if (!window.RivenOCR) setStatus('识别引擎未加载（脚本异常）', 'err');
+})();
+</script>
+</body>
+</html>

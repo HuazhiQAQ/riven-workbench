@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>极性识别 Demo · 整卡截图自动定位</title>
+<style>
+  :root { --bg:#f5f6fa; --panel:#fff; --text:#1f2330; --muted:#6b7280; --accent:#4f6ef7; --accent-dark:#3b55d9; --border:#e2e5ef; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:"Segoe UI","Microsoft YaHei",sans-serif; background:var(--bg); color:var(--text); min-height:100vh; padding:24px; }
+  .container { max-width:1080px; margin:0 auto; }
+  h1 { font-size:22px; margin-bottom:4px; }
+  .subtitle { color:var(--muted); font-size:13px; margin-bottom:20px; line-height:1.7; }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start; }
+  @media (max-width:900px){ .grid{grid-template-columns:1fr;} }
+  .panel { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:16px; }
+  .panel h2 { font-size:15px; margin-bottom:12px; color:var(--accent-dark); }
+  #dropZone { border:2px dashed var(--border); border-radius:10px; min-height:300px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:border-color .2s,background .2s; overflow:hidden; position:relative; }
+  #dropZone.dragover { border-color:var(--accent); background:#eef1ff; }
+  #dropZone canvas, #dropZone img { max-width:100%; max-height:480px; object-fit:contain; }
+  .dz-hint { color:var(--muted); font-size:14px; text-align:center; line-height:1.8; }
+  .controls { margin-top:12px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+  button { background:var(--accent); color:#fff; border:none; border-radius:8px; padding:9px 18px; font-size:14px; cursor:pointer; }
+  button:hover { background:var(--accent-dark); }
+  button:disabled { background:#b9c2f5; cursor:not-allowed; }
+  #result { margin-top:16px; padding:14px; border:1px solid var(--border); border-radius:10px; background:#f0f3ff; }
+  #result .label { color:var(--muted); font-size:12px; }
+  #result .val { font-size:26px; font-weight:700; margin-top:2px; }
+  #result .detail { font-size:12px; color:var(--muted); margin-top:6px; line-height:1.6; }
+  .zrow { display:flex; gap:8px; align-items:center; font-size:13px; color:var(--muted); margin-top:10px; flex-wrap:wrap; }
+  .zrow input { width:72px; border:1px solid var(--border); border-radius:6px; padding:5px 7px; font-size:13px; }
+  .zrow b { color:var(--text); font-weight:600; }
+  canvas.preview { width:100%; border:1px solid var(--border); border-radius:6px; background:#111; margin-top:8px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>极性识别 Demo</h1>
+  <div class="subtitle">
+    输入整张紫卡截图 → 自动定位卡面并贴到 632×800 模板（复用 <b>preprocess.js</b> 的 fitToTemplate）
+    → 裁剪右上角<b>徽章区</b>（黄框，已锁定为默认模板红框位置）→ 隔离出图标（徽章布局=左「18」右图标，只取右带）→ 与三张标准图标做 <b>模板匹配</b> 判定 <b>Naramon / Vazarin / Madurai</b>。<br>
+    极性是图标不是文字，故不走文字 OCR；判定用 <b>bbox 拉伸 IoU</b>：把标准图标按候选图标的实际宽高比拉伸后再比，抵消 fitToTemplate 的形变。<br>
+    <b>永不输出「无法判定」</b>：恒按三选一的最高置信度给出结果；当最高 IoU 偏低时会标注「？置信度低，可能识别错了」。
+  </div>
+
+  <div class="grid">
+    <div class="panel">
+      <h2>① 输入整卡截图</h2>
+      <div id="dropZone"><div class="dz-hint">点击选择图片 / 拖拽图片到此处<br>也可以 <b>Ctrl+V</b> 粘贴截图</div></div>
+      <input type="file" id="fileInput" accept="image/*" hidden>
+      <div class="controls">
+        <button id="runBtn" disabled>识别极性</button>
+        <button id="clearBtn" class="secondary">清空</button>
+      </div>
+      <div class="zrow">
+        徽章区（模板 632×800 百分比，<b>已锁定</b>：riven 拷贝.jpg 经 fitToTemplate 拟合后徽章实测在 x73.4~91.2% / y7.0~15.3%，含「18+图标」）：左
+        <input id="px0" type="number" value="72.8">%　右
+        <input id="px1" type="number" value="91.7">%　上
+        <input id="py0" type="number" value="6.5">%　下
+        <input id="py1" type="number" value="15.7">%
+      </div>
+      <div class="zrow">
+        <label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-weight:600;color:var(--text);">
+          <input id="autoLoc" type="checkbox" checked> 徽章区找不到时自动扫描兜底（扫右上角）
+        </label>
+      </div>
+      <div class="zrow">区内只在<b>右带</b>（18 的右侧）取「亮色像素最多的连通块」当极性图标，左侧「18」与外侧原画都被排除；可在「模板+定位框」预览里对照微调徽章区。</div>
+    </div>
+
+    <div class="panel">
+      <h2>② 识别结果</h2>
+      <div id="result">
+        <div class="label">极性判定</div>
+        <div class="val" id="polarVal">—</div>
+        <div class="detail" id="polarDetail">等待输入图片。</div>
+      </div>
+      <canvas id="polarPreview" class="preview" width="120" height="120"></canvas>
+      <div class="label" style="color:var(--muted);font-size:12px;margin-top:4px;">上：裁剪出的极性区域（放大显示）</div>
+      <canvas id="fitPreview" class="preview" width="316" height="400"></canvas>
+      <div class="label" style="color:var(--muted);font-size:12px;margin-top:4px;">下：模板 632×800 与定位框（<span style="color:#22b14c">绿框</span>=隔离出的图标，<span style="color:#e8b84b">黄框</span>=徽章区）</div>
+    </div>
+  </div>
+</div>
+
+<!-- 复用你原有公共预处理层：定位 + 拉正 + 贴模板 -->
+<script src="./preprocess.js"></script>
+<!-- 三张极性标准图标（32x32 PNG），浏览器内解码为二值模板 -->
+<script src="./polar_templates.js"></script>
+<script>
+/* * 极性判定 —— 模板匹配（bbox 拉伸 IoU），不依赖文字 OCR。
+ *   Naramon  = 横条（一槽 / 横槽）
+ *   Vazarin  = 倒三角 D（盾槽）
+ *   Madurai  = V 形（R槽）
+ * 思路：卡面经 fitToTemplate 会被拉伸变形，故把标准图标按候选图标
+ *       「实际宽高比」拉伸成同样尺寸再算 IoU，形变即被抵消。
+ * ============================================================ */
+const POLAR_TYPES = {
+  naramon: { key:'naramon', name:'Naramon', desc:'横条 / 一槽（横槽）' },
+  vazarin: { key:'vazarin', name:'Vazarin', desc:'倒三角 D / 三角槽（盾槽）' },
+  madurai: { key:'madurai', name:'Madurai', desc:'V 形 / V槽（R槽）' },
+  unknown: { key:'unknown', name:'无法判定', desc:'极性区域未识别到明显图标' }
+};
+
+/* 在 canvas 上裁一块区域，返回小 canvas（自动白底） */
+function cropCanvas(src, x0, y0, w, h) {
+  const c = document.createElement('canvas');
+  c.width = Math.max(1, Math.round(w)); c.height = Math.max(1, Math.round(h));
+  const cx = c.getContext('2d', { willReadFrequently: true });
+  cx.fillStyle = '#fff'; cx.fillRect(0,0,c.width,c.height);
+  cx.drawImage(src, Math.round(x0), Math.round(y0), Math.round(w), Math.round(h), 0,0,c.width,c.height);
+  return c;
+}
+
+/* 亮色前景掩膜：极性图标为亮紫/青/白，背景为暗色。
+   判据「亮 + 偏紫(蓝≥绿) + 不透明」，兼顾三种图标与真实卡面颜色差异、透明背景 PNG。 */
+function foregroundMask(cv) {
+  const cx = cv.getContext('2d', { willReadFrequently:true });
+  const w = cv.width, h = cv.height;
+  const d = cx.getImageData(0,0,w,h).data;
+  const mask = new Uint8Array(w*h);
+  for (let p=0; p<w*h; p++) {
+    const i = p*4;
+    const a = d[i+3];
+    if (a < 40) continue;                          // 透明背景（参考图标 PNG）
+    const r=d[i], g=d[i+1], b=d[i+2];
+    const lum = 0.299*r + 0.587*g + 0.114*b;
+    const purpleish = (b >= g - 10 && r > 60 && b > 80);
+    const bright = (lum > 110 && (r+g+b) < 730);
+    mask[p] = (purpleish && bright) ? 255 : 0;
+  }
+  return { data: mask, w, h };
+}
+
+/* 颜色无关的字形前景：图标是亮色（不限定紫），背景是暗/透明。
+   用于「模板解码」与「裁剪图标分类」——不假设图标颜色，只认亮度。 */
+function glyphMask(cv) {
+  const cx = cv.getContext('2d', { willReadFrequently:true });
+  const w = cv.width, h = cv.height;
+  const d = cx.getImageData(0,0,w,h).data;
+  const mask = new Uint8Array(w*h);
+  for (let p=0; p<w*h; p++) {
+    const i = p*4;
+    const a = d[i+3];
+    if (a < 40) continue;                          // 透明背景（参考图标 PNG）
+    const r=d[i], g=d[i+1], b=d[i+2];
+    const lum = 0.299*r + 0.587*g + 0.114*b;
+    mask[p] = (lum > 100 && (r+g+b) < 745) ? 255 : 0;
+  }
+  return { data: mask, w, h };
+}
+
+/* 全部连通域（8邻域）。返回每个块的 n / bbox / 质心 cx */
+function connectedComponents(mask) {
+  const W = mask.w, H = mask.h;
+  const visited = new Uint8Array(W*H);
+  const stack = new Int32Array(W*H);
+  const comps = [];
+  for (let p=0; p<W*H; p++) {
+    if (visited[p] || mask.data[p]!==255) continue;
+    let sp=0; stack[sp++]=p; visited[p]=1;
+    let n=0, x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+    while (sp>0) {
+      const q=stack[--sp]; n++;
+      const x=q%W, y=(q/W)|0;
+      if(x<x0)x0=x; if(x>x1)x1=x; if(y<y0)y0=y; if(y>y1)y1=y;
+      for(let dy=-1;dy<=1;dy++){
+        const ny=y+dy; if(ny<0||ny>=H)continue;
+        for(let dx=-1;dx<=1;dx++){
+          const nx=x+dx; if(nx<0||nx>=W)continue;
+          const r=ny*W+nx;
+          if(!visited[r]&&mask.data[r]===255){visited[r]=1;stack[sp++]=r;}
+        }
+      }
+    }
+    comps.push({ n, x0,y0,x1,y1, w:x1-x0+1, h:y1-y0+1, cx:(x0+x1)/2 });
+  }
+  return comps;
+}
+
+/* 在徽章 ROI 内隔离「图标」——「18 定线 + 同高」策略（稳健版，恒返回候选）。
+   徽章布局固定：左「18」、右极性图标，二者基本同高；徽章边缘常有卡面画框/高光（在 18 上方或下方）。
+   做法：
+     ① 用「左半最大的连通块」当「18」（画框多是细条、像素远少于数字块，不会误占），取其竖向上下沿为基准线；
+     ② 图标 = 中心偏右(cx>42%W)、且与 18 基准线垂直重叠≥50% 的块中，带内像素最多者
+        上/下方画框因与 18 不同高被排除（这是之前稳定抓错的关键）；
+     ③ 兜底链：右带全部亮像素 → 整 ROI 亮像素 → 空候选，保证基本恒有值，交分类给低置信度。 */
+function isolateIconFromROI(templated, roi) {
+  const crop = cropCanvas(templated, roi.x0, roi.y0, roi.w, roi.h);
+  const m = glyphMask(crop);
+  const W = m.w, H = m.h;
+  const comps = connectedComponents(m);
+  const zx0 = Math.round(W*0.50);                 // 右带起点（图标在「18」右侧）
+  const maxW = roi.w*0.55, maxH = roi.h*0.92;
+  const buildMask = (x0,y0,x1,y1) => {
+    const bw=x1-x0+1, bh=y1-y0+1;
+    const mask = new Uint8Array(bw*bh);
+    for (let y=y0;y<=y1;y++) for (let x=x0;x<=x1;x++)
+      if (m.data[y*W+x]===255) mask[(y-y0)*bw+(x-x0)]=1;
+    return { mask, bw, bh };
+  };
+  const pack = g => ({ ...g, box:{ x0: roi.x0+g.x0, y0: roi.y0+g.y0, w:g.x1-g.x0+1, h:g.y1-g.y0+1 } });
+
+  /* ① 左半最大连通块 = 「18」，其竖向上下沿 = 基准线（默认中带兜底） */
+  let ey0=Math.round(H*0.15), ey1=Math.round(H*0.85), bigN=0;
+  for (const c of comps) {
+    if (c.x1 < zx0+2 && c.n >= 15 && c.n > bigN) { bigN=c.n; ey0=c.y0; ey1=c.y1; }
+  }
+
+  /* ② 中心偏右 + 与 18 同高 的块中，带内像素最多者 = 图标 */
+  let best=null, bestN=0;
+  for (const c of comps) {
+    const cx=(c.x0+c.x1)/2;
+    if (cx < zx0*0.85) continue;                                   // 必须偏右
+    const ov = Math.min(c.y1, ey1) - Math.max(c.y0, ey0);
+    if (ov < 0.5*(c.y1-c.y0+1)) continue;                          // 必须与 18 同高（排除上/下方画框）
+    let n=0, x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+    for (let y=c.y0; y<=c.y1; y++)
+      for (let x=Math.max(c.x0,zx0); x<=c.x1; x++)
+        if (m.data[y*W+x]===255){ n++; if(x<x0)x0=x; if(x>x1)x1=x; if(y<y0)y0=y; if(y>y1)y1=y; }
+    if (n < 12) continue;
+    const w=x1-x0+1, h=y1-y0+1;
+    if (w < 4 || h < 4) continue;
+    if (w > maxW || h > maxH) continue;
+    if (n/(w*h) < 0.10) continue;
+    if (n > bestN) { bestN=n; best={x0,y0,x1,y1}; }
+  }
+  if (best) return pack(buildMask(best.x0,best.y0,best.x1,best.y1));
+
+  /* ③ 兜底链：右带全部亮像素 → 整 ROI 亮像素 → 空候选 */
+  const bandPix = (xa) => {
+    let n=0,x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+    for (let y=0;y<H;y++) for (let x=xa;x<W;x++) if (m.data[y*W+x]===255){ n++; if(x<x0)x0=x; if(x>x1)x1=x; if(y<y0)y0=y; if(y>y1)y1=y; }
+    return n>=8 ? {x0,y0,x1,y1} : null;
+  };
+  const fb = bandPix(zx0) || bandPix(0);
+  if (!fb) return pack(buildMask(0,0,0,0));
+  return pack(buildMask(fb.x0,fb.y0,fb.x1,fb.y1));
+}
+
+/* 把 src(尺寸 sbw×sbh) 最近邻拉伸到 dbw×dbh */
+function stretchMask(src, sbw, sbh, dbw, dbh) {
+  const out = new Uint8Array(dbw*dbh);
+  for (let y=0; y<dbh; y++) {
+    const sy = Math.min(sbh-1, Math.round(y/dbh*sbh));
+    for (let x=0; x<dbw; x++) {
+      const sx = Math.min(sbw-1, Math.round(x/dbw*sbw));
+      out[y*dbw+x] = src[sy*sbw+sx];
+    }
+  }
+  return out;
+}
+
+/* 同尺寸二值掩膜 IoU */
+function iouMask(a, b) {
+  let inter=0, uni=0;
+  for (let i=0; i<a.length; i++){ const x=a[i], y=b[i]; if(x||y)uni++; if(x&&y)inter++; }
+  return uni ? inter/uni : 0;
+}
+
+/* 模板匹配判定：候选 = isolateIconFromROI 隔离出的图标 {mask,bw,bh}。
+   把每张标准模板按候选的实际宽高比拉伸成同尺寸再算 IoU，形变即被抵消。
+   永不输出 unknown：恒取三选一里的最高分；低于阈值 0.35 仅置 lowConf，
+     由界面提示「置信度低、可能识别错了」（能判就判，不判为无法识别）。 */
+const POLAR_IOU_THRESHOLD = 0.35;
+let TPL = null;   // { naramon:{mask,bw,bh}, ... } 由 buildTemplates 载入
+function classifyCand(cand) {
+  if (!TPL) return { type:'naramon', ious:{}, bestIoU:0, lowConf:true, why:'标准图标模板未载入，以下取默认值' };
+  const ious = {}; let best=null, bv=-1;
+  for (const k in TPL) {
+    const t = TPL[k];
+    const sm = stretchMask(t.mask, t.bw, t.bh, cand.bw, cand.bh);   // 模板按候选形变拉伸
+    const v = iouMask(sm, cand.mask);
+    ious[k] = v; if (v > bv) { bv = v; best = k; }
+  }
+  if (best == null) best = 'naramon';                 // 理论上不会（TPL 就绪必有 3 键）
+  const lowConf = bv < POLAR_IOU_THRESHOLD;
+  return { type: best, ious, bestIoU: bv, lowConf };
+}
+
+/* 在浏览器内把三张标准图标解码为「图标掩膜 + bbox」（窗口加载时跑一次）。
+   模板是单图标整幅：取最大连通块即可，不套徽章区的尺寸闸门。 */
+function buildTemplates() {
+  const refs = window.POLAR_REFS;
+  if (!refs) return Promise.resolve(false);
+  const keys = Object.keys(refs);
+  return Promise.all(keys.map(k => new Promise(res => {
+    const img = new Image();
+    img.onload = () => {
+      const c = document.createElement('canvas');
+      c.width = refs[k].w; c.height = refs[k].h;
+      c.getContext('2d').drawImage(img, 0, 0);
+      const m = glyphMask(c);
+      const comps = connectedComponents(m);
+      if (!comps.length) { res([k, null]); return; }
+      comps.sort((a,b) => b.n - a.n);
+      const t = comps[0];
+      const bw=t.w, bh=t.h;
+      const mask = new Uint8Array(bw*bh);
+      for (let y=t.y0; y<=t.y1; y++)
+        for (let x=t.x0; x<=t.x1; x++)
+          if (m.data[y*m.w+x]===255) mask[(y-t.y0)*bw+(x-t.x0)] = 1;
+      res([k, { mask, bw, bh }]);
+    };
+    img.onerror = () => res([k, null]);
+    img.src = refs[k].uri;
+  }))).then(arr => {
+    TPL = {}; for (const [k, g] of arr) if (g) TPL[k] = g;
+    return Object.keys(TPL).length > 0;
+  });
+}
+
+/* 自动定位极性图标：在右上角扫紫色亮块，取所有紫色连通块的并集框（含「+18」数字也一并框住），
+   由 isolateIconFromROI 在框内再隔离最右的图标块。返回 {x0,y0,w,h}（模板坐标）或 null。 */
+function autoLocatePolarity(templated) {
+  const W = templated.width, H = templated.height;
+  /* 扫描区：右上角 x 48%~99%，y 0~24% —— 钻石槽行暗、等级数字纯白，都过不了紫色判据；
+     卡面原画基本在这个窗口之外。 */
+  const sx0 = Math.round(W*0.48), sx1 = Math.round(W*0.99);
+  const sy0 = 0, sy1 = Math.round(H*0.24);
+  const scan = cropCanvas(templated, sx0, sy0, sx1-sx0, sy1-sy0);
+  const mask = foregroundMask(scan);
+  const comps = connectedComponents(mask).filter(c => c.n >= 25 && c.w < (sx1-sx0) && c.h < (sy1-sy0));
+  if (!comps.length) return null;
+  let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+  comps.forEach(c => { x0=Math.min(x0,sx0+c.x0); y0=Math.min(y0,sy0+c.y0); x1=Math.max(x1,sx0+c.x1); y1=Math.max(y1,sy0+c.y1); });
+  const pad = 6;
+  return {
+    x0: Math.max(0, x0-pad),
+    y0: Math.max(0, y0-pad),
+    w: Math.min(W, (x1-x0)+pad*2),
+    h: Math.min(H, (y1-y0)+pad*2)
+  };
+}
+
+/* ================= 页面交互 ================= */
+const $ = id => document.getElementById(id);
+const dz = $('dropZone'), fileInput = $('fileInput');
+const runBtn = $('runBtn'), clearBtn = $('clearBtn');
+const polarVal = $('polarVal'), polarDetail = $('polarDetail');
+const polarPreview = $('polarPreview');
+
+let imgEl = null;
+let tplReady = false;
+
+function refreshRun(){ runBtn.disabled = !(tplReady && imgEl); }
+function showError(msg){ polarVal.textContent='—'; polarVal.style.color=''; polarDetail.textContent=msg; }
+
+/* 页面加载即解码三张标准图标为二值模板（一次性） */
+buildTemplates().then(ok => {
+  tplReady = ok;
+  if (ok) { if (imgEl) refreshRun(); else polarDetail.textContent='模板已载入，上传整卡截图后点「识别极性」。'; }
+  else showError('标准图标模板载入失败（polar_templates.js 缺失或不完整）');
+});
+
+fileInput.onchange = () => { if(fileInput.files[0]) loadFile(fileInput.files[0]); };
+dz.onclick = () => fileInput.click();
+dz.addEventListener('dragover', e=>{ e.preventDefault(); dz.classList.add('dragover'); });
+dz.addEventListener('dragleave', ()=>dz.classList.remove('dragover'));
+dz.addEventListener('drop', e=>{ e.preventDefault(); dz.classList.remove('dragover'); if(e.dataTransfer.files[0]) loadFile(e.dataTransfer.files[0]); });
+window.addEventListener('paste', e=>{
+  const it = e.clipboardData && e.clipboardData.items;
+  if(!it) return;
+  for(const item of it){ if(item.type.startsWith('image/')){ loadFile(item.getAsFile()); return; } }
+});
+
+function loadFile(f){
+  const url = URL.createObjectURL(f);
+  imgEl = new Image();
+  imgEl.onload = ()=>{ refreshRun(); polarDetail.textContent='图片已加载（'+imgEl.naturalWidth+'×'+imgEl.naturalHeight+'），点击「识别极性」。'; };
+  imgEl.onerror = ()=>showError('图片加载失败');
+  imgEl.src = url;
+  /* 预览原图 */
+  dz.innerHTML = '';
+  const im = new Image(); im.src = url; im.style.maxWidth='100%'; dz.appendChild(im);
+}
+
+runBtn.onclick = async () => {
+  if(!imgEl){ showError('请先上传整卡截图。'); return; }
+  polarVal.textContent = '识别中…';
+  try {
+    /* ① 复用原 preprocess.js：定位 + 拉正 + 贴模板（632×800） */
+    const templated = fitToTemplate(imgEl);
+    const TW = templated.width, TH = templated.height;
+    const px0 = (+($('px0').value||0))/100, px1 = (+($('px1').value||0))/100;
+    const py0 = (+($('py0').value||0))/100, py1 = (+($('py1').value||0))/100;
+    const roi = { x0: TW*px0, y0: TH*py0, w: TW*(px1-px0), h: TH*(py1-py0) };
+    if (roi.w <= 0 || roi.h <= 0) throw new Error('徽章区无效（右须大于左、下须大于上）');
+    /* ② 固定徽章区内隔离图标（fitToTemplate 归一化后徽章位置固定） */
+    let cand = isolateIconFromROI(templated, roi);
+    let how = '固定徽章区';
+    let usedRoi = roi;
+    /* ③ 兜底：右上角扫描（卡面比例异常导致徽章漂出固定区时） */
+    if (!cand && $('autoLoc').checked) {
+      const big = autoLocatePolarity(templated);
+      if (big) { cand = isolateIconFromROI(templated, big); if (cand) { how = '自动扫描'; usedRoi = big; } }
+    }
+    /* ④ 模板 bbox 拉伸匹配判定（classifyCand 恒给三选一最高分，绝不返回 unknown） */
+    const res = cand ? classifyCand(cand)
+                     : { type:'naramon', ious:{}, bestIoU:0, lowConf:true, why:'未能在徽章区找到亮色图标，以下取默认值' };
+    const t = POLAR_TYPES[res.type] || POLAR_TYPES.naramon;
+    polarVal.textContent = t.name + (res.lowConf ? ' ？' : '');
+    polarVal.style.color = res.lowConf ? '#d9822b' : '';
+    const iou = res.ious || {};
+    const pct = v => ((v||0)*100).toFixed(0) + '%';
+    polarDetail.innerHTML =
+      (res.lowConf
+        ? '<span style="color:#d9822b;font-weight:700">⚠ 置信度低（最高 IoU ' + pct(res.bestIoU) + '），此判定可能识别错了，请以游戏内为准。</span><br>'
+        : '') +
+      '定位：<b>' + how + '</b>' +
+      (cand ? '（图标 x ' + Math.round(cand.box.x0) + '~' + Math.round(cand.box.x0+cand.box.w) +
+              '，y ' + Math.round(cand.box.y0) + '~' + Math.round(cand.box.y0+cand.box.h) +
+              '，' + cand.bw + '×' + cand.bh + 'px）' : '') + '<br>'+
+      '标记：<b>'+t.desc+'</b><br>'+
+      '与标准图标 IoU（按图标实际宽高比拉伸后比对）→<br>'+
+      '　横条 ' + pct(iou.naramon) + '　盾槽 ' + pct(iou.vazarin) + '　R槽 ' + pct(iou.madurai) +
+      (res.bestIoU!=null ? '　· 最高 ' + pct(res.bestIoU) : '') +
+      (res.why ? '<br>　· ' + res.why : '');
+    /* ⑤ 预览「隔离出的图标」（放大到 120×120），看清到底比的是哪一块 */
+    const pc = polarPreview.getContext('2d');
+    pc.fillStyle='#fff'; pc.fillRect(0,0,120,120);
+    pc.imageSmoothingEnabled=false;
+    if (cand) {
+      const iw=cand.bw, ih=cand.bh, sc=Math.min(118/iw, 118/ih);
+      const ow=Math.round(iw*sc), oh=Math.round(ih*sc), ox=(120-ow)/2, oy=(120-oh)/2;
+      for (let y=0;y<ih;y++) for (let x=0;x<iw;x++) {
+        if (cand.mask[y*iw+x]) { pc.fillStyle='#5b3fb0'; pc.fillRect(ox+x*sc, oy+y*sc, sc, sc); }
+      }
+    } else {
+      pc.drawImage(cropCanvas(templated, usedRoi.x0, usedRoi.y0, usedRoi.w, usedRoi.h), 0,0,usedRoi.w,usedRoi.h, 0,0,120,120);
+    }
+    /* ⑥ 模板 632×800 + 定位框（绿框=最终图标的 bbox，黄框=使用的徽章区） */
+    const dbg = document.createElement('canvas');
+    dbg.width = TW; dbg.height = TH;
+    const dg = dbg.getContext('2d');
+    dg.drawImage(templated, 0, 0);
+    dg.lineWidth = Math.max(2, Math.round(TW/200));
+    dg.strokeStyle = '#e8b84b';                                       // 黄框：徽章区
+    dg.strokeRect(usedRoi.x0, usedRoi.y0, usedRoi.w, usedRoi.h);
+    if (cand) {
+      dg.strokeStyle = '#22b14c';                                     // 绿框：隔离出的图标
+      dg.lineWidth = Math.max(2, Math.round(TW/160));
+      dg.strokeRect(cand.box.x0, cand.box.y0, cand.box.w, cand.box.h);
+    }
+    const fg = $('fitPreview').getContext('2d');
+    fg.fillStyle = '#000'; fg.fillRect(0, 0, 316, 400);
+    fg.imageSmoothingEnabled = true; fg.imageSmoothingQuality = 'high';
+    fg.drawImage(dbg, 0, 0, TW, TH, 0, 0, 316, 400);
+    window.__polarDebug = dbg.toDataURL();   // 保留：调试时可在控制台取全尺寸图
+  } catch(err){
+    console.error(err);
+    showError('识别失败：'+((err&&err.message)||err)+'（可能卡面未定位到，尝试换一张更完整的卡图）');
+  }
+};
+
+clearBtn.onclick = ()=>{
+  imgEl=null; refreshRun(); polarVal.textContent='—'; polarVal.style.color='';
+  polarDetail.textContent='等待输入图片。';
+  dz.innerHTML='<div class="dz-hint">点击选择图片 / 拖拽图片到此处<br>也可以 <b>Ctrl+V</b> 粘贴截图</div>';
+  const pc=polarPreview.getContext('2d'); pc.fillStyle='#fff'; pc.fillRect(0,0,120,120);
+  const fg=fitPreview.getContext('2d'); fg.fillStyle='#000'; fg.fillRect(0,0,316,400);
+  window.__polarDebug = null;
+};
+</script>
+</body>
+</html>

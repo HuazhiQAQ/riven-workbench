@@ -1,0 +1,11 @@
+# 成品是构建生成的单文件：不计入语言统计，diff 默认折叠，且**不做换行转换**
+# （CRLF 要原样保留，否则 clone 下来的字节与产物 md5 对不上）
+web/产物/*.html linguist-generated=true -diff -text
+web/dist/*.html linguist-generated=true -diff -text
+
+# 二进制资源：不要做换行转换 / 不要尝试 diff
+*.onnx binary
+*.xlsm binary
+*.xlsx binary
+*.ttf binary
+*.wasm binary

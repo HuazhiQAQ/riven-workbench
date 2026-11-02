@@ -1,0 +1,11972 @@
+{
+ "meta": {
+  "version": 1,
+  "note": "唯一命名表：所有模块都从这里取名字，不要在代码里再写一份",
+  "counts": {
+   "types": 8,
+   "variants": 9,
+   "factions": 6,
+   "alias": 3,
+   "stats": 51,
+   "weapons": 637,
+   "statKeys": 67
+  }
+ },
+ "types": [
+  {
+   "key": "步枪",
+   "intl": "步枪",
+   "en": "Rifle",
+   "col": 0,
+   "price": "步枪"
+  },
+  {
+   "key": "霰弹",
+   "intl": "霰弹",
+   "en": "Shotgun",
+   "col": 1,
+   "price": "霰弹"
+  },
+  {
+   "key": "手枪",
+   "intl": "手枪",
+   "en": "Pistol",
+   "col": 2,
+   "price": "手枪"
+  },
+  {
+   "key": "曲翼",
+   "intl": "曲翼",
+   "en": "Arch-gun",
+   "col": 3,
+   "price": "曲翼"
+  },
+  {
+   "key": "近战",
+   "intl": "近战",
+   "en": "Melee",
+   "col": 4,
+   "price": "近战"
+  },
+  {
+   "key": "近战·天工造武",
+   "intl": "近战·天工造武",
+   "en": "Zaw",
+   "col": 4,
+   "price": "Zaw"
+  },
+  {
+   "key": "组合枪",
+   "intl": "组合枪",
+   "en": "Kitgun",
+   "col": 2,
+   "price": "组合枪"
+  },
+  {
+   "key": "同伴武器",
+   "intl": "同伴武器",
+   "en": "Companion Weapon",
+   "col": 0,
+   "price": "同伴武器"
+  }
+ ],
+ "typeAlias": {
+  "霰弹枪": "霰弹",
+  "曲翼武器": "曲翼",
+  "zaw": "Zaw",
+  "Zaw": "Zaw"
+ },
+ "variants": [
+  {
+   "cn": "圣装",
+   "en": "Prime",
+   "strip": true
+  },
+  {
+   "cn": "赤毒",
+   "en": "Kuva",
+   "strip": true
+  },
+  {
+   "cn": "信条",
+   "en": "Tenet",
+   "strip": true
+  },
+  {
+   "cn": "终幕",
+   "en": "Coda",
+   "strip": true
+  },
+  {
+   "cn": "棱晶",
+   "en": "Prisma",
+   "strip": true
+  },
+  {
+   "cn": "异变",
+   "en": "Mutalist",
+   "strip": true
+  },
+  {
+   "cn": "试用型",
+   "en": "",
+   "strip": true
+  },
+  {
+   "cn": "枢议",
+   "en": "",
+   "strip": true
+  },
+  {
+   "cn": "MK1",
+   "en": "MK1",
+   "strip": true
+  }
+ ],
+ "factions": [
+  {
+   "key": "corpus",
+   "words": [
+    "corpus",
+    "科普斯",
+    "科普斯人"
+   ]
+  },
+  {
+   "key": "grineer",
+   "words": [
+    "grineer",
+    "克隆尼",
+    "格林"
+   ]
+  },
+  {
+   "key": "infested",
+   "words": [
+    "infested",
+    "感染者",
+    "异变感染体"
+   ]
+  },
+  {
+   "key": "corrupted",
+   "words": [
+    "corrupted",
+    "堕落者",
+    "堕落"
+   ]
+  },
+  {
+   "key": "narmer",
+   "words": [
+    "narmer",
+    "合一众"
+   ]
+  },
+  {
+   "key": "murmur",
+   "words": [
+    "murmur",
+    "低语者"
+   ]
+  }
+ ],
+ "alias": {
+  "冰淞": "冰凇",
+  "山智段": "心智之殁",
+  "智段": "心智之殁"
+ },
+ "stats": [
+  {
+   "row": 2,
+   "cn": "基础伤害",
+   "intl": "基础伤害",
+   "en": "Base Damage",
+   "wmCn": "伤害",
+   "wmEn": "Damage",
+   "id": 2,
+   "alias": [
+    "基伤",
+    "DMG"
+   ]
+  },
+  {
+   "row": 3,
+   "cn": "近战伤害",
+   "intl": "近战伤害",
+   "en": "Melee Damage",
+   "wmCn": "伤害",
+   "wmEn": "Damage",
+   "id": 3,
+   "alias": []
+  },
+  {
+   "row": 4,
+   "cn": "暴击几率",
+   "intl": "暴击几率",
+   "en": "Critical Chance",
+   "wmCn": "暴击率",
+   "wmEn": "Critical Chance",
+   "id": 4,
+   "alias": [
+    "暴率"
+   ]
+  },
+  {
+   "row": 5,
+   "cn": "暴击伤害",
+   "intl": "暴击伤害",
+   "en": "Critical Damage",
+   "wmCn": "暴击伤害",
+   "wmEn": "Critical Damage",
+   "id": 5,
+   "alias": [
+    "暴伤"
+   ]
+  },
+  {
+   "row": 6,
+   "cn": "触发几率",
+   "intl": "触发几率",
+   "en": "Status Chance",
+   "wmCn": "触发几率",
+   "wmEn": "Status Chance",
+   "id": 6,
+   "alias": [
+    "触发率",
+    "状态触发几率"
+   ]
+  },
+  {
+   "row": 7,
+   "cn": "触发时间",
+   "intl": "触发时间",
+   "en": "Status Duration",
+   "wmCn": "触发时间",
+   "wmEn": "Status Duration",
+   "id": 7,
+   "alias": [
+    "状态时间",
+    "触发时间",
+    "SD",
+    "状态持续时间"
+   ]
+  },
+  {
+   "row": 8,
+   "cn": "射速 / 攻击速度",
+   "intl": "射速 / 攻击速度",
+   "en": "Fire Rate / Attack Speed",
+   "wmCn": "射速/攻击速度",
+   "wmEn": "Fire Rate / Attack Speed",
+   "id": 8,
+   "alias": [
+    "射速",
+    "攻速",
+    "FR",
+    "AS",
+    "Attack Speed",
+    "Fire Rate"
+   ]
+  },
+  {
+   "row": 9,
+   "cn": "冰冻伤害",
+   "intl": "冰冻伤害",
+   "en": "Cold",
+   "wmCn": "冰冻伤害",
+   "wmEn": "Cold",
+   "id": 9,
+   "alias": [
+    "COLD"
+   ]
+  },
+  {
+   "row": 10,
+   "cn": "毒素伤害",
+   "intl": "毒素伤害",
+   "en": "Toxin",
+   "wmCn": "毒素伤害",
+   "wmEn": "Toxin",
+   "id": 10,
+   "alias": [
+    "TOX",
+    "TOXIN"
+   ]
+  },
+  {
+   "row": 11,
+   "cn": "电击伤害",
+   "intl": "电击伤害",
+   "en": "Electricity",
+   "wmCn": "电击伤害",
+   "wmEn": "Electricity",
+   "id": 11,
+   "alias": [
+    "ELEC",
+    "ELECTRIC"
+   ]
+  },
+  {
+   "row": 12,
+   "cn": "火焰伤害",
+   "intl": "火焰伤害",
+   "en": "Heat",
+   "wmCn": "火焰伤害",
+   "wmEn": "Heat",
+   "id": 12,
+   "alias": [
+    "HEAT"
+   ]
+  },
+  {
+   "row": 13,
+   "cn": "冲击伤害",
+   "intl": "冲击伤害",
+   "en": "Impact",
+   "wmCn": "冲击伤害",
+   "wmEn": "Impact",
+   "id": 13,
+   "alias": [
+    "IMP"
+   ]
+  },
+  {
+   "row": 14,
+   "cn": "切割伤害",
+   "intl": "切割伤害",
+   "en": "Slash",
+   "wmCn": "切割伤害",
+   "wmEn": "Slash",
+   "id": 14,
+   "alias": [
+    "SLASH"
+   ]
+  },
+  {
+   "row": 15,
+   "cn": "穿刺伤害",
+   "intl": "穿刺伤害",
+   "en": "Puncture",
+   "wmCn": "穿刺伤害",
+   "wmEn": "Puncture",
+   "id": 15,
+   "alias": [
+    "PUNC"
+   ]
+  },
+  {
+   "row": 16,
+   "cn": "对科普斯的伤害",
+   "intl": "对Corpus的伤害",
+   "en": "Damage vs. Corpus",
+   "wmCn": "对 Corpus 的伤害",
+   "wmEn": "Damage to Corpus",
+   "id": 16,
+   "alias": [
+    "DTC"
+   ]
+  },
+  {
+   "row": 17,
+   "cn": "对克隆尼的伤害",
+   "intl": "对Grineer的伤害",
+   "en": "Damage vs. Grineer",
+   "wmCn": "对 Grineer 的伤害",
+   "wmEn": "Damage to Grineer",
+   "id": 17,
+   "alias": [
+    "DTG"
+   ]
+  },
+  {
+   "row": 18,
+   "cn": "对异变体的伤害",
+   "intl": "对Infested的伤害",
+   "en": "Damage vs. Infested",
+   "wmCn": "对 Infested 的伤害",
+   "wmEn": "Damage to Infested",
+   "id": 18,
+   "alias": [
+    "DTI",
+    "对异变感染体的伤害"
+   ]
+  },
+  {
+   "row": 19,
+   "cn": "多重射击",
+   "intl": "多重射击",
+   "en": "Multishot",
+   "wmCn": "多重射击",
+   "wmEn": "Multishot",
+   "id": 19,
+   "alias": [
+    "多重"
+   ]
+  },
+  {
+   "row": 20,
+   "cn": "穿透",
+   "intl": "穿透",
+   "en": "Punch Through",
+   "wmCn": "穿透",
+   "wmEn": "Punch Through",
+   "id": 20,
+   "alias": []
+  },
+  {
+   "row": 21,
+   "cn": "弹匣容量",
+   "intl": "弹匣容量",
+   "en": "Magazine Capacity",
+   "wmCn": "弹匣容量",
+   "wmEn": "Magazine Capacity",
+   "id": 21,
+   "alias": [
+    "弹匣",
+    "弹夹容量"
+   ]
+  },
+  {
+   "row": 22,
+   "cn": "弹药最大值",
+   "intl": "弹药最大值",
+   "en": "Ammo Maximum",
+   "wmCn": "弹药最大值",
+   "wmEn": "Ammo Maximum",
+   "id": 22,
+   "alias": [
+    "备弹"
+   ]
+  },
+  {
+   "row": 23,
+   "cn": "装填速度",
+   "intl": "装填速度",
+   "en": "Reload Speed",
+   "wmCn": "装填速度",
+   "wmEn": "Reload Speed",
+   "id": 23,
+   "alias": [
+    "换弹",
+    "装填"
+   ]
+  },
+  {
+   "row": 24,
+   "cn": "投射物速度",
+   "intl": "投射物速度",
+   "en": "Projectile Speed",
+   "wmCn": "投射物速度",
+   "wmEn": "Projectile Speed",
+   "id": 24,
+   "alias": [
+    "PFS"
+   ]
+  },
+  {
+   "row": 25,
+   "cn": "武器后坐力",
+   "intl": "武器后坐力",
+   "en": "Recoil",
+   "wmCn": "武器后坐力",
+   "wmEn": "Weapon Recoil",
+   "id": 25,
+   "alias": [
+    "后坐",
+    "REC"
+   ]
+  },
+  {
+   "row": 26,
+   "cn": "变焦",
+   "intl": "变焦",
+   "en": "Zoom",
+   "wmCn": "变焦",
+   "wmEn": "Zoom",
+   "id": 26,
+   "alias": [
+    "瞄准缩进"
+   ]
+  },
+  {
+   "row": 27,
+   "cn": "初始连击",
+   "intl": "初始连击",
+   "en": "Initial Combo",
+   "wmCn": "初始连击",
+   "wmEn": "Initial Combo",
+   "id": 27,
+   "alias": []
+  },
+  {
+   "row": 28,
+   "cn": "连击持续时间",
+   "intl": "连击持续时间",
+   "en": "Combo Duration",
+   "wmCn": "连击持续时间",
+   "wmEn": "Combo Duration",
+   "id": 28,
+   "alias": [
+    "连击保持时间"
+   ]
+  },
+  {
+   "row": 29,
+   "cn": "额外连击数几率",
+   "intl": "额外连击数几率",
+   "en": "Additional Combo Count Chance",
+   "wmCn": "额外连击数几率",
+   "wmEn": "Additional Combo Count Chance",
+   "id": 29,
+   "alias": [
+    "CGAIN"
+   ]
+  },
+  {
+   "row": 30,
+   "cn": "概率不获得连击数",
+   "intl": "概率不获得连击数",
+   "en": "Chance to Gain Combo Count",
+   "wmCn": "的几率来获得连击数",
+   "wmEn": "Chance to Gain Combo Count",
+   "id": 30,
+   "alias": []
+  },
+  {
+   "row": 31,
+   "cn": "重击效率",
+   "intl": "重击效率",
+   "en": "Heavy Attack Efficiency",
+   "wmCn": "重击效率",
+   "wmEn": "Heavy Attack Efficiency",
+   "id": 31,
+   "alias": []
+  },
+  {
+   "row": 32,
+   "cn": "滑行攻击暴击几率",
+   "intl": "滑行攻击暴击几率",
+   "en": "Critical Chance on Slide Attack",
+   "wmCn": "滑行攻击暴击几率",
+   "wmEn": "Critical Chance for Slide Attack",
+   "id": 32,
+   "alias": [
+    "SLIDE"
+   ]
+  },
+  {
+   "row": 33,
+   "cn": "处决伤害",
+   "intl": "处决伤害",
+   "en": "Finisher Damage",
+   "wmCn": "处决伤害",
+   "wmEn": "Finisher Damage",
+   "id": 33,
+   "alias": [
+    "终结伤害"
+   ]
+  },
+  {
+   "row": 34,
+   "cn": "攻击范围",
+   "intl": "攻击范围",
+   "en": "Range",
+   "wmCn": "攻击范围",
+   "wmEn": "Range",
+   "id": 34,
+   "alias": [
+    "范围"
+   ]
+  },
+  {
+   "row": 35,
+   "cn": "异常状态伤害",
+   "intl": "异常状态伤害",
+   "en": "Status Damage",
+   "wmCn": "异常状态伤害",
+   "wmEn": "Status Damage",
+   "id": 35,
+   "alias": []
+  },
+  {
+   "row": 36,
+   "cn": "毒气伤害",
+   "intl": "毒气伤害",
+   "en": "Gas",
+   "wmCn": "毒气伤害",
+   "wmEn": "Gas",
+   "id": 36,
+   "alias": [
+    "GAS"
+   ]
+  },
+  {
+   "row": 37,
+   "cn": "腐蚀伤害",
+   "intl": "腐蚀伤害",
+   "en": "Corrosive",
+   "wmCn": "腐蚀伤害",
+   "wmEn": "Corrosive",
+   "id": 37,
+   "alias": [
+    "CORR"
+   ]
+  },
+  {
+   "row": 38,
+   "cn": "病毒伤害",
+   "intl": "病毒伤害",
+   "en": "Viral",
+   "wmCn": "病毒伤害",
+   "wmEn": "Viral",
+   "id": 38,
+   "alias": [
+    "VIRAL"
+   ]
+  },
+  {
+   "row": 39,
+   "cn": "辐射伤害",
+   "intl": "辐射伤害",
+   "en": "Radiation",
+   "wmCn": "辐射伤害",
+   "wmEn": "Radiation",
+   "id": 39,
+   "alias": [
+    "RAD"
+   ]
+  },
+  {
+   "row": 40,
+   "cn": "爆炸伤害",
+   "intl": "爆炸伤害",
+   "en": "Blast",
+   "wmCn": "爆炸伤害",
+   "wmEn": "Blast",
+   "id": 40,
+   "alias": [
+    "BLAST"
+   ]
+  },
+  {
+   "row": 41,
+   "cn": "磁力伤害",
+   "intl": "磁力伤害",
+   "en": "Magnetic",
+   "wmCn": "磁力伤害",
+   "wmEn": "Magnetic",
+   "id": 41,
+   "alias": [
+    "MAGNETIC"
+   ]
+  },
+  {
+   "row": 42,
+   "cn": "对奥罗金的伤害",
+   "intl": "对奥罗金的伤害",
+   "en": "Damage vs Orokin",
+   "wmCn": "对奥罗金的伤害",
+   "wmEn": "Damage to Orokin",
+   "id": 42,
+   "alias": [
+    "DTO"
+   ]
+  },
+  {
+   "row": 43,
+   "cn": "对科腐者的伤害",
+   "intl": "对科腐者的伤害",
+   "en": "Damage vs Techrot",
+   "wmCn": "对科腐者的伤害",
+   "wmEn": "Damage to Techrot",
+   "id": 43,
+   "alias": [
+    "DTT"
+   ]
+  },
+  {
+   "row": 44,
+   "cn": "对炽蛇军的伤害",
+   "intl": "对炽蛇军的伤害",
+   "en": "Damage vs Scaldra",
+   "wmCn": "对炽蛇军的伤害",
+   "wmEn": "Damage to Scaldra",
+   "id": 44,
+   "alias": [
+    "DTS"
+   ]
+  },
+  {
+   "row": 45,
+   "cn": "弱点伤害",
+   "intl": "弱点伤害",
+   "en": "Weakpoint Damage",
+   "wmCn": "弱点伤害",
+   "wmEn": "Weak Point Damage",
+   "id": 45,
+   "alias": []
+  },
+  {
+   "row": 46,
+   "cn": "弱点暴击几率",
+   "intl": "弱点暴击几率",
+   "en": "Weakpoint Critical Chance",
+   "wmCn": "弱点暴击几率",
+   "wmEn": "Weak Point Critical Chance",
+   "id": 46,
+   "alias": []
+  },
+  {
+   "row": 47,
+   "cn": "弹药效率",
+   "intl": "弹药效率",
+   "en": "Ammo Efficiency",
+   "wmCn": "弹药效率",
+   "wmEn": "Ammo Efficiency",
+   "id": 47,
+   "alias": []
+  },
+  {
+   "row": 48,
+   "cn": "收起武器时弹匣每秒自动装填",
+   "intl": "收起武器时弹匣每秒自动装填",
+   "en": "Magazine Reload While Holstered",
+   "wmCn": "收起武器时弹匣每秒自动装填",
+   "wmEn": "Magazine Reloaded/s when Holstered",
+   "id": 48,
+   "alias": []
+  },
+  {
+   "row": 49,
+   "cn": "重击伤害",
+   "intl": "重击伤害",
+   "en": "Heavy Attack Damage",
+   "wmCn": "在重击时的近战伤害",
+   "wmEn": "Melee Damage on Heavy Attack",
+   "id": 49,
+   "alias": []
+  },
+  {
+   "row": 50,
+   "cn": "重击准备速度",
+   "intl": "重击准备速度",
+   "en": "Heavy Attack Windup Speed",
+   "wmCn": "重击准备速度",
+   "wmEn": "Heavy Attack Wind Up Speed",
+   "id": 50,
+   "alias": []
+  },
+  {
+   "row": 51,
+   "cn": "招架角度",
+   "intl": "招架角度",
+   "en": "Parry Angle",
+   "wmCn": "招架角度",
+   "wmEn": "Parry Angle",
+   "id": 51,
+   "alias": []
+  },
+  {
+   "row": 52,
+   "cn": "震地攻击伤害",
+   "intl": "震地攻击伤害",
+   "en": "Slam Damage",
+   "wmCn": "震地攻击伤害",
+   "wmEn": "Slam Attack Damage",
+   "id": 52,
+   "alias": []
+  }
+ ],
+ "weapons": [
+  {
+   "en": "Akarius Prime",
+   "cn": "圣装阿利乌双枪",
+   "intl": "阿利乌双枪Prime",
+   "ben": "Akarius",
+   "bcn": "阿利乌双枪",
+   "bintl": "阿利乌双枪",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "阿利乌双枪",
+   "wmEn": "Akarius"
+  },
+  {
+   "en": "Athodai Prime",
+   "cn": "圣装阿索代",
+   "intl": "阿索代Prime",
+   "ben": "Athodai",
+   "bcn": "阿索代",
+   "bintl": "阿索代",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "阿索代",
+   "wmEn": "Athodai"
+  },
+  {
+   "en": "Sporelacer (Secondary)",
+   "cn": "孢射（副手）",
+   "intl": "孢射（副手）",
+   "ben": "Sporelacer",
+   "bcn": "孢射",
+   "bintl": "孢射",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "孢射",
+   "wmEn": "Sporelacer"
+  },
+  {
+   "en": "Mausolon",
+   "cn": "惩戒者",
+   "intl": "惩戒者",
+   "ben": "Mausolon",
+   "bcn": "惩戒者",
+   "bintl": "惩戒者",
+   "cat": "曲翼",
+   "var": "本体",
+   "wmCn": "惩戒者",
+   "wmEn": "Mausolon"
+  },
+  {
+   "en": "Kuva Bramma",
+   "cn": "赤毒布拉玛",
+   "intl": "赤毒布拉玛",
+   "ben": "Kuva Bramma",
+   "bcn": "赤毒布拉玛",
+   "bintl": "赤毒布拉玛",
+   "cat": "步枪",
+   "var": "变体·无本体",
+   "wmCn": "赤毒·布拉玛",
+   "wmEn": "Kuva Bramma"
+  },
+  {
+   "en": "Kuva Nukor",
+   "cn": "赤毒努寇微波枪",
+   "intl": "赤毒努寇微波枪",
+   "ben": "Nukor",
+   "bcn": "努寇微波枪",
+   "bintl": "努寇微波枪",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "努寇微波枪",
+   "wmEn": "Nukor"
+  },
+  {
+   "en": "Thalys",
+   "cn": "大力士",
+   "intl": "大力士",
+   "ben": "Thalys",
+   "bcn": "大力士",
+   "bintl": "大力士",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "大力士",
+   "wmEn": "Thalys"
+  },
+  {
+   "en": "Wrath",
+   "cn": "愤怒",
+   "intl": "愤怒",
+   "ben": "Wrath",
+   "bcn": "愤怒",
+   "bintl": "愤怒",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "愤怒",
+   "wmEn": "Wrath"
+  },
+  {
+   "en": "Phenmor",
+   "cn": "凤殁",
+   "intl": "凤殁",
+   "ben": "Phenmor",
+   "bcn": "凤殁",
+   "bintl": "凤殁",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "凤殁",
+   "wmEn": "Phenmor"
+  },
+  {
+   "en": "Stropha",
+   "cn": "诡计之刃",
+   "intl": "诡计之刃",
+   "ben": "Stropha",
+   "bcn": "诡计之刃",
+   "bintl": "诡计之刃",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "诡计之刃",
+   "wmEn": "Stropha"
+  },
+  {
+   "en": "Haalvu",
+   "cn": "哈尔武",
+   "intl": "哈尔武",
+   "ben": "Haalvu",
+   "bcn": "哈尔武",
+   "bintl": "哈尔武",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "哈尔武",
+   "wmEn": "Haalvu"
+  },
+  {
+   "en": "Aksondol",
+   "cn": "寒怨刺",
+   "intl": "寒怨刺",
+   "ben": "Aksondol",
+   "bcn": "寒怨刺",
+   "bintl": "寒怨刺",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "寒怨刺",
+   "wmEn": "Aksondol"
+  },
+  {
+   "en": "Harmony",
+   "cn": "和谐",
+   "intl": "和谐",
+   "ben": "Harmony",
+   "bcn": "和谐",
+   "bintl": "和谐",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "和谐",
+   "wmEn": "Harmony"
+  },
+  {
+   "en": "Pride",
+   "cn": "骄傲",
+   "intl": "骄傲",
+   "ben": "Pride",
+   "bcn": "骄傲",
+   "bintl": "骄傲",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "骄傲",
+   "wmEn": "Pride"
+  },
+  {
+   "en": "Redeemer Prime",
+   "cn": "圣装救赎者",
+   "intl": "救赎者Prime",
+   "ben": "Redeemer",
+   "bcn": "救赎者",
+   "bintl": "救赎者",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "救赎者",
+   "wmEn": "Redeemer"
+  },
+  {
+   "en": "Kompressa Prime",
+   "cn": "圣装卡帕压力枪",
+   "intl": "卡帕压力枪Prime",
+   "ben": "Kompressa",
+   "bcn": "卡帕压力枪",
+   "bintl": "卡帕压力枪",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "卡帕压力枪",
+   "wmEn": "Kompressa"
+  },
+  {
+   "en": "Venato Prime",
+   "cn": "圣装脉纹",
+   "intl": "脉纹Prime",
+   "ben": "Venato",
+   "bcn": "脉纹",
+   "bintl": "脉纹",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "脉纹",
+   "wmEn": "Venato"
+  },
+  {
+   "en": "Trumna Prime",
+   "cn": "圣装灭杀者",
+   "intl": "灭杀者Prime",
+   "ben": "Trumna",
+   "bcn": "灭杀者",
+   "bintl": "灭杀者",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "灭杀者",
+   "wmEn": "Trumna"
+  },
+  {
+   "en": "Grimoire",
+   "cn": "魔典",
+   "intl": "魔典",
+   "ben": "Grimoire",
+   "bcn": "魔典",
+   "bintl": "魔典",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "魔典",
+   "wmEn": "Grimoire"
+  },
+  {
+   "en": "Innodem",
+   "cn": "清刚",
+   "intl": "清刚",
+   "ben": "Innodem",
+   "bcn": "清刚",
+   "bintl": "清刚",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "清刚",
+   "wmEn": "Innodem"
+  },
+  {
+   "en": "Xoris",
+   "cn": "驱魔之刃",
+   "intl": "驱魔之刃",
+   "ben": "Xoris",
+   "bcn": "驱魔之刃",
+   "bintl": "驱魔之刃",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "驱魔之刃",
+   "wmEn": "Xoris"
+  },
+  {
+   "en": "Cedo",
+   "cn": "塞多",
+   "intl": "塞多",
+   "ben": "Cedo",
+   "bcn": "塞多",
+   "bintl": "塞多",
+   "cat": "霰弹",
+   "var": "本体",
+   "wmCn": "塞多",
+   "wmEn": "Cedo"
+  },
+  {
+   "en": "Cedo Prime",
+   "cn": "圣装塞多",
+   "intl": "塞多Prime",
+   "ben": "Cedo",
+   "bcn": "塞多",
+   "bintl": "塞多",
+   "cat": "霰弹",
+   "var": "变体·有本体",
+   "wmCn": "塞多",
+   "wmEn": "Cedo"
+  },
+  {
+   "en": "Sarofang Prime",
+   "cn": "圣装沙罗之牙",
+   "intl": "沙罗之牙Prime",
+   "ben": "Sarofang",
+   "bcn": "沙罗之牙",
+   "bintl": "沙罗之牙",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "沙罗之牙",
+   "wmEn": "Sarofang"
+  },
+  {
+   "en": "Corufell Prime",
+   "cn": "圣装闪劫",
+   "intl": "闪劫Prime",
+   "ben": "Corufell",
+   "bcn": "闪劫",
+   "bintl": "闪劫",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "闪劫",
+   "wmEn": "Corufell"
+  },
+  {
+   "en": "Afentis Prime",
+   "cn": "圣装圣英",
+   "intl": "圣英Prime",
+   "ben": "Afentis",
+   "bcn": "圣英",
+   "bintl": "圣英",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "圣英",
+   "wmEn": "Afentis"
+  },
+  {
+   "en": "Steflos Prime",
+   "cn": "圣装石晶之花",
+   "intl": "石晶之花Prime",
+   "ben": "Steflos",
+   "bcn": "石晶之花",
+   "bintl": "石晶之花",
+   "cat": "霰弹",
+   "var": "变体·有本体",
+   "wmCn": "石晶之花",
+   "wmEn": "Steflos"
+  },
+  {
+   "en": "Pyrana Prime",
+   "cn": "圣装食人鱼",
+   "intl": "食人鱼Prime",
+   "ben": "Pyrana",
+   "bcn": "食人鱼",
+   "bintl": "食人鱼",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "食人鱼",
+   "wmEn": "Pyrana"
+  },
+  {
+   "en": "Nikana Prime",
+   "cn": "圣装侍刃",
+   "intl": "侍刃Prime",
+   "ben": "Nikana",
+   "bcn": "侍刃",
+   "bintl": "侍刃",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "侍刃",
+   "wmEn": "Nikana"
+  },
+  {
+   "en": "Praedos",
+   "cn": "双雄",
+   "intl": "双雄",
+   "ben": "Praedos",
+   "bcn": "双雄",
+   "bintl": "双雄",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "双雄",
+   "wmEn": "Praedos"
+  },
+  {
+   "en": "Nunchasa",
+   "cn": "霜冥差",
+   "intl": "霜冥差",
+   "ben": "Nunchasa",
+   "bcn": "霜冥差",
+   "bintl": "霜冥差",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "霜冥差",
+   "wmEn": "Nunchasa"
+  },
+  {
+   "en": "Nataruk",
+   "cn": "太始弓",
+   "intl": "太始弓",
+   "ben": "Nataruk",
+   "bcn": "太始弓",
+   "bintl": "太始弓",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "太始弓",
+   "wmEn": "Nataruk"
+  },
+  {
+   "en": "Plague Kripath",
+   "cn": "异变轻刺刃",
+   "intl": "瘟疫克里帕丝",
+   "ben": "Plague Kripath",
+   "bcn": "异变轻刺刃",
+   "bintl": "瘟疫克里帕丝",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "瘟疫 克里帕丝",
+   "wmEn": "Plague Kripath"
+  },
+  {
+   "en": "Paracesis",
+   "cn": "心智之殁",
+   "intl": "心智之殁",
+   "ben": "Paracesis",
+   "bcn": "心智之殁",
+   "bintl": "心智之殁",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "心智之殁",
+   "wmEn": "Paracesis"
+  },
+  {
+   "en": "Tenet Envoy",
+   "cn": "信条典客",
+   "intl": "信条典客",
+   "ben": "Tenet Envoy",
+   "bcn": "信条典客",
+   "bintl": "信条典客",
+   "cat": "步枪",
+   "var": "变体·无本体",
+   "wmCn": "信条·典客",
+   "wmEn": "Tenet Envoy"
+  },
+  {
+   "en": "Tenet Arca Plasmor",
+   "cn": "信条弧电离子枪",
+   "intl": "信条弧电离子枪",
+   "ben": "Arca Plasmor",
+   "bcn": "弧电离子枪",
+   "bintl": "弧电离子枪",
+   "cat": "霰弹",
+   "var": "变体·有本体",
+   "wmCn": "弧电离子枪",
+   "wmEn": "Arca Plasmor"
+  },
+  {
+   "en": "Tenet Glaxion",
+   "cn": "信条冷冻光束步枪",
+   "intl": "信条冷冻光束步枪",
+   "ben": "Glaxion",
+   "bcn": "冷冻光束步枪",
+   "bintl": "冷冻光束步枪",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "冷冻光束步枪",
+   "wmEn": "Glaxion"
+  },
+  {
+   "en": "Acceltra",
+   "cn": "迅发电浆炮",
+   "intl": "迅发电浆炮",
+   "ben": "Acceltra",
+   "bcn": "迅发电浆炮",
+   "bintl": "迅发电浆炮",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "迅发电浆炮",
+   "wmEn": "Acceltra"
+  },
+  {
+   "en": "Acceltra Prime",
+   "cn": "圣装迅发电浆炮",
+   "intl": "迅发电浆炮Prime",
+   "ben": "Acceltra",
+   "bcn": "迅发电浆炮",
+   "bintl": "迅发电浆炮",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "迅发电浆炮",
+   "wmEn": "Acceltra"
+  },
+  {
+   "en": "Ignis Wraith",
+   "cn": "红莲伊格尼斯",
+   "intl": "伊格尼斯亡魂",
+   "ben": "Ignis",
+   "bcn": "伊格尼斯",
+   "bintl": "伊格尼斯",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "伊格尼斯",
+   "wmEn": "Ignis"
+  },
+  {
+   "en": "Perigale Prime",
+   "cn": "圣装月面狂风",
+   "intl": "月面狂风Prime",
+   "ben": "Perigale",
+   "bcn": "月面狂风",
+   "bintl": "月面狂风",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "月面狂风",
+   "wmEn": "Perigale"
+  },
+  {
+   "en": "Epitaph",
+   "cn": "葬铭",
+   "intl": "葬铭",
+   "ben": "Epitaph",
+   "bcn": "葬铭",
+   "bintl": "葬铭",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "葬铭",
+   "wmEn": "Epitaph"
+  },
+  {
+   "en": "Epitaph Prime",
+   "cn": "圣装葬铭",
+   "intl": "葬铭Prime",
+   "ben": "Epitaph",
+   "bcn": "葬铭",
+   "bintl": "葬铭",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "葬铭",
+   "wmEn": "Epitaph"
+  },
+  {
+   "en": "War Prime",
+   "cn": "圣装战争之剑",
+   "intl": "战争之剑Prime",
+   "ben": "War",
+   "bcn": "战争之剑",
+   "bintl": "战争之剑",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "战争之剑",
+   "wmEn": "War"
+  },
+  {
+   "en": "Vinquibus (Primary)",
+   "cn": "制胜者(主手)",
+   "intl": "制胜者(主手)",
+   "ben": "Vinquibus",
+   "bcn": "制胜者",
+   "bintl": "制胜者",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "制胜者",
+   "wmEn": "Vinquibus"
+  },
+  {
+   "en": "Dual Coda Torxica",
+   "cn": "终幕孢蚀双枪",
+   "intl": "终幕孢蚀双枪",
+   "ben": "Dual Coda Torxica",
+   "bcn": "终幕孢蚀双枪",
+   "bintl": "终幕孢蚀双枪",
+   "cat": "手枪",
+   "var": "变体·无本体",
+   "wmCn": "终幕·孢蚀双枪",
+   "wmEn": "Dual Coda Torxica"
+  },
+  {
+   "en": "Coda Pathocyst",
+   "cn": "终幕病囊飞刃",
+   "intl": "终幕病囊飞刃",
+   "ben": "Pathocyst",
+   "bcn": "病囊飞刃",
+   "bintl": "病囊飞刃",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "病囊飞刃",
+   "wmEn": "Pathocyst"
+  },
+  {
+   "en": "Coda Bassocyst",
+   "cn": "终幕低音爆囊",
+   "intl": "终幕低音爆囊",
+   "ben": "Coda Bassocyst",
+   "bcn": "终幕低音爆囊",
+   "bintl": "终幕低音爆囊",
+   "cat": "霰弹",
+   "var": "变体·无本体",
+   "wmCn": "终幕·低音爆囊",
+   "wmEn": "Coda Bassocyst"
+  },
+  {
+   "en": "Coda Bubonico",
+   "cn": "终幕横痃重炮",
+   "intl": "终幕横痃重炮",
+   "ben": "Bubonico",
+   "bcn": "横痃重炮",
+   "bintl": "横痃重炮",
+   "cat": "霰弹",
+   "var": "变体·有本体",
+   "wmCn": "横痃重炮",
+   "wmEn": "Bubonico"
+  },
+  {
+   "en": "Coda Catabolyst",
+   "cn": "终幕异化者",
+   "intl": "终幕异化者",
+   "ben": "Catabolyst",
+   "bcn": "异化者",
+   "bintl": "异化者",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "异化者",
+   "wmEn": "Catabolyst"
+  },
+  {
+   "en": "Felarx",
+   "cn": "逐枭",
+   "intl": "逐枭",
+   "ben": "Felarx",
+   "bcn": "逐枭",
+   "bintl": "逐枭",
+   "cat": "霰弹",
+   "var": "本体",
+   "wmCn": "逐枭",
+   "wmEn": "Felarx"
+  },
+  {
+   "en": "Laetum",
+   "cn": "奏凯",
+   "intl": "奏凯",
+   "ben": "Laetum",
+   "bcn": "奏凯",
+   "bintl": "奏凯",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "奏凯",
+   "wmEn": "Laetum"
+  },
+  {
+   "en": "AX-52",
+   "cn": "AX-52",
+   "intl": "AX-52",
+   "ben": "AX-52",
+   "bcn": "AX-52",
+   "bintl": "AX-52",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "AX-52",
+   "wmEn": "AX-52"
+  },
+  {
+   "en": "Amprex",
+   "cn": "安培克斯",
+   "intl": "安培克斯",
+   "ben": "Amprex",
+   "bcn": "安培克斯",
+   "bintl": "安培克斯",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "安培克斯",
+   "wmEn": "Amprex"
+  },
+  {
+   "en": "Balla",
+   "cn": "轻短刃",
+   "intl": "宝拉",
+   "ben": "Balla",
+   "bcn": "轻短刃",
+   "bintl": "宝拉",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "宝拉",
+   "wmEn": "Balla"
+  },
+  {
+   "en": "Lesion",
+   "cn": "病变",
+   "intl": "病变",
+   "ben": "Lesion",
+   "bcn": "病变",
+   "bintl": "病变",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "病变",
+   "wmEn": "Lesion"
+  },
+  {
+   "en": "Catchmoon (Secondary)",
+   "cn": "捕月（副手）",
+   "intl": "捕月（副手）",
+   "ben": "Catchmoon",
+   "bcn": "捕月",
+   "bintl": "捕月",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "捕月",
+   "wmEn": "Catchmoon"
+  },
+  {
+   "en": "Kuva Sobek",
+   "cn": "赤毒鳄神",
+   "intl": "赤毒鳄神",
+   "ben": "Sobek",
+   "bcn": "鳄神",
+   "bintl": "鳄神",
+   "cat": "霰弹",
+   "var": "变体·有本体",
+   "wmCn": "鳄神",
+   "wmEn": "Sobek"
+  },
+  {
+   "en": "Kuva Grattler",
+   "cn": "赤毒葛拉特勒",
+   "intl": "赤毒葛拉特勒",
+   "ben": "Grattler",
+   "bcn": "葛拉特勒",
+   "bintl": "葛拉特勒",
+   "cat": "曲翼",
+   "var": "变体·有本体",
+   "wmCn": "葛拉特勒",
+   "wmEn": "Grattler"
+  },
+  {
+   "en": "Kuva Zarr",
+   "cn": "赤毒沙皇",
+   "intl": "赤毒沙皇",
+   "ben": "Zarr",
+   "bcn": "沙皇",
+   "bintl": "沙皇",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "沙皇",
+   "wmEn": "Zarr"
+  },
+  {
+   "en": "Kuva Ghoulsaw",
+   "cn": "赤毒尸鬼电锯",
+   "intl": "赤毒尸鬼电锯",
+   "ben": "Ghoulsaw",
+   "bcn": "尸鬼电锯",
+   "bintl": "尸鬼电锯",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "尸鬼电锯",
+   "wmEn": "Ghoulsaw"
+  },
+  {
+   "en": "Kuva Ogris",
+   "cn": "赤毒食人女魔",
+   "intl": "赤毒食人女魔",
+   "ben": "Ogris",
+   "bcn": "食人女魔",
+   "bintl": "食人女魔",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "食人女魔",
+   "wmEn": "Ogris"
+  },
+  {
+   "en": "Kuva Shildeg",
+   "cn": "赤毒希尔德",
+   "intl": "赤毒希尔德",
+   "ben": "Kuva Shildeg",
+   "bcn": "赤毒希尔德",
+   "bintl": "赤毒希尔德",
+   "cat": "近战",
+   "var": "变体·无本体",
+   "wmCn": "赤毒·希尔德",
+   "wmEn": "Kuva Shildeg"
+  },
+  {
+   "en": "Sun & Moon",
+   "cn": "赤阳&幽月",
+   "intl": "赤阳&幽月",
+   "ben": "Sun & Moon",
+   "bcn": "赤阳&幽月",
+   "bintl": "赤阳&幽月",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "赤阳 & 幽月",
+   "wmEn": "Sun & Moon"
+  },
+  {
+   "en": "Larkspur Prime",
+   "cn": "圣装翠雀",
+   "intl": "翠雀Prime",
+   "ben": "Larkspur",
+   "bcn": "翠雀",
+   "bintl": "翠雀",
+   "cat": "曲翼",
+   "var": "变体·有本体",
+   "wmCn": "翠雀",
+   "wmEn": "Larkspur"
+  },
+  {
+   "en": "Alternox Prime",
+   "cn": "圣装电幻步枪",
+   "intl": "电幻步枪Prime",
+   "ben": "Alternox",
+   "bcn": "电幻步枪",
+   "bintl": "电幻步枪",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "电幻步枪",
+   "wmEn": "Alternox"
+  },
+  {
+   "en": "Dokrahm",
+   "cn": "轻镰刃",
+   "intl": "多克拉姆",
+   "ben": "Dokrahm",
+   "bcn": "轻镰刃",
+   "bintl": "多克拉姆",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "多克拉姆",
+   "wmEn": "Dokrahm"
+  },
+  {
+   "en": "Gram Prime",
+   "cn": "圣装格拉姆",
+   "intl": "格拉姆Prime",
+   "ben": "Gram",
+   "bcn": "格拉姆",
+   "bintl": "格拉姆",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "格拉姆",
+   "wmEn": "Gram"
+  },
+  {
+   "en": "Gotva Prime",
+   "cn": "圣装骨葬",
+   "intl": "骨葬Prime",
+   "ben": "Gotva Prime",
+   "bcn": "圣装骨葬",
+   "bintl": "骨葬Prime",
+   "cat": "步枪",
+   "var": "变体·无本体",
+   "wmCn": "骨葬 Prime",
+   "wmEn": "Gotva Prime"
+  },
+  {
+   "en": "Guandao Prime",
+   "cn": "圣装关刀",
+   "intl": "关刀Prime",
+   "ben": "Guandao",
+   "bcn": "关刀",
+   "bintl": "关刀",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "关刀",
+   "wmEn": "Guandao"
+  },
+  {
+   "en": "Bubonico",
+   "cn": "横痃重炮",
+   "intl": "横痃重炮",
+   "ben": "Bubonico",
+   "bcn": "横痃重炮",
+   "bintl": "横痃重炮",
+   "cat": "霰弹",
+   "var": "本体",
+   "wmCn": "横痃重炮",
+   "wmEn": "Bubonico"
+  },
+  {
+   "en": "Kestrel Prime",
+   "cn": "圣装红隼",
+   "intl": "红隼Prime",
+   "ben": "Kestrel",
+   "bcn": "红隼",
+   "bintl": "红隼",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "红隼",
+   "wmEn": "Kestrel"
+  },
+  {
+   "en": "Phantasma Prime",
+   "cn": "圣装幻离子",
+   "intl": "幻离子Prime",
+   "ben": "Phantasma",
+   "bcn": "幻离子",
+   "bintl": "幻离子",
+   "cat": "霰弹",
+   "var": "变体·有本体",
+   "wmCn": "幻离子",
+   "wmEn": "Phantasma"
+  },
+  {
+   "en": "Kronen Prime",
+   "cn": "圣装皇家拐刃",
+   "intl": "皇家拐刃Prime",
+   "ben": "Kronen",
+   "bcn": "皇家拐刃",
+   "bintl": "皇家拐刃",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "皇家拐刃",
+   "wmEn": "Kronen"
+  },
+  {
+   "en": "Enkaus",
+   "cn": "绘墨",
+   "intl": "绘墨",
+   "ben": "Enkaus",
+   "bcn": "绘墨",
+   "bintl": "绘墨",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "绘墨",
+   "wmEn": "Enkaus"
+  },
+  {
+   "en": "Galariak Prime",
+   "cn": "圣装加拉亚",
+   "intl": "加拉亚Prime",
+   "ben": "Galariak Prime",
+   "bcn": "圣装加拉亚",
+   "bintl": "加拉亚Prime",
+   "cat": "近战",
+   "var": "变体·无本体",
+   "wmCn": "加拉亚 Prime",
+   "wmEn": "Galariak Prime"
+  },
+  {
+   "en": "Rubico Prime",
+   "cn": "圣装绝路",
+   "intl": "绝路Prime",
+   "ben": "Rubico",
+   "bcn": "绝路",
+   "bintl": "绝路",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "绝路",
+   "wmEn": "Rubico"
+  },
+  {
+   "en": "Dual Keres Prime",
+   "cn": "圣装凯瑞斯双刀",
+   "intl": "凯瑞斯双刀Prime",
+   "ben": "Dual Keres",
+   "bcn": "凯瑞斯双刀",
+   "bintl": "凯瑞斯双刀",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "凯瑞斯双刀",
+   "wmEn": "Dual Keres"
+  },
+  {
+   "en": "Venka Prime",
+   "cn": "圣装凯旋之爪",
+   "intl": "凯旋之爪Prime",
+   "ben": "Venka",
+   "bcn": "凯旋之爪",
+   "bintl": "凯旋之爪",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "凯旋之爪",
+   "wmEn": "Venka"
+  },
+  {
+   "en": "Fulmin Prime",
+   "cn": "圣装雷霆",
+   "intl": "雷霆Prime",
+   "ben": "Fulmin",
+   "bcn": "雷霆",
+   "bintl": "雷霆",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "雷霆",
+   "wmEn": "Fulmin"
+  },
+  {
+   "en": "Scyotid",
+   "cn": "镰刃刺",
+   "intl": "镰刃刺",
+   "ben": "Scyotid",
+   "bcn": "镰刃刺",
+   "bintl": "镰刃刺",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "镰刃刺",
+   "wmEn": "Scyotid"
+  },
+  {
+   "en": "Trumna",
+   "cn": "灭杀者",
+   "intl": "灭杀者",
+   "ben": "Trumna",
+   "bcn": "灭杀者",
+   "bintl": "灭杀者",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "灭杀者",
+   "wmEn": "Trumna"
+  },
+  {
+   "en": "Tombfinger (Secondary)",
+   "cn": "墓指（副手）",
+   "intl": "墓指（副手）",
+   "ben": "Tombfinger",
+   "bcn": "墓指",
+   "bintl": "墓指",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "墓指",
+   "wmEn": "Tombfinger"
+  },
+  {
+   "en": "Orthos Prime",
+   "cn": "圣装欧特鲁斯",
+   "intl": "欧特鲁斯Prime",
+   "ben": "Orthos",
+   "bcn": "欧特鲁斯",
+   "bintl": "欧特鲁斯",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "欧特鲁斯",
+   "wmEn": "Orthos"
+  },
+  {
+   "en": "Knell Prime",
+   "cn": "圣装丧钟",
+   "intl": "丧钟Prime",
+   "ben": "Knell",
+   "bcn": "丧钟",
+   "bintl": "丧钟",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "丧钟",
+   "wmEn": "Knell"
+  },
+  {
+   "en": "Sepfahn",
+   "cn": "直刃",
+   "intl": "瑟普梵",
+   "ben": "Sepfahn",
+   "bcn": "直刃",
+   "bintl": "瑟普梵",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "瑟普梵",
+   "wmEn": "Sepfahn"
+  },
+  {
+   "en": "Sagek Prime",
+   "cn": "圣装杀格",
+   "intl": "杀格Prime",
+   "ben": "Sagek Prime",
+   "bcn": "圣装杀格",
+   "bintl": "杀格Prime",
+   "cat": "手枪",
+   "var": "变体·无本体",
+   "wmCn": "杀格 Prime",
+   "wmEn": "Sagek Prime"
+  },
+  {
+   "en": "Shedu",
+   "cn": "舍杜",
+   "intl": "舍杜",
+   "ben": "Shedu",
+   "bcn": "舍杜",
+   "bintl": "舍杜",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "舍杜",
+   "wmEn": "Shedu"
+  },
+  {
+   "en": "Akstiletto Prime",
+   "cn": "圣装史提托双枪",
+   "intl": "史提托双枪Prime",
+   "ben": "Akstiletto",
+   "bcn": "史提托双枪",
+   "bintl": "史提托双枪",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "史提托双枪",
+   "wmEn": "Akstiletto"
+  },
+  {
+   "en": "Reaper Prime",
+   "cn": "圣装收割者",
+   "intl": "收割者Prime",
+   "ben": "Reaper Prime",
+   "bcn": "圣装收割者",
+   "bintl": "收割者Prime",
+   "cat": "近战",
+   "var": "变体·无本体",
+   "wmCn": "收割者 Prime",
+   "wmEn": "Reaper Prime"
+  },
+  {
+   "en": "Dual Viciss",
+   "cn": "双子恶行",
+   "intl": "双子恶行",
+   "ben": "Dual Viciss",
+   "bcn": "双子恶行",
+   "bintl": "双子恶行",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "双子恶行",
+   "wmEn": "Dual Viciss"
+  },
+  {
+   "en": "Spinnerex",
+   "cn": "丝蛛皇",
+   "intl": "丝蛛皇",
+   "ben": "Spinnerex",
+   "bcn": "丝蛛皇",
+   "bintl": "丝蛛皇",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "丝蛛皇",
+   "wmEn": "Spinnerex"
+  },
+  {
+   "en": "Amanata",
+   "cn": "天薙刀",
+   "intl": "天薙刀",
+   "ben": "Amanata",
+   "bcn": "天薙刀",
+   "bintl": "天薙刀",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "天薙刀",
+   "wmEn": "Amanata"
+  },
+  {
+   "en": "Tonkkatt",
+   "cn": "通卡拐刃",
+   "intl": "通卡拐刃",
+   "ben": "Tonkkatt",
+   "bcn": "通卡拐刃",
+   "bintl": "通卡拐刃",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "通卡拐刃",
+   "wmEn": "Tonkkatt"
+  },
+  {
+   "en": "Vadarya Prime",
+   "cn": "圣装瓦德雅",
+   "intl": "瓦德雅Prime",
+   "ben": "Vadarya Prime",
+   "bcn": "圣装瓦德雅",
+   "bintl": "瓦德雅Prime",
+   "cat": "步枪",
+   "var": "变体·无本体",
+   "wmCn": "瓦德雅 Prime",
+   "wmEn": "Vadarya Prime"
+  },
+  {
+   "en": "Plague Keewar",
+   "cn": "异变重镰刃",
+   "intl": "瘟疫奇沃",
+   "ben": "Plague Keewar",
+   "bcn": "异变重镰刃",
+   "bintl": "瘟疫奇沃",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "瘟疫 奇沃",
+   "wmEn": "Plague Keewar"
+  },
+  {
+   "en": "Okina Prime",
+   "cn": "圣装三叉刺",
+   "intl": "翁Prime",
+   "ben": "Okina",
+   "bcn": "三叉刺",
+   "bintl": "翁",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "翁",
+   "wmEn": "Okina"
+  },
+  {
+   "en": "Tenet Quanta",
+   "cn": "信条量子切割器",
+   "intl": "信条量子切割器",
+   "ben": "Quanta",
+   "bcn": "量子切割器",
+   "bintl": "量子切割器",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "量子切割器",
+   "wmEn": "Quanta"
+  },
+  {
+   "en": "Tenet Plinx",
+   "cn": "信条漫射者",
+   "intl": "信条漫射者",
+   "ben": "Plinx",
+   "bcn": "漫射者",
+   "bintl": "漫射者",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "漫射者",
+   "wmEn": "Plinx"
+  },
+  {
+   "en": "Tenet Exec",
+   "cn": "信条枢密",
+   "intl": "信条枢密",
+   "ben": "Tenet Exec",
+   "bcn": "信条枢密",
+   "bintl": "信条枢密",
+   "cat": "近战",
+   "var": "变体·无本体",
+   "wmCn": "信条·枢密",
+   "wmEn": "Tenet Exec"
+  },
+  {
+   "en": "Tenet Cycron",
+   "cn": "信条循环离子枪",
+   "intl": "信条循环离子枪",
+   "ben": "Cycron",
+   "bcn": "循环离子枪",
+   "bintl": "循环离子枪",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "循环离子枪",
+   "wmEn": "Cycron"
+  },
+  {
+   "en": "Tenet Diplos",
+   "cn": "信条纵横双枪",
+   "intl": "信条纵横双枪",
+   "ben": "Tenet Diplos",
+   "bcn": "信条纵横双枪",
+   "bintl": "信条纵横双枪",
+   "cat": "手枪",
+   "var": "变体·无本体",
+   "wmCn": "信条·纵横双枪",
+   "wmEn": "Tenet Diplos"
+  },
+  {
+   "en": "Arbucep",
+   "cn": "蕈菇",
+   "intl": "蕈菇",
+   "ben": "Arbucep",
+   "bcn": "蕈菇",
+   "bintl": "蕈菇",
+   "cat": "曲翼",
+   "var": "本体",
+   "wmCn": "蕈菇",
+   "wmEn": "Arbucep"
+  },
+  {
+   "en": "Syam",
+   "cn": "业珀",
+   "intl": "业珀",
+   "ben": "Syam",
+   "bcn": "业珀",
+   "bintl": "业珀",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "业珀",
+   "wmEn": "Syam"
+  },
+  {
+   "en": "Vesper 77",
+   "cn": "夜语者77",
+   "intl": "夜语者77",
+   "ben": "Vesper 77",
+   "bcn": "夜语者77",
+   "bintl": "夜语者77",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "夜语者 77",
+   "wmEn": "Vesper 77"
+  },
+  {
+   "en": "Ignis",
+   "cn": "伊格尼斯",
+   "intl": "伊格尼斯",
+   "ben": "Ignis",
+   "bcn": "伊格尼斯",
+   "bintl": "伊格尼斯",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "伊格尼斯",
+   "wmEn": "Ignis"
+  },
+  {
+   "en": "Glaive Prime",
+   "cn": "圣装战刃",
+   "intl": "战刃Prime",
+   "ben": "Glaive",
+   "bcn": "战刃",
+   "bintl": "战刃",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "战刃",
+   "wmEn": "Glaive"
+  },
+  {
+   "en": "Vinquibus (Melee)",
+   "cn": "制胜者(近战)",
+   "intl": "制胜者(近战)",
+   "ben": "Vinquibus",
+   "bcn": "制胜者",
+   "bintl": "制胜者",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "制胜者 (近战)",
+   "wmEn": "Vinquibus (Melee)"
+  },
+  {
+   "en": "Coda Hirudo",
+   "cn": "终幕蚂蟥",
+   "intl": "终幕蚂蟥",
+   "ben": "Hirudo",
+   "bcn": "蚂蟥",
+   "bintl": "蚂蟥",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "蚂蟥",
+   "wmEn": "Hirudo"
+  },
+  {
+   "en": "Coda Mire",
+   "cn": "终幕米尔",
+   "intl": "终幕米尔",
+   "ben": "Mire",
+   "bcn": "米尔",
+   "bintl": "米尔",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "米尔",
+   "wmEn": "Mire"
+  },
+  {
+   "en": "Coda Motovore",
+   "cn": "终幕噬轮",
+   "intl": "终幕噬轮",
+   "ben": "Coda Motovore",
+   "bcn": "终幕噬轮",
+   "bintl": "终幕噬轮",
+   "cat": "近战",
+   "var": "变体·无本体",
+   "wmCn": "终幕·噬轮",
+   "wmEn": "Coda Motovore"
+  },
+  {
+   "en": "Coda Caustacyst",
+   "cn": "终幕灼蚀变体镰",
+   "intl": "终幕灼蚀变体镰",
+   "ben": "Caustacyst",
+   "bcn": "灼蚀变体镰",
+   "bintl": "灼蚀变体镰",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "灼蚀变体镰",
+   "wmEn": "Caustacyst"
+  },
+  {
+   "en": "Velox Prime",
+   "cn": "圣装逐电",
+   "intl": "逐电Prime",
+   "ben": "Velox",
+   "bcn": "逐电",
+   "bintl": "逐电",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "逐电",
+   "wmEn": "Velox"
+  },
+  {
+   "en": "Onos",
+   "cn": "赘骨",
+   "intl": "赘骨",
+   "ben": "Onos",
+   "bcn": "赘骨",
+   "bintl": "赘骨",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "赘骨",
+   "wmEn": "Onos"
+  },
+  {
+   "en": "Dex Nikana",
+   "cn": "灵敏侍刃",
+   "intl": "Dex侍刃",
+   "ben": "Nikana",
+   "bcn": "侍刃",
+   "bintl": "侍刃",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "Dex 侍刃",
+   "wmEn": "Dex Nikana"
+  },
+  {
+   "en": "Akaten",
+   "cn": "阿卡腾",
+   "intl": "阿卡腾",
+   "ben": "Akaten",
+   "bcn": "阿卡腾",
+   "bintl": "阿卡腾",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "阿卡腾",
+   "wmEn": "Akaten"
+  },
+  {
+   "en": "Akarius",
+   "cn": "阿利乌双枪",
+   "intl": "阿利乌双枪",
+   "ben": "Akarius",
+   "bcn": "阿利乌双枪",
+   "bintl": "阿利乌双枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "阿利乌双枪",
+   "wmEn": "Akarius"
+  },
+  {
+   "en": "Athodai",
+   "cn": "阿索代",
+   "intl": "阿索代",
+   "ben": "Athodai",
+   "bcn": "阿索代",
+   "bintl": "阿索代",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "阿索代",
+   "wmEn": "Athodai"
+  },
+  {
+   "en": "Artax",
+   "cn": "阿塔克斯",
+   "intl": "阿塔克斯",
+   "ben": "Artax",
+   "bcn": "阿塔克斯",
+   "bintl": "阿塔克斯",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "阿塔克斯",
+   "wmEn": "Artax"
+  },
+  {
+   "en": "EFV-5 Jupiter",
+   "cn": "艾弗旺-5木星",
+   "intl": "艾弗旺-5木星",
+   "ben": "EFV-5 Jupiter",
+   "bcn": "艾弗旺-5木星",
+   "bintl": "艾弗旺-5木星",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "艾弗旺-5 木星",
+   "wmEn": "EFV-5 Jupiter"
+  },
+  {
+   "en": "EFV-8 Mars",
+   "cn": "艾弗旺-8火星",
+   "intl": "艾弗旺-8火星",
+   "ben": "EFV-8 Mars",
+   "bcn": "艾弗旺-8火星",
+   "bintl": "艾弗旺-8火星",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "艾弗旺-8 火星",
+   "wmEn": "EFV-8 Mars"
+  },
+  {
+   "en": "Dark Dagger",
+   "cn": "暗黑匕首",
+   "intl": "暗黑匕首",
+   "ben": "Dark Dagger",
+   "bcn": "暗黑匕首",
+   "bintl": "暗黑匕首",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "暗黑匕首",
+   "wmEn": "Dark Dagger"
+  },
+  {
+   "en": "Opticor Vandal",
+   "cn": "奥堤克光子枪破坏者",
+   "intl": "奥堤克光子枪破坏者",
+   "ben": "Opticor",
+   "bcn": "奥堤克光子枪",
+   "bintl": "奥堤克光子枪",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "奥堤克光子枪",
+   "wmEn": "Opticor"
+  },
+  {
+   "en": "Batoten",
+   "cn": "巴托腾",
+   "intl": "巴托腾",
+   "ben": "Batoten",
+   "bcn": "巴托腾",
+   "bintl": "巴托腾",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "巴托腾",
+   "wmEn": "Batoten"
+  },
+  {
+   "en": "Riot-848",
+   "cn": "暴乱-848",
+   "intl": "暴乱-848",
+   "ben": "Riot-848",
+   "bcn": "暴乱-848",
+   "bintl": "暴乱-848",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "暴乱-848",
+   "wmEn": "Riot-848"
+  },
+  {
+   "en": "Catchmoon (Primary)",
+   "cn": "捕月（主手）",
+   "intl": "捕月（主手）",
+   "ben": "Catchmoon",
+   "bcn": "捕月",
+   "bintl": "捕月",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "捕月",
+   "wmEn": "Catchmoon"
+  },
+  {
+   "en": "Baza",
+   "cn": "苍鹰",
+   "intl": "苍鹰",
+   "ben": "Baza",
+   "bcn": "苍鹰",
+   "bintl": "苍鹰",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "苍鹰",
+   "wmEn": "Baza"
+  },
+  {
+   "en": "Baza Prime",
+   "cn": "圣装苍鹰",
+   "intl": "苍鹰Prime",
+   "ben": "Baza",
+   "bcn": "苍鹰",
+   "bintl": "苍鹰",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "苍鹰",
+   "wmEn": "Baza"
+  },
+  {
+   "en": "Kuva Kraken",
+   "cn": "赤毒北海巨妖",
+   "intl": "赤毒北海巨妖",
+   "ben": "Kraken",
+   "bcn": "北海巨妖",
+   "bintl": "北海巨妖",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "北海巨妖",
+   "wmEn": "Kraken"
+  },
+  {
+   "en": "Kuva Brakk",
+   "cn": "赤毒布拉克",
+   "intl": "赤毒布拉克",
+   "ben": "Brakk",
+   "bcn": "布拉克",
+   "bintl": "布拉克",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "布拉克",
+   "wmEn": "Brakk"
+  },
+  {
+   "en": "Kuva Hind",
+   "cn": "赤毒雌鹿",
+   "intl": "赤毒雌鹿",
+   "ben": "Hind",
+   "bcn": "雌鹿",
+   "bintl": "雌鹿",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "雌鹿",
+   "wmEn": "Hind"
+  },
+  {
+   "en": "Kuva Hek",
+   "cn": "赤毒海克",
+   "intl": "赤毒海克",
+   "ben": "Hek",
+   "bcn": "海克",
+   "bintl": "海克",
+   "cat": "霰弹",
+   "var": "变体·有本体",
+   "wmCn": "海克",
+   "wmEn": "Hek"
+  },
+  {
+   "en": "Kuva Karak",
+   "cn": "赤毒卡拉克",
+   "intl": "赤毒卡拉克",
+   "ben": "Karak",
+   "bcn": "卡拉克",
+   "bintl": "卡拉克",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "卡拉克",
+   "wmEn": "Karak"
+  },
+  {
+   "en": "Kuva Kohm",
+   "cn": "赤毒寇恩热能枪",
+   "intl": "赤毒寇恩热能枪",
+   "ben": "Kohm",
+   "bcn": "寇恩热能枪",
+   "bintl": "寇恩热能枪",
+   "cat": "霰弹",
+   "var": "变体·有本体",
+   "wmCn": "寇恩热能枪",
+   "wmEn": "Kohm"
+  },
+  {
+   "en": "Kuva Quartakk",
+   "cn": "赤毒夸塔克",
+   "intl": "赤毒夸塔克",
+   "ben": "Quartakk",
+   "bcn": "夸塔克",
+   "bintl": "夸塔克",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "夸塔克",
+   "wmEn": "Quartakk"
+  },
+  {
+   "en": "Kuva Ayanga",
+   "cn": "赤毒怒雷",
+   "intl": "赤毒怒雷",
+   "ben": "Kuva Ayanga",
+   "bcn": "赤毒怒雷",
+   "bintl": "赤毒怒雷",
+   "cat": "曲翼",
+   "var": "变体·无本体",
+   "wmCn": "赤毒·怒雷",
+   "wmEn": "Kuva Ayanga"
+  },
+  {
+   "en": "Kuva Twin Stubbas",
+   "cn": "赤毒双子史度巴",
+   "intl": "赤毒双子史度巴",
+   "ben": "Kuva Twin Stubbas",
+   "bcn": "赤毒双子史度巴",
+   "bintl": "赤毒双子史度巴",
+   "cat": "手枪",
+   "var": "变体·无本体",
+   "wmCn": "赤毒·双子史度巴",
+   "wmEn": "Kuva Twin Stubbas"
+  },
+  {
+   "en": "Kuva Chakkhurr",
+   "cn": "赤毒邪眼",
+   "intl": "赤毒邪眼",
+   "ben": "Kuva Chakkhurr",
+   "bcn": "赤毒邪眼",
+   "bintl": "赤毒邪眼",
+   "cat": "步枪",
+   "var": "变体·无本体",
+   "wmCn": "赤毒·邪眼",
+   "wmEn": "Kuva Chakkhurr"
+  },
+  {
+   "en": "Kuva Seer",
+   "cn": "赤毒预言者",
+   "intl": "赤毒预言者",
+   "ben": "Seer",
+   "bcn": "预言者",
+   "bintl": "预言者",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "预言者",
+   "wmEn": "Seer"
+  },
+  {
+   "en": "Kuva Tonkor",
+   "cn": "赤毒征服榴炮",
+   "intl": "赤毒征服榴炮",
+   "ben": "Tonkor",
+   "bcn": "征服榴炮",
+   "bintl": "征服榴炮",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "征服榴炮",
+   "wmEn": "Tonkor"
+  },
+  {
+   "en": "Nepheri",
+   "cn": "赤炎流星",
+   "intl": "赤炎流星",
+   "ben": "Nepheri",
+   "bcn": "赤炎流星",
+   "bintl": "赤炎流星",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "赤炎流星",
+   "wmEn": "Nepheri"
+  },
+  {
+   "en": "Vermisplicer (Primary)",
+   "cn": "虫置（主手）",
+   "intl": "虫置（主手）",
+   "ben": "Vermisplicer",
+   "bcn": "虫置",
+   "bintl": "虫置",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "虫置",
+   "wmEn": "Vermisplicer"
+  },
+  {
+   "en": "Proboscis Cernos",
+   "cn": "刺吸西诺斯",
+   "intl": "刺吸西诺斯",
+   "ben": "Proboscis Cernos",
+   "bcn": "刺吸西诺斯",
+   "bintl": "刺吸西诺斯",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "刺吸西诺斯",
+   "wmEn": "Proboscis Cernos"
+  },
+  {
+   "en": "Larkspur",
+   "cn": "翠雀",
+   "intl": "翠雀",
+   "ben": "Larkspur",
+   "bcn": "翠雀",
+   "bintl": "翠雀",
+   "cat": "曲翼",
+   "var": "本体",
+   "wmCn": "翠雀",
+   "wmEn": "Larkspur"
+  },
+  {
+   "en": "Dakra Prime",
+   "cn": "圣装达克拉",
+   "intl": "达克拉Prime",
+   "ben": "Dakra Prime",
+   "bcn": "圣装达克拉",
+   "bintl": "达克拉Prime",
+   "cat": "近战",
+   "var": "变体·无本体",
+   "wmCn": "达克拉 Prime",
+   "wmEn": "Dakra Prime"
+  },
+  {
+   "en": "Daikyu Prime",
+   "cn": "圣装大久和弓",
+   "intl": "大久和弓Prime",
+   "ben": "Daikyu",
+   "bcn": "大久和弓",
+   "bintl": "大久和弓",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "大久和弓",
+   "wmEn": "Daikyu"
+  },
+  {
+   "en": "Afuris Prime",
+   "cn": "圣装盗贼双枪",
+   "intl": "盗贼双枪Prime",
+   "ben": "Afuris",
+   "bcn": "盗贼双枪",
+   "bintl": "盗贼双枪",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "盗贼双枪",
+   "wmEn": "Afuris"
+  },
+  {
+   "en": "Zakti Prime",
+   "cn": "圣装毒芽",
+   "intl": "毒芽Prime",
+   "ben": "Zakti",
+   "bcn": "毒芽",
+   "bintl": "毒芽",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "毒芽",
+   "wmEn": "Zakti"
+  },
+  {
+   "en": "Multron",
+   "cn": "多连穿甲枪",
+   "intl": "多连穿甲枪",
+   "ben": "Multron",
+   "bcn": "多连穿甲枪",
+   "bintl": "多连穿甲枪",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "多连穿甲枪",
+   "wmEn": "Multron"
+  },
+  {
+   "en": "Rakta Dark Dagger",
+   "cn": "绯红暗黑匕首",
+   "intl": "绯红暗黑匕首",
+   "ben": "Dark Dagger",
+   "bcn": "暗黑匕首",
+   "bintl": "暗黑匕首",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "暗黑匕首",
+   "wmEn": "Dark Dagger"
+  },
+  {
+   "en": "Mandonel",
+   "cn": "辐光弩炮",
+   "intl": "辐光弩炮",
+   "ben": "Mandonel",
+   "bcn": "辐光弩炮",
+   "bintl": "辐光弩炮",
+   "cat": "曲翼",
+   "var": "本体",
+   "wmCn": "辐光弩炮",
+   "wmEn": "Mandonel"
+  },
+  {
+   "en": "Stahlta",
+   "cn": "钢刃步枪",
+   "intl": "钢刃步枪",
+   "ben": "Stahlta",
+   "bcn": "钢刃步枪",
+   "bintl": "钢刃步枪",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "钢刃步枪",
+   "wmEn": "Stahlta"
+  },
+  {
+   "en": "Cantare",
+   "cn": "歌颂",
+   "intl": "歌颂",
+   "ben": "Cantare",
+   "bcn": "歌颂",
+   "bintl": "歌颂",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "歌颂",
+   "wmEn": "Cantare"
+  },
+  {
+   "en": "Grattler",
+   "cn": "葛拉特勒",
+   "intl": "葛拉特勒",
+   "ben": "Grattler",
+   "bcn": "葛拉特勒",
+   "bintl": "葛拉特勒",
+   "cat": "曲翼",
+   "var": "本体",
+   "wmCn": "葛拉特勒",
+   "wmEn": "Grattler"
+  },
+  {
+   "en": "Ruvox",
+   "cn": "古声",
+   "intl": "古声",
+   "ben": "Ruvox",
+   "bcn": "古声",
+   "bintl": "古声",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "古声",
+   "wmEn": "Ruvox"
+  },
+  {
+   "en": "Guandao",
+   "cn": "关刀",
+   "intl": "关刀",
+   "ben": "Guandao",
+   "bcn": "关刀",
+   "bintl": "关刀",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "关刀",
+   "wmEn": "Guandao"
+  },
+  {
+   "en": "Nami Skyla Prime",
+   "cn": "圣装海波斯库拉对剑",
+   "intl": "海波斯库拉对剑Prime",
+   "ben": "Nami Skyla",
+   "bcn": "海波斯库拉对剑",
+   "bintl": "海波斯库拉对剑",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "海波斯库拉对剑",
+   "wmEn": "Nami Skyla"
+  },
+  {
+   "en": "Aegrit",
+   "cn": "骇敌榴弹",
+   "intl": "骇敌榴弹",
+   "ben": "Aegrit",
+   "bcn": "骇敌榴弹",
+   "bintl": "骇敌榴弹",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "骇敌榴弹",
+   "wmEn": "Aegrit"
+  },
+  {
+   "en": "Hystrix Prime",
+   "cn": "圣装豪猪",
+   "intl": "豪猪Prime",
+   "ben": "Hystrix",
+   "bcn": "豪猪",
+   "bintl": "豪猪",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "豪猪",
+   "wmEn": "Hystrix"
+  },
+  {
+   "en": "Helstrum",
+   "cn": "赫尔斯壮",
+   "intl": "赫尔斯壮",
+   "ben": "Helstrum",
+   "bcn": "赫尔斯壮",
+   "bintl": "赫尔斯壮",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "赫尔斯壮",
+   "wmEn": "Helstrum"
+  },
+  {
+   "en": "Corvas Prime",
+   "cn": "圣装黑鸦",
+   "intl": "黑鸦Prime",
+   "ben": "Corvas",
+   "bcn": "黑鸦",
+   "bintl": "黑鸦",
+   "cat": "曲翼",
+   "var": "变体·有本体",
+   "wmCn": "黑鸦",
+   "wmEn": "Corvas"
+  },
+  {
+   "en": "Arca Plasmor",
+   "cn": "弧电离子枪",
+   "intl": "弧电离子枪",
+   "ben": "Arca Plasmor",
+   "bcn": "弧电离子枪",
+   "bintl": "弧电离子枪",
+   "cat": "霰弹",
+   "var": "本体",
+   "wmCn": "弧电离子枪",
+   "wmEn": "Arca Plasmor"
+  },
+  {
+   "en": "Arca Scisco",
+   "cn": "弧电探知者",
+   "intl": "弧电探知者",
+   "ben": "Arca Scisco",
+   "bcn": "弧电探知者",
+   "bintl": "弧电探知者",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "弧电探知者",
+   "wmEn": "Arca Scisco"
+  },
+  {
+   "en": "Phantasma",
+   "cn": "幻离子",
+   "intl": "幻离子",
+   "ben": "Phantasma",
+   "bcn": "幻离子",
+   "bintl": "幻离子",
+   "cat": "霰弹",
+   "var": "本体",
+   "wmCn": "幻离子",
+   "wmEn": "Phantasma"
+  },
+  {
+   "en": "Scourge Prime",
+   "cn": "圣装祸根",
+   "intl": "祸根Prime",
+   "ben": "Scourge",
+   "bcn": "祸根",
+   "bintl": "祸根",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "祸根",
+   "wmEn": "Scourge"
+  },
+  {
+   "en": "Velocitus",
+   "cn": "极速电磁步枪",
+   "intl": "极速电磁步枪",
+   "ben": "Velocitus",
+   "bcn": "极速电磁步枪",
+   "bintl": "极速电磁步枪",
+   "cat": "曲翼",
+   "var": "本体",
+   "wmCn": "极速电磁步枪",
+   "wmEn": "Velocitus"
+  },
+  {
+   "en": "Cryotra",
+   "cn": "急冻喷枪",
+   "intl": "急冻喷枪",
+   "ben": "Cryotra",
+   "bcn": "急冻喷枪",
+   "bintl": "急冻喷枪",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "急冻喷枪",
+   "wmEn": "Cryotra"
+  },
+  {
+   "en": "Thornbak",
+   "cn": "棘背",
+   "intl": "棘背",
+   "ben": "Thornbak",
+   "bcn": "棘背",
+   "bintl": "棘背",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "棘背",
+   "wmEn": "Thornbak"
+  },
+  {
+   "en": "Galatine",
+   "cn": "迦伦提恩",
+   "intl": "迦伦提恩",
+   "ben": "Galatine",
+   "bcn": "迦伦提恩",
+   "bintl": "迦伦提恩",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "迦伦提恩",
+   "wmEn": "Galatine"
+  },
+  {
+   "en": "Galatine Prime",
+   "cn": "圣装迦伦提恩",
+   "intl": "迦伦提恩Prime",
+   "ben": "Galatine",
+   "bcn": "迦伦提恩",
+   "bintl": "迦伦提恩",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "迦伦提恩",
+   "wmEn": "Galatine"
+  },
+  {
+   "en": "Pennant",
+   "cn": "尖幡",
+   "intl": "尖幡",
+   "ben": "Pennant",
+   "bcn": "尖幡",
+   "bintl": "尖幡",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "尖幡",
+   "wmEn": "Pennant"
+  },
+  {
+   "en": "Ninkondi Prime",
+   "cn": "圣装降灵追猎者",
+   "intl": "降灵追猎者Prime",
+   "ben": "Ninkondi",
+   "bcn": "降灵追猎者",
+   "bintl": "降灵追猎者",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "降灵追猎者",
+   "wmEn": "Ninkondi"
+  },
+  {
+   "en": "Vulcax",
+   "cn": "金工火舌",
+   "intl": "金工火舌",
+   "ben": "Vulcax",
+   "bcn": "金工火舌",
+   "bintl": "金工火舌",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "金工火舌",
+   "wmEn": "Vulcax"
+  },
+  {
+   "en": "Vitrica",
+   "cn": "金璃剑",
+   "intl": "金璃剑",
+   "ben": "Vitrica",
+   "bcn": "金璃剑",
+   "bintl": "金璃剑",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "金璃剑",
+   "wmEn": "Vitrica"
+  },
+  {
+   "en": "Exergis",
+   "cn": "晶能放射器",
+   "intl": "晶能放射器",
+   "ben": "Exergis",
+   "bcn": "晶能放射器",
+   "bintl": "晶能放射器",
+   "cat": "霰弹",
+   "var": "本体",
+   "wmCn": "晶能放射器",
+   "wmEn": "Exergis"
+  },
+  {
+   "en": "Staticor",
+   "cn": "静电能量导引枪",
+   "intl": "静电能量导引枪",
+   "ben": "Staticor",
+   "bcn": "静电能量导引枪",
+   "bintl": "静电能量导引枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "静电能量导引枪",
+   "wmEn": "Staticor"
+  },
+  {
+   "en": "Redeemer",
+   "cn": "救赎者",
+   "intl": "救赎者",
+   "ben": "Redeemer",
+   "bcn": "救赎者",
+   "bintl": "救赎者",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "救赎者",
+   "wmEn": "Redeemer"
+  },
+  {
+   "en": "Masseter Prime",
+   "cn": "圣装咀嚼金杖",
+   "intl": "咀嚼金杖Prime",
+   "ben": "Masseter",
+   "bcn": "咀嚼金杖",
+   "bintl": "咀嚼金杖",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "咀嚼金杖",
+   "wmEn": "Masseter"
+  },
+  {
+   "en": "Fluctus",
+   "cn": "巨浪",
+   "intl": "巨浪",
+   "ben": "Fluctus",
+   "bcn": "巨浪",
+   "bintl": "巨浪",
+   "cat": "曲翼",
+   "var": "本体",
+   "wmCn": "巨浪",
+   "wmEn": "Fluctus"
+  },
+  {
+   "en": "Akjagara",
+   "cn": "觉醒双枪",
+   "intl": "觉醒双枪",
+   "ben": "Akjagara",
+   "bcn": "觉醒双枪",
+   "bintl": "觉醒双枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "觉醒双枪",
+   "wmEn": "Akjagara"
+  },
+  {
+   "en": "Akjagara Prime",
+   "cn": "圣装觉醒双枪",
+   "intl": "觉醒双枪Prime",
+   "ben": "Akjagara",
+   "bcn": "觉醒双枪",
+   "bintl": "觉醒双枪",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "觉醒双枪",
+   "wmEn": "Akjagara"
+  },
+  {
+   "en": "Rubico",
+   "cn": "绝路",
+   "intl": "绝路",
+   "ben": "Rubico",
+   "bcn": "绝路",
+   "bintl": "绝路",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "绝路",
+   "wmEn": "Rubico"
+  },
+  {
+   "en": "Gunsen Prime",
+   "cn": "圣装军扇",
+   "intl": "军扇Prime",
+   "ben": "Gunsen",
+   "bcn": "军扇",
+   "bintl": "军扇",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "军扇",
+   "wmEn": "Gunsen"
+  },
+  {
+   "en": "Keratinos",
+   "cn": "卡提努之爪",
+   "intl": "卡提努之爪",
+   "ben": "Keratinos",
+   "bcn": "卡提努之爪",
+   "bintl": "卡提努之爪",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "卡提努之爪",
+   "wmEn": "Keratinos"
+  },
+  {
+   "en": "Dual Keres",
+   "cn": "凯瑞斯双刀",
+   "intl": "凯瑞斯双刀",
+   "ben": "Dual Keres",
+   "bcn": "凯瑞斯双刀",
+   "bintl": "凯瑞斯双刀",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "凯瑞斯双刀",
+   "wmEn": "Dual Keres"
+  },
+  {
+   "en": "Imperator",
+   "cn": "凯旋将军",
+   "intl": "凯旋将军",
+   "ben": "Imperator",
+   "bcn": "凯旋将军",
+   "bintl": "凯旋将军",
+   "cat": "曲翼",
+   "var": "本体",
+   "wmCn": "凯旋将军",
+   "wmEn": "Imperator"
+  },
+  {
+   "en": "Imperator Vandal",
+   "cn": "凯旋将军破坏者",
+   "intl": "凯旋将军破坏者",
+   "ben": "Imperator",
+   "bcn": "凯旋将军",
+   "bintl": "凯旋将军",
+   "cat": "曲翼",
+   "var": "变体·有本体",
+   "wmCn": "凯旋将军",
+   "wmEn": "Imperator"
+  },
+  {
+   "en": "Venka",
+   "cn": "凯旋之爪",
+   "intl": "凯旋之爪",
+   "ben": "Venka",
+   "bcn": "凯旋之爪",
+   "bintl": "凯旋之爪",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "凯旋之爪",
+   "wmEn": "Venka"
+  },
+  {
+   "en": "Corinth Prime",
+   "cn": "圣装科林斯",
+   "intl": "科林斯Prime",
+   "ben": "Corinth",
+   "bcn": "科林斯",
+   "bintl": "科林斯",
+   "cat": "霰弹",
+   "var": "变体·有本体",
+   "wmCn": "科林斯",
+   "wmEn": "Corinth"
+  },
+  {
+   "en": "Tiberon",
+   "cn": "狂鲨",
+   "intl": "狂鲨",
+   "ben": "Tiberon",
+   "bcn": "狂鲨",
+   "bintl": "狂鲨",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "狂鲨",
+   "wmEn": "Tiberon"
+  },
+  {
+   "en": "Tiberon Prime",
+   "cn": "圣装狂鲨",
+   "intl": "狂鲨Prime",
+   "ben": "Tiberon",
+   "bcn": "狂鲨",
+   "bintl": "狂鲨",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "狂鲨",
+   "wmEn": "Tiberon"
+  },
+  {
+   "en": "Verdilac",
+   "cn": "蝰首骨妖",
+   "intl": "蝰首骨妖",
+   "ben": "Verdilac",
+   "bcn": "蝰首骨妖",
+   "bintl": "蝰首骨妖",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "蝰首骨妖",
+   "wmEn": "Verdilac"
+  },
+  {
+   "en": "Lacerten",
+   "cn": "莱斯腾",
+   "intl": "莱斯腾",
+   "ben": "Lacerten",
+   "bcn": "莱斯腾",
+   "bintl": "莱斯腾",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "莱斯腾",
+   "wmEn": "Lacerten"
+  },
+  {
+   "en": "Lanka",
+   "cn": "兰卡",
+   "intl": "兰卡",
+   "ben": "Lanka",
+   "bcn": "兰卡",
+   "bintl": "兰卡",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "兰卡",
+   "wmEn": "Lanka"
+  },
+  {
+   "en": "Aklex",
+   "cn": "雷克斯双枪",
+   "intl": "雷克斯双枪",
+   "ben": "Aklex",
+   "bcn": "雷克斯双枪",
+   "bintl": "雷克斯双枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "雷克斯双枪",
+   "wmEn": "Aklex"
+  },
+  {
+   "en": "Aklex Prime",
+   "cn": "圣装雷克斯双枪",
+   "intl": "雷克斯双枪Prime",
+   "ben": "Aklex",
+   "bcn": "雷克斯双枪",
+   "bintl": "雷克斯双枪",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "雷克斯双枪",
+   "wmEn": "Aklex"
+  },
+  {
+   "en": "Fulmin",
+   "cn": "雷霆",
+   "intl": "雷霆",
+   "ben": "Fulmin",
+   "bcn": "雷霆",
+   "bintl": "雷霆",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "雷霆",
+   "wmEn": "Fulmin"
+  },
+  {
+   "en": "Korumm",
+   "cn": "雷霆暴君",
+   "intl": "雷霆暴君",
+   "ben": "Korumm",
+   "bcn": "雷霆暴君",
+   "bintl": "雷霆暴君",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "雷霆暴君",
+   "wmEn": "Korumm"
+  },
+  {
+   "en": "Prisma Lenz",
+   "cn": "棱晶楞次弓",
+   "intl": "棱晶楞次弓",
+   "ben": "Lenz",
+   "bcn": "楞次弓",
+   "bintl": "楞次弓",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "楞次弓",
+   "wmEn": "Lenz"
+  },
+  {
+   "en": "Prisma Ohma",
+   "cn": "棱晶欧玛",
+   "intl": "棱晶欧玛",
+   "ben": "Ohma",
+   "bcn": "欧玛",
+   "bintl": "欧玛",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "欧玛",
+   "wmEn": "Ohma"
+  },
+  {
+   "en": "Prisma Dual Cleavers",
+   "cn": "棱晶斩肉双刀",
+   "intl": "棱晶斩肉双刀",
+   "ben": "Dual Cleavers",
+   "bcn": "斩肉双刀",
+   "bintl": "斩肉双刀",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "斩肉双刀",
+   "wmEn": "Dual Cleavers"
+  },
+  {
+   "en": "Lenz",
+   "cn": "楞次弓",
+   "intl": "楞次弓",
+   "ben": "Lenz",
+   "bcn": "楞次弓",
+   "bintl": "楞次弓",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "楞次弓",
+   "wmEn": "Lenz"
+  },
+  {
+   "en": "Pangolin Prime",
+   "cn": "圣装鲮鲤剑",
+   "intl": "鲮鲤剑Prime",
+   "ben": "Pangolin Sword",
+   "bcn": "鲮鲤剑",
+   "bintl": "鲮鲤剑",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "鲮鲤剑",
+   "wmEn": "Pangolin Sword"
+  },
+  {
+   "en": "Tatsu",
+   "cn": "龙辰",
+   "intl": "龙辰",
+   "ben": "Tatsu",
+   "bcn": "龙辰",
+   "bintl": "龙辰",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "龙辰",
+   "wmEn": "Tatsu"
+  },
+  {
+   "en": "Tatsu Prime",
+   "cn": "圣装龙辰",
+   "intl": "龙辰Prime",
+   "ben": "Tatsu",
+   "bcn": "龙辰",
+   "bintl": "龙辰",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "龙辰",
+   "wmEn": "Tatsu"
+  },
+  {
+   "en": "Akmagnus Prime",
+   "cn": "圣装麦格努斯双枪",
+   "intl": "麦格努斯双枪Prime",
+   "ben": "Akmagnus",
+   "bcn": "麦格努斯双枪",
+   "bintl": "麦格努斯双枪",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "麦格努斯双枪",
+   "wmEn": "Akmagnus"
+  },
+  {
+   "en": "Tigris",
+   "cn": "猛虎",
+   "intl": "猛虎",
+   "ben": "Tigris",
+   "bcn": "猛虎",
+   "bintl": "猛虎",
+   "cat": "霰弹",
+   "var": "本体",
+   "wmCn": "猛虎",
+   "wmEn": "Tigris"
+  },
+  {
+   "en": "Tigris Prime",
+   "cn": "圣装猛虎",
+   "intl": "猛虎Prime",
+   "ben": "Tigris",
+   "bcn": "猛虎",
+   "bintl": "猛虎",
+   "cat": "霰弹",
+   "var": "变体·有本体",
+   "wmCn": "猛虎",
+   "wmEn": "Tigris"
+  },
+  {
+   "en": "Tombfinger (Primary)",
+   "cn": "墓指（主手）",
+   "intl": "墓指（主手）",
+   "ben": "Tombfinger",
+   "bcn": "墓指",
+   "bintl": "墓指",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "墓指",
+   "wmEn": "Tombfinger"
+  },
+  {
+   "en": "Hespar",
+   "cn": "暮斩",
+   "intl": "暮斩",
+   "ben": "Hespar",
+   "bcn": "暮斩",
+   "bintl": "暮斩",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "暮斩",
+   "wmEn": "Hespar"
+  },
+  {
+   "en": "Gaze (Secondary)",
+   "cn": "凝目（副手）",
+   "intl": "凝目（副手）",
+   "ben": "Gaze",
+   "bcn": "凝目",
+   "bintl": "凝目",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "凝目",
+   "wmEn": "Gaze"
+  },
+  {
+   "en": "Gaze (Primary)",
+   "cn": "凝目（主手）",
+   "intl": "凝目（主手）",
+   "ben": "Gaze",
+   "bcn": "凝目",
+   "bintl": "凝目",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "凝目",
+   "wmEn": "Gaze"
+  },
+  {
+   "en": "Dorrclave",
+   "cn": "怒斩",
+   "intl": "怒斩",
+   "ben": "Dorrclave",
+   "bcn": "怒斩",
+   "bintl": "怒斩",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "怒斩",
+   "wmEn": "Dorrclave"
+  },
+  {
+   "en": "Orthos",
+   "cn": "欧特鲁斯",
+   "intl": "欧特鲁斯",
+   "ben": "Orthos",
+   "bcn": "欧特鲁斯",
+   "bintl": "欧特鲁斯",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "欧特鲁斯",
+   "wmEn": "Orthos"
+  },
+  {
+   "en": "Aksomati Prime",
+   "cn": "圣装轻灵月神双枪",
+   "intl": "轻灵月神双枪Prime",
+   "ben": "Aksomati",
+   "bcn": "轻灵月神双枪",
+   "bintl": "轻灵月神双枪",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "轻灵月神双枪",
+   "wmEn": "Aksomati"
+  },
+  {
+   "en": "Cyanex",
+   "cn": "氰毒",
+   "intl": "氰毒",
+   "ben": "Cyanex",
+   "bcn": "氰毒",
+   "bintl": "氰毒",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "氰毒",
+   "wmEn": "Cyanex"
+  },
+  {
+   "en": "Azothane",
+   "cn": "溶灵尊",
+   "intl": "溶灵尊",
+   "ben": "Azothane",
+   "bcn": "溶灵尊",
+   "bintl": "溶灵尊",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "溶灵尊",
+   "wmEn": "Azothane"
+  },
+  {
+   "en": "Rauta",
+   "cn": "锐铁",
+   "intl": "锐铁",
+   "ben": "Rauta",
+   "bcn": "锐铁",
+   "bintl": "锐铁",
+   "cat": "霰弹",
+   "var": "本体",
+   "wmCn": "锐铁",
+   "wmEn": "Rauta"
+  },
+  {
+   "en": "Sampotes",
+   "cn": "三宝聚",
+   "intl": "三宝聚",
+   "ben": "Sampotes",
+   "bcn": "三宝聚",
+   "bintl": "三宝聚",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "三宝聚",
+   "wmEn": "Sampotes"
+  },
+  {
+   "en": "Sweeper",
+   "cn": "扫除者",
+   "intl": "扫除者",
+   "ben": "Sweeper",
+   "bcn": "扫除者",
+   "bintl": "扫除者",
+   "cat": "霰弹",
+   "var": "本体",
+   "wmCn": "扫除者",
+   "wmEn": "Sweeper"
+  },
+  {
+   "en": "Sweeper Prime",
+   "cn": "圣装扫除者",
+   "intl": "扫除者Prime",
+   "ben": "Sweeper",
+   "bcn": "扫除者",
+   "bintl": "扫除者",
+   "cat": "霰弹",
+   "var": "变体·有本体",
+   "wmCn": "扫除者",
+   "wmEn": "Sweeper"
+  },
+  {
+   "en": "Sarofang",
+   "cn": "沙罗之牙",
+   "intl": "沙罗之牙",
+   "ben": "Sarofang",
+   "bcn": "沙罗之牙",
+   "bintl": "沙罗之牙",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "沙罗之牙",
+   "wmEn": "Sarofang"
+  },
+  {
+   "en": "Corufell",
+   "cn": "闪劫",
+   "intl": "闪劫",
+   "ben": "Corufell",
+   "bcn": "闪劫",
+   "bintl": "闪劫",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "闪劫",
+   "wmEn": "Corufell"
+  },
+  {
+   "en": "Sancti Tigris",
+   "cn": "圣洁猛虎",
+   "intl": "圣洁猛虎",
+   "ben": "Tigris",
+   "bcn": "猛虎",
+   "bintl": "猛虎",
+   "cat": "霰弹",
+   "var": "变体·有本体",
+   "wmCn": "猛虎",
+   "wmEn": "Tigris"
+  },
+  {
+   "en": "Afentis",
+   "cn": "圣英",
+   "intl": "圣英",
+   "ben": "Afentis",
+   "bcn": "圣英",
+   "bintl": "圣英",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "圣英",
+   "wmEn": "Afentis"
+  },
+  {
+   "en": "Pyrana",
+   "cn": "食人鱼",
+   "intl": "食人鱼",
+   "ben": "Pyrana",
+   "bcn": "食人鱼",
+   "bintl": "食人鱼",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "食人鱼",
+   "wmEn": "Pyrana"
+  },
+  {
+   "en": "Akstiletto",
+   "cn": "史提托双枪",
+   "intl": "史提托双枪",
+   "ben": "Akstiletto",
+   "bcn": "史提托双枪",
+   "bintl": "史提托双枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "史提托双枪",
+   "wmEn": "Akstiletto"
+  },
+  {
+   "en": "Nikana",
+   "cn": "侍刃",
+   "intl": "侍刃",
+   "ben": "Nikana",
+   "bcn": "侍刃",
+   "bintl": "侍刃",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "侍刃",
+   "wmEn": "Nikana"
+  },
+  {
+   "en": "Pandero Prime",
+   "cn": "圣装手鼓",
+   "intl": "手鼓Prime",
+   "ben": "Pandero",
+   "bcn": "手鼓",
+   "bintl": "手鼓",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "手鼓",
+   "wmEn": "Pandero"
+  },
+  {
+   "en": "Vectis Prime",
+   "cn": "圣装守望者",
+   "intl": "守望者Prime",
+   "ben": "Vectis",
+   "bcn": "守望者",
+   "bintl": "守望者",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "守望者",
+   "wmEn": "Vectis"
+  },
+  {
+   "en": "Synoid Gammacor",
+   "cn": "枢议咖玛腕甲枪",
+   "intl": "枢议咖玛腕甲枪",
+   "ben": "Gammacor",
+   "bcn": "咖玛腕甲枪",
+   "bintl": "咖玛腕甲枪",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "咖玛腕甲枪",
+   "wmEn": "Gammacor"
+  },
+  {
+   "en": "Tenora",
+   "cn": "双簧管",
+   "intl": "双簧管",
+   "ben": "Tenora",
+   "bcn": "双簧管",
+   "bintl": "双簧管",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "双簧管",
+   "wmEn": "Tenora"
+  },
+  {
+   "en": "Tenora Prime",
+   "cn": "圣装双簧管",
+   "intl": "双簧管Prime",
+   "ben": "Tenora",
+   "bcn": "双簧管",
+   "bintl": "双簧管",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "双簧管",
+   "wmEn": "Tenora"
+  },
+  {
+   "en": "Stradavar",
+   "cn": "斯特拉迪瓦",
+   "intl": "斯特拉迪瓦",
+   "ben": "Stradavar",
+   "bcn": "斯特拉迪瓦",
+   "bintl": "斯特拉迪瓦",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "斯特拉迪瓦",
+   "wmEn": "Stradavar"
+  },
+  {
+   "en": "Stradavar Prime",
+   "cn": "圣装斯特拉迪瓦",
+   "intl": "斯特拉迪瓦Prime",
+   "ben": "Stradavar",
+   "bcn": "斯特拉迪瓦",
+   "bintl": "斯特拉迪瓦",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "斯特拉迪瓦",
+   "wmEn": "Stradavar"
+  },
+  {
+   "en": "Cortege",
+   "cn": "送葬者",
+   "intl": "送葬者",
+   "ben": "Cortege",
+   "bcn": "送葬者",
+   "bintl": "送葬者",
+   "cat": "曲翼",
+   "var": "本体",
+   "wmCn": "送葬者",
+   "wmEn": "Cortege"
+  },
+  {
+   "en": "Supra",
+   "cn": "苏普拉",
+   "intl": "苏普拉",
+   "ben": "Supra",
+   "bcn": "苏普拉",
+   "bintl": "苏普拉",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "苏普拉",
+   "wmEn": "Supra"
+  },
+  {
+   "en": "Supra Vandal",
+   "cn": "苏普拉破坏者",
+   "intl": "苏普拉破坏者",
+   "ben": "Supra",
+   "bcn": "苏普拉",
+   "bintl": "苏普拉",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "苏普拉",
+   "wmEn": "Supra"
+  },
+  {
+   "en": "Tak & Lug",
+   "cn": "塔克&卢格",
+   "intl": "塔克&卢格",
+   "ben": "Tak & Lug",
+   "bcn": "塔克&卢格",
+   "bintl": "塔克&卢格",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "塔克 & 卢格",
+   "wmEn": "Tak & Lug"
+  },
+  {
+   "en": "Tazicor",
+   "cn": "泰瑟步枪",
+   "intl": "泰瑟步枪",
+   "ben": "Tazicor",
+   "bcn": "泰瑟步枪",
+   "bintl": "泰瑟步枪",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "泰瑟步枪",
+   "wmEn": "Tazicor"
+  },
+  {
+   "en": "Zenith",
+   "cn": "天穹之顶",
+   "intl": "天穹之顶",
+   "ben": "Zenith",
+   "bcn": "天穹之顶",
+   "bintl": "天穹之顶",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "天穹之顶",
+   "wmEn": "Zenith"
+  },
+  {
+   "en": "Slaytra",
+   "cn": "屠煞",
+   "intl": "屠煞",
+   "ben": "Slaytra",
+   "bcn": "屠煞",
+   "bintl": "屠煞",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "屠煞",
+   "wmEn": "Slaytra"
+  },
+  {
+   "en": "Vastilok",
+   "cn": "瓦斯提枪刃",
+   "intl": "瓦斯提枪刃",
+   "ben": "Vastilok",
+   "bcn": "瓦斯提枪刃",
+   "bintl": "瓦斯提枪刃",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "瓦斯提枪刃",
+   "wmEn": "Vastilok"
+  },
+  {
+   "en": "Quassus Prime",
+   "cn": "圣装威震武扇",
+   "intl": "威震武扇Prime",
+   "ben": "Quassus",
+   "bcn": "威震武扇",
+   "bintl": "威震武扇",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "威震武扇",
+   "wmEn": "Quassus"
+  },
+  {
+   "en": "Battacor",
+   "cn": "武使之力",
+   "intl": "武使之力",
+   "ben": "Battacor",
+   "bcn": "武使之力",
+   "bintl": "武使之力",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "武使之力",
+   "wmEn": "Battacor"
+  },
+  {
+   "en": "Sigma & Octantis",
+   "cn": "西格玛&南极座",
+   "intl": "西格玛&南极座",
+   "ben": "Sigma & Octantis",
+   "bcn": "西格玛&南极座",
+   "bintl": "西格玛&南极座",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "西格玛 & 南极座",
+   "wmEn": "Sigma & Octantis"
+  },
+  {
+   "en": "Cyath",
+   "cn": "弯刃",
+   "intl": "西亚什",
+   "ben": "Cyath",
+   "bcn": "弯刃",
+   "bintl": "西亚什",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "西亚什",
+   "wmEn": "Cyath"
+  },
+  {
+   "en": "Zylok Prime",
+   "cn": "圣装席尔火枪",
+   "intl": "席尔火枪Prime",
+   "ben": "Zylok",
+   "bcn": "席尔火枪",
+   "bintl": "席尔火枪",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "席尔火枪",
+   "wmEn": "Zylok"
+  },
+  {
+   "en": "Silva & Aegis Prime",
+   "cn": "圣装席瓦&神盾",
+   "intl": "席瓦&神盾Prime",
+   "ben": "Silva & Aegis",
+   "bcn": "席瓦&神盾",
+   "bintl": "席瓦&神盾",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "席瓦 & 神盾",
+   "wmEn": "Silva & Aegis"
+  },
+  {
+   "en": "Rattleguts (Secondary)",
+   "cn": "响胆（副手）",
+   "intl": "响胆（副手）",
+   "ben": "Rattleguts",
+   "bcn": "响胆",
+   "bintl": "响胆",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "响胆",
+   "wmEn": "Rattleguts"
+  },
+  {
+   "en": "Rattleguts (Primary)",
+   "cn": "响胆（主手）",
+   "intl": "响胆（主手）",
+   "ben": "Rattleguts",
+   "bcn": "响胆",
+   "bintl": "响胆",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "响胆",
+   "wmEn": "Rattleguts"
+  },
+  {
+   "en": "Tenet Detron",
+   "cn": "信条德特昂",
+   "intl": "信条德特昂",
+   "ben": "Detron",
+   "bcn": "德特昂",
+   "bintl": "德特昂",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "德特昂",
+   "wmEn": "Detron"
+  },
+  {
+   "en": "Tenet Grigori",
+   "cn": "信条格里高利",
+   "intl": "信条格里高利",
+   "ben": "Tenet Grigori",
+   "bcn": "信条格里高利",
+   "bintl": "信条格里高利",
+   "cat": "近战",
+   "var": "变体·无本体",
+   "wmCn": "信条·格里高利",
+   "wmEn": "Tenet Grigori"
+  },
+  {
+   "en": "Tenet Agendus",
+   "cn": "信条集议",
+   "intl": "信条集议",
+   "ben": "Tenet Agendus",
+   "bcn": "信条集议",
+   "bintl": "信条集议",
+   "cat": "近战",
+   "var": "变体·无本体",
+   "wmCn": "信条·集议",
+   "wmEn": "Tenet Agendus"
+  },
+  {
+   "en": "Tenet Livia",
+   "cn": "信条莉薇娅",
+   "intl": "信条莉薇娅",
+   "ben": "Tenet Livia",
+   "bcn": "信条莉薇娅",
+   "bintl": "信条莉薇娅",
+   "cat": "近战",
+   "var": "变体·无本体",
+   "wmCn": "信条·莉薇娅",
+   "wmEn": "Tenet Livia"
+  },
+  {
+   "en": "Tenet Spirex",
+   "cn": "信条斯派克斯",
+   "intl": "信条斯派克斯",
+   "ben": "Tenet Spirex",
+   "bcn": "信条斯派克斯",
+   "bintl": "信条斯派克斯",
+   "cat": "手枪",
+   "var": "变体·无本体",
+   "wmCn": "信条·斯派克斯",
+   "wmEn": "Tenet Spirex"
+  },
+  {
+   "en": "Skiajati",
+   "cn": "影生",
+   "intl": "影生",
+   "ben": "Skiajati",
+   "bcn": "影生",
+   "bintl": "影生",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "影生",
+   "wmEn": "Skiajati"
+  },
+  {
+   "en": "Vaykor Marelok",
+   "cn": "勇气玛瑞火枪",
+   "intl": "勇气玛瑞火枪",
+   "ben": "Marelok",
+   "bcn": "玛瑞火枪",
+   "bintl": "玛瑞火枪",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "玛瑞火枪",
+   "wmEn": "Marelok"
+  },
+  {
+   "en": "Atomos",
+   "cn": "原子矿融炮",
+   "intl": "原子矿融炮",
+   "ben": "Atomos",
+   "bcn": "原子矿融炮",
+   "bintl": "原子矿融炮",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "原子矿融炮",
+   "wmEn": "Atomos"
+  },
+  {
+   "en": "Soma Prime",
+   "cn": "圣装月神",
+   "intl": "月神Prime",
+   "ben": "Soma",
+   "bcn": "月神",
+   "bintl": "月神",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "月神",
+   "wmEn": "Soma"
+  },
+  {
+   "en": "Euphona Prime",
+   "cn": "圣装悦音",
+   "intl": "悦音Prime",
+   "ben": "Euphona Prime",
+   "bcn": "圣装悦音",
+   "bintl": "悦音Prime",
+   "cat": "手枪",
+   "var": "变体·无本体",
+   "wmCn": "悦音 Prime",
+   "wmEn": "Euphona Prime"
+  },
+  {
+   "en": "Hate",
+   "cn": "憎恨",
+   "intl": "憎恨",
+   "ben": "Hate",
+   "bcn": "憎恨",
+   "bintl": "憎恨",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "憎恨",
+   "wmEn": "Hate"
+  },
+  {
+   "en": "War",
+   "cn": "战争之剑",
+   "intl": "战争之剑",
+   "ben": "War",
+   "bcn": "战争之剑",
+   "bintl": "战争之剑",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "战争之剑",
+   "wmEn": "War"
+  },
+  {
+   "en": "Reconifex",
+   "cn": "侦察者",
+   "intl": "侦察者",
+   "ben": "Reconifex",
+   "bcn": "侦察者",
+   "bintl": "侦察者",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "侦察者",
+   "wmEn": "Reconifex"
+  },
+  {
+   "en": "Morgha",
+   "cn": "置灵者",
+   "intl": "置灵者",
+   "ben": "Morgha",
+   "bcn": "置灵者",
+   "bintl": "置灵者",
+   "cat": "曲翼",
+   "var": "本体",
+   "wmCn": "置灵者",
+   "wmEn": "Morgha"
+  },
+  {
+   "en": "Telos Boltace",
+   "cn": "终极螺钉拐刃",
+   "intl": "终极螺钉拐刃",
+   "ben": "Boltace",
+   "bcn": "螺钉拐刃",
+   "bintl": "螺钉拐刃",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "螺钉拐刃",
+   "wmEn": "Boltace"
+  },
+  {
+   "en": "Coda Sporothrix",
+   "cn": "终幕孢丝感染枪",
+   "intl": "终幕孢丝感染枪",
+   "ben": "Sporothrix",
+   "bcn": "孢丝感染枪",
+   "bintl": "孢丝感染枪",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "孢丝感染枪",
+   "wmEn": "Sporothrix"
+  },
+  {
+   "en": "Coda Tysis",
+   "cn": "终幕啐沫者",
+   "intl": "终幕啐沫者",
+   "ben": "Tysis",
+   "bcn": "泰希斯异形",
+   "bintl": "啐沫者",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "啐沫者",
+   "wmEn": "Tysis"
+  },
+  {
+   "en": "Coda Pox",
+   "cn": "终幕脓痘",
+   "intl": "终幕脓痘",
+   "ben": "Pox",
+   "bcn": "脓痘",
+   "bintl": "脓痘",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "脓痘",
+   "wmEn": "Pox"
+  },
+  {
+   "en": "Coda Synapse",
+   "cn": "终幕突触生化枪",
+   "intl": "终幕突触生化枪",
+   "ben": "Synapse",
+   "bcn": "突触生化枪",
+   "bintl": "突触生化枪",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "突触生化枪",
+   "wmEn": "Synapse"
+  },
+  {
+   "en": "Coda Hema",
+   "cn": "终幕血肢",
+   "intl": "终幕血肢",
+   "ben": "Hema",
+   "bcn": "血肢",
+   "bintl": "血肢",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "血肢",
+   "wmEn": "Hema"
+  },
+  {
+   "en": "Fragor Prime",
+   "cn": "圣装重击巨锤",
+   "intl": "重击巨锤Prime",
+   "ben": "Fragor",
+   "bcn": "重击巨锤",
+   "bintl": "重击巨锤",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "重击巨锤",
+   "wmEn": "Fragor"
+  },
+  {
+   "en": "Sepulcrum",
+   "cn": "追击者",
+   "intl": "追击者",
+   "ben": "Sepulcrum",
+   "bcn": "追击者",
+   "bintl": "追击者",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "追击者",
+   "wmEn": "Sepulcrum"
+  },
+  {
+   "en": "Dual Zoren Prime",
+   "cn": "圣装佐伦双斧",
+   "intl": "佐伦双斧Prime",
+   "ben": "Dual Zoren",
+   "bcn": "佐伦双斧",
+   "bintl": "佐伦双斧",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "佐伦双斧",
+   "wmEn": "Dual Zoren"
+  },
+  {
+   "en": "Dex Sybaris",
+   "cn": "灵敏席芭莉丝",
+   "intl": "Dex席芭莉丝",
+   "ben": "Sybaris",
+   "bcn": "席芭莉丝",
+   "bintl": "席芭莉丝",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "席芭莉丝",
+   "wmEn": "Sybaris"
+  },
+  {
+   "en": "Atterax",
+   "cn": "阿特拉克斯",
+   "intl": "阿特拉克斯",
+   "ben": "Atterax",
+   "bcn": "阿特拉克斯",
+   "bintl": "阿特拉克斯",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "阿特拉克斯",
+   "wmEn": "Atterax"
+  },
+  {
+   "en": "Dark Split-Sword",
+   "cn": "暗黑分合剑",
+   "intl": "暗黑分合剑",
+   "ben": "Dark Split-Sword",
+   "bcn": "暗黑分合剑",
+   "bintl": "暗黑分合剑",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "暗黑分合剑",
+   "wmEn": "Dark Split-Sword"
+  },
+  {
+   "en": "Sicarus",
+   "cn": "暗杀者",
+   "intl": "暗杀者",
+   "ben": "Sicarus",
+   "bcn": "暗杀者",
+   "bintl": "暗杀者",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "暗杀者",
+   "wmEn": "Sicarus"
+  },
+  {
+   "en": "Sicarus Prime",
+   "cn": "圣装暗杀者",
+   "intl": "暗杀者Prime",
+   "ben": "Sicarus",
+   "bcn": "暗杀者",
+   "bintl": "暗杀者",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "暗杀者",
+   "wmEn": "Sicarus"
+  },
+  {
+   "en": "Obex",
+   "cn": "奥比克斯",
+   "intl": "奥比克斯",
+   "ben": "Obex",
+   "bcn": "奥比克斯",
+   "bintl": "奥比克斯",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "奥比克斯",
+   "wmEn": "Obex"
+  },
+  {
+   "en": "Opticor",
+   "cn": "奥堤克光子枪",
+   "intl": "奥堤克光子枪",
+   "ben": "Opticor",
+   "bcn": "奥堤克光子枪",
+   "bintl": "奥堤克光子枪",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "奥堤克光子枪",
+   "wmEn": "Opticor"
+  },
+  {
+   "en": "Basmu",
+   "cn": "巴什穆",
+   "intl": "巴什穆",
+   "ben": "Basmu",
+   "bcn": "巴什穆",
+   "bintl": "巴什穆",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "巴什穆",
+   "wmEn": "Basmu"
+  },
+  {
+   "en": "Sporelacer (Primary)",
+   "cn": "孢射（主手）",
+   "intl": "孢射（主手）",
+   "ben": "Sporelacer",
+   "bcn": "孢射",
+   "bintl": "孢射",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "孢射",
+   "wmEn": "Sporelacer"
+  },
+  {
+   "en": "Sporothrix",
+   "cn": "孢丝感染枪",
+   "intl": "孢丝感染枪",
+   "ben": "Sporothrix",
+   "bcn": "孢丝感染枪",
+   "bintl": "孢丝感染枪",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "孢丝感染枪",
+   "wmEn": "Sporothrix"
+  },
+  {
+   "en": "Secura Lecta",
+   "cn": "保障勒克塔",
+   "intl": "保障勒克塔",
+   "ben": "Lecta",
+   "bcn": "勒克塔",
+   "bintl": "勒克塔",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "勒克塔",
+   "wmEn": "Lecta"
+  },
+  {
+   "en": "Secura Penta",
+   "cn": "保障潘塔",
+   "intl": "保障潘塔",
+   "ben": "Penta",
+   "bcn": "潘塔",
+   "bintl": "潘塔",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "潘塔",
+   "wmEn": "Penta"
+  },
+  {
+   "en": "Secura Dual Cestra",
+   "cn": "保障锡斯特双枪",
+   "intl": "保障锡斯特双枪",
+   "ben": "Dual Cestra",
+   "bcn": "锡斯特双枪",
+   "bintl": "锡斯特双枪",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "锡斯特双枪",
+   "wmEn": "Dual Cestra"
+  },
+  {
+   "en": "Verglas",
+   "cn": "冰凇",
+   "intl": "冰凇",
+   "ben": "Verglas",
+   "bcn": "冰凇",
+   "bintl": "冰凇",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "冰凇",
+   "wmEn": "Verglas"
+  },
+  {
+   "en": "Verglas Prime",
+   "cn": "圣装冰凇",
+   "intl": "冰凇Prime",
+   "ben": "Verglas",
+   "bcn": "冰凇",
+   "bintl": "冰凇",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "冰凇",
+   "wmEn": "Verglas"
+  },
+  {
+   "en": "Pathocyst",
+   "cn": "病囊飞刃",
+   "intl": "病囊飞刃",
+   "ben": "Pathocyst",
+   "bcn": "病囊飞刃",
+   "bintl": "病囊飞刃",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "病囊飞刃",
+   "wmEn": "Pathocyst"
+  },
+  {
+   "en": "Brakk",
+   "cn": "布拉克",
+   "intl": "布拉克",
+   "ben": "Brakk",
+   "bcn": "布拉克",
+   "bintl": "布拉克",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "布拉克",
+   "wmEn": "Brakk"
+  },
+  {
+   "en": "Braton Prime",
+   "cn": "圣装布莱顿",
+   "intl": "布莱顿Prime",
+   "ben": "Braton",
+   "bcn": "布莱顿",
+   "bintl": "布莱顿",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "布莱顿",
+   "wmEn": "Braton"
+  },
+  {
+   "en": "Braton Vandal",
+   "cn": "布莱顿破坏者",
+   "intl": "布莱顿破坏者",
+   "ben": "Braton",
+   "bcn": "布莱顿",
+   "bintl": "布莱顿",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "布莱顿",
+   "wmEn": "Braton"
+  },
+  {
+   "en": "Ballistica",
+   "cn": "布里斯提卡",
+   "intl": "布里斯提卡",
+   "ben": "Ballistica",
+   "bcn": "布里斯提卡",
+   "bintl": "布里斯提卡",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "布里斯提卡",
+   "wmEn": "Ballistica"
+  },
+  {
+   "en": "Ballistica Prime",
+   "cn": "圣装布里斯提卡",
+   "intl": "布里斯提卡Prime",
+   "ben": "Ballistica",
+   "bcn": "布里斯提卡",
+   "bintl": "布里斯提卡",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "布里斯提卡",
+   "wmEn": "Ballistica"
+  },
+  {
+   "en": "Veldt",
+   "cn": "草原猎手",
+   "intl": "草原猎手",
+   "ben": "Veldt",
+   "bcn": "草原猎手",
+   "bintl": "草原猎手",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "草原猎手",
+   "wmEn": "Veldt"
+  },
+  {
+   "en": "Sonicor",
+   "cn": "超音波冲击枪",
+   "intl": "超音波冲击枪",
+   "ben": "Sonicor",
+   "bcn": "超音波冲击枪",
+   "bintl": "超音波冲击枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "超音波冲击枪",
+   "wmEn": "Sonicor"
+  },
+  {
+   "en": "Kuva Drakgoon",
+   "cn": "赤毒龙骑兵",
+   "intl": "赤毒龙骑兵",
+   "ben": "Drakgoon",
+   "bcn": "龙骑兵",
+   "bintl": "龙骑兵",
+   "cat": "霰弹",
+   "var": "变体·有本体",
+   "wmCn": "龙骑兵",
+   "wmEn": "Drakgoon"
+  },
+  {
+   "en": "Vermisplicer (Secondary)",
+   "cn": "虫置（副手）",
+   "intl": "虫置（副手）",
+   "ben": "Vermisplicer",
+   "bcn": "虫置",
+   "bintl": "虫置",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "虫置",
+   "wmEn": "Vermisplicer"
+  },
+  {
+   "en": "Volnus Prime",
+   "cn": "圣装创伤",
+   "intl": "创伤Prime",
+   "ben": "Volnus",
+   "bcn": "创伤",
+   "bintl": "创伤",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "创伤",
+   "wmEn": "Volnus"
+  },
+  {
+   "en": "Daikyu",
+   "cn": "大久和弓",
+   "intl": "大久和弓",
+   "ben": "Daikyu",
+   "bcn": "大久和弓",
+   "bintl": "大久和弓",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "大久和弓",
+   "wmEn": "Daikyu"
+  },
+  {
+   "en": "Dehtat",
+   "cn": "轻刺刃",
+   "intl": "德塔特",
+   "ben": "Dehtat",
+   "bcn": "轻刺刃",
+   "bintl": "德塔特",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "德塔特",
+   "wmEn": "Dehtat"
+  },
+  {
+   "en": "Detron",
+   "cn": "德特昂",
+   "intl": "德特昂",
+   "ben": "Detron",
+   "bcn": "德特昂",
+   "bintl": "德特昂",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "德特昂",
+   "wmEn": "Detron"
+  },
+  {
+   "en": "Rumblejack",
+   "cn": "电匕怪杰",
+   "intl": "电匕怪杰",
+   "ben": "Rumblejack",
+   "bcn": "电匕怪杰",
+   "bintl": "电匕怪杰",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "电匕怪杰",
+   "wmEn": "Rumblejack"
+  },
+  {
+   "en": "Alternox",
+   "cn": "电幻步枪",
+   "intl": "电幻步枪",
+   "ben": "Alternox",
+   "bcn": "电幻步枪",
+   "bintl": "电幻步枪",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "电幻步枪",
+   "wmEn": "Alternox"
+  },
+  {
+   "en": "Zakti",
+   "cn": "毒芽",
+   "intl": "毒芽",
+   "ben": "Zakti",
+   "bcn": "毒芽",
+   "bintl": "毒芽",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "毒芽",
+   "wmEn": "Zakti"
+  },
+  {
+   "en": "Wolf Sledge",
+   "cn": "恶狼战锤",
+   "intl": "恶狼战锤",
+   "ben": "Wolf Sledge",
+   "bcn": "恶狼战锤",
+   "bintl": "恶狼战锤",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "恶狼战锤",
+   "wmEn": "Wolf Sledge"
+  },
+  {
+   "en": "Dual Ichor",
+   "cn": "恶脓双斧",
+   "intl": "恶脓双斧",
+   "ben": "Dual Ichor",
+   "bcn": "恶脓双斧",
+   "bintl": "恶脓双斧",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "恶脓双斧",
+   "wmEn": "Dual Ichor"
+  },
+  {
+   "en": "Azima",
+   "cn": "方位角",
+   "intl": "方位角",
+   "ben": "Azima",
+   "bcn": "方位角",
+   "bintl": "方位角",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "方位角",
+   "wmEn": "Azima"
+  },
+  {
+   "en": "Hikou",
+   "cn": "飞扬",
+   "intl": "飞扬",
+   "ben": "Hikou",
+   "bcn": "飞扬",
+   "bintl": "飞扬",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "飞扬",
+   "wmEn": "Hikou"
+  },
+  {
+   "en": "Hikou Prime",
+   "cn": "圣装飞扬",
+   "intl": "飞扬Prime",
+   "ben": "Hikou",
+   "bcn": "飞扬",
+   "bintl": "飞扬",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "飞扬",
+   "wmEn": "Hikou"
+  },
+  {
+   "en": "Phaedra",
+   "cn": "菲德菈",
+   "intl": "菲德菈",
+   "ben": "Phaedra",
+   "bcn": "菲德菈",
+   "bintl": "菲德菈",
+   "cat": "曲翼",
+   "var": "本体",
+   "wmCn": "菲德菈",
+   "wmEn": "Phaedra"
+  },
+  {
+   "en": "Rakta Ballistica",
+   "cn": "绯红布里斯提卡",
+   "intl": "绯红布里斯提卡",
+   "ben": "Ballistica",
+   "bcn": "布里斯提卡",
+   "bintl": "布里斯提卡",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "布里斯提卡",
+   "wmEn": "Ballistica"
+  },
+  {
+   "en": "Rakta Cernos",
+   "cn": "绯红西诺斯",
+   "intl": "绯红西诺斯",
+   "ben": "Cernos",
+   "bcn": "西诺斯",
+   "bintl": "西诺斯",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "西诺斯",
+   "wmEn": "Cernos"
+  },
+  {
+   "en": "Deconstructor",
+   "cn": "分离",
+   "intl": "分离",
+   "ben": "Deconstructor",
+   "bcn": "分离",
+   "bintl": "分离",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "分离",
+   "wmEn": "Deconstructor"
+  },
+  {
+   "en": "Deconstructor Prime",
+   "cn": "圣装分离",
+   "intl": "分离Prime",
+   "ben": "Deconstructor",
+   "bcn": "分离",
+   "bintl": "分离",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "分离",
+   "wmEn": "Deconstructor"
+  },
+  {
+   "en": "Scindo Prime",
+   "cn": "圣装分裂斩斧",
+   "intl": "分裂斩斧Prime",
+   "ben": "Scindo",
+   "bcn": "分裂斩斧",
+   "bintl": "分裂斩斧",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "分裂斩斧",
+   "wmEn": "Scindo"
+  },
+  {
+   "en": "Aeolak",
+   "cn": "风鸣",
+   "intl": "风鸣",
+   "ben": "Aeolak",
+   "bcn": "风鸣",
+   "bintl": "风鸣",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "风鸣",
+   "wmEn": "Aeolak"
+  },
+  {
+   "en": "Furax Wraith",
+   "cn": "红莲弗拉克斯",
+   "intl": "弗拉克斯亡魂",
+   "ben": "Furax",
+   "bcn": "弗拉克斯",
+   "bintl": "弗拉克斯",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "弗拉克斯",
+   "wmEn": "Furax"
+  },
+  {
+   "en": "Pulmonars",
+   "cn": "感染连枷",
+   "intl": "感染连枷",
+   "ben": "Pulmonars",
+   "bcn": "感染连枷",
+   "bintl": "感染连枷",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "感染连枷",
+   "wmEn": "Pulmonars"
+  },
+  {
+   "en": "Grinlok",
+   "cn": "葛恩火枪",
+   "intl": "葛恩火枪",
+   "ben": "Grinlok",
+   "bcn": "葛恩火枪",
+   "bintl": "葛恩火枪",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "葛恩火枪",
+   "wmEn": "Grinlok"
+  },
+  {
+   "en": "Halikar Wraith",
+   "cn": "红莲哈利卡",
+   "intl": "哈利卡亡魂",
+   "ben": "Halikar",
+   "bcn": "哈利卡",
+   "bintl": "哈利卡",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "哈利卡",
+   "wmEn": "Halikar"
+  },
+  {
+   "en": "Nami Skyla",
+   "cn": "海波斯库拉对剑",
+   "intl": "海波斯库拉对剑",
+   "ben": "Nami Skyla",
+   "bcn": "海波斯库拉对剑",
+   "bintl": "海波斯库拉对剑",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "海波斯库拉对剑",
+   "wmEn": "Nami Skyla"
+  },
+  {
+   "en": "Hek",
+   "cn": "海克",
+   "intl": "海克",
+   "ben": "Hek",
+   "bcn": "海克",
+   "bintl": "海克",
+   "cat": "霰弹",
+   "var": "本体",
+   "wmCn": "海克",
+   "wmEn": "Hek"
+  },
+  {
+   "en": "Hystrix",
+   "cn": "豪猪",
+   "intl": "豪猪",
+   "ben": "Hystrix",
+   "bcn": "豪猪",
+   "bintl": "豪猪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "豪猪",
+   "wmEn": "Hystrix"
+  },
+  {
+   "en": "Cyngas",
+   "cn": "合成燃气炮",
+   "intl": "合成燃气炮",
+   "ben": "Cyngas",
+   "bcn": "合成燃气炮",
+   "bintl": "合成燃气炮",
+   "cat": "曲翼",
+   "var": "本体",
+   "wmCn": "合成燃气炮",
+   "wmEn": "Cyngas"
+  },
+  {
+   "en": "Corvas",
+   "cn": "黑鸦",
+   "intl": "黑鸦",
+   "ben": "Corvas",
+   "bcn": "黑鸦",
+   "bintl": "黑鸦",
+   "cat": "曲翼",
+   "var": "本体",
+   "wmCn": "黑鸦",
+   "wmEn": "Corvas"
+  },
+  {
+   "en": "Arca Titron",
+   "cn": "弧电振子锤",
+   "intl": "弧电振子锤",
+   "ben": "Arca Titron",
+   "bcn": "弧电振子锤",
+   "bintl": "弧电振子锤",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "弧电振子锤",
+   "wmEn": "Arca Titron"
+  },
+  {
+   "en": "Scourge",
+   "cn": "祸根",
+   "intl": "祸根",
+   "ben": "Scourge",
+   "bcn": "祸根",
+   "bintl": "祸根",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "祸根",
+   "wmEn": "Scourge"
+  },
+  {
+   "en": "Laser Rifle",
+   "cn": "激光步枪",
+   "intl": "激光步枪",
+   "ben": "Laser Rifle",
+   "bcn": "激光步枪",
+   "bintl": "激光步枪",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "激光步枪",
+   "wmEn": "Laser Rifle"
+  },
+  {
+   "en": "Prime Laser Rifle",
+   "cn": "圣装激光步枪",
+   "intl": "激光步枪Prime",
+   "ben": "Laser Rifle",
+   "bcn": "激光步枪",
+   "bintl": "激光步枪",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "激光步枪",
+   "wmEn": "Laser Rifle"
+  },
+  {
+   "en": "Scoliac",
+   "cn": "嵴椎节鞭",
+   "intl": "嵴椎节鞭",
+   "ben": "Scoliac",
+   "bcn": "嵴椎节鞭",
+   "bintl": "嵴椎节鞭",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "脊椎节鞭",
+   "wmEn": "Scoliac"
+  },
+  {
+   "en": "Destreza",
+   "cn": "技巧之剑",
+   "intl": "技巧之剑",
+   "ben": "Destreza",
+   "bcn": "技巧之剑",
+   "bintl": "技巧之剑",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "技巧之剑",
+   "wmEn": "Destreza"
+  },
+  {
+   "en": "Destreza Prime",
+   "cn": "圣装技巧之剑",
+   "intl": "技巧之剑Prime",
+   "ben": "Destreza",
+   "bcn": "技巧之剑",
+   "bintl": "技巧之剑",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "技巧之剑",
+   "wmEn": "Destreza"
+  },
+  {
+   "en": "Arum Spinosa",
+   "cn": "疆南星刺",
+   "intl": "疆南星刺",
+   "ben": "Arum Spinosa",
+   "bcn": "疆南星刺",
+   "bintl": "疆南星刺",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "疆南星刺",
+   "wmEn": "Arum Spinosa"
+  },
+  {
+   "en": "Vulklok",
+   "cn": "电弧步枪",
+   "intl": "金工火枪",
+   "ben": "Vulklok",
+   "bcn": "电弧步枪",
+   "bintl": "金工火枪",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "金工火枪",
+   "wmEn": "Vulklok"
+  },
+  {
+   "en": "Purgator 1",
+   "cn": "净化者1",
+   "intl": "净化者1",
+   "ben": "Purgator 1",
+   "bcn": "净化者1",
+   "bintl": "净化者1",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "净化者 1",
+   "wmEn": "Purgator 1"
+  },
+  {
+   "en": "Snipetron",
+   "cn": "狙击特昂",
+   "intl": "狙击特昂",
+   "ben": "Snipetron",
+   "bcn": "狙击特昂",
+   "bintl": "狙击特昂",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "狙击特昂",
+   "wmEn": "Snipetron"
+  },
+  {
+   "en": "Snipetron Vandal",
+   "cn": "狙击特昂破坏者",
+   "intl": "狙击特昂破坏者",
+   "ben": "Snipetron",
+   "bcn": "狙击特昂",
+   "bintl": "狙击特昂",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "狙击特昂",
+   "wmEn": "Snipetron"
+  },
+  {
+   "en": "Masseter",
+   "cn": "咀嚼金杖",
+   "intl": "咀嚼金杖",
+   "ben": "Masseter",
+   "bcn": "咀嚼金杖",
+   "bintl": "咀嚼金杖",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "咀嚼金杖",
+   "wmEn": "Masseter"
+  },
+  {
+   "en": "Despair",
+   "cn": "绝望",
+   "intl": "绝望",
+   "ben": "Despair",
+   "bcn": "绝望",
+   "bintl": "绝望",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "绝望",
+   "wmEn": "Despair"
+  },
+  {
+   "en": "Gammacor",
+   "cn": "咖玛腕甲枪",
+   "intl": "咖玛腕甲枪",
+   "ben": "Gammacor",
+   "bcn": "咖玛腕甲枪",
+   "bintl": "咖玛腕甲枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "咖玛腕甲枪",
+   "wmEn": "Gammacor"
+  },
+  {
+   "en": "Cadus",
+   "cn": "卡德斯",
+   "intl": "卡德斯",
+   "ben": "Cadus",
+   "bcn": "卡德斯",
+   "bintl": "卡德斯",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "卡德斯",
+   "wmEn": "Cadus"
+  },
+  {
+   "en": "Karak Wraith",
+   "cn": "红莲卡拉克",
+   "intl": "卡拉克亡魂",
+   "ben": "Karak",
+   "bcn": "卡拉克",
+   "bintl": "卡拉克",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "卡拉克",
+   "wmEn": "Karak"
+  },
+  {
+   "en": "Kompressa",
+   "cn": "卡帕压力枪",
+   "intl": "卡帕压力枪",
+   "ben": "Kompressa",
+   "bcn": "卡帕压力枪",
+   "bintl": "卡帕压力枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "卡帕压力枪",
+   "wmEn": "Kompressa"
+  },
+  {
+   "en": "Karyst Prime",
+   "cn": "圣装凯洛斯特",
+   "intl": "凯洛斯特Prime",
+   "ben": "Karyst",
+   "bcn": "凯洛斯特",
+   "bintl": "凯洛斯特",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "凯洛斯特",
+   "wmEn": "Karyst"
+  },
+  {
+   "en": "Corinth",
+   "cn": "科林斯",
+   "intl": "科林斯",
+   "ben": "Corinth",
+   "bcn": "科林斯",
+   "bintl": "科林斯",
+   "cat": "霰弹",
+   "var": "本体",
+   "wmCn": "科林斯",
+   "wmEn": "Corinth"
+  },
+  {
+   "en": "Kronsh",
+   "cn": "重弯刃",
+   "intl": "客隆什",
+   "ben": "Kronsh",
+   "bcn": "重弯刃",
+   "bintl": "客隆什",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "客隆什",
+   "wmEn": "Kronsh"
+  },
+  {
+   "en": "Skana",
+   "cn": "空刃",
+   "intl": "空刃",
+   "ben": "Skana",
+   "bcn": "空刃",
+   "bintl": "空刃",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "空刃",
+   "wmEn": "Skana"
+  },
+  {
+   "en": "Skana Prime",
+   "cn": "圣装空刃",
+   "intl": "空刃Prime",
+   "ben": "Skana",
+   "bcn": "空刃",
+   "bintl": "空刃",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "空刃",
+   "wmEn": "Skana"
+  },
+  {
+   "en": "Dread",
+   "cn": "恐惧",
+   "intl": "恐惧",
+   "ben": "Dread",
+   "bcn": "恐惧",
+   "bintl": "恐惧",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "恐惧",
+   "wmEn": "Dread"
+  },
+  {
+   "en": "Kohm",
+   "cn": "寇恩热能枪",
+   "intl": "寇恩热能枪",
+   "ben": "Kohm",
+   "bcn": "寇恩热能枪",
+   "bintl": "寇恩热能枪",
+   "cat": "霰弹",
+   "var": "本体",
+   "wmCn": "寇恩热能枪",
+   "wmEn": "Kohm"
+  },
+  {
+   "en": "Mara Detron",
+   "cn": "苦痛德特昂",
+   "intl": "苦痛德特昂",
+   "ben": "Detron",
+   "bcn": "德特昂",
+   "bintl": "德特昂",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "德特昂",
+   "wmEn": "Detron"
+  },
+  {
+   "en": "Quartakk",
+   "cn": "夸塔克",
+   "intl": "夸塔克",
+   "ben": "Quartakk",
+   "bcn": "夸塔克",
+   "bintl": "夸塔克",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "夸塔克",
+   "wmEn": "Quartakk"
+  },
+  {
+   "en": "Quatz",
+   "cn": "夸兹",
+   "intl": "夸兹",
+   "ben": "Quatz",
+   "bcn": "夸兹",
+   "bintl": "夸兹",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "夸兹",
+   "wmEn": "Quatz"
+  },
+  {
+   "en": "Rabvee",
+   "cn": "重锤刃",
+   "intl": "拉比威",
+   "ben": "Rabvee",
+   "bcn": "重锤刃",
+   "bintl": "拉比威",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "拉比威",
+   "wmEn": "Rabvee"
+  },
+  {
+   "en": "Latron Prime",
+   "cn": "圣装拉特昂",
+   "intl": "拉特昂Prime",
+   "ben": "Latron",
+   "bcn": "拉特昂",
+   "bintl": "拉特昂",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "拉特昂",
+   "wmEn": "Latron"
+  },
+  {
+   "en": "Fang Prime",
+   "cn": "圣装狼牙",
+   "intl": "狼牙Prime",
+   "ben": "Fang",
+   "bcn": "狼牙",
+   "bintl": "狼牙",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "狼牙",
+   "wmEn": "Fang"
+  },
+  {
+   "en": "Lecta",
+   "cn": "勒克塔",
+   "intl": "勒克塔",
+   "ben": "Lecta",
+   "bcn": "勒克塔",
+   "bintl": "勒克塔",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "勒克塔",
+   "wmEn": "Lecta"
+  },
+  {
+   "en": "Lex",
+   "cn": "雷克斯",
+   "intl": "雷克斯",
+   "ben": "Lex",
+   "bcn": "雷克斯",
+   "bintl": "雷克斯",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "雷克斯",
+   "wmEn": "Lex"
+  },
+  {
+   "en": "Lex Prime",
+   "cn": "圣装雷克斯",
+   "intl": "雷克斯Prime",
+   "ben": "Lex",
+   "bcn": "雷克斯",
+   "bintl": "雷克斯",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "雷克斯",
+   "wmEn": "Lex"
+  },
+  {
+   "en": "Edun",
+   "cn": "雷石祭",
+   "intl": "雷石祭",
+   "ben": "Edun",
+   "bcn": "雷石祭",
+   "bintl": "雷石祭",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "雷石祭",
+   "wmEn": "Edun"
+  },
+  {
+   "en": "Prisma Angstrum",
+   "cn": "棱晶安格斯壮",
+   "intl": "棱晶安格斯壮",
+   "ben": "Angstrum",
+   "bcn": "安格斯壮",
+   "bintl": "安格斯壮",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "安格斯壮",
+   "wmEn": "Angstrum"
+  },
+  {
+   "en": "Prisma Obex",
+   "cn": "棱晶奥比克斯",
+   "intl": "棱晶奥比克斯",
+   "ben": "Obex",
+   "bcn": "奥比克斯",
+   "bintl": "奥比克斯",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "奥比克斯",
+   "wmEn": "Obex"
+  },
+  {
+   "en": "Prisma Grinlok",
+   "cn": "棱晶葛恩火枪",
+   "intl": "棱晶葛恩火枪",
+   "ben": "Grinlok",
+   "bcn": "葛恩火枪",
+   "bintl": "葛恩火枪",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "葛恩火枪",
+   "wmEn": "Grinlok"
+  },
+  {
+   "en": "Prisma Grakata",
+   "cn": "棱晶葛拉卡达",
+   "intl": "棱晶葛拉卡达",
+   "ben": "Grakata",
+   "bcn": "葛拉卡达",
+   "bintl": "葛拉卡达",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "葛拉卡达",
+   "wmEn": "Grakata"
+  },
+  {
+   "en": "Prisma Skana",
+   "cn": "棱晶空刃",
+   "intl": "棱晶空刃",
+   "ben": "Skana",
+   "bcn": "空刃",
+   "bintl": "空刃",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "空刃",
+   "wmEn": "Skana"
+  },
+  {
+   "en": "Prisma Gorgon",
+   "cn": "棱晶蛇发女妖",
+   "intl": "棱晶蛇发女妖",
+   "ben": "Gorgon",
+   "bcn": "蛇发女妖",
+   "bintl": "蛇发女妖",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "蛇发女妖",
+   "wmEn": "Gorgon"
+  },
+  {
+   "en": "Prisma Dual Decurions",
+   "cn": "棱晶什长双枪",
+   "intl": "棱晶什长双枪",
+   "ben": "Dual Decurion",
+   "bcn": "什长双枪",
+   "bintl": "什长双枪",
+   "cat": "曲翼",
+   "var": "变体·有本体",
+   "wmCn": "什长双枪",
+   "wmEn": "Dual Decurion"
+  },
+  {
+   "en": "Prisma Twin Gremlins",
+   "cn": "棱晶双子小精灵",
+   "intl": "棱晶双子小精灵",
+   "ben": "Twin Gremlins",
+   "bcn": "双子小精灵",
+   "bintl": "双子小精灵",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "双子小精灵",
+   "wmEn": "Twin Gremlins"
+  },
+  {
+   "en": "Glaxion",
+   "cn": "冷冻光束步枪",
+   "intl": "冷冻光束步枪",
+   "ben": "Glaxion",
+   "bcn": "冷冻光束步枪",
+   "bintl": "冷冻光束步枪",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "冷冻光束步枪",
+   "wmEn": "Glaxion"
+  },
+  {
+   "en": "Glaxion Vandal",
+   "cn": "冷冻光束步枪破坏者",
+   "intl": "冷冻光束步枪破坏者",
+   "ben": "Glaxion",
+   "bcn": "冷冻光束步枪",
+   "bintl": "冷冻光束步枪",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "冷冻光束步枪",
+   "wmEn": "Glaxion"
+  },
+  {
+   "en": "Panthera Prime",
+   "cn": "圣装猎豹",
+   "intl": "猎豹Prime",
+   "ben": "Panthera",
+   "bcn": "猎豹",
+   "bintl": "猎豹",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "猎豹",
+   "wmEn": "Panthera"
+  },
+  {
+   "en": "Falcor",
+   "cn": "猎鹰轮",
+   "intl": "猎鹰轮",
+   "ben": "Falcor",
+   "bcn": "猎鹰轮",
+   "bintl": "猎鹰轮",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "猎鹰轮",
+   "wmEn": "Falcor"
+  },
+  {
+   "en": "Dragon Nikana",
+   "cn": "龙之侍刃",
+   "intl": "龙之侍刃",
+   "ben": "Dragon Nikana",
+   "bcn": "龙之侍刃",
+   "bintl": "龙之侍刃",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "龙之侍刃",
+   "wmEn": "Dragon Nikana"
+  },
+  {
+   "en": "Boltor",
+   "cn": "螺钉步枪",
+   "intl": "螺钉步枪",
+   "ben": "Boltor",
+   "bcn": "螺钉步枪",
+   "bintl": "螺钉步枪",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "螺钉步枪",
+   "wmEn": "Boltor"
+  },
+  {
+   "en": "Boltor Prime",
+   "cn": "圣装螺钉步枪",
+   "intl": "螺钉步枪Prime",
+   "ben": "Boltor",
+   "bcn": "螺钉步枪",
+   "bintl": "螺钉步枪",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "螺钉步枪",
+   "wmEn": "Boltor"
+  },
+  {
+   "en": "Boltace",
+   "cn": "螺钉拐刃",
+   "intl": "螺钉拐刃",
+   "ben": "Boltace",
+   "bcn": "螺钉拐刃",
+   "bintl": "螺钉拐刃",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "螺钉拐刃",
+   "wmEn": "Boltace"
+  },
+  {
+   "en": "Akbolto",
+   "cn": "螺钉双枪",
+   "intl": "螺钉双枪",
+   "ben": "Akbolto",
+   "bcn": "螺钉双枪",
+   "bintl": "螺钉双枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "螺钉双枪",
+   "wmEn": "Akbolto"
+  },
+  {
+   "en": "Akbolto Prime",
+   "cn": "圣装螺钉双枪",
+   "intl": "螺钉双枪Prime",
+   "ben": "Akbolto",
+   "bcn": "螺钉双枪",
+   "bintl": "螺钉双枪",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "螺钉双枪",
+   "wmEn": "Akbolto"
+  },
+  {
+   "en": "Cerata",
+   "cn": "裸鳃刃",
+   "intl": "裸鳃刃",
+   "ben": "Cerata",
+   "bcn": "裸鳃刃",
+   "bintl": "裸鳃刃",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "裸鳃刃",
+   "wmEn": "Cerata"
+  },
+  {
+   "en": "Marelok",
+   "cn": "玛瑞火枪",
+   "intl": "玛瑞火枪",
+   "ben": "Marelok",
+   "bcn": "玛瑞火枪",
+   "bintl": "玛瑞火枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "玛瑞火枪",
+   "wmEn": "Marelok"
+  },
+  {
+   "en": "Hirudo",
+   "cn": "蚂蟥",
+   "intl": "蚂蟥",
+   "ben": "Hirudo",
+   "bcn": "蚂蟥",
+   "bintl": "蚂蟥",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "蚂蟥",
+   "wmEn": "Hirudo"
+  },
+  {
+   "en": "Magnus Prime",
+   "cn": "圣装猛犸手枪",
+   "intl": "麦格努斯Prime",
+   "ben": "Magnus",
+   "bcn": "麦格努斯",
+   "bintl": "麦格努斯",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "麦格努斯",
+   "wmEn": "Magnus"
+  },
+  {
+   "en": "Venato",
+   "cn": "脉纹",
+   "intl": "脉纹",
+   "ben": "Venato",
+   "bcn": "脉纹",
+   "bintl": "脉纹",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "脉纹",
+   "wmEn": "Venato"
+  },
+  {
+   "en": "Plinx",
+   "cn": "漫射者",
+   "intl": "漫射者",
+   "ben": "Plinx",
+   "bcn": "漫射者",
+   "bintl": "漫射者",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "漫射者",
+   "wmEn": "Plinx"
+  },
+  {
+   "en": "Komorex",
+   "cn": "猛毒",
+   "intl": "猛毒",
+   "ben": "Komorex",
+   "bcn": "猛毒",
+   "bintl": "猛毒",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "猛毒",
+   "wmEn": "Komorex"
+  },
+  {
+   "en": "Mire",
+   "cn": "米尔",
+   "intl": "米尔",
+   "ben": "Mire",
+   "bcn": "米尔",
+   "bintl": "米尔",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "米尔",
+   "wmEn": "Mire"
+  },
+  {
+   "en": "Mewan",
+   "cn": "重长刃",
+   "intl": "密丸",
+   "ben": "Mewan",
+   "bcn": "重长刃",
+   "bintl": "密丸",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "密丸",
+   "wmEn": "Mewan"
+  },
+  {
+   "en": "Pox",
+   "cn": "脓痘",
+   "intl": "脓痘",
+   "ben": "Pox",
+   "bcn": "脓痘",
+   "bintl": "脓痘",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "脓痘",
+   "wmEn": "Pox"
+  },
+  {
+   "en": "Ohma",
+   "cn": "欧玛",
+   "intl": "欧玛",
+   "ben": "Ohma",
+   "bcn": "欧玛",
+   "bintl": "欧玛",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "欧玛",
+   "wmEn": "Ohma"
+  },
+  {
+   "en": "Jat Kusar",
+   "cn": "喷射锁镰",
+   "intl": "喷射锁镰",
+   "ben": "Jat Kusar",
+   "bcn": "喷射锁镰",
+   "bintl": "喷射锁镰",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "喷射锁镰",
+   "wmEn": "Jat Kusar"
+  },
+  {
+   "en": "Mios",
+   "cn": "牝狮神",
+   "intl": "牝狮神",
+   "ben": "Mios",
+   "bcn": "牝狮神",
+   "bintl": "牝狮神",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "牡狮神",
+   "wmEn": "Mios"
+  },
+  {
+   "en": "Broken War",
+   "cn": "破碎的战争之剑",
+   "intl": "破碎的战争之剑",
+   "ben": "Broken War",
+   "bcn": "破碎的战争之剑",
+   "bintl": "破碎的战争之剑",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "破碎的战争之剑",
+   "wmEn": "Broken War"
+  },
+  {
+   "en": "Aksomati",
+   "cn": "轻灵月神双枪",
+   "intl": "轻灵月神双枪",
+   "ben": "Aksomati",
+   "bcn": "轻灵月神双枪",
+   "bintl": "轻灵月神双枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "轻灵月神双枪",
+   "wmEn": "Aksomati"
+  },
+  {
+   "en": "Higasa",
+   "cn": "晴日伞",
+   "intl": "晴日伞",
+   "ben": "Higasa",
+   "bcn": "晴日伞",
+   "bintl": "晴日伞",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "晴日伞",
+   "wmEn": "Higasa"
+  },
+  {
+   "en": "Javlok",
+   "cn": "燃焰标枪",
+   "intl": "燃焰标枪",
+   "ben": "Javlok",
+   "bcn": "燃焰标枪",
+   "bintl": "燃焰标枪",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "燃焰标枪",
+   "wmEn": "Javlok"
+  },
+  {
+   "en": "Ripkas",
+   "cn": "锐卡斯",
+   "intl": "锐卡斯",
+   "ben": "Ripkas",
+   "bcn": "锐卡斯",
+   "bintl": "锐卡斯",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "锐卡斯",
+   "wmEn": "Ripkas"
+  },
+  {
+   "en": "Knell",
+   "cn": "丧钟",
+   "intl": "丧钟",
+   "ben": "Knell",
+   "bcn": "丧钟",
+   "bintl": "丧钟",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "丧钟",
+   "wmEn": "Knell"
+  },
+  {
+   "en": "Kulstar",
+   "cn": "杀星",
+   "intl": "杀星",
+   "ben": "Kulstar",
+   "bcn": "杀星",
+   "bintl": "杀星",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "杀星",
+   "wmEn": "Kulstar"
+  },
+  {
+   "en": "Zarr",
+   "cn": "沙皇",
+   "intl": "沙皇",
+   "ben": "Zarr",
+   "bcn": "沙皇",
+   "bintl": "沙皇",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "沙皇",
+   "wmEn": "Zarr"
+  },
+  {
+   "en": "Sarpa",
+   "cn": "蛇刃",
+   "intl": "蛇刃",
+   "ben": "Sarpa",
+   "bcn": "蛇刃",
+   "bintl": "蛇刃",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "蛇刃",
+   "wmEn": "Sarpa"
+  },
+  {
+   "en": "Dual Decurion",
+   "cn": "什长双枪",
+   "intl": "什长双枪",
+   "ben": "Dual Decurion",
+   "bcn": "什长双枪",
+   "bintl": "什长双枪",
+   "cat": "曲翼",
+   "var": "本体",
+   "wmCn": "什长双枪",
+   "wmEn": "Dual Decurion"
+  },
+  {
+   "en": "Sancti Magistar",
+   "cn": "圣洁执法者",
+   "intl": "圣洁执法者",
+   "ben": "Magistar",
+   "bcn": "执法者",
+   "bintl": "执法者",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "执法者",
+   "wmEn": "Magistar"
+  },
+  {
+   "en": "Ghoulsaw",
+   "cn": "尸鬼电锯",
+   "intl": "尸鬼电锯",
+   "ben": "Ghoulsaw",
+   "bcn": "尸鬼电锯",
+   "bintl": "尸鬼电锯",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "尸鬼电锯",
+   "wmEn": "Ghoulsaw"
+  },
+  {
+   "en": "Steflos",
+   "cn": "石晶之花",
+   "intl": "石晶之花",
+   "ben": "Steflos",
+   "bcn": "石晶之花",
+   "bintl": "石晶之花",
+   "cat": "霰弹",
+   "var": "本体",
+   "wmCn": "石晶之花",
+   "wmEn": "Steflos"
+  },
+  {
+   "en": "Ogris",
+   "cn": "食人女魔",
+   "intl": "食人女魔",
+   "ben": "Ogris",
+   "bcn": "食人女魔",
+   "bintl": "食人女魔",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "食人女魔",
+   "wmEn": "Ogris"
+  },
+  {
+   "en": "Ambassador",
+   "cn": "使节",
+   "intl": "使节",
+   "ben": "Ambassador",
+   "bcn": "使节",
+   "bintl": "使节",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "使节",
+   "wmEn": "Ambassador"
+  },
+  {
+   "en": "Ocucor",
+   "cn": "视使之触",
+   "intl": "视使之触",
+   "ben": "Ocucor",
+   "bcn": "视使之触",
+   "bintl": "视使之触",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "视使之触",
+   "wmEn": "Ocucor"
+  },
+  {
+   "en": "Nagantaka",
+   "cn": "噬蛇弩",
+   "intl": "噬蛇弩",
+   "ben": "Nagantaka",
+   "bcn": "噬蛇弩",
+   "bintl": "噬蛇弩",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "噬蛇弩",
+   "wmEn": "Nagantaka"
+  },
+  {
+   "en": "Nagantaka Prime",
+   "cn": "圣装噬蛇弩",
+   "intl": "噬蛇弩Prime",
+   "ben": "Nagantaka",
+   "bcn": "噬蛇弩",
+   "bintl": "噬蛇弩",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "噬蛇弩",
+   "wmEn": "Nagantaka"
+  },
+  {
+   "en": "Pandero",
+   "cn": "手鼓",
+   "intl": "手鼓",
+   "ben": "Pandero",
+   "bcn": "手鼓",
+   "bintl": "手鼓",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "手鼓",
+   "wmEn": "Pandero"
+  },
+  {
+   "en": "Vectis",
+   "cn": "守望者",
+   "intl": "守望者",
+   "ben": "Vectis",
+   "bcn": "守望者",
+   "bintl": "守望者",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "守望者",
+   "wmEn": "Vectis"
+  },
+  {
+   "en": "Synoid Simulor",
+   "cn": "枢议重力奇点拟成枪",
+   "intl": "枢议重力奇点拟成枪",
+   "ben": "Simulor",
+   "bcn": "重力奇点拟成枪",
+   "bintl": "重力奇点拟成枪",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "重力奇点拟成枪",
+   "wmEn": "Simulor"
+  },
+  {
+   "en": "Dual Kamas Prime",
+   "cn": "圣装双短柄战镰",
+   "intl": "双短柄战镰Prime",
+   "ben": "Dual Kamas",
+   "bcn": "双短柄战镰",
+   "bintl": "双短柄战镰",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "双短柄战镰",
+   "wmEn": "Dual Kamas"
+  },
+  {
+   "en": "Twin Basolk",
+   "cn": "双子巴萨克",
+   "intl": "双子巴萨克",
+   "ben": "Twin Basolk",
+   "bcn": "双子巴萨克",
+   "bintl": "双子巴萨克",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "双子巴萨克",
+   "wmEn": "Twin Basolk"
+  },
+  {
+   "en": "Twin Grakatas",
+   "cn": "双子葛拉卡达",
+   "intl": "双子葛拉卡达",
+   "ben": "Twin Grakatas",
+   "bcn": "双子葛拉卡达",
+   "bintl": "双子葛拉卡达",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "双子葛拉卡达",
+   "wmEn": "Twin Grakatas"
+  },
+  {
+   "en": "Twin Krohkur",
+   "cn": "双子克鲁古尔",
+   "intl": "双子克鲁古尔",
+   "ben": "Twin Krohkur",
+   "bcn": "双子克鲁古尔",
+   "bintl": "双子克鲁古尔",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "双子克鲁古尔",
+   "wmEn": "Twin Krohkur"
+  },
+  {
+   "en": "Twin Kohmak",
+   "cn": "双子寇恩霰机枪",
+   "intl": "双子寇恩霰机枪",
+   "ben": "Twin Kohmak",
+   "bcn": "双子寇恩霰机枪",
+   "bintl": "双子寇恩霰机枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "双子寇恩霰机枪",
+   "wmEn": "Twin Kohmak"
+  },
+  {
+   "en": "Twin Rogga",
+   "cn": "双子罗迦霰弹枪",
+   "intl": "双子罗格",
+   "ben": "Twin Rogga",
+   "bcn": "双子罗迦霰弹枪",
+   "bintl": "双子罗格",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "双子罗格",
+   "wmEn": "Twin Rogga"
+  },
+  {
+   "en": "Twin Gremlins",
+   "cn": "双子小精灵",
+   "intl": "双子小精灵",
+   "ben": "Twin Gremlins",
+   "bcn": "双子小精灵",
+   "bintl": "双子小精灵",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "双子小精灵",
+   "wmEn": "Twin Gremlins"
+  },
+  {
+   "en": "Strun Prime",
+   "cn": "圣装斯特朗",
+   "intl": "斯特朗Prime",
+   "ben": "Strun",
+   "bcn": "斯特朗",
+   "bintl": "斯特朗",
+   "cat": "霰弹",
+   "var": "变体·有本体",
+   "wmCn": "斯特朗",
+   "wmEn": "Strun"
+  },
+  {
+   "en": "Cinta",
+   "cn": "遂心",
+   "intl": "遂心",
+   "ben": "Cinta",
+   "bcn": "遂心",
+   "bintl": "遂心",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "遂心",
+   "wmEn": "Cinta"
+  },
+  {
+   "en": "Astilla",
+   "cn": "碎裂者",
+   "intl": "碎裂者",
+   "ben": "Astilla",
+   "bcn": "碎裂者",
+   "bintl": "碎裂者",
+   "cat": "霰弹",
+   "var": "本体",
+   "wmCn": "碎裂者",
+   "wmEn": "Astilla"
+  },
+  {
+   "en": "Astilla Prime",
+   "cn": "圣装碎裂者",
+   "intl": "碎裂者Prime",
+   "ben": "Astilla",
+   "bcn": "碎裂者",
+   "bintl": "碎裂者",
+   "cat": "霰弹",
+   "var": "变体·有本体",
+   "wmCn": "碎裂者",
+   "wmEn": "Astilla"
+  },
+  {
+   "en": "Tipedo Prime",
+   "cn": "圣装提佩多",
+   "intl": "提佩多Prime",
+   "ben": "Tipedo",
+   "bcn": "提佩多",
+   "bintl": "提佩多",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "提佩多",
+   "wmEn": "Tipedo"
+  },
+  {
+   "en": "Ceti Lacera",
+   "cn": "天仓悲痛之刃",
+   "intl": "天仓悲痛之刃",
+   "ben": "Lacera",
+   "bcn": "悲痛之刃",
+   "bintl": "悲痛之刃",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "悲痛之刃",
+   "wmEn": "Lacera"
+  },
+  {
+   "en": "Zenistar",
+   "cn": "天顶之星",
+   "intl": "天顶之星",
+   "ben": "Zenistar",
+   "bcn": "天顶之星",
+   "bintl": "天顶之星",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "天顶之星",
+   "wmEn": "Zenistar"
+  },
+  {
+   "en": "Tekko Prime",
+   "cn": "圣装铁钩手甲",
+   "intl": "铁钩手甲Prime",
+   "ben": "Tekko",
+   "bcn": "铁钩手甲",
+   "bintl": "铁钩手甲",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "铁钩手甲",
+   "wmEn": "Tekko"
+  },
+  {
+   "en": "Ferrox",
+   "cn": "铁晶磁轨炮",
+   "intl": "铁晶磁轨炮",
+   "ben": "Ferrox",
+   "bcn": "铁晶磁轨炮",
+   "bintl": "铁晶磁轨炮",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "铁晶磁轨炮",
+   "wmEn": "Ferrox"
+  },
+  {
+   "en": "Torid",
+   "cn": "托里德",
+   "intl": "托里德",
+   "ben": "Torid",
+   "bcn": "托里德",
+   "bintl": "托里德",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "托里德",
+   "wmEn": "Torid"
+  },
+  {
+   "en": "Akvasto",
+   "cn": "瓦斯托双枪",
+   "intl": "瓦斯托双枪",
+   "ben": "Akvasto",
+   "bcn": "瓦斯托双枪",
+   "bintl": "瓦斯托双枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "瓦斯托双枪",
+   "wmEn": "Akvasto"
+  },
+  {
+   "en": "Akvasto Prime",
+   "cn": "圣装瓦斯托双枪",
+   "intl": "瓦斯托双枪Prime",
+   "ben": "Akvasto",
+   "bcn": "瓦斯托双枪",
+   "bintl": "瓦斯托双枪",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "瓦斯托双枪",
+   "wmEn": "Akvasto"
+  },
+  {
+   "en": "Evensong",
+   "cn": "晚祷",
+   "intl": "晚祷",
+   "ben": "Evensong",
+   "bcn": "晚祷",
+   "bintl": "晚祷",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "晚祷",
+   "wmEn": "Evensong"
+  },
+  {
+   "en": "Quassus",
+   "cn": "威震武扇",
+   "intl": "威震武扇",
+   "ben": "Quassus",
+   "bcn": "威震武扇",
+   "bintl": "威震武扇",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "威震武扇",
+   "wmEn": "Quassus"
+  },
+  {
+   "en": "Ooltha",
+   "cn": "长刃",
+   "intl": "乌尔萨",
+   "ben": "Ooltha",
+   "bcn": "长刃",
+   "bintl": "乌尔萨",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "乌尔萨",
+   "wmEn": "Ooltha"
+  },
+  {
+   "en": "Cernos",
+   "cn": "西诺斯",
+   "intl": "西诺斯",
+   "ben": "Cernos",
+   "bcn": "西诺斯",
+   "bintl": "西诺斯",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "西诺斯",
+   "wmEn": "Cernos"
+  },
+  {
+   "en": "Cernos Prime",
+   "cn": "圣装西诺斯",
+   "intl": "西诺斯Prime",
+   "ben": "Cernos",
+   "bcn": "西诺斯",
+   "bintl": "西诺斯",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "西诺斯",
+   "wmEn": "Cernos"
+  },
+  {
+   "en": "Sybaris",
+   "cn": "席芭莉丝",
+   "intl": "席芭莉丝",
+   "ben": "Sybaris",
+   "bcn": "席芭莉丝",
+   "bintl": "席芭莉丝",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "席芭莉丝",
+   "wmEn": "Sybaris"
+  },
+  {
+   "en": "Sybaris Prime",
+   "cn": "圣装席芭莉丝",
+   "intl": "席芭莉丝Prime",
+   "ben": "Sybaris",
+   "bcn": "席芭莉丝",
+   "bintl": "席芭莉丝",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "席芭莉丝",
+   "wmEn": "Sybaris"
+  },
+  {
+   "en": "Zylok",
+   "cn": "席尔火枪",
+   "intl": "席尔火枪",
+   "ben": "Zylok",
+   "bcn": "席尔火枪",
+   "bintl": "席尔火枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "席尔火枪",
+   "wmEn": "Zylok"
+  },
+  {
+   "en": "Silva & Aegis",
+   "cn": "席瓦&神盾",
+   "intl": "席瓦&神盾",
+   "ben": "Silva & Aegis",
+   "bcn": "席瓦&神盾",
+   "bintl": "席瓦&神盾",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "席瓦 & 神盾",
+   "wmEn": "Silva & Aegis"
+  },
+  {
+   "en": "Zymos",
+   "cn": "邪莫斯",
+   "intl": "邪莫斯",
+   "ben": "Zymos",
+   "bcn": "邪莫斯",
+   "bintl": "邪莫斯",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "邪莫斯",
+   "wmEn": "Zymos"
+  },
+  {
+   "en": "Tenet Tetra",
+   "cn": "信条特拉",
+   "intl": "信条特拉",
+   "ben": "Tetra",
+   "bcn": "特拉",
+   "bintl": "特拉",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "特拉",
+   "wmEn": "Tetra"
+  },
+  {
+   "en": "Tenet Ferrox",
+   "cn": "信条铁晶磁轨炮",
+   "intl": "信条铁晶磁轨炮",
+   "ben": "Ferrox",
+   "bcn": "铁晶磁轨炮",
+   "bintl": "铁晶磁轨炮",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "铁晶磁轨炮",
+   "wmEn": "Ferrox"
+  },
+  {
+   "en": "Tenet Flux Rifle",
+   "cn": "信条通量步枪",
+   "intl": "信条通量步枪",
+   "ben": "Flux Rifle",
+   "bcn": "通量步枪",
+   "bintl": "通量步枪",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "通量步枪",
+   "wmEn": "Flux Rifle"
+  },
+  {
+   "en": "Argo & Vel",
+   "cn": "星舟&帆",
+   "intl": "星舟&帆",
+   "ben": "Argo & Vel",
+   "bcn": "星舟&帆",
+   "bintl": "星舟&帆",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "星舟 & 帆",
+   "wmEn": "Argo & Vel"
+  },
+  {
+   "en": "Spira Prime",
+   "cn": "圣装旋刃飞刀",
+   "intl": "旋刃飞刀Prime",
+   "ben": "Spira",
+   "bcn": "旋刃飞刀",
+   "bintl": "旋刃飞刀",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "旋刃飞刀",
+   "wmEn": "Spira"
+  },
+  {
+   "en": "Hema",
+   "cn": "血肢",
+   "intl": "血肢",
+   "ben": "Hema",
+   "bcn": "血肢",
+   "bintl": "血肢",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "血肢",
+   "wmEn": "Hema"
+  },
+  {
+   "en": "Cycron",
+   "cn": "循环离子枪",
+   "intl": "循环离子枪",
+   "ben": "Cycron",
+   "bcn": "循环离子枪",
+   "bintl": "循环离子枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "循环离子枪",
+   "wmEn": "Cycron"
+  },
+  {
+   "en": "Quellor",
+   "cn": "压制者",
+   "intl": "压制者",
+   "ben": "Quellor",
+   "bcn": "压制者",
+   "bintl": "压制者",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "压制者",
+   "wmEn": "Quellor"
+  },
+  {
+   "en": "Argonak",
+   "cn": "氩格纳克",
+   "intl": "氩格纳克",
+   "ben": "Argonak",
+   "bcn": "氩格纳克",
+   "bintl": "氩格纳克",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "氩格纳克",
+   "wmEn": "Argonak"
+  },
+  {
+   "en": "Carmine Penta",
+   "cn": "嫣红 潘塔",
+   "intl": "嫣红 潘塔",
+   "ben": "Penta",
+   "bcn": "潘塔",
+   "bintl": "潘塔",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "潘塔",
+   "wmEn": "Penta"
+  },
+  {
+   "en": "Cobra & Crane Prime",
+   "cn": "圣装眼镜蛇 & 鹤",
+   "intl": "眼镜蛇&鹤Prime",
+   "ben": "Cobra & Crane",
+   "bcn": "眼镜蛇&鹤",
+   "bintl": "眼镜蛇&鹤",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "眼镜蛇 & 鹤",
+   "wmEn": "Cobra & Crane"
+  },
+  {
+   "en": "Akbronco Prime",
+   "cn": "圣装野马双枪",
+   "intl": "野马双枪Prime",
+   "ben": "Akbronco",
+   "bcn": "野马双枪",
+   "bintl": "野马双枪",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "野马双枪",
+   "wmEn": "Akbronco"
+  },
+  {
+   "en": "Catabolyst",
+   "cn": "异化者",
+   "intl": "异化者",
+   "ben": "Catabolyst",
+   "bcn": "异化者",
+   "bintl": "异化者",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "异化者",
+   "wmEn": "Catabolyst"
+  },
+  {
+   "en": "Ekhein",
+   "cn": "映声战锤",
+   "intl": "映声战锤",
+   "ben": "Ekhein",
+   "bcn": "映声战锤",
+   "bintl": "映声战锤",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "映声战锤",
+   "wmEn": "Ekhein"
+  },
+  {
+   "en": "Vaykor Sydon",
+   "cn": "勇气恶龙",
+   "intl": "勇气恶龙",
+   "ben": "Sydon",
+   "bcn": "恶龙",
+   "bintl": "恶龙",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "恶龙",
+   "wmEn": "Sydon"
+  },
+  {
+   "en": "Vaykor Hek",
+   "cn": "勇气海克",
+   "intl": "勇气海克",
+   "ben": "Hek",
+   "bcn": "海克",
+   "bintl": "海克",
+   "cat": "霰弹",
+   "var": "变体·有本体",
+   "wmCn": "海克",
+   "wmEn": "Hek"
+  },
+  {
+   "en": "Perigale",
+   "cn": "月面狂风",
+   "intl": "月面狂风",
+   "ben": "Perigale",
+   "bcn": "月面狂风",
+   "bintl": "月面狂风",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "月面狂风",
+   "wmEn": "Perigale"
+  },
+  {
+   "en": "Soma",
+   "cn": "月神",
+   "intl": "月神",
+   "ben": "Soma",
+   "bcn": "月神",
+   "bintl": "月神",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "月神",
+   "wmEn": "Soma"
+  },
+  {
+   "en": "Dual Cleavers",
+   "cn": "斩肉双刀",
+   "intl": "斩肉双刀",
+   "ben": "Dual Cleavers",
+   "bcn": "斩肉双刀",
+   "bintl": "斩肉双刀",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "斩肉双刀",
+   "wmEn": "Dual Cleavers"
+  },
+  {
+   "en": "Glaive",
+   "cn": "战刃",
+   "intl": "战刃",
+   "ben": "Glaive",
+   "bcn": "战刃",
+   "bintl": "战刃",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "战刃",
+   "wmEn": "Glaive"
+  },
+  {
+   "en": "Vericres",
+   "cn": "真月武扇",
+   "intl": "真月武扇",
+   "ben": "Vericres",
+   "bcn": "真月武扇",
+   "bintl": "真月武扇",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "真月武扇",
+   "wmEn": "Vericres"
+  },
+  {
+   "en": "Tonkor",
+   "cn": "征服榴炮",
+   "intl": "征服榴炮",
+   "ben": "Tonkor",
+   "bcn": "征服榴炮",
+   "bintl": "征服榴炮",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "征服榴炮",
+   "wmEn": "Tonkor"
+  },
+  {
+   "en": "Telos Boltor",
+   "cn": "终极螺钉步枪",
+   "intl": "终极螺钉步枪",
+   "ben": "Boltor",
+   "bcn": "螺钉步枪",
+   "bintl": "螺钉步枪",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "螺钉步枪",
+   "wmEn": "Boltor"
+  },
+  {
+   "en": "Telos Akbolto",
+   "cn": "终极螺钉双枪",
+   "intl": "终极螺钉双枪",
+   "ben": "Akbolto",
+   "bcn": "螺钉双枪",
+   "bintl": "螺钉双枪",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "螺钉双枪",
+   "wmEn": "Akbolto"
+  },
+  {
+   "en": "Fragor",
+   "cn": "重击巨锤",
+   "intl": "重击巨锤",
+   "ben": "Fragor",
+   "bcn": "重击巨锤",
+   "bintl": "重击巨锤",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "重击巨锤",
+   "wmEn": "Fragor"
+  },
+  {
+   "en": "Simulor",
+   "cn": "重力奇点拟成枪",
+   "intl": "重力奇点拟成枪",
+   "ben": "Simulor",
+   "bcn": "重力奇点拟成枪",
+   "bintl": "重力奇点拟成枪",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "重力奇点拟成枪",
+   "wmEn": "Simulor"
+  },
+  {
+   "en": "Zhuge",
+   "cn": "诸葛连弩",
+   "intl": "诸葛连弩",
+   "ben": "Zhuge",
+   "bcn": "诸葛连弩",
+   "bintl": "诸葛连弩",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "诸葛连弩",
+   "wmEn": "Zhuge"
+  },
+  {
+   "en": "Zhuge Prime",
+   "cn": "圣装诸葛连弩",
+   "intl": "诸葛连弩Prime",
+   "ben": "Zhuge",
+   "bcn": "诸葛连弩",
+   "bintl": "诸葛连弩",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "诸葛连弩",
+   "wmEn": "Zhuge"
+  },
+  {
+   "en": "Velox",
+   "cn": "逐电",
+   "intl": "逐电",
+   "ben": "Velox",
+   "bcn": "逐电",
+   "bintl": "逐电",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "逐电",
+   "wmEn": "Velox"
+  },
+  {
+   "en": "Caustacyst",
+   "cn": "灼蚀变体镰",
+   "intl": "灼蚀变体镰",
+   "ben": "Caustacyst",
+   "bcn": "灼蚀变体镰",
+   "bintl": "灼蚀变体镰",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "灼蚀变体镰",
+   "wmEn": "Caustacyst"
+  },
+  {
+   "en": "Dex Dakra",
+   "cn": "灵敏达克拉双剑",
+   "intl": "Dex达克拉双剑",
+   "ben": "Dex Dakra",
+   "bcn": "灵敏达克拉双剑",
+   "bintl": "Dex达克拉双剑",
+   "cat": "近战",
+   "var": "变体·无本体",
+   "wmCn": "Dex 达克拉双剑",
+   "wmEn": "Dex Dakra"
+  },
+  {
+   "en": "Dex Furis",
+   "cn": "灵敏盗贼双枪",
+   "intl": "Dex盗贼双枪",
+   "ben": "Furis",
+   "bcn": "盗贼",
+   "bintl": "盗贼",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "盗贼",
+   "wmEn": "Furis"
+  },
+  {
+   "en": "Mk1-Bo",
+   "cn": "试用型-玻之武杖",
+   "intl": "MK1-玻之武杖",
+   "ben": "Bo",
+   "bcn": "玻之武杖",
+   "bintl": "玻之武杖",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "玻之武杖",
+   "wmEn": "Bo"
+  },
+  {
+   "en": "Mk1-Braton",
+   "cn": "试用型-布莱顿",
+   "intl": "MK1-布莱顿",
+   "ben": "Braton",
+   "bcn": "布莱顿",
+   "bintl": "布莱顿",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "布莱顿",
+   "wmEn": "Braton"
+  },
+  {
+   "en": "Mk1-Furis",
+   "cn": "试用型-盗贼",
+   "intl": "MK1-盗贼",
+   "ben": "Furis",
+   "bcn": "盗贼",
+   "bintl": "盗贼",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "盗贼",
+   "wmEn": "Furis"
+  },
+  {
+   "en": "Mk1-Furax",
+   "cn": "试用型-弗拉克斯",
+   "intl": "MK1-弗拉克斯",
+   "ben": "Furax",
+   "bcn": "弗拉克斯",
+   "bintl": "弗拉克斯",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "弗拉克斯",
+   "wmEn": "Furax"
+  },
+  {
+   "en": "Mk1-Kunai",
+   "cn": "试用型-苦无",
+   "intl": "MK1-苦无",
+   "ben": "Kunai",
+   "bcn": "苦无",
+   "bintl": "苦无",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "苦无",
+   "wmEn": "Kunai"
+  },
+  {
+   "en": "Mk1-Paris",
+   "cn": "试用型-帕里斯",
+   "intl": "MK1-帕里斯",
+   "ben": "Paris",
+   "bcn": "帕里斯",
+   "bintl": "帕里斯",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "帕里斯",
+   "wmEn": "Paris"
+  },
+  {
+   "en": "Mk1-Strun",
+   "cn": "试用型-斯特朗",
+   "intl": "MK1-斯特朗",
+   "ben": "Strun",
+   "bcn": "斯特朗",
+   "bintl": "斯特朗",
+   "cat": "霰弹",
+   "var": "变体·有本体",
+   "wmCn": "斯特朗",
+   "wmEn": "Strun"
+  },
+  {
+   "en": "Acrid",
+   "cn": "阿克里德",
+   "intl": "阿克里德",
+   "ben": "Acrid",
+   "bcn": "阿克里德",
+   "bintl": "阿克里德",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "阿克里德",
+   "wmEn": "Acrid"
+  },
+  {
+   "en": "Attica",
+   "cn": "阿提卡",
+   "intl": "阿提卡",
+   "ben": "Attica",
+   "bcn": "阿提卡",
+   "bintl": "阿提卡",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "阿提卡",
+   "wmEn": "Attica"
+  },
+  {
+   "en": "Embolist",
+   "cn": "安柏勒斯",
+   "intl": "安柏勒斯",
+   "ben": "Embolist",
+   "bcn": "安柏勒斯",
+   "bintl": "安柏勒斯",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "安柏勒斯",
+   "wmEn": "Embolist"
+  },
+  {
+   "en": "Angstrum",
+   "cn": "安格斯壮",
+   "intl": "安格斯壮",
+   "ben": "Angstrum",
+   "bcn": "安格斯壮",
+   "bintl": "安格斯壮",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "安格斯壮",
+   "wmEn": "Angstrum"
+  },
+  {
+   "en": "Dark Sword",
+   "cn": "暗黑长剑",
+   "intl": "暗黑长剑",
+   "ben": "Dark Sword",
+   "bcn": "暗黑长剑",
+   "bintl": "暗黑长剑",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "暗黑长剑",
+   "wmEn": "Dark Sword"
+  },
+  {
+   "en": "Buzlok",
+   "cn": "巴兹火枪",
+   "intl": "巴兹火枪",
+   "ben": "Buzlok",
+   "bcn": "巴兹火枪",
+   "bintl": "巴兹火枪",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "巴兹火枪",
+   "wmEn": "Buzlok"
+  },
+  {
+   "en": "Lacera",
+   "cn": "悲痛之刃",
+   "intl": "悲痛之刃",
+   "ben": "Lacera",
+   "bcn": "悲痛之刃",
+   "bintl": "悲痛之刃",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "悲痛之刃",
+   "wmEn": "Lacera"
+  },
+  {
+   "en": "Kraken",
+   "cn": "北海巨妖",
+   "intl": "北海巨妖",
+   "ben": "Kraken",
+   "bcn": "北海巨妖",
+   "bintl": "北海巨妖",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "北海巨妖",
+   "wmEn": "Kraken"
+  },
+  {
+   "en": "Bo",
+   "cn": "玻之武杖",
+   "intl": "玻之武杖",
+   "ben": "Bo",
+   "bcn": "玻之武杖",
+   "bintl": "玻之武杖",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "玻之武杖",
+   "wmEn": "Bo"
+  },
+  {
+   "en": "Bo Prime",
+   "cn": "圣装玻之武杖",
+   "intl": "玻之武杖Prime",
+   "ben": "Bo",
+   "bcn": "玻之武杖",
+   "bintl": "玻之武杖",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "玻之武杖",
+   "wmEn": "Bo"
+  },
+  {
+   "en": "Burston",
+   "cn": "伯斯顿",
+   "intl": "伯斯顿",
+   "ben": "Burston",
+   "bcn": "伯斯顿",
+   "bintl": "伯斯顿",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "伯斯顿",
+   "wmEn": "Burston"
+  },
+  {
+   "en": "Burston Prime",
+   "cn": "圣装伯斯顿",
+   "intl": "伯斯顿Prime",
+   "ben": "Burston",
+   "bcn": "伯斯顿",
+   "bintl": "伯斯顿",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "伯斯顿",
+   "wmEn": "Burston"
+  },
+  {
+   "en": "Braton",
+   "cn": "布莱顿",
+   "intl": "布莱顿",
+   "ben": "Braton",
+   "bcn": "布莱顿",
+   "bintl": "布莱顿",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "布莱顿",
+   "wmEn": "Braton"
+  },
+  {
+   "en": "Ether Daggers",
+   "cn": "苍穹匕首",
+   "intl": "苍穹匕首",
+   "ben": "Ether Daggers",
+   "bcn": "苍穹匕首",
+   "bintl": "苍穹匕首",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "苍穹匕首",
+   "wmEn": "Ether Daggers"
+  },
+  {
+   "en": "Dual Ether",
+   "cn": "苍穹双剑",
+   "intl": "苍穹双剑",
+   "ben": "Dual Ether",
+   "bcn": "苍穹双剑",
+   "bintl": "苍穹双剑",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "苍穹双剑",
+   "wmEn": "Dual Ether"
+  },
+  {
+   "en": "Ether Reaper",
+   "cn": "苍穹死神",
+   "intl": "苍穹死神",
+   "ben": "Ether Reaper",
+   "bcn": "苍穹死神",
+   "bintl": "苍穹死神",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "苍穹死神",
+   "wmEn": "Ether Reaper"
+  },
+  {
+   "en": "Ether Sword",
+   "cn": "苍穹之剑",
+   "intl": "苍穹之剑",
+   "ben": "Ether Sword",
+   "bcn": "苍穹之剑",
+   "bintl": "苍穹之剑",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "苍穹之剑",
+   "wmEn": "Ether Sword"
+  },
+  {
+   "en": "Volnus",
+   "cn": "创伤",
+   "intl": "创伤",
+   "ben": "Volnus",
+   "bcn": "创伤",
+   "bintl": "创伤",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "创伤",
+   "wmEn": "Volnus"
+  },
+  {
+   "en": "Hind",
+   "cn": "雌鹿",
+   "intl": "雌鹿",
+   "ben": "Hind",
+   "bcn": "雌鹿",
+   "bintl": "雌鹿",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "雌鹿",
+   "wmEn": "Hind"
+  },
+  {
+   "en": "Tysis",
+   "cn": "泰希斯异形",
+   "intl": "啐沫者",
+   "ben": "Tysis",
+   "bcn": "泰希斯异形",
+   "bintl": "啐沫者",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "啐沫者",
+   "wmEn": "Tysis"
+  },
+  {
+   "en": "Convectrix",
+   "cn": "导热聚焦枪",
+   "intl": "导热聚焦枪",
+   "ben": "Convectrix",
+   "bcn": "导热聚焦枪",
+   "bintl": "导热聚焦枪",
+   "cat": "霰弹",
+   "var": "本体",
+   "wmCn": "导热聚焦枪",
+   "wmEn": "Convectrix"
+  },
+  {
+   "en": "Furis",
+   "cn": "盗贼",
+   "intl": "盗贼",
+   "ben": "Furis",
+   "bcn": "盗贼",
+   "bintl": "盗贼",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "盗贼",
+   "wmEn": "Furis"
+  },
+  {
+   "en": "Afuris",
+   "cn": "盗贼双枪",
+   "intl": "盗贼双枪",
+   "ben": "Afuris",
+   "bcn": "盗贼双枪",
+   "bintl": "盗贼双枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "盗贼双枪",
+   "wmEn": "Afuris"
+  },
+  {
+   "en": "Dera",
+   "cn": "德拉",
+   "intl": "德拉",
+   "ben": "Dera",
+   "bcn": "德拉",
+   "bintl": "德拉",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "德拉",
+   "wmEn": "Dera"
+  },
+  {
+   "en": "Dera Vandal",
+   "cn": "德拉破坏者",
+   "intl": "德拉破坏者",
+   "ben": "Dera",
+   "bcn": "德拉",
+   "bintl": "德拉",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "德拉",
+   "wmEn": "Dera"
+  },
+  {
+   "en": "Plasma Sword",
+   "cn": "等离子长剑",
+   "intl": "等离子长剑",
+   "ben": "Plasma Sword",
+   "bcn": "等离子长剑",
+   "bintl": "等离子长剑",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "等离子长剑",
+   "wmEn": "Plasma Sword"
+  },
+  {
+   "en": "Galvacord",
+   "cn": "电流刺索",
+   "intl": "电流刺索",
+   "ben": "Galvacord",
+   "bcn": "电流刺索",
+   "bintl": "电流刺索",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "电流刺索",
+   "wmEn": "Galvacord"
+  },
+  {
+   "en": "Serro",
+   "cn": "电能斩锯",
+   "intl": "电能斩锯",
+   "ben": "Serro",
+   "bcn": "电能斩锯",
+   "bintl": "电能斩锯",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "电能斩锯",
+   "wmEn": "Serro"
+  },
+  {
+   "en": "Stinger",
+   "cn": "毒刺",
+   "intl": "毒刺",
+   "ben": "Stinger",
+   "bcn": "毒刺",
+   "bintl": "毒刺",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "毒刺",
+   "wmEn": "Stinger"
+  },
+  {
+   "en": "Pupacyst",
+   "cn": "毒囊骨茧",
+   "intl": "毒囊骨茧",
+   "ben": "Pupacyst",
+   "bcn": "毒囊骨茧",
+   "bintl": "毒囊骨茧",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "毒囊骨茧",
+   "wmEn": "Pupacyst"
+  },
+  {
+   "en": "Dual Toxocyst",
+   "cn": "毒囊双枪",
+   "intl": "毒囊双枪",
+   "ben": "Dual Toxocyst",
+   "bcn": "毒囊双枪",
+   "bintl": "毒囊双枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "毒囊双枪",
+   "wmEn": "Dual Toxocyst"
+  },
+  {
+   "en": "Kama",
+   "cn": "短柄战镰",
+   "intl": "短柄战镰",
+   "ben": "Kama",
+   "bcn": "短柄战镰",
+   "bintl": "短柄战镰",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "短柄战镰",
+   "wmEn": "Kama"
+  },
+  {
+   "en": "Anku",
+   "cn": "夺魂死神",
+   "intl": "夺魂死神",
+   "ben": "Anku",
+   "bcn": "夺魂死神",
+   "bintl": "夺魂死神",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "夺魂死神",
+   "wmEn": "Anku"
+  },
+  {
+   "en": "Sydon",
+   "cn": "恶龙",
+   "intl": "恶龙",
+   "ben": "Sydon",
+   "bcn": "恶龙",
+   "bintl": "恶龙",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "恶龙",
+   "wmEn": "Sydon"
+  },
+  {
+   "en": "Sobek",
+   "cn": "鳄神",
+   "intl": "鳄神",
+   "ben": "Sobek",
+   "bcn": "鳄神",
+   "bintl": "鳄神",
+   "cat": "霰弹",
+   "var": "本体",
+   "wmCn": "鳄神",
+   "wmEn": "Sobek"
+  },
+  {
+   "en": "Scindo",
+   "cn": "分裂斩斧",
+   "intl": "分裂斩斧",
+   "ben": "Scindo",
+   "bcn": "分裂斩斧",
+   "bintl": "分裂斩斧",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "分裂斩斧",
+   "wmEn": "Scindo"
+  },
+  {
+   "en": "Dual Raza",
+   "cn": "锋月双斧",
+   "intl": "锋月双斧",
+   "ben": "Dual Raza",
+   "bcn": "锋月双斧",
+   "bintl": "锋月双斧",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "锋月双斧",
+   "wmEn": "Dual Raza"
+  },
+  {
+   "en": "Furax",
+   "cn": "弗拉克斯",
+   "intl": "弗拉克斯",
+   "ben": "Furax",
+   "bcn": "弗拉克斯",
+   "bintl": "弗拉克斯",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "弗拉克斯",
+   "wmEn": "Furax"
+  },
+  {
+   "en": "Paracyst",
+   "cn": "附肢寄生者",
+   "intl": "附肢寄生者",
+   "ben": "Paracyst",
+   "bcn": "附肢寄生者",
+   "bintl": "附肢寄生者",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "附肢寄生者",
+   "wmEn": "Paracyst"
+  },
+  {
+   "en": "Gram",
+   "cn": "格拉姆",
+   "intl": "格拉姆",
+   "ben": "Gram",
+   "bcn": "格拉姆",
+   "bintl": "格拉姆",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "格拉姆",
+   "wmEn": "Gram"
+  },
+  {
+   "en": "Grakata",
+   "cn": "葛拉卡达",
+   "intl": "葛拉卡达",
+   "ben": "Grakata",
+   "bcn": "葛拉卡达",
+   "bintl": "葛拉卡达",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "葛拉卡达",
+   "wmEn": "Grakata"
+  },
+  {
+   "en": "Spectra",
+   "cn": "光谱切割器",
+   "intl": "光谱切割器",
+   "ben": "Spectra",
+   "bcn": "光谱切割器",
+   "bintl": "光谱切割器",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "光谱切割器",
+   "wmEn": "Spectra"
+  },
+  {
+   "en": "Spectra Vandal",
+   "cn": "光谱切割器破坏者",
+   "intl": "光谱切割器破坏者",
+   "ben": "Spectra",
+   "bcn": "光谱切割器",
+   "bintl": "光谱切割器",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "光谱切割器",
+   "wmEn": "Spectra"
+  },
+  {
+   "en": "Halikar",
+   "cn": "哈利卡",
+   "intl": "哈利卡",
+   "ben": "Halikar",
+   "bcn": "哈利卡",
+   "bintl": "哈利卡",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "哈利卡",
+   "wmEn": "Halikar"
+  },
+  {
+   "en": "Harpak",
+   "cn": "哈帕克",
+   "intl": "哈帕克",
+   "ben": "Harpak",
+   "bcn": "哈帕克",
+   "bintl": "哈帕克",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "哈帕克",
+   "wmEn": "Harpak"
+  },
+  {
+   "en": "Nami Solo",
+   "cn": "海波单剑",
+   "intl": "海波单剑",
+   "ben": "Nami Solo",
+   "bcn": "海波单剑",
+   "bintl": "海波单剑",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "海波单剑",
+   "wmEn": "Nami Solo"
+  },
+  {
+   "en": "Heliocor",
+   "cn": "赫利俄光锤",
+   "intl": "赫利俄光锤",
+   "ben": "Heliocor",
+   "bcn": "赫利俄光锤",
+   "bintl": "赫利俄光锤",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "赫利俄光锤",
+   "wmEn": "Heliocor"
+  },
+  {
+   "en": "Cassowar",
+   "cn": "鹤鸵长戟",
+   "intl": "鹤鸵长戟",
+   "ben": "Cassowar",
+   "bcn": "鹤鸵长戟",
+   "bintl": "鹤鸵长戟",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "鹤鸵长戟",
+   "wmEn": "Cassowar"
+  },
+  {
+   "en": "Kestrel",
+   "cn": "红隼",
+   "intl": "红隼",
+   "ben": "Kestrel",
+   "bcn": "红隼",
+   "bintl": "红隼",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "红隼",
+   "wmEn": "Kestrel"
+  },
+  {
+   "en": "Akzani",
+   "cn": "荒谬双枪",
+   "intl": "荒谬双枪",
+   "ben": "Akzani",
+   "bcn": "荒谬双枪",
+   "bintl": "荒谬双枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "荒谬双枪",
+   "wmEn": "Akzani"
+  },
+  {
+   "en": "Kronen",
+   "cn": "皇家拐刃",
+   "intl": "皇家拐刃",
+   "ben": "Kronen",
+   "bcn": "皇家拐刃",
+   "bintl": "皇家拐刃",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "皇家拐刃",
+   "wmEn": "Kronen"
+  },
+  {
+   "en": "Burst Laser",
+   "cn": "激光点发",
+   "intl": "激光点发",
+   "ben": "Burst Laser",
+   "bcn": "激光点发",
+   "bintl": "激光点发",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "激光点发",
+   "wmEn": "Burst Laser"
+  },
+  {
+   "en": "Burst Laser Prime",
+   "cn": "圣装激光点发",
+   "intl": "激光点发Prime",
+   "ben": "Burst Laser",
+   "bcn": "激光点发",
+   "bintl": "激光点发",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "激光点发",
+   "wmEn": "Burst Laser"
+  },
+  {
+   "en": "Gazal Machete",
+   "cn": "加扎勒反曲刀",
+   "intl": "加扎勒反曲刀",
+   "ben": "Gazal Machete",
+   "bcn": "加扎勒反曲刀",
+   "bintl": "加扎勒反曲刀",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "加扎勒反曲刀",
+   "wmEn": "Gazal Machete"
+  },
+  {
+   "en": "Ankyros",
+   "cn": "甲龙双拳",
+   "intl": "甲龙双拳",
+   "ben": "Ankyros",
+   "bcn": "甲龙双拳",
+   "bintl": "甲龙双拳",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "甲龙双拳",
+   "wmEn": "Ankyros"
+  },
+  {
+   "en": "Ankyros Prime",
+   "cn": "圣装甲龙双拳",
+   "intl": "甲龙双拳Prime",
+   "ben": "Ankyros",
+   "bcn": "甲龙双拳",
+   "bintl": "甲龙双拳",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "甲龙双拳",
+   "wmEn": "Ankyros"
+  },
+  {
+   "en": "Ninkondi",
+   "cn": "降灵追猎者",
+   "intl": "降灵追猎者",
+   "ben": "Ninkondi",
+   "bcn": "降灵追猎者",
+   "bintl": "降灵追猎者",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "降灵追猎者",
+   "wmEn": "Ninkondi"
+  },
+  {
+   "en": "Vulkar",
+   "cn": "金工火神",
+   "intl": "金工火神",
+   "ben": "Vulkar",
+   "bcn": "金工火神",
+   "bintl": "金工火神",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "金工火神",
+   "wmEn": "Vulkar"
+  },
+  {
+   "en": "Vulkar Wraith",
+   "cn": "红莲金工火神",
+   "intl": "金工火神亡魂",
+   "ben": "Vulkar",
+   "bcn": "金工火神",
+   "bintl": "金工火神",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "金工火神",
+   "wmEn": "Vulkar"
+  },
+  {
+   "en": "Gunsen",
+   "cn": "军扇",
+   "intl": "军扇",
+   "ben": "Gunsen",
+   "bcn": "军扇",
+   "bintl": "军扇",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "军扇",
+   "wmEn": "Gunsen"
+  },
+  {
+   "en": "Karak",
+   "cn": "卡拉克",
+   "intl": "卡拉克",
+   "ben": "Karak",
+   "bcn": "卡拉克",
+   "bintl": "卡拉克",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "卡拉克",
+   "wmEn": "Karak"
+  },
+  {
+   "en": "Karyst",
+   "cn": "凯洛斯特",
+   "intl": "凯洛斯特",
+   "ben": "Karyst",
+   "bcn": "凯洛斯特",
+   "bintl": "凯洛斯特",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "凯洛斯特",
+   "wmEn": "Karyst"
+  },
+  {
+   "en": "Kogake",
+   "cn": "科加基",
+   "intl": "科加基",
+   "ben": "Kogake",
+   "bcn": "科加基",
+   "bintl": "科加基",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "科加基",
+   "wmEn": "Kogake"
+  },
+  {
+   "en": "Kogake Prime",
+   "cn": "圣装科加基",
+   "intl": "科加基Prime",
+   "ben": "Kogake",
+   "bcn": "科加基",
+   "bintl": "科加基",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "科加基",
+   "wmEn": "Kogake"
+  },
+  {
+   "en": "Krohkur",
+   "cn": "克鲁古尔",
+   "intl": "克鲁古尔",
+   "ben": "Krohkur",
+   "bcn": "克鲁古尔",
+   "bintl": "克鲁古尔",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "克鲁古尔",
+   "wmEn": "Krohkur"
+  },
+  {
+   "en": "Cronus",
+   "cn": "克洛诺斯",
+   "intl": "克洛诺斯",
+   "ben": "Cronus",
+   "bcn": "克洛诺斯",
+   "bintl": "克洛诺斯",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "克洛诺斯",
+   "wmEn": "Cronus"
+  },
+  {
+   "en": "Dual Skana",
+   "cn": "空刃双刀",
+   "intl": "空刃双刀",
+   "ben": "Dual Skana",
+   "bcn": "空刃双刀",
+   "bintl": "空刃双刀",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "空刃双刀",
+   "wmEn": "Dual Skana"
+  },
+  {
+   "en": "Kohmak",
+   "cn": "寇恩霰机枪",
+   "intl": "寇恩霰机枪",
+   "ben": "Kohmak",
+   "bcn": "寇恩霰机枪",
+   "bintl": "寇恩霰机枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "寇恩霰机枪",
+   "wmEn": "Kohmak"
+  },
+  {
+   "en": "Kunai",
+   "cn": "苦无",
+   "intl": "苦无",
+   "ben": "Kunai",
+   "bcn": "苦无",
+   "bintl": "苦无",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "苦无",
+   "wmEn": "Kunai"
+  },
+  {
+   "en": "Korrudo",
+   "cn": "库鲁多",
+   "intl": "库鲁多",
+   "ben": "Korrudo",
+   "bcn": "库鲁多",
+   "bintl": "库鲁多",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "库鲁多",
+   "wmEn": "Korrudo"
+  },
+  {
+   "en": "Viper",
+   "cn": "蝰蛇",
+   "intl": "蝰蛇",
+   "ben": "Viper",
+   "bcn": "蝰蛇",
+   "bintl": "蝰蛇",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "蝰蛇",
+   "wmEn": "Viper"
+  },
+  {
+   "en": "Viper Wraith",
+   "cn": "红莲蝰蛇",
+   "intl": "蝰蛇亡魂",
+   "ben": "Viper",
+   "bcn": "蝰蛇",
+   "bintl": "蝰蛇",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "蝰蛇",
+   "wmEn": "Viper"
+  },
+  {
+   "en": "Latron",
+   "cn": "拉特昂",
+   "intl": "拉特昂",
+   "ben": "Latron",
+   "bcn": "拉特昂",
+   "bintl": "拉特昂",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "拉特昂",
+   "wmEn": "Latron"
+  },
+  {
+   "en": "Latron Wraith",
+   "cn": "红莲拉特昂",
+   "intl": "拉特昂亡魂",
+   "ben": "Latron",
+   "bcn": "拉特昂",
+   "bintl": "拉特昂",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "拉特昂",
+   "wmEn": "Latron"
+  },
+  {
+   "en": "Lato",
+   "cn": "拉托",
+   "intl": "拉托",
+   "ben": "Lato",
+   "bcn": "拉托",
+   "bintl": "拉托",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "拉托",
+   "wmEn": "Lato"
+  },
+  {
+   "en": "Lato Prime",
+   "cn": "圣装拉托",
+   "intl": "拉托Prime",
+   "ben": "Lato",
+   "bcn": "拉托",
+   "bintl": "拉托",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "拉托",
+   "wmEn": "Lato"
+  },
+  {
+   "en": "Lato Vandal",
+   "cn": "拉托破坏者",
+   "intl": "拉托破坏者",
+   "ben": "Lato",
+   "bcn": "拉托",
+   "bintl": "拉托",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "拉托",
+   "wmEn": "Lato"
+  },
+  {
+   "en": "Aklato",
+   "cn": "拉托双枪",
+   "intl": "拉托双枪",
+   "ben": "Aklato",
+   "bcn": "拉托双枪",
+   "bintl": "拉托双枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "拉托双枪",
+   "wmEn": "Aklato"
+  },
+  {
+   "en": "Fang",
+   "cn": "狼牙",
+   "intl": "狼牙",
+   "ben": "Fang",
+   "bcn": "狼牙",
+   "bintl": "狼牙",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "狼牙",
+   "wmEn": "Fang"
+  },
+  {
+   "en": "Castanas",
+   "cn": "雷爆信镖",
+   "intl": "雷爆信镖",
+   "ben": "Castanas",
+   "bcn": "雷爆信镖",
+   "bintl": "雷爆信镖",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "雷爆信镖",
+   "wmEn": "Castanas"
+  },
+  {
+   "en": "Prisma Burst Laser",
+   "cn": "棱晶激光点发",
+   "intl": "棱晶激光点发",
+   "ben": "Burst Laser",
+   "bcn": "激光点发",
+   "bintl": "激光点发",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "激光点发",
+   "wmEn": "Burst Laser"
+  },
+  {
+   "en": "Prisma Machete",
+   "cn": "棱晶马谢特砍刀",
+   "intl": "棱晶精英阔刀",
+   "ben": "Machete",
+   "bcn": "马谢特砍刀",
+   "bintl": "马谢特砍刀",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "马谢特砍刀",
+   "wmEn": "Machete"
+  },
+  {
+   "en": "Prisma Tetra",
+   "cn": "棱晶特拉",
+   "intl": "棱晶特拉",
+   "ben": "Tetra",
+   "bcn": "特拉",
+   "bintl": "特拉",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "特拉",
+   "wmEn": "Tetra"
+  },
+  {
+   "en": "Quanta",
+   "cn": "量子切割器",
+   "intl": "量子切割器",
+   "ben": "Quanta",
+   "bcn": "量子切割器",
+   "bintl": "量子切割器",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "量子切割器",
+   "wmEn": "Quanta"
+  },
+  {
+   "en": "Quanta Vandal",
+   "cn": "量子切割器破坏者",
+   "intl": "量子切割器破坏者",
+   "ben": "Quanta",
+   "bcn": "量子切割器",
+   "bintl": "量子切割器",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "量子切割器",
+   "wmEn": "Quanta"
+  },
+  {
+   "en": "Heat Dagger",
+   "cn": "烈焰匕首",
+   "intl": "烈焰短剑",
+   "ben": "Heat Dagger",
+   "bcn": "烈焰匕首",
+   "bintl": "烈焰短剑",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "烈焰匕首",
+   "wmEn": "Heat Dagger"
+  },
+  {
+   "en": "Dual Heat Swords",
+   "cn": "烈焰双剑",
+   "intl": "烈焰双剑",
+   "ben": "Dual Heat Swords",
+   "bcn": "烈焰双剑",
+   "bintl": "烈焰双剑",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "烈焰双剑",
+   "wmEn": "Dual Heat Swords"
+  },
+  {
+   "en": "Heat Sword",
+   "cn": "烈焰长剑",
+   "intl": "烈焰长剑",
+   "ben": "Heat Sword",
+   "bcn": "烈焰长剑",
+   "bintl": "烈焰长剑",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "烈焰长剑",
+   "wmEn": "Heat Sword"
+  },
+  {
+   "en": "Panthera",
+   "cn": "猎豹",
+   "intl": "猎豹",
+   "ben": "Panthera",
+   "bcn": "猎豹",
+   "bintl": "猎豹",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "猎豹",
+   "wmEn": "Panthera"
+  },
+  {
+   "en": "Orvius",
+   "cn": "灵枢",
+   "intl": "灵枢",
+   "ben": "Orvius",
+   "bcn": "灵枢",
+   "bintl": "灵枢",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "灵枢",
+   "wmEn": "Orvius"
+  },
+  {
+   "en": "Pangolin Sword",
+   "cn": "鲮鲤剑",
+   "intl": "鲮鲤剑",
+   "ben": "Pangolin Sword",
+   "bcn": "鲮鲤剑",
+   "bintl": "鲮鲤剑",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "鲮鲤剑",
+   "wmEn": "Pangolin Sword"
+  },
+  {
+   "en": "Drakgoon",
+   "cn": "龙骑兵",
+   "intl": "龙骑兵",
+   "ben": "Drakgoon",
+   "bcn": "龙骑兵",
+   "bintl": "龙骑兵",
+   "cat": "霰弹",
+   "var": "本体",
+   "wmCn": "龙骑兵",
+   "wmEn": "Drakgoon"
+  },
+  {
+   "en": "Bolto",
+   "cn": "螺钉手枪",
+   "intl": "螺钉手枪",
+   "ben": "Bolto",
+   "bcn": "螺钉手枪",
+   "bintl": "螺钉手枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "螺钉手枪",
+   "wmEn": "Bolto"
+  },
+  {
+   "en": "Machete",
+   "cn": "马谢特砍刀",
+   "intl": "马谢特砍刀",
+   "ben": "Machete",
+   "bcn": "马谢特砍刀",
+   "bintl": "马谢特砍刀",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "马谢特砍刀",
+   "wmEn": "Machete"
+  },
+  {
+   "en": "Machete Wraith",
+   "cn": "红莲马谢特砍刀",
+   "intl": "马谢特砍刀亡魂",
+   "ben": "Machete",
+   "bcn": "马谢特砍刀",
+   "bintl": "马谢特砍刀",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "马谢特砍刀",
+   "wmEn": "Machete"
+  },
+  {
+   "en": "Magnus",
+   "cn": "麦格努斯",
+   "intl": "麦格努斯",
+   "ben": "Magnus",
+   "bcn": "麦格努斯",
+   "bintl": "麦格努斯",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "麦格努斯",
+   "wmEn": "Magnus"
+  },
+  {
+   "en": "Akmagnus",
+   "cn": "麦格努斯双枪",
+   "intl": "麦格努斯双枪",
+   "ben": "Akmagnus",
+   "bcn": "麦格努斯双枪",
+   "bintl": "麦格努斯双枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "麦格努斯双枪",
+   "wmEn": "Akmagnus"
+  },
+  {
+   "en": "Miter",
+   "cn": "米特尔",
+   "intl": "米特尔",
+   "ben": "Miter",
+   "bcn": "米特尔",
+   "bintl": "米特尔",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "米特尔",
+   "wmEn": "Miter"
+  },
+  {
+   "en": "Nukor",
+   "cn": "努寇微波枪",
+   "intl": "努寇微波枪",
+   "ben": "Nukor",
+   "bcn": "努寇微波枪",
+   "bintl": "努寇微波枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "努寇微波枪",
+   "wmEn": "Nukor"
+  },
+  {
+   "en": "Paris",
+   "cn": "帕里斯",
+   "intl": "帕里斯",
+   "ben": "Paris",
+   "bcn": "帕里斯",
+   "bintl": "帕里斯",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "帕里斯",
+   "wmEn": "Paris"
+  },
+  {
+   "en": "Paris Prime",
+   "cn": "圣装帕里斯",
+   "intl": "帕里斯Prime",
+   "ben": "Paris",
+   "bcn": "帕里斯",
+   "bintl": "帕里斯",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "帕里斯",
+   "wmEn": "Paris"
+  },
+  {
+   "en": "Penta",
+   "cn": "潘塔",
+   "intl": "潘塔",
+   "ben": "Penta",
+   "bcn": "潘塔",
+   "bintl": "潘塔",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "潘塔",
+   "wmEn": "Penta"
+  },
+  {
+   "en": "Jat Kittag",
+   "cn": "喷射战锤",
+   "intl": "喷射战锤",
+   "ben": "Jat Kittag",
+   "bcn": "喷射战锤",
+   "bintl": "喷射战锤",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "喷射战锤",
+   "wmEn": "Jat Kittag"
+  },
+  {
+   "en": "Broken Scepter",
+   "cn": "破损珽杖",
+   "intl": "破损珽杖",
+   "ben": "Broken Scepter",
+   "bcn": "破损珽杖",
+   "bintl": "破损珽杖",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "破损珽杖",
+   "wmEn": "Broken Scepter"
+  },
+  {
+   "en": "Prova",
+   "cn": "普罗沃",
+   "intl": "普罗沃",
+   "ben": "Prova",
+   "bcn": "普罗沃",
+   "bintl": "普罗沃",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "普罗沃",
+   "wmEn": "Prova"
+  },
+  {
+   "en": "Prova Vandal",
+   "cn": "普罗沃破坏者",
+   "intl": "普罗沃破坏者",
+   "ben": "Prova",
+   "bcn": "普罗沃",
+   "bintl": "普罗沃",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "普罗沃",
+   "wmEn": "Prova"
+  },
+  {
+   "en": "Fusilai",
+   "cn": "齐射玻刃",
+   "intl": "齐射玻刃",
+   "ben": "Fusilai",
+   "bcn": "齐射玻刃",
+   "bintl": "齐射玻刃",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "齐射玻刃",
+   "wmEn": "Fusilai"
+  },
+  {
+   "en": "Kesheg",
+   "cn": "怯薛",
+   "intl": "怯薛",
+   "ben": "Kesheg",
+   "bcn": "怯薛",
+   "bintl": "怯薛",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "怯薛",
+   "wmEn": "Kesheg"
+  },
+  {
+   "en": "Tonbo",
+   "cn": "蜻蜓薙",
+   "intl": "蜻蜓薙",
+   "ben": "Tonbo",
+   "bcn": "蜻蜓薙",
+   "bintl": "蜻蜓薙",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "蜻蛉薙",
+   "wmEn": "Tonbo"
+  },
+  {
+   "en": "Ack & Brunt",
+   "cn": "认知&冲击",
+   "intl": "认知&冲击",
+   "ben": "Ack & Brunt",
+   "bcn": "认知&冲击",
+   "bintl": "认知&冲击",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "认知 & 冲击",
+   "wmEn": "Ack & Brunt"
+  },
+  {
+   "en": "Endura",
+   "cn": "三叶坚韧",
+   "intl": "三叶坚韧",
+   "ben": "Endura",
+   "bcn": "三叶坚韧",
+   "bintl": "三叶坚韧",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "三叶坚韧",
+   "wmEn": "Endura"
+  },
+  {
+   "en": "Jaw Sword",
+   "cn": "蛇颚刀",
+   "intl": "蛇颚刀",
+   "ben": "Jaw Sword",
+   "bcn": "蛇颚刀",
+   "bintl": "蛇颚刀",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "蛇颚刀",
+   "wmEn": "Jaw Sword"
+  },
+  {
+   "en": "Gorgon",
+   "cn": "蛇发女妖",
+   "intl": "蛇发女妖",
+   "ben": "Gorgon",
+   "bcn": "蛇发女妖",
+   "bintl": "蛇发女妖",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "蛇发女妖",
+   "wmEn": "Gorgon"
+  },
+  {
+   "en": "Gorgon Wraith",
+   "cn": "红莲蛇发女妖",
+   "intl": "蛇发女妖亡魂",
+   "ben": "Gorgon",
+   "bcn": "蛇发女妖",
+   "bintl": "蛇发女妖",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "蛇发女妖",
+   "wmEn": "Gorgon"
+  },
+  {
+   "en": "Sancti Castanas",
+   "cn": "圣洁雷爆信镖",
+   "intl": "圣洁雷爆信镖",
+   "ben": "Castanas",
+   "bcn": "雷爆信镖",
+   "bintl": "雷爆信镖",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "雷爆信镖",
+   "wmEn": "Castanas"
+  },
+  {
+   "en": "Stubba",
+   "cn": "史度巴",
+   "intl": "史度巴",
+   "ben": "Stubba",
+   "bcn": "史度巴",
+   "bintl": "史度巴",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "史度巴",
+   "wmEn": "Stubba"
+  },
+  {
+   "en": "Stug",
+   "cn": "史特克",
+   "intl": "史特克",
+   "ben": "Stug",
+   "bcn": "史特克",
+   "bintl": "史特克",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "史特克",
+   "wmEn": "Stug"
+  },
+  {
+   "en": "Phage",
+   "cn": "噬菌者",
+   "intl": "噬菌者",
+   "ben": "Phage",
+   "bcn": "噬菌者",
+   "bintl": "噬菌者",
+   "cat": "霰弹",
+   "var": "本体",
+   "wmCn": "噬菌者",
+   "wmEn": "Phage"
+  },
+  {
+   "en": "Synoid Heliocor",
+   "cn": "枢议赫利俄光锤",
+   "intl": "枢议赫利俄光锤",
+   "ben": "Heliocor",
+   "bcn": "赫利俄光锤",
+   "bintl": "赫利俄光锤",
+   "cat": "近战",
+   "var": "变体·有本体",
+   "wmCn": "赫利俄光锤",
+   "wmEn": "Heliocor"
+  },
+  {
+   "en": "Dual Kamas",
+   "cn": "双短柄战镰",
+   "intl": "双短柄战镰",
+   "ben": "Dual Kamas",
+   "bcn": "双短柄战镰",
+   "bintl": "双短柄战镰",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "双短柄战镰",
+   "wmEn": "Dual Kamas"
+  },
+  {
+   "en": "Shaku",
+   "cn": "双节尺棍",
+   "intl": "双节尺棍",
+   "ben": "Shaku",
+   "bcn": "双节尺棍",
+   "bintl": "双节尺棍",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "双节尺棍",
+   "wmEn": "Shaku"
+  },
+  {
+   "en": "Amphis",
+   "cn": "双头蛇",
+   "intl": "双头蛇",
+   "ben": "Amphis",
+   "bcn": "双头蛇",
+   "bintl": "双头蛇",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "双头蛇",
+   "wmEn": "Amphis"
+  },
+  {
+   "en": "Twin Vipers",
+   "cn": "双子蝰蛇",
+   "intl": "双子蝰蛇",
+   "ben": "Twin Vipers",
+   "bcn": "双子蝰蛇",
+   "bintl": "双子蝰蛇",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "双子蝰蛇",
+   "wmEn": "Twin Vipers"
+  },
+  {
+   "en": "Twin Vipers Wraith",
+   "cn": "红莲双子蝰蛇",
+   "intl": "双子蝰蛇亡魂",
+   "ben": "Twin Vipers",
+   "bcn": "双子蝰蛇",
+   "bintl": "双子蝰蛇",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "双子蝰蛇",
+   "wmEn": "Twin Vipers"
+  },
+  {
+   "en": "Strun",
+   "cn": "斯特朗",
+   "intl": "斯特朗",
+   "ben": "Strun",
+   "bcn": "斯特朗",
+   "bintl": "斯特朗",
+   "cat": "霰弹",
+   "var": "本体",
+   "wmCn": "斯特朗",
+   "wmEn": "Strun"
+  },
+  {
+   "en": "Strun Wraith",
+   "cn": "红莲斯特朗",
+   "intl": "斯特朗亡魂",
+   "ben": "Strun",
+   "bcn": "斯特朗",
+   "bintl": "斯特朗",
+   "cat": "霰弹",
+   "var": "变体·有本体",
+   "wmCn": "斯特朗",
+   "wmEn": "Strun"
+  },
+  {
+   "en": "Deth Machine Rifle",
+   "cn": "死亡机枪",
+   "intl": "死亡机枪",
+   "ben": "Deth Machine Rifle",
+   "bcn": "死亡机枪",
+   "bintl": "死亡机枪",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "死亡机枪",
+   "wmEn": "Deth Machine Rifle"
+  },
+  {
+   "en": "Deth Machine Rifle Prime",
+   "cn": "圣装死亡机枪",
+   "intl": "死亡机枪Prime",
+   "ben": "Deth Machine Rifle",
+   "bcn": "死亡机枪",
+   "bintl": "死亡机枪",
+   "cat": "步枪",
+   "var": "变体·有本体",
+   "wmCn": "死亡机枪",
+   "wmEn": "Deth Machine Rifle"
+  },
+  {
+   "en": "Ceramic Dagger",
+   "cn": "陶瓷匕首",
+   "intl": "陶瓷匕首",
+   "ben": "Ceramic Dagger",
+   "bcn": "陶瓷匕首",
+   "bintl": "陶瓷匕首",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "陶瓷匕首",
+   "wmEn": "Ceramic Dagger"
+  },
+  {
+   "en": "Tetra",
+   "cn": "特拉",
+   "intl": "特拉",
+   "ben": "Tetra",
+   "bcn": "特拉",
+   "bintl": "特拉",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "特拉",
+   "wmEn": "Tetra"
+  },
+  {
+   "en": "Tipedo",
+   "cn": "提佩多",
+   "intl": "提佩多",
+   "ben": "Tipedo",
+   "bcn": "提佩多",
+   "bintl": "提佩多",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "提佩多",
+   "wmEn": "Tipedo"
+  },
+  {
+   "en": "Tekko",
+   "cn": "铁钩手甲",
+   "intl": "铁钩手甲",
+   "ben": "Tekko",
+   "bcn": "铁钩手甲",
+   "bintl": "铁钩手甲",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "铁钩手甲",
+   "wmEn": "Tekko"
+  },
+  {
+   "en": "Flux Rifle",
+   "cn": "通量步枪",
+   "intl": "通量步枪",
+   "ben": "Flux Rifle",
+   "bcn": "通量步枪",
+   "bintl": "通量步枪",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "通量步枪",
+   "wmEn": "Flux Rifle"
+  },
+  {
+   "en": "Synapse",
+   "cn": "突触生化枪",
+   "intl": "突触生化枪",
+   "ben": "Synapse",
+   "bcn": "突触生化枪",
+   "bintl": "突触生化枪",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "突触生化枪",
+   "wmEn": "Synapse"
+  },
+  {
+   "en": "Vasto",
+   "cn": "瓦斯托",
+   "intl": "瓦斯托",
+   "ben": "Vasto",
+   "bcn": "瓦斯托",
+   "bintl": "瓦斯托",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "瓦斯托",
+   "wmEn": "Vasto"
+  },
+  {
+   "en": "Vasto Prime",
+   "cn": "圣装瓦斯托",
+   "intl": "瓦斯托Prime",
+   "ben": "Vasto",
+   "bcn": "瓦斯托",
+   "bintl": "瓦斯托",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "瓦斯托",
+   "wmEn": "Vasto"
+  },
+  {
+   "en": "Okina",
+   "cn": "三叉刺",
+   "intl": "翁",
+   "ben": "Okina",
+   "bcn": "三叉刺",
+   "bintl": "翁",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "翁",
+   "wmEn": "Okina"
+  },
+  {
+   "en": "Sibear",
+   "cn": "西伯利亚冰锤",
+   "intl": "西伯利亚冰锤",
+   "ben": "Sibear",
+   "bcn": "西伯利亚冰锤",
+   "bintl": "西伯利亚冰锤",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "西伯利亚冰锤",
+   "wmEn": "Sibear"
+  },
+  {
+   "en": "Sheev",
+   "cn": "希芙",
+   "intl": "希芙",
+   "ben": "Sheev",
+   "bcn": "希芙",
+   "bintl": "希芙",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "希芙",
+   "wmEn": "Sheev"
+  },
+  {
+   "en": "Cestra",
+   "cn": "锡斯特",
+   "intl": "锡斯特",
+   "ben": "Cestra",
+   "bcn": "锡斯特",
+   "bintl": "锡斯特",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "锡斯特",
+   "wmEn": "Cestra"
+  },
+  {
+   "en": "Dual Cestra",
+   "cn": "锡斯特双枪",
+   "intl": "锡斯特双枪",
+   "ben": "Dual Cestra",
+   "bcn": "锡斯特双枪",
+   "bintl": "锡斯特双枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "锡斯特双枪",
+   "wmEn": "Dual Cestra"
+  },
+  {
+   "en": "Spira",
+   "cn": "旋刃飞刀",
+   "intl": "旋刃飞刀",
+   "ben": "Spira",
+   "bcn": "旋刃飞刀",
+   "bintl": "旋刃飞刀",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "旋刃飞刀",
+   "wmEn": "Spira"
+  },
+  {
+   "en": "Cobra & Crane",
+   "cn": "眼镜蛇&鹤",
+   "intl": "眼镜蛇&鹤",
+   "ben": "Cobra & Crane",
+   "bcn": "眼镜蛇&鹤",
+   "bintl": "眼镜蛇&鹤",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "眼镜蛇 & 鹤",
+   "wmEn": "Cobra & Crane"
+  },
+  {
+   "en": "Bronco",
+   "cn": "野马",
+   "intl": "野马",
+   "ben": "Bronco",
+   "bcn": "野马",
+   "bintl": "野马",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "野马",
+   "wmEn": "Bronco"
+  },
+  {
+   "en": "Bronco Prime",
+   "cn": "圣装野马",
+   "intl": "野马Prime",
+   "ben": "Bronco",
+   "bcn": "野马",
+   "bintl": "野马",
+   "cat": "手枪",
+   "var": "变体·有本体",
+   "wmCn": "野马",
+   "wmEn": "Bronco"
+  },
+  {
+   "en": "Akbronco",
+   "cn": "野马双枪",
+   "intl": "野马双枪",
+   "ben": "Akbronco",
+   "bcn": "野马双枪",
+   "bintl": "野马双枪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "野马双枪",
+   "wmEn": "Akbronco"
+  },
+  {
+   "en": "Boar",
+   "cn": "野猪",
+   "intl": "野猪",
+   "ben": "Boar",
+   "bcn": "野猪",
+   "bintl": "野猪",
+   "cat": "霰弹",
+   "var": "本体",
+   "wmCn": "野猪",
+   "wmEn": "Boar"
+  },
+  {
+   "en": "Boar Prime",
+   "cn": "圣装野猪",
+   "intl": "野猪Prime",
+   "ben": "Boar",
+   "bcn": "野猪",
+   "bintl": "野猪",
+   "cat": "霰弹",
+   "var": "变体·有本体",
+   "wmCn": "野猪",
+   "wmEn": "Boar"
+  },
+  {
+   "en": "Mutalist Quanta",
+   "cn": "异融量子枪",
+   "intl": "异融量子枪",
+   "ben": "Mutalist Quanta",
+   "bcn": "异融量子枪",
+   "bintl": "异融量子枪",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "异融量子枪",
+   "wmEn": "Mutalist Quanta"
+  },
+  {
+   "en": "Mutalist Cernos",
+   "cn": "异融西诺斯",
+   "intl": "异融西诺斯",
+   "ben": "Mutalist Cernos",
+   "bcn": "异融西诺斯",
+   "bintl": "异融西诺斯",
+   "cat": "步枪",
+   "var": "本体",
+   "wmCn": "异融西诺斯",
+   "wmEn": "Mutalist Cernos"
+  },
+  {
+   "en": "Talons",
+   "cn": "鹰爪",
+   "intl": "鹰爪",
+   "ben": "Talons",
+   "bcn": "鹰爪",
+   "bintl": "鹰爪",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "鹰爪",
+   "wmEn": "Talons"
+  },
+  {
+   "en": "Seer",
+   "cn": "预言者",
+   "intl": "预言者",
+   "ben": "Seer",
+   "bcn": "预言者",
+   "bintl": "预言者",
+   "cat": "手枪",
+   "var": "本体",
+   "wmCn": "预言者",
+   "wmEn": "Seer"
+  },
+  {
+   "en": "Magistar",
+   "cn": "执法者",
+   "intl": "执法者",
+   "ben": "Magistar",
+   "bcn": "执法者",
+   "bintl": "执法者",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "执法者",
+   "wmEn": "Magistar"
+  },
+  {
+   "en": "Kreska",
+   "cn": "直镐",
+   "intl": "直镐",
+   "ben": "Kreska",
+   "bcn": "直镐",
+   "bintl": "直镐",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "直镐",
+   "wmEn": "Kreska"
+  },
+  {
+   "en": "Dual Zoren",
+   "cn": "佐伦双斧",
+   "intl": "佐伦双斧",
+   "ben": "Dual Zoren",
+   "bcn": "佐伦双斧",
+   "bintl": "佐伦双斧",
+   "cat": "近战",
+   "var": "本体",
+   "wmCn": "佐伦双斧",
+   "wmEn": "Dual Zoren"
+  }
+ ],
+ "wm": {
+  "itemList": [
+   "惩戒者",
+   "赤毒·怒雷",
+   "翠雀",
+   "菲德菈",
+   "辐光弩炮",
+   "葛拉特勒",
+   "合成燃气炮",
+   "黑鸦",
+   "极速电磁步枪",
+   "巨浪",
+   "凯旋将军",
+   "什长双枪",
+   "送葬者",
+   "蕈菇",
+   "置灵者",
+   "孢射",
+   "捕月",
+   "虫置",
+   "墓指",
+   "凝目",
+   "响胆",
+   "阿特拉克斯",
+   "暗黑匕首",
+   "暗黑分合剑",
+   "暗黑长剑",
+   "奥比克斯",
+   "悲痛之刃",
+   "病变",
+   "病囊飞刃",
+   "玻之武杖",
+   "苍穹匕首",
+   "苍穹双剑",
+   "苍穹死神",
+   "苍穹之剑",
+   "赤毒·希尔德",
+   "赤炎流星",
+   "赤阳 & 幽月",
+   "创伤",
+   "达克拉 Prime",
+   "大力士",
+   "等离子长剑",
+   "电匕怪杰",
+   "电流刺索",
+   "电能斩锯",
+   "毒囊骨茧",
+   "短柄战镰",
+   "夺魂死神",
+   "恶狼战锤",
+   "恶龙",
+   "恶脓双斧",
+   "分裂斩斧",
+   "愤怒",
+   "锋月双斧",
+   "弗拉克斯",
+   "感染连枷",
+   "格拉姆",
+   "古声",
+   "关刀",
+   "诡计之刃",
+   "哈利卡",
+   "海波单剑",
+   "海波斯库拉对剑",
+   "和谐",
+   "赫利俄光锤",
+   "鹤鸵长戟",
+   "红隼",
+   "弧电振子锤",
+   "皇家拐刃",
+   "脊椎节鞭",
+   "技巧之剑",
+   "加拉亚 Prime",
+   "加扎勒反曲刀",
+   "迦伦提恩",
+   "甲龙双拳",
+   "尖幡",
+   "疆南星刺",
+   "降灵追猎者",
+   "骄傲",
+   "金璃剑",
+   "救赎者",
+   "咀嚼金杖",
+   "军扇",
+   "卡德斯",
+   "卡提努之爪",
+   "凯洛斯特",
+   "凯瑞斯双刀",
+   "凯旋之爪",
+   "科加基",
+   "克鲁古尔",
+   "克洛诺斯",
+   "空刃",
+   "空刃双刀",
+   "库鲁多",
+   "蝰首骨妖",
+   "狼牙",
+   "勒克塔",
+   "雷石祭",
+   "雷霆暴君",
+   "烈焰匕首",
+   "烈焰双剑",
+   "烈焰长剑",
+   "猎鹰轮",
+   "灵枢",
+   "鲮鲤剑",
+   "龙辰",
+   "龙之侍刃",
+   "螺钉拐刃",
+   "裸鳃刃",
+   "马谢特砍刀",
+   "蚂蟥",
+   "脉纹",
+   "米尔",
+   "牡狮神",
+   "暮斩",
+   "怒斩",
+   "欧玛",
+   "欧特鲁斯",
+   "喷射锁镰",
+   "喷射战锤",
+   "破碎的战争之剑",
+   "破损珽杖",
+   "普罗沃",
+   "怯薛",
+   "清刚",
+   "蜻蛉薙",
+   "驱魔之刃",
+   "认知 & 冲击",
+   "溶灵尊",
+   "锐卡斯",
+   "三宝聚",
+   "三叶坚韧",
+   "沙罗之牙",
+   "闪劫",
+   "蛇颚刀",
+   "蛇刃",
+   "尸鬼电锯",
+   "侍刃",
+   "收割者 Prime",
+   "双短柄战镰",
+   "双节尺棍",
+   "双头蛇",
+   "双雄",
+   "双子巴萨克",
+   "双子恶行",
+   "双子克鲁古尔",
+   "丝蛛皇",
+   "塔克 & 卢格",
+   "陶瓷匕首",
+   "提佩多",
+   "天顶之星",
+   "天薙刀",
+   "铁钩手甲",
+   "通卡拐刃",
+   "屠煞",
+   "瓦斯提枪刃",
+   "威震武扇",
+   "翁",
+   "西伯利亚冰锤",
+   "西格玛 & 南极座",
+   "希芙",
+   "席瓦 & 神盾",
+   "心智之殁",
+   "信条·格里高利",
+   "信条·集议",
+   "信条·莉薇娅",
+   "信条·枢密",
+   "星舟 & 帆",
+   "眼镜蛇 & 鹤",
+   "业珀",
+   "影生",
+   "映声战锤",
+   "憎恨",
+   "斩肉双刀",
+   "战刃",
+   "战争之剑",
+   "真月武扇",
+   "执法者",
+   "直镐",
+   "制胜者 (近战)",
+   "终幕·噬轮",
+   "重击巨锤",
+   "灼蚀变体镰",
+   "佐伦双斧",
+   "Dex 达克拉双剑",
+   "Dex 侍刃",
+   "阿提卡",
+   "艾弗旺-5 木星",
+   "安培克斯",
+   "奥堤克光子枪",
+   "巴什穆",
+   "巴兹火枪",
+   "孢丝感染枪",
+   "伯斯顿",
+   "布莱顿",
+   "苍鹰",
+   "草原猎手",
+   "赤毒·布拉玛",
+   "赤毒·邪眼",
+   "雌鹿",
+   "刺吸西诺斯",
+   "大久和弓",
+   "导热聚焦枪",
+   "德拉",
+   "电幻步枪",
+   "鳄神",
+   "风鸣",
+   "凤殁",
+   "附肢寄生者",
+   "钢刃步枪",
+   "葛恩火枪",
+   "葛拉卡达",
+   "骨葬 Prime",
+   "哈尔武",
+   "哈帕克",
+   "海克",
+   "横痃重炮",
+   "弧电离子枪",
+   "幻离子",
+   "绘墨",
+   "祸根",
+   "棘背",
+   "金工火神",
+   "晶能放射器",
+   "净化者 1",
+   "狙击特昂",
+   "绝路",
+   "卡拉克",
+   "科林斯",
+   "恐惧",
+   "寇恩热能枪",
+   "夸塔克",
+   "狂鲨",
+   "拉特昂",
+   "兰卡",
+   "雷霆",
+   "楞次弓",
+   "冷冻光束步枪",
+   "量子切割器",
+   "猎豹",
+   "龙骑兵",
+   "螺钉步枪",
+   "猛毒",
+   "猛虎",
+   "米特尔",
+   "灭杀者",
+   "帕里斯",
+   "潘塔",
+   "晴日伞",
+   "燃焰标枪",
+   "锐铁",
+   "塞多",
+   "沙皇",
+   "蛇发女妖",
+   "舍杜",
+   "圣英",
+   "石晶之花",
+   "食人女魔",
+   "使节",
+   "噬菌者",
+   "噬蛇弩",
+   "守望者",
+   "双簧管",
+   "霜冥差",
+   "斯特拉迪瓦",
+   "斯特朗",
+   "苏普拉",
+   "遂心",
+   "碎裂者",
+   "太始弓",
+   "特拉",
+   "天穹之顶",
+   "铁晶磁轨炮",
+   "通量步枪",
+   "突触生化枪",
+   "托里德",
+   "瓦德雅 Prime",
+   "晚祷",
+   "武使之力",
+   "西诺斯",
+   "席芭莉丝",
+   "信条·典客",
+   "血肢",
+   "迅发电浆炮",
+   "压制者",
+   "氩格纳克",
+   "野猪",
+   "伊格尼斯",
+   "异融量子枪",
+   "异融西诺斯",
+   "月面狂风",
+   "月神",
+   "侦察者",
+   "征服榴炮",
+   "制胜者",
+   "终幕·低音爆囊",
+   "重力奇点拟成枪",
+   "诸葛连弩",
+   "逐枭",
+   "AX-52",
+   "阿克里德",
+   "阿利乌双枪",
+   "阿索代",
+   "艾弗旺-8 火星",
+   "安柏勒斯",
+   "安格斯壮",
+   "暗杀者",
+   "暴乱-848",
+   "北海巨妖",
+   "布拉克",
+   "布里斯提卡",
+   "超音波冲击枪",
+   "赤毒·双子史度巴",
+   "啐沫者",
+   "盗贼",
+   "盗贼双枪",
+   "德特昂",
+   "毒囊双枪",
+   "毒芽",
+   "方位角",
+   "飞扬",
+   "歌颂",
+   "光谱切割器",
+   "骇敌榴弹",
+   "寒怨刺",
+   "豪猪",
+   "弧电探知者",
+   "荒谬双枪",
+   "静电能量导引枪",
+   "绝望",
+   "觉醒双枪",
+   "咖玛腕甲枪",
+   "卡帕压力枪",
+   "寇恩霰机枪",
+   "苦无",
+   "夸兹",
+   "蝰蛇",
+   "拉托",
+   "拉托双枪",
+   "雷爆信镖",
+   "雷克斯",
+   "雷克斯双枪",
+   "镰刃刺",
+   "螺钉手枪",
+   "螺钉双枪",
+   "玛瑞火枪",
+   "麦格努斯",
+   "麦格努斯双枪",
+   "漫射者",
+   "魔典",
+   "脓痘",
+   "努寇微波枪",
+   "齐射玻刃",
+   "轻灵月神双枪",
+   "氰毒",
+   "丧钟",
+   "杀格 Prime",
+   "杀星",
+   "食人鱼",
+   "史度巴",
+   "史特克",
+   "史提托双枪",
+   "视使之触",
+   "手鼓",
+   "双子葛拉卡达",
+   "双子寇恩霰机枪",
+   "双子蝰蛇",
+   "双子罗格",
+   "双子小精灵",
+   "瓦斯托",
+   "瓦斯托双枪",
+   "锡斯特",
+   "锡斯特双枪",
+   "席尔火枪",
+   "邪莫斯",
+   "信条·斯派克斯",
+   "信条·纵横双枪",
+   "旋刃飞刀",
+   "循环离子枪",
+   "野马",
+   "野马双枪",
+   "夜语者 77",
+   "异化者",
+   "鹰爪",
+   "预言者",
+   "原子矿融炮",
+   "悦音 Prime",
+   "葬铭",
+   "终幕·孢蚀双枪",
+   "逐电",
+   "追击者",
+   "赘骨",
+   "奏凯",
+   "阿卡腾",
+   "阿塔克斯",
+   "巴托腾",
+   "冰凇",
+   "毒刺",
+   "多连穿甲枪",
+   "分离",
+   "赫尔斯壮",
+   "激光步枪",
+   "激光点发",
+   "急冻喷枪",
+   "金工火枪",
+   "金工火舌",
+   "莱斯腾",
+   "扫除者",
+   "死亡机枪",
+   "泰瑟步枪",
+   "宝拉",
+   "德塔特",
+   "多克拉姆",
+   "客隆什",
+   "拉比威",
+   "密丸",
+   "瑟普梵",
+   "瘟疫 克里帕丝",
+   "瘟疫 奇沃",
+   "乌尔萨",
+   "西亚什"
+  ],
+  "itemListEn": [
+   "Arbucep",
+   "Cortege",
+   "Corvas",
+   "Cyngas",
+   "Dual Decurion",
+   "Fluctus",
+   "Grattler",
+   "Imperator",
+   "Kuva Ayanga",
+   "Larkspur",
+   "Mandonel",
+   "Mausolon",
+   "Morgha",
+   "Phaedra",
+   "Velocitus",
+   "Catchmoon",
+   "Gaze",
+   "Rattleguts",
+   "Sporelacer",
+   "Tombfinger",
+   "Vermisplicer",
+   "Ack & Brunt",
+   "Amanata",
+   "Amphis",
+   "Anku",
+   "Ankyros",
+   "Arca Titron",
+   "Argo & Vel",
+   "Arum Spinosa",
+   "Atterax",
+   "Azothane",
+   "Bo",
+   "Boltace",
+   "Broken Scepter",
+   "Broken War",
+   "Cadus",
+   "Cassowar",
+   "Caustacyst",
+   "Ceramic Dagger",
+   "Cerata",
+   "Cobra & Crane",
+   "Coda Motovore",
+   "Corufell",
+   "Cronus",
+   "Dakra Prime",
+   "Dark Dagger",
+   "Dark Split-Sword",
+   "Dark Sword",
+   "Destreza",
+   "Dex Dakra",
+   "Dex Nikana",
+   "Dorrclave",
+   "Dragon Nikana",
+   "Dual Cleavers",
+   "Dual Ether",
+   "Dual Heat Swords",
+   "Dual Ichor",
+   "Dual Kamas",
+   "Dual Keres",
+   "Dual Raza",
+   "Dual Skana",
+   "Dual Viciss",
+   "Dual Zoren",
+   "Edun",
+   "Ekhein",
+   "Endura",
+   "Ether Daggers",
+   "Ether Reaper",
+   "Ether Sword",
+   "Falcor",
+   "Fang",
+   "Fragor",
+   "Furax",
+   "Galariak Prime",
+   "Galatine",
+   "Galvacord",
+   "Gazal Machete",
+   "Ghoulsaw",
+   "Glaive",
+   "Gram",
+   "Guandao",
+   "Gunsen",
+   "Halikar",
+   "Harmony",
+   "Hate",
+   "Heat Dagger",
+   "Heat Sword",
+   "Heliocor",
+   "Hespar",
+   "Hirudo",
+   "Innodem",
+   "Jat Kittag",
+   "Jat Kusar",
+   "Jaw Sword",
+   "Kama",
+   "Karyst",
+   "Keratinos",
+   "Kesheg",
+   "Kestrel",
+   "Kogake",
+   "Korrudo",
+   "Korumm",
+   "Kreska",
+   "Krohkur",
+   "Kronen",
+   "Kuva Shildeg",
+   "Lacera",
+   "Lecta",
+   "Lesion",
+   "Machete",
+   "Magistar",
+   "Masseter",
+   "Mios",
+   "Mire",
+   "Nami Skyla",
+   "Nami Solo",
+   "Nepheri",
+   "Nikana",
+   "Ninkondi",
+   "Obex",
+   "Ohma",
+   "Okina",
+   "Orthos",
+   "Orvius",
+   "Pangolin Sword",
+   "Paracesis",
+   "Pathocyst",
+   "Pennant",
+   "Plasma Sword",
+   "Praedos",
+   "Pride",
+   "Prova",
+   "Pulmonars",
+   "Pupacyst",
+   "Quassus",
+   "Reaper Prime",
+   "Redeemer",
+   "Ripkas",
+   "Rumblejack",
+   "Ruvox",
+   "Sampotes",
+   "Sarofang",
+   "Sarpa",
+   "Scindo",
+   "Scoliac",
+   "Serro",
+   "Shaku",
+   "Sheev",
+   "Sibear",
+   "Sigma & Octantis",
+   "Silva & Aegis",
+   "Skana",
+   "Skiajati",
+   "Slaytra",
+   "Spinnerex",
+   "Stropha",
+   "Sun & Moon",
+   "Syam",
+   "Sydon",
+   "Tak & Lug",
+   "Tatsu",
+   "Tekko",
+   "Tenet Agendus",
+   "Tenet Exec",
+   "Tenet Grigori",
+   "Tenet Livia",
+   "Thalys",
+   "Tipedo",
+   "Tonbo",
+   "Tonkkatt",
+   "Twin Basolk",
+   "Twin Krohkur",
+   "Vastilok",
+   "Venato",
+   "Venka",
+   "Verdilac",
+   "Vericres",
+   "Vinquibus (Melee)",
+   "Vitrica",
+   "Volnus",
+   "War",
+   "Wolf Sledge",
+   "Wrath",
+   "Xoris",
+   "Zenistar",
+   "Acceltra",
+   "Aeolak",
+   "Afentis",
+   "Alternox",
+   "Ambassador",
+   "Amprex",
+   "Arca Plasmor",
+   "Argonak",
+   "Astilla",
+   "Attica",
+   "AX-52",
+   "Basmu",
+   "Battacor",
+   "Baza",
+   "Boar",
+   "Boltor",
+   "Braton",
+   "Bubonico",
+   "Burston",
+   "Buzlok",
+   "Cedo",
+   "Cernos",
+   "Cinta",
+   "Coda Bassocyst",
+   "Convectrix",
+   "Corinth",
+   "Daikyu",
+   "Dera",
+   "Drakgoon",
+   "Dread",
+   "EFV-5 Jupiter",
+   "Enkaus",
+   "Evensong",
+   "Exergis",
+   "Felarx",
+   "Ferrox",
+   "Flux Rifle",
+   "Fulmin",
+   "Glaxion",
+   "Gorgon",
+   "Gotva Prime",
+   "Grakata",
+   "Grinlok",
+   "Haalvu",
+   "Harpak",
+   "Hek",
+   "Hema",
+   "Higasa",
+   "Hind",
+   "Ignis",
+   "Javlok",
+   "Karak",
+   "Kohm",
+   "Komorex",
+   "Kuva Bramma",
+   "Kuva Chakkhurr",
+   "Lanka",
+   "Latron",
+   "Lenz",
+   "Miter",
+   "Mutalist Cernos",
+   "Mutalist Quanta",
+   "Nagantaka",
+   "Nataruk",
+   "Nunchasa",
+   "Ogris",
+   "Opticor",
+   "Panthera",
+   "Paracyst",
+   "Paris",
+   "Penta",
+   "Perigale",
+   "Phage",
+   "Phantasma",
+   "Phenmor",
+   "Proboscis Cernos",
+   "Purgator 1",
+   "Quanta",
+   "Quartakk",
+   "Quellor",
+   "Rauta",
+   "Reconifex",
+   "Rubico",
+   "Scourge",
+   "Shedu",
+   "Simulor",
+   "Snipetron",
+   "Sobek",
+   "Soma",
+   "Sporothrix",
+   "Stahlta",
+   "Steflos",
+   "Stradavar",
+   "Strun",
+   "Supra",
+   "Sybaris",
+   "Synapse",
+   "Tenet Envoy",
+   "Tenora",
+   "Tetra",
+   "Thornbak",
+   "Tiberon",
+   "Tigris",
+   "Tonkor",
+   "Torid",
+   "Trumna",
+   "Vadarya Prime",
+   "Vectis",
+   "Veldt",
+   "Vinquibus",
+   "Vulkar",
+   "Zarr",
+   "Zenith",
+   "Zhuge",
+   "Acrid",
+   "Aegrit",
+   "Afuris",
+   "Akarius",
+   "Akbolto",
+   "Akbronco",
+   "Akjagara",
+   "Aklato",
+   "Aklex",
+   "Akmagnus",
+   "Aksomati",
+   "Aksondol",
+   "Akstiletto",
+   "Akvasto",
+   "Akzani",
+   "Angstrum",
+   "Arca Scisco",
+   "Athodai",
+   "Atomos",
+   "Azima",
+   "Ballistica",
+   "Bolto",
+   "Brakk",
+   "Bronco",
+   "Cantare",
+   "Castanas",
+   "Catabolyst",
+   "Cestra",
+   "Cyanex",
+   "Cycron",
+   "Despair",
+   "Detron",
+   "Dual Cestra",
+   "Dual Coda Torxica",
+   "Dual Toxocyst",
+   "EFV-8 Mars",
+   "Embolist",
+   "Epitaph",
+   "Euphona Prime",
+   "Furis",
+   "Fusilai",
+   "Gammacor",
+   "Grimoire",
+   "Hikou",
+   "Hystrix",
+   "Knell",
+   "Kohmak",
+   "Kompressa",
+   "Kraken",
+   "Kulstar",
+   "Kunai",
+   "Kuva Twin Stubbas",
+   "Laetum",
+   "Lato",
+   "Lex",
+   "Magnus",
+   "Marelok",
+   "Nukor",
+   "Ocucor",
+   "Onos",
+   "Pandero",
+   "Plinx",
+   "Pox",
+   "Pyrana",
+   "Quatz",
+   "Riot-848",
+   "Sagek Prime",
+   "Scyotid",
+   "Seer",
+   "Sepulcrum",
+   "Sicarus",
+   "Sonicor",
+   "Spectra",
+   "Spira",
+   "Staticor",
+   "Stubba",
+   "Stug",
+   "Talons",
+   "Tenet Diplos",
+   "Tenet Spirex",
+   "Twin Grakatas",
+   "Twin Gremlins",
+   "Twin Kohmak",
+   "Twin Rogga",
+   "Twin Vipers",
+   "Tysis",
+   "Vasto",
+   "Velox",
+   "Vesper 77",
+   "Viper",
+   "Zakti",
+   "Zylok",
+   "Zymos",
+   "Akaten",
+   "Artax",
+   "Batoten",
+   "Burst Laser",
+   "Cryotra",
+   "Deconstructor",
+   "Deth Machine Rifle",
+   "Helstrum",
+   "Lacerten",
+   "Laser Rifle",
+   "Multron",
+   "Stinger",
+   "Sweeper",
+   "Tazicor",
+   "Verglas",
+   "Vulcax",
+   "Vulklok",
+   "Balla",
+   "Cyath",
+   "Dehtat",
+   "Dokrahm",
+   "Kronsh",
+   "Mewan",
+   "Ooltha",
+   "Plague Keewar",
+   "Plague Kripath",
+   "Rabvee",
+   "Sepfahn"
+  ],
+  "itemPairs": [
+   [
+    "Arbucep",
+    "蕈菇"
+   ],
+   [
+    "Cortege",
+    "送葬者"
+   ],
+   [
+    "Corvas",
+    "黑鸦"
+   ],
+   [
+    "Cyngas",
+    "合成燃气炮"
+   ],
+   [
+    "Dual Decurion",
+    "什长双枪"
+   ],
+   [
+    "Fluctus",
+    "巨浪"
+   ],
+   [
+    "Grattler",
+    "葛拉特勒"
+   ],
+   [
+    "Imperator",
+    "凯旋将军"
+   ],
+   [
+    "Kuva Ayanga",
+    "赤毒·怒雷"
+   ],
+   [
+    "Larkspur",
+    "翠雀"
+   ],
+   [
+    "Mandonel",
+    "辐光弩炮"
+   ],
+   [
+    "Mausolon",
+    "惩戒者"
+   ],
+   [
+    "Morgha",
+    "置灵者"
+   ],
+   [
+    "Phaedra",
+    "菲德菈"
+   ],
+   [
+    "Velocitus",
+    "极速电磁步枪"
+   ],
+   [
+    "Catchmoon",
+    "捕月"
+   ],
+   [
+    "Gaze",
+    "凝目"
+   ],
+   [
+    "Rattleguts",
+    "响胆"
+   ],
+   [
+    "Sporelacer",
+    "孢射"
+   ],
+   [
+    "Tombfinger",
+    "墓指"
+   ],
+   [
+    "Vermisplicer",
+    "虫置"
+   ],
+   [
+    "Ack & Brunt",
+    "认知 & 冲击"
+   ],
+   [
+    "Amanata",
+    "天薙刀"
+   ],
+   [
+    "Amphis",
+    "双头蛇"
+   ],
+   [
+    "Anku",
+    "夺魂死神"
+   ],
+   [
+    "Ankyros",
+    "甲龙双拳"
+   ],
+   [
+    "Arca Titron",
+    "弧电振子锤"
+   ],
+   [
+    "Argo & Vel",
+    "星舟 & 帆"
+   ],
+   [
+    "Arum Spinosa",
+    "疆南星刺"
+   ],
+   [
+    "Atterax",
+    "阿特拉克斯"
+   ],
+   [
+    "Azothane",
+    "溶灵尊"
+   ],
+   [
+    "Bo",
+    "玻之武杖"
+   ],
+   [
+    "Boltace",
+    "螺钉拐刃"
+   ],
+   [
+    "Broken Scepter",
+    "破损珽杖"
+   ],
+   [
+    "Broken War",
+    "破碎的战争之剑"
+   ],
+   [
+    "Cadus",
+    "卡德斯"
+   ],
+   [
+    "Cassowar",
+    "鹤鸵长戟"
+   ],
+   [
+    "Caustacyst",
+    "灼蚀变体镰"
+   ],
+   [
+    "Ceramic Dagger",
+    "陶瓷匕首"
+   ],
+   [
+    "Cerata",
+    "裸鳃刃"
+   ],
+   [
+    "Cobra & Crane",
+    "眼镜蛇 & 鹤"
+   ],
+   [
+    "Coda Motovore",
+    "终幕·噬轮"
+   ],
+   [
+    "Corufell",
+    "闪劫"
+   ],
+   [
+    "Cronus",
+    "克洛诺斯"
+   ],
+   [
+    "Dakra Prime",
+    "达克拉 Prime"
+   ],
+   [
+    "Dark Dagger",
+    "暗黑匕首"
+   ],
+   [
+    "Dark Split-Sword",
+    "暗黑分合剑"
+   ],
+   [
+    "Dark Sword",
+    "暗黑长剑"
+   ],
+   [
+    "Destreza",
+    "技巧之剑"
+   ],
+   [
+    "Dex Dakra",
+    "Dex 达克拉双剑"
+   ],
+   [
+    "Dex Nikana",
+    "Dex 侍刃"
+   ],
+   [
+    "Dorrclave",
+    "怒斩"
+   ],
+   [
+    "Dragon Nikana",
+    "龙之侍刃"
+   ],
+   [
+    "Dual Cleavers",
+    "斩肉双刀"
+   ],
+   [
+    "Dual Ether",
+    "苍穹双剑"
+   ],
+   [
+    "Dual Heat Swords",
+    "烈焰双剑"
+   ],
+   [
+    "Dual Ichor",
+    "恶脓双斧"
+   ],
+   [
+    "Dual Kamas",
+    "双短柄战镰"
+   ],
+   [
+    "Dual Keres",
+    "凯瑞斯双刀"
+   ],
+   [
+    "Dual Raza",
+    "锋月双斧"
+   ],
+   [
+    "Dual Skana",
+    "空刃双刀"
+   ],
+   [
+    "Dual Viciss",
+    "双子恶行"
+   ],
+   [
+    "Dual Zoren",
+    "佐伦双斧"
+   ],
+   [
+    "Edun",
+    "雷石祭"
+   ],
+   [
+    "Ekhein",
+    "映声战锤"
+   ],
+   [
+    "Endura",
+    "三叶坚韧"
+   ],
+   [
+    "Ether Daggers",
+    "苍穹匕首"
+   ],
+   [
+    "Ether Reaper",
+    "苍穹死神"
+   ],
+   [
+    "Ether Sword",
+    "苍穹之剑"
+   ],
+   [
+    "Falcor",
+    "猎鹰轮"
+   ],
+   [
+    "Fang",
+    "狼牙"
+   ],
+   [
+    "Fragor",
+    "重击巨锤"
+   ],
+   [
+    "Furax",
+    "弗拉克斯"
+   ],
+   [
+    "Galariak Prime",
+    "加拉亚 Prime"
+   ],
+   [
+    "Galatine",
+    "迦伦提恩"
+   ],
+   [
+    "Galvacord",
+    "电流刺索"
+   ],
+   [
+    "Gazal Machete",
+    "加扎勒反曲刀"
+   ],
+   [
+    "Ghoulsaw",
+    "尸鬼电锯"
+   ],
+   [
+    "Glaive",
+    "战刃"
+   ],
+   [
+    "Gram",
+    "格拉姆"
+   ],
+   [
+    "Guandao",
+    "关刀"
+   ],
+   [
+    "Gunsen",
+    "军扇"
+   ],
+   [
+    "Halikar",
+    "哈利卡"
+   ],
+   [
+    "Harmony",
+    "和谐"
+   ],
+   [
+    "Hate",
+    "憎恨"
+   ],
+   [
+    "Heat Dagger",
+    "烈焰匕首"
+   ],
+   [
+    "Heat Sword",
+    "烈焰长剑"
+   ],
+   [
+    "Heliocor",
+    "赫利俄光锤"
+   ],
+   [
+    "Hespar",
+    "暮斩"
+   ],
+   [
+    "Hirudo",
+    "蚂蟥"
+   ],
+   [
+    "Innodem",
+    "清刚"
+   ],
+   [
+    "Jat Kittag",
+    "喷射战锤"
+   ],
+   [
+    "Jat Kusar",
+    "喷射锁镰"
+   ],
+   [
+    "Jaw Sword",
+    "蛇颚刀"
+   ],
+   [
+    "Kama",
+    "短柄战镰"
+   ],
+   [
+    "Karyst",
+    "凯洛斯特"
+   ],
+   [
+    "Keratinos",
+    "卡提努之爪"
+   ],
+   [
+    "Kesheg",
+    "怯薛"
+   ],
+   [
+    "Kestrel",
+    "红隼"
+   ],
+   [
+    "Kogake",
+    "科加基"
+   ],
+   [
+    "Korrudo",
+    "库鲁多"
+   ],
+   [
+    "Korumm",
+    "雷霆暴君"
+   ],
+   [
+    "Kreska",
+    "直镐"
+   ],
+   [
+    "Krohkur",
+    "克鲁古尔"
+   ],
+   [
+    "Kronen",
+    "皇家拐刃"
+   ],
+   [
+    "Kuva Shildeg",
+    "赤毒·希尔德"
+   ],
+   [
+    "Lacera",
+    "悲痛之刃"
+   ],
+   [
+    "Lecta",
+    "勒克塔"
+   ],
+   [
+    "Lesion",
+    "病变"
+   ],
+   [
+    "Machete",
+    "马谢特砍刀"
+   ],
+   [
+    "Magistar",
+    "执法者"
+   ],
+   [
+    "Masseter",
+    "咀嚼金杖"
+   ],
+   [
+    "Mios",
+    "牡狮神"
+   ],
+   [
+    "Mire",
+    "米尔"
+   ],
+   [
+    "Nami Skyla",
+    "海波斯库拉对剑"
+   ],
+   [
+    "Nami Solo",
+    "海波单剑"
+   ],
+   [
+    "Nepheri",
+    "赤炎流星"
+   ],
+   [
+    "Nikana",
+    "侍刃"
+   ],
+   [
+    "Ninkondi",
+    "降灵追猎者"
+   ],
+   [
+    "Obex",
+    "奥比克斯"
+   ],
+   [
+    "Ohma",
+    "欧玛"
+   ],
+   [
+    "Okina",
+    "翁"
+   ],
+   [
+    "Orthos",
+    "欧特鲁斯"
+   ],
+   [
+    "Orvius",
+    "灵枢"
+   ],
+   [
+    "Pangolin Sword",
+    "鲮鲤剑"
+   ],
+   [
+    "Paracesis",
+    "心智之殁"
+   ],
+   [
+    "Pathocyst",
+    "病囊飞刃"
+   ],
+   [
+    "Pennant",
+    "尖幡"
+   ],
+   [
+    "Plasma Sword",
+    "等离子长剑"
+   ],
+   [
+    "Praedos",
+    "双雄"
+   ],
+   [
+    "Pride",
+    "骄傲"
+   ],
+   [
+    "Prova",
+    "普罗沃"
+   ],
+   [
+    "Pulmonars",
+    "感染连枷"
+   ],
+   [
+    "Pupacyst",
+    "毒囊骨茧"
+   ],
+   [
+    "Quassus",
+    "威震武扇"
+   ],
+   [
+    "Reaper Prime",
+    "收割者 Prime"
+   ],
+   [
+    "Redeemer",
+    "救赎者"
+   ],
+   [
+    "Ripkas",
+    "锐卡斯"
+   ],
+   [
+    "Rumblejack",
+    "电匕怪杰"
+   ],
+   [
+    "Ruvox",
+    "古声"
+   ],
+   [
+    "Sampotes",
+    "三宝聚"
+   ],
+   [
+    "Sarofang",
+    "沙罗之牙"
+   ],
+   [
+    "Sarpa",
+    "蛇刃"
+   ],
+   [
+    "Scindo",
+    "分裂斩斧"
+   ],
+   [
+    "Scoliac",
+    "脊椎节鞭"
+   ],
+   [
+    "Serro",
+    "电能斩锯"
+   ],
+   [
+    "Shaku",
+    "双节尺棍"
+   ],
+   [
+    "Sheev",
+    "希芙"
+   ],
+   [
+    "Sibear",
+    "西伯利亚冰锤"
+   ],
+   [
+    "Sigma & Octantis",
+    "西格玛 & 南极座"
+   ],
+   [
+    "Silva & Aegis",
+    "席瓦 & 神盾"
+   ],
+   [
+    "Skana",
+    "空刃"
+   ],
+   [
+    "Skiajati",
+    "影生"
+   ],
+   [
+    "Slaytra",
+    "屠煞"
+   ],
+   [
+    "Spinnerex",
+    "丝蛛皇"
+   ],
+   [
+    "Stropha",
+    "诡计之刃"
+   ],
+   [
+    "Sun & Moon",
+    "赤阳 & 幽月"
+   ],
+   [
+    "Syam",
+    "业珀"
+   ],
+   [
+    "Sydon",
+    "恶龙"
+   ],
+   [
+    "Tak & Lug",
+    "塔克 & 卢格"
+   ],
+   [
+    "Tatsu",
+    "龙辰"
+   ],
+   [
+    "Tekko",
+    "铁钩手甲"
+   ],
+   [
+    "Tenet Agendus",
+    "信条·集议"
+   ],
+   [
+    "Tenet Exec",
+    "信条·枢密"
+   ],
+   [
+    "Tenet Grigori",
+    "信条·格里高利"
+   ],
+   [
+    "Tenet Livia",
+    "信条·莉薇娅"
+   ],
+   [
+    "Thalys",
+    "大力士"
+   ],
+   [
+    "Tipedo",
+    "提佩多"
+   ],
+   [
+    "Tonbo",
+    "蜻蛉薙"
+   ],
+   [
+    "Tonkkatt",
+    "通卡拐刃"
+   ],
+   [
+    "Twin Basolk",
+    "双子巴萨克"
+   ],
+   [
+    "Twin Krohkur",
+    "双子克鲁古尔"
+   ],
+   [
+    "Vastilok",
+    "瓦斯提枪刃"
+   ],
+   [
+    "Venato",
+    "脉纹"
+   ],
+   [
+    "Venka",
+    "凯旋之爪"
+   ],
+   [
+    "Verdilac",
+    "蝰首骨妖"
+   ],
+   [
+    "Vericres",
+    "真月武扇"
+   ],
+   [
+    "Vinquibus (Melee)",
+    "制胜者 (近战)"
+   ],
+   [
+    "Vitrica",
+    "金璃剑"
+   ],
+   [
+    "Volnus",
+    "创伤"
+   ],
+   [
+    "War",
+    "战争之剑"
+   ],
+   [
+    "Wolf Sledge",
+    "恶狼战锤"
+   ],
+   [
+    "Wrath",
+    "愤怒"
+   ],
+   [
+    "Xoris",
+    "驱魔之刃"
+   ],
+   [
+    "Zenistar",
+    "天顶之星"
+   ],
+   [
+    "Acceltra",
+    "迅发电浆炮"
+   ],
+   [
+    "Aeolak",
+    "风鸣"
+   ],
+   [
+    "Afentis",
+    "圣英"
+   ],
+   [
+    "Alternox",
+    "电幻步枪"
+   ],
+   [
+    "Ambassador",
+    "使节"
+   ],
+   [
+    "Amprex",
+    "安培克斯"
+   ],
+   [
+    "Arca Plasmor",
+    "弧电离子枪"
+   ],
+   [
+    "Argonak",
+    "氩格纳克"
+   ],
+   [
+    "Astilla",
+    "碎裂者"
+   ],
+   [
+    "Attica",
+    "阿提卡"
+   ],
+   [
+    "AX-52",
+    "AX-52"
+   ],
+   [
+    "Basmu",
+    "巴什穆"
+   ],
+   [
+    "Battacor",
+    "武使之力"
+   ],
+   [
+    "Baza",
+    "苍鹰"
+   ],
+   [
+    "Boar",
+    "野猪"
+   ],
+   [
+    "Boltor",
+    "螺钉步枪"
+   ],
+   [
+    "Braton",
+    "布莱顿"
+   ],
+   [
+    "Bubonico",
+    "横痃重炮"
+   ],
+   [
+    "Burston",
+    "伯斯顿"
+   ],
+   [
+    "Buzlok",
+    "巴兹火枪"
+   ],
+   [
+    "Cedo",
+    "塞多"
+   ],
+   [
+    "Cernos",
+    "西诺斯"
+   ],
+   [
+    "Cinta",
+    "遂心"
+   ],
+   [
+    "Coda Bassocyst",
+    "终幕·低音爆囊"
+   ],
+   [
+    "Convectrix",
+    "导热聚焦枪"
+   ],
+   [
+    "Corinth",
+    "科林斯"
+   ],
+   [
+    "Daikyu",
+    "大久和弓"
+   ],
+   [
+    "Dera",
+    "德拉"
+   ],
+   [
+    "Drakgoon",
+    "龙骑兵"
+   ],
+   [
+    "Dread",
+    "恐惧"
+   ],
+   [
+    "EFV-5 Jupiter",
+    "艾弗旺-5 木星"
+   ],
+   [
+    "Enkaus",
+    "绘墨"
+   ],
+   [
+    "Evensong",
+    "晚祷"
+   ],
+   [
+    "Exergis",
+    "晶能放射器"
+   ],
+   [
+    "Felarx",
+    "逐枭"
+   ],
+   [
+    "Ferrox",
+    "铁晶磁轨炮"
+   ],
+   [
+    "Flux Rifle",
+    "通量步枪"
+   ],
+   [
+    "Fulmin",
+    "雷霆"
+   ],
+   [
+    "Glaxion",
+    "冷冻光束步枪"
+   ],
+   [
+    "Gorgon",
+    "蛇发女妖"
+   ],
+   [
+    "Gotva Prime",
+    "骨葬 Prime"
+   ],
+   [
+    "Grakata",
+    "葛拉卡达"
+   ],
+   [
+    "Grinlok",
+    "葛恩火枪"
+   ],
+   [
+    "Haalvu",
+    "哈尔武"
+   ],
+   [
+    "Harpak",
+    "哈帕克"
+   ],
+   [
+    "Hek",
+    "海克"
+   ],
+   [
+    "Hema",
+    "血肢"
+   ],
+   [
+    "Higasa",
+    "晴日伞"
+   ],
+   [
+    "Hind",
+    "雌鹿"
+   ],
+   [
+    "Ignis",
+    "伊格尼斯"
+   ],
+   [
+    "Javlok",
+    "燃焰标枪"
+   ],
+   [
+    "Karak",
+    "卡拉克"
+   ],
+   [
+    "Kohm",
+    "寇恩热能枪"
+   ],
+   [
+    "Komorex",
+    "猛毒"
+   ],
+   [
+    "Kuva Bramma",
+    "赤毒·布拉玛"
+   ],
+   [
+    "Kuva Chakkhurr",
+    "赤毒·邪眼"
+   ],
+   [
+    "Lanka",
+    "兰卡"
+   ],
+   [
+    "Latron",
+    "拉特昂"
+   ],
+   [
+    "Lenz",
+    "楞次弓"
+   ],
+   [
+    "Miter",
+    "米特尔"
+   ],
+   [
+    "Mutalist Cernos",
+    "异融西诺斯"
+   ],
+   [
+    "Mutalist Quanta",
+    "异融量子枪"
+   ],
+   [
+    "Nagantaka",
+    "噬蛇弩"
+   ],
+   [
+    "Nataruk",
+    "太始弓"
+   ],
+   [
+    "Nunchasa",
+    "霜冥差"
+   ],
+   [
+    "Ogris",
+    "食人女魔"
+   ],
+   [
+    "Opticor",
+    "奥堤克光子枪"
+   ],
+   [
+    "Panthera",
+    "猎豹"
+   ],
+   [
+    "Paracyst",
+    "附肢寄生者"
+   ],
+   [
+    "Paris",
+    "帕里斯"
+   ],
+   [
+    "Penta",
+    "潘塔"
+   ],
+   [
+    "Perigale",
+    "月面狂风"
+   ],
+   [
+    "Phage",
+    "噬菌者"
+   ],
+   [
+    "Phantasma",
+    "幻离子"
+   ],
+   [
+    "Phenmor",
+    "凤殁"
+   ],
+   [
+    "Proboscis Cernos",
+    "刺吸西诺斯"
+   ],
+   [
+    "Purgator 1",
+    "净化者 1"
+   ],
+   [
+    "Quanta",
+    "量子切割器"
+   ],
+   [
+    "Quartakk",
+    "夸塔克"
+   ],
+   [
+    "Quellor",
+    "压制者"
+   ],
+   [
+    "Rauta",
+    "锐铁"
+   ],
+   [
+    "Reconifex",
+    "侦察者"
+   ],
+   [
+    "Rubico",
+    "绝路"
+   ],
+   [
+    "Scourge",
+    "祸根"
+   ],
+   [
+    "Shedu",
+    "舍杜"
+   ],
+   [
+    "Simulor",
+    "重力奇点拟成枪"
+   ],
+   [
+    "Snipetron",
+    "狙击特昂"
+   ],
+   [
+    "Sobek",
+    "鳄神"
+   ],
+   [
+    "Soma",
+    "月神"
+   ],
+   [
+    "Sporothrix",
+    "孢丝感染枪"
+   ],
+   [
+    "Stahlta",
+    "钢刃步枪"
+   ],
+   [
+    "Steflos",
+    "石晶之花"
+   ],
+   [
+    "Stradavar",
+    "斯特拉迪瓦"
+   ],
+   [
+    "Strun",
+    "斯特朗"
+   ],
+   [
+    "Supra",
+    "苏普拉"
+   ],
+   [
+    "Sybaris",
+    "席芭莉丝"
+   ],
+   [
+    "Synapse",
+    "突触生化枪"
+   ],
+   [
+    "Tenet Envoy",
+    "信条·典客"
+   ],
+   [
+    "Tenora",
+    "双簧管"
+   ],
+   [
+    "Tetra",
+    "特拉"
+   ],
+   [
+    "Thornbak",
+    "棘背"
+   ],
+   [
+    "Tiberon",
+    "狂鲨"
+   ],
+   [
+    "Tigris",
+    "猛虎"
+   ],
+   [
+    "Tonkor",
+    "征服榴炮"
+   ],
+   [
+    "Torid",
+    "托里德"
+   ],
+   [
+    "Trumna",
+    "灭杀者"
+   ],
+   [
+    "Vadarya Prime",
+    "瓦德雅 Prime"
+   ],
+   [
+    "Vectis",
+    "守望者"
+   ],
+   [
+    "Veldt",
+    "草原猎手"
+   ],
+   [
+    "Vinquibus",
+    "制胜者"
+   ],
+   [
+    "Vulkar",
+    "金工火神"
+   ],
+   [
+    "Zarr",
+    "沙皇"
+   ],
+   [
+    "Zenith",
+    "天穹之顶"
+   ],
+   [
+    "Zhuge",
+    "诸葛连弩"
+   ],
+   [
+    "Acrid",
+    "阿克里德"
+   ],
+   [
+    "Aegrit",
+    "骇敌榴弹"
+   ],
+   [
+    "Afuris",
+    "盗贼双枪"
+   ],
+   [
+    "Akarius",
+    "阿利乌双枪"
+   ],
+   [
+    "Akbolto",
+    "螺钉双枪"
+   ],
+   [
+    "Akbronco",
+    "野马双枪"
+   ],
+   [
+    "Akjagara",
+    "觉醒双枪"
+   ],
+   [
+    "Aklato",
+    "拉托双枪"
+   ],
+   [
+    "Aklex",
+    "雷克斯双枪"
+   ],
+   [
+    "Akmagnus",
+    "麦格努斯双枪"
+   ],
+   [
+    "Aksomati",
+    "轻灵月神双枪"
+   ],
+   [
+    "Aksondol",
+    "寒怨刺"
+   ],
+   [
+    "Akstiletto",
+    "史提托双枪"
+   ],
+   [
+    "Akvasto",
+    "瓦斯托双枪"
+   ],
+   [
+    "Akzani",
+    "荒谬双枪"
+   ],
+   [
+    "Angstrum",
+    "安格斯壮"
+   ],
+   [
+    "Arca Scisco",
+    "弧电探知者"
+   ],
+   [
+    "Athodai",
+    "阿索代"
+   ],
+   [
+    "Atomos",
+    "原子矿融炮"
+   ],
+   [
+    "Azima",
+    "方位角"
+   ],
+   [
+    "Ballistica",
+    "布里斯提卡"
+   ],
+   [
+    "Bolto",
+    "螺钉手枪"
+   ],
+   [
+    "Brakk",
+    "布拉克"
+   ],
+   [
+    "Bronco",
+    "野马"
+   ],
+   [
+    "Cantare",
+    "歌颂"
+   ],
+   [
+    "Castanas",
+    "雷爆信镖"
+   ],
+   [
+    "Catabolyst",
+    "异化者"
+   ],
+   [
+    "Cestra",
+    "锡斯特"
+   ],
+   [
+    "Cyanex",
+    "氰毒"
+   ],
+   [
+    "Cycron",
+    "循环离子枪"
+   ],
+   [
+    "Despair",
+    "绝望"
+   ],
+   [
+    "Detron",
+    "德特昂"
+   ],
+   [
+    "Dual Cestra",
+    "锡斯特双枪"
+   ],
+   [
+    "Dual Coda Torxica",
+    "终幕·孢蚀双枪"
+   ],
+   [
+    "Dual Toxocyst",
+    "毒囊双枪"
+   ],
+   [
+    "EFV-8 Mars",
+    "艾弗旺-8 火星"
+   ],
+   [
+    "Embolist",
+    "安柏勒斯"
+   ],
+   [
+    "Epitaph",
+    "葬铭"
+   ],
+   [
+    "Euphona Prime",
+    "悦音 Prime"
+   ],
+   [
+    "Furis",
+    "盗贼"
+   ],
+   [
+    "Fusilai",
+    "齐射玻刃"
+   ],
+   [
+    "Gammacor",
+    "咖玛腕甲枪"
+   ],
+   [
+    "Grimoire",
+    "魔典"
+   ],
+   [
+    "Hikou",
+    "飞扬"
+   ],
+   [
+    "Hystrix",
+    "豪猪"
+   ],
+   [
+    "Knell",
+    "丧钟"
+   ],
+   [
+    "Kohmak",
+    "寇恩霰机枪"
+   ],
+   [
+    "Kompressa",
+    "卡帕压力枪"
+   ],
+   [
+    "Kraken",
+    "北海巨妖"
+   ],
+   [
+    "Kulstar",
+    "杀星"
+   ],
+   [
+    "Kunai",
+    "苦无"
+   ],
+   [
+    "Kuva Twin Stubbas",
+    "赤毒·双子史度巴"
+   ],
+   [
+    "Laetum",
+    "奏凯"
+   ],
+   [
+    "Lato",
+    "拉托"
+   ],
+   [
+    "Lex",
+    "雷克斯"
+   ],
+   [
+    "Magnus",
+    "麦格努斯"
+   ],
+   [
+    "Marelok",
+    "玛瑞火枪"
+   ],
+   [
+    "Nukor",
+    "努寇微波枪"
+   ],
+   [
+    "Ocucor",
+    "视使之触"
+   ],
+   [
+    "Onos",
+    "赘骨"
+   ],
+   [
+    "Pandero",
+    "手鼓"
+   ],
+   [
+    "Plinx",
+    "漫射者"
+   ],
+   [
+    "Pox",
+    "脓痘"
+   ],
+   [
+    "Pyrana",
+    "食人鱼"
+   ],
+   [
+    "Quatz",
+    "夸兹"
+   ],
+   [
+    "Riot-848",
+    "暴乱-848"
+   ],
+   [
+    "Sagek Prime",
+    "杀格 Prime"
+   ],
+   [
+    "Scyotid",
+    "镰刃刺"
+   ],
+   [
+    "Seer",
+    "预言者"
+   ],
+   [
+    "Sepulcrum",
+    "追击者"
+   ],
+   [
+    "Sicarus",
+    "暗杀者"
+   ],
+   [
+    "Sonicor",
+    "超音波冲击枪"
+   ],
+   [
+    "Spectra",
+    "光谱切割器"
+   ],
+   [
+    "Spira",
+    "旋刃飞刀"
+   ],
+   [
+    "Staticor",
+    "静电能量导引枪"
+   ],
+   [
+    "Stubba",
+    "史度巴"
+   ],
+   [
+    "Stug",
+    "史特克"
+   ],
+   [
+    "Talons",
+    "鹰爪"
+   ],
+   [
+    "Tenet Diplos",
+    "信条·纵横双枪"
+   ],
+   [
+    "Tenet Spirex",
+    "信条·斯派克斯"
+   ],
+   [
+    "Twin Grakatas",
+    "双子葛拉卡达"
+   ],
+   [
+    "Twin Gremlins",
+    "双子小精灵"
+   ],
+   [
+    "Twin Kohmak",
+    "双子寇恩霰机枪"
+   ],
+   [
+    "Twin Rogga",
+    "双子罗格"
+   ],
+   [
+    "Twin Vipers",
+    "双子蝰蛇"
+   ],
+   [
+    "Tysis",
+    "啐沫者"
+   ],
+   [
+    "Vasto",
+    "瓦斯托"
+   ],
+   [
+    "Velox",
+    "逐电"
+   ],
+   [
+    "Vesper 77",
+    "夜语者 77"
+   ],
+   [
+    "Viper",
+    "蝰蛇"
+   ],
+   [
+    "Zakti",
+    "毒芽"
+   ],
+   [
+    "Zylok",
+    "席尔火枪"
+   ],
+   [
+    "Zymos",
+    "邪莫斯"
+   ],
+   [
+    "Akaten",
+    "阿卡腾"
+   ],
+   [
+    "Artax",
+    "阿塔克斯"
+   ],
+   [
+    "Batoten",
+    "巴托腾"
+   ],
+   [
+    "Burst Laser",
+    "激光点发"
+   ],
+   [
+    "Cryotra",
+    "急冻喷枪"
+   ],
+   [
+    "Deconstructor",
+    "分离"
+   ],
+   [
+    "Deth Machine Rifle",
+    "死亡机枪"
+   ],
+   [
+    "Helstrum",
+    "赫尔斯壮"
+   ],
+   [
+    "Lacerten",
+    "莱斯腾"
+   ],
+   [
+    "Laser Rifle",
+    "激光步枪"
+   ],
+   [
+    "Multron",
+    "多连穿甲枪"
+   ],
+   [
+    "Stinger",
+    "毒刺"
+   ],
+   [
+    "Sweeper",
+    "扫除者"
+   ],
+   [
+    "Tazicor",
+    "泰瑟步枪"
+   ],
+   [
+    "Verglas",
+    "冰凇"
+   ],
+   [
+    "Vulcax",
+    "金工火舌"
+   ],
+   [
+    "Vulklok",
+    "金工火枪"
+   ],
+   [
+    "Balla",
+    "宝拉"
+   ],
+   [
+    "Cyath",
+    "西亚什"
+   ],
+   [
+    "Dehtat",
+    "德塔特"
+   ],
+   [
+    "Dokrahm",
+    "多克拉姆"
+   ],
+   [
+    "Kronsh",
+    "客隆什"
+   ],
+   [
+    "Mewan",
+    "密丸"
+   ],
+   [
+    "Ooltha",
+    "乌尔萨"
+   ],
+   [
+    "Plague Keewar",
+    "瘟疫 奇沃"
+   ],
+   [
+    "Plague Kripath",
+    "瘟疫 克里帕丝"
+   ],
+   [
+    "Rabvee",
+    "拉比威"
+   ],
+   [
+    "Sepfahn",
+    "瑟普梵"
+   ]
+  ],
+  "overrides": [
+   [
+    "轻短刃",
+    "宝拉"
+   ],
+   [
+    "重弯刃",
+    "客隆什"
+   ],
+   [
+    "重锤刃",
+    "拉比威"
+   ],
+   [
+    "重长刃",
+    "密丸"
+   ],
+   [
+    "直刃",
+    "瑟普梵"
+   ],
+   [
+    "长刃",
+    "乌尔萨"
+   ],
+   [
+    "弯刃",
+    "西亚什"
+   ],
+   [
+    "轻镰刃",
+    "多克拉姆"
+   ],
+   [
+    "异变轻刺刃",
+    "瘟疫 克里帕丝"
+   ],
+   [
+    "异变重镰刃",
+    "瘟疫 奇沃"
+   ],
+   [
+    "轻刺刃",
+    "德塔特"
+   ]
+  ],
+  "nameRules": [
+   [
+    "圣装X",
+    [
+     "X",
+     "X Prime"
+    ]
+   ],
+   [
+    "赤毒X",
+    [
+     "赤毒·X",
+     "X"
+    ]
+   ],
+   [
+    "信条X",
+    [
+     "信条·X",
+     "X"
+    ]
+   ],
+   [
+    "终幕X",
+    [
+     "终幕·X",
+     "X"
+    ]
+   ],
+   [
+    "X（主手）",
+    [
+     "X"
+    ]
+   ],
+   [
+    "X（副手）",
+    [
+     "X"
+    ]
+   ],
+   [
+    "试用型X",
+    [
+     "X"
+    ]
+   ],
+   [
+    "MK1-X",
+    [
+     "X"
+    ]
+   ]
+  ]
+ },
+ "statKeys": [
+  {
+   "key": "dmg",
+   "cn": "伤害",
+   "short": "伤害",
+   "en": "Damage",
+   "alias": [],
+   "row": null,
+   "enFull": "Damage",
+   "eng": "基础伤害"
+  },
+  {
+   "key": "cc",
+   "cn": "暴击几率",
+   "short": "暴击几率",
+   "en": "Crit Chance",
+   "alias": [
+    "CC",
+    "Crit Chance"
+   ],
+   "row": 4,
+   "enFull": "Critical Chance"
+  },
+  {
+   "key": "cd",
+   "cn": "暴击伤害",
+   "short": "暴击伤害",
+   "en": "Crit Damage",
+   "alias": [
+    "CD",
+    "Crit Damage",
+    "Crit Dmg"
+   ],
+   "row": 5,
+   "enFull": "Critical Damage"
+  },
+  {
+   "key": "ms",
+   "cn": "多重射击",
+   "short": "多重",
+   "en": "Multishot",
+   "alias": [
+    "MS",
+    "多重"
+   ],
+   "row": 19,
+   "enFull": "Multishot"
+  },
+  {
+   "key": "sc",
+   "cn": "触发几率",
+   "short": "触发几率",
+   "en": "Status Chance",
+   "alias": [
+    "SC",
+    "状态触发几率"
+   ],
+   "row": 6,
+   "enFull": "Status Chance"
+  },
+  {
+   "key": "sd",
+   "cn": "异常状态伤害",
+   "short": "异常状态伤害",
+   "en": "",
+   "alias": [
+    "触发伤害",
+    "状态伤害"
+   ],
+   "row": 35,
+   "enFull": "Status Damage"
+  },
+  {
+   "key": "fac",
+   "cn": "对派系伤害",
+   "short": "对派系",
+   "en": "Faction",
+   "alias": [
+    "对派系",
+    "对异变感染体的伤害"
+   ],
+   "row": 16,
+   "enFull": "Faction Damage"
+  },
+  {
+   "key": "weak",
+   "cn": "弱点伤害",
+   "short": "弱点伤害",
+   "en": "",
+   "alias": [
+    "WEAK"
+   ],
+   "row": 45,
+   "enFull": "Weakpoint Damage"
+  },
+  {
+   "key": "weakcc",
+   "cn": "弱点暴击几率",
+   "short": "弱点暴击几率",
+   "en": "",
+   "alias": [
+    "WC"
+   ],
+   "row": 46,
+   "enFull": "Weakpoint Critical Chance"
+  },
+  {
+   "key": "zoom",
+   "cn": "变焦",
+   "short": "变焦",
+   "en": "Zoom",
+   "alias": [
+    "ZOOM",
+    "瞄准缩进"
+   ],
+   "row": 26,
+   "enFull": "Zoom"
+  },
+  {
+   "key": "recoil",
+   "cn": "后坐力",
+   "short": "后坐力",
+   "en": "Recoil",
+   "alias": [],
+   "row": 25,
+   "enFull": "Recoil"
+  },
+  {
+   "key": "ammo",
+   "cn": "弹药最大值",
+   "short": "弹药",
+   "en": "Ammo",
+   "alias": [
+    "AMMO",
+    "Ammo Max",
+    "Ammo Maximum",
+    "弹药"
+   ],
+   "row": 22,
+   "enFull": "Maximum Ammo"
+  },
+  {
+   "key": "punch",
+   "cn": "穿透",
+   "short": "穿透",
+   "en": "Pierce",
+   "alias": [
+    "PT"
+   ],
+   "row": 20,
+   "enFull": "Pierce"
+  },
+  {
+   "key": "mag",
+   "cn": "弹匣容量",
+   "short": "弹匣",
+   "en": "Magazine",
+   "alias": [
+    "MAG",
+    "弹匣",
+    "弹夹容量"
+   ],
+   "row": 21,
+   "enFull": "Magazine Capacity"
+  },
+  {
+   "key": "rel",
+   "cn": "装填速度",
+   "short": "装填",
+   "en": "Reload",
+   "alias": [
+    "RLS",
+    "Reload",
+    "Reload Speed",
+    "装填"
+   ],
+   "row": 23,
+   "enFull": "Reload Speed"
+  },
+  {
+   "key": "frate",
+   "cn": "射速",
+   "short": "射速",
+   "en": "Fire Rate",
+   "alias": [],
+   "row": 8,
+   "enFull": "Fire Rate"
+  },
+  {
+   "key": "aspeed",
+   "cn": "攻击速度",
+   "short": "攻击速度",
+   "en": "Attack Speed",
+   "alias": [],
+   "row": 8,
+   "enFull": "Attack Speed"
+  },
+  {
+   "key": "range",
+   "cn": "攻击范围",
+   "short": "范围",
+   "en": "Range",
+   "alias": [
+    "RANGE",
+    "范围"
+   ],
+   "row": 34,
+   "enFull": "Attack Range"
+  },
+  {
+   "key": "combo",
+   "cn": "初始连击",
+   "short": "初始连击",
+   "en": "Combo",
+   "alias": [
+    "IC"
+   ],
+   "row": 27,
+   "enFull": "Initial Combo",
+   "eng": "连击数获得"
+  },
+  {
+   "key": "slam",
+   "cn": "震地攻击伤害",
+   "short": "震地攻击伤害",
+   "en": "",
+   "alias": [],
+   "row": 52,
+   "enFull": "Slam Damage"
+  },
+  {
+   "key": "windup",
+   "cn": "重击准备速度",
+   "short": "重击准备速度",
+   "en": "Windup",
+   "alias": [],
+   "row": 50,
+   "enFull": "Heavy Attack Speed"
+  },
+  {
+   "key": "slideCrit",
+   "cn": "滑砍暴击几率",
+   "short": "滑砍暴击",
+   "en": "Slide Crit",
+   "alias": [
+    "滑砍暴击"
+   ],
+   "row": 32,
+   "enFull": "Slide Critical Chance"
+  },
+  {
+   "key": "comboDur",
+   "cn": "连击持续时间",
+   "short": "连击持续",
+   "en": "Combo Duration",
+   "alias": [
+    "连击持续",
+    "连击保持时间"
+   ],
+   "row": 28,
+   "enFull": "Combo Duration"
+  },
+  {
+   "key": "efficiency",
+   "cn": "重击效率",
+   "short": "重击效率",
+   "en": "Efficiency",
+   "alias": [
+    "EFF"
+   ],
+   "row": 31,
+   "enFull": "Heavy Attack Efficiency"
+  },
+  {
+   "key": "finisher",
+   "cn": "处决伤害",
+   "short": "处决",
+   "en": "Finisher",
+   "alias": [
+    "FIN",
+    "处决",
+    "终结伤害"
+   ],
+   "row": 33,
+   "enFull": "Finisher Damage"
+  },
+  {
+   "key": "statusDur",
+   "cn": "触发持续时间",
+   "short": "触发时间",
+   "en": "Status Duration",
+   "alias": [
+    "触发时间",
+    "状态持续时间"
+   ],
+   "row": 7,
+   "enFull": "Status Duration"
+  },
+  {
+   "key": "tkEnable",
+   "cn": "启用气解",
+   "short": "启用气解",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Tennokai"
+  },
+  {
+   "key": "tkDmg",
+   "cn": "气解伤害",
+   "short": "气解伤害",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Tennokai Damage"
+  },
+  {
+   "key": "tkChance",
+   "cn": "气解机会几率",
+   "short": "气解机会几率",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Tennokai Chance"
+  },
+  {
+   "key": "tkWin",
+   "cn": "气解触发窗口",
+   "short": "气解触发窗口",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Tennokai Window"
+  },
+  {
+   "key": "tkEvery",
+   "cn": "气解触发间隔",
+   "short": "气解触发间隔",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Tennokai Interval"
+  },
+  {
+   "key": "tkSC",
+   "cn": "气解触发几率",
+   "short": "气解触发几率",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Tennokai Status Chance"
+  },
+  {
+   "key": "tkCd",
+   "cn": "气解暴击伤害",
+   "short": "气解暴击伤害",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Tennokai Critical Damage"
+  },
+  {
+   "key": "parryFin",
+   "cn": "处决开启几率",
+   "short": "处决开启几率",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Parry Finisher Chance"
+  },
+  {
+   "key": "parryAngle",
+   "cn": "招架角度",
+   "short": "招架角度",
+   "en": "",
+   "alias": [],
+   "row": 51,
+   "enFull": "Parry Angle"
+  },
+  {
+   "key": "airRange",
+   "cn": "空中攻击范围",
+   "short": "空中攻击范围",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Aerial Attack Range"
+  },
+  {
+   "key": "healProc",
+   "cn": "每层异常回血",
+   "short": "每层异常回血",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Health per Status Stack"
+  },
+  {
+   "key": "lifesteal",
+   "cn": "生命偷取",
+   "short": "生命偷取",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Life Steal"
+  },
+  {
+   "key": "energyConv",
+   "cn": "能量转化上限",
+   "short": "能量转化上限",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Energy Conversion Cap"
+  },
+  {
+   "key": "slamPull",
+   "cn": "震地牵引范围",
+   "short": "震地牵引范围",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Slam Pull Range"
+  },
+  {
+   "key": "magFlat",
+   "cn": "弹匣容量",
+   "short": "弹匣容量",
+   "en": "",
+   "alias": [
+    "MAG"
+   ],
+   "row": null,
+   "enFull": "Magazine Capacity"
+  },
+  {
+   "key": "explodeKill",
+   "cn": "击杀爆炸伤害",
+   "short": "击杀爆炸伤害",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Kill Explosion Damage"
+  },
+  {
+   "key": "explodeChance",
+   "cn": "爆炸几率",
+   "short": "爆炸几率",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Explosion Chance"
+  },
+  {
+   "key": "djRefresh",
+   "cn": "二段跳刷新",
+   "short": "二段跳刷新",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Double Jump Refresh"
+  },
+  {
+   "key": "orbDrop",
+   "cn": "通用球掉落",
+   "short": "通用球掉落",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Orb Drop Rate"
+  },
+  {
+   "key": "nullifier",
+   "cn": "摧毁消能者护盾",
+   "short": "摧毁消能者护盾",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Nullifier Shield Damage"
+  },
+  {
+   "key": "killTrap",
+   "cn": "闪电陷阱持续",
+   "short": "闪电陷阱持续",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Shock Trap Duration"
+  },
+  {
+   "key": "disarm",
+   "cn": "缴械几率",
+   "short": "缴械几率",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Disarm Chance"
+  },
+  {
+   "key": "altCC",
+   "cn": "副攻击暴击几率",
+   "short": "副攻击暴击几率",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Alt Fire Critical Chance"
+  },
+  {
+   "key": "altCD",
+   "cn": "副攻击暴击伤害",
+   "short": "副攻击暴击伤害",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Alt Fire Critical Damage"
+  },
+  {
+   "key": "altFrate",
+   "cn": "副攻击射速",
+   "short": "副攻击射速",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Alt Fire Rate"
+  },
+  {
+   "key": "altDmg",
+   "cn": "副攻击伤害",
+   "short": "副攻击伤害",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Alt Fire Damage"
+  },
+  {
+   "key": "killRel",
+   "cn": "击杀后装填速度",
+   "short": "击杀后装填速度",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Reload Speed on Kill"
+  },
+  {
+   "key": "falloff",
+   "cn": "衰减距离",
+   "short": "衰减距离",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Falloff Distance"
+  },
+  {
+   "key": "sacCap",
+   "cn": "恶囊累积上限",
+   "short": "恶囊累积上限",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Sacred Steal Capacity"
+  },
+  {
+   "key": "massStore",
+   "cn": "团块累积伤害",
+   "short": "团块累积伤害",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Mass Damage Store"
+  },
+  {
+   "key": "tether",
+   "cn": "束缚敌人数",
+   "short": "束缚敌人数",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Tethered Enemies"
+  },
+  {
+   "key": "abEff",
+   "cn": "技能效率",
+   "short": "技能效率",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Ability Efficiency"
+  },
+  {
+   "key": "abDur",
+   "cn": "技能持续时间",
+   "short": "技能持续时间",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Ability Duration"
+  },
+  {
+   "key": "abStr",
+   "cn": "技能强度",
+   "short": "技能强度",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Ability Strength"
+  },
+  {
+   "key": "abRegen",
+   "cn": "能量回复",
+   "short": "能量回复",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Energy Regen"
+  },
+  {
+   "key": "allyBuff",
+   "cn": "队友增益",
+   "short": "队友增益",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Ally Buff Strength"
+  },
+  {
+   "key": "allyBuffD",
+   "cn": "队友增益延迟",
+   "short": "队友增益延迟",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Ally Buff Delay"
+  },
+  {
+   "key": "secRel",
+   "cn": "副武器装填速度",
+   "short": "副武器装填速度",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Secondary Reload Speed"
+  },
+  {
+   "key": "secMag",
+   "cn": "副武器弹匣容量",
+   "short": "副武器弹匣容量",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Secondary Magazine Capacity"
+  },
+  {
+   "key": "secSC",
+   "cn": "副武器触发几率",
+   "short": "副武器触发几率",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Secondary Status Chance"
+  },
+  {
+   "key": "secCC",
+   "cn": "副武器暴击几率",
+   "short": "副武器暴击几率",
+   "en": "",
+   "alias": [],
+   "row": null,
+   "enFull": "Secondary Critical Chance"
+  },
+  {
+   "key": "impact",
+   "cn": "冲击伤害",
+   "short": "冲击",
+   "en": "Impact",
+   "enFull": "Impact Damage",
+   "alias": [
+    "冲击"
+   ],
+   "row": 13
+  },
+  {
+   "key": "puncture",
+   "cn": "穿刺伤害",
+   "short": "穿刺",
+   "en": "Puncture",
+   "enFull": "Puncture Damage",
+   "alias": [
+    "穿刺"
+   ],
+   "row": 15
+  },
+  {
+   "key": "slash",
+   "cn": "切割伤害",
+   "short": "切割",
+   "en": "Slash",
+   "enFull": "Slash Damage",
+   "alias": [
+    "切割"
+   ],
+   "row": 14
+  },
+  {
+   "key": "heat",
+   "cn": "火焰伤害",
+   "short": "火焰",
+   "en": "Heat",
+   "enFull": "Heat Damage",
+   "alias": [
+    "火焰"
+   ],
+   "row": 12
+  },
+  {
+   "key": "cold",
+   "cn": "冰冻伤害",
+   "short": "冰冻",
+   "en": "Cold",
+   "enFull": "Cold Damage",
+   "alias": [
+    "冰冻"
+   ],
+   "row": 9
+  },
+  {
+   "key": "electric",
+   "cn": "电击伤害",
+   "short": "电击",
+   "en": "Electricity",
+   "enFull": "Electricity Damage",
+   "alias": [
+    "电击"
+   ],
+   "row": 11
+  },
+  {
+   "key": "toxin",
+   "cn": "毒素伤害",
+   "short": "毒素",
+   "en": "Toxin",
+   "enFull": "Toxin Damage",
+   "alias": [
+    "毒素"
+   ],
+   "row": 10
+  },
+  {
+   "key": "blast",
+   "cn": "爆炸伤害",
+   "short": "爆炸",
+   "en": "Blast",
+   "enFull": "Blast Damage",
+   "alias": [
+    "爆炸"
+   ],
+   "row": 40
+  },
+  {
+   "key": "radiation",
+   "cn": "辐射伤害",
+   "short": "辐射",
+   "en": "Radiation",
+   "enFull": "Radiation Damage",
+   "alias": [
+    "辐射"
+   ],
+   "row": 39
+  },
+  {
+   "key": "gas",
+   "cn": "毒气伤害",
+   "short": "毒气",
+   "en": "Gas",
+   "enFull": "Gas Damage",
+   "alias": [
+    "毒气"
+   ],
+   "row": 36
+  },
+  {
+   "key": "magnetic",
+   "cn": "磁力伤害",
+   "short": "磁力",
+   "en": "Magnetic",
+   "enFull": "Magnetic Damage",
+   "alias": [
+    "磁力"
+   ],
+   "row": 41
+  },
+  {
+   "key": "viral",
+   "cn": "病毒伤害",
+   "short": "病毒",
+   "en": "Viral",
+   "enFull": "Viral Damage",
+   "alias": [
+    "病毒"
+   ],
+   "row": 38
+  },
+  {
+   "key": "corrosive",
+   "cn": "腐蚀伤害",
+   "short": "腐蚀",
+   "en": "Corrosive",
+   "enFull": "Corrosive Damage",
+   "alias": [
+    "腐蚀"
+   ],
+   "row": 37
+  },
+  {
+   "key": "heavyDmg",
+   "cn": "重击伤害",
+   "short": "重击伤害",
+   "en": "Heavy Attack Damage",
+   "enFull": "Heavy Attack Damage",
+   "alias": [
+    "重击",
+    "Heavy Attack"
+   ],
+   "row": 49
+  },
+  {
+   "key": "syndRadial",
+   "cn": "集团特效",
+   "short": "集团特效",
+   "en": "",
+   "enFull": "",
+   "alias": [],
+   "row": null
+  },
+  {
+   "key": "xh",
+   "cn": "额外打击",
+   "short": "额外打击",
+   "en": "Extra Hit",
+   "enFull": "",
+   "alias": [],
+   "row": null
+  },
+  {
+   "key": "ccFlat",
+   "cn": "暴击几率（平值）",
+   "short": "暴击几率",
+   "en": "Crit Chance",
+   "enFull": "",
+   "alias": [],
+   "row": null
+  },
+  {
+   "key": "cdFlat",
+   "cn": "暴击伤害（平值）",
+   "short": "暴击伤害",
+   "en": "Crit Damage",
+   "enFull": "",
+   "alias": [],
+   "row": null
+  },
+  {
+   "key": "proj",
+   "cn": "投射物速度",
+   "short": "投射物速度",
+   "en": "Projectile Speed",
+   "enFull": "Projectile Speed",
+   "alias": [
+    "投射物速度",
+    "Projectile Speed"
+   ],
+   "row": 24
+  },
+  {
+   "key": "comboX",
+   "cn": "额外连击数几率",
+   "short": "额外连击",
+   "en": "Additional Combo Count Chance",
+   "enFull": "Additional Combo Count Chance",
+   "alias": [
+    "额外连击数几率"
+   ],
+   "row": 29
+  },
+  {
+   "key": "comboGain",
+   "cn": "概率不获得连击数",
+   "short": "不获得连击",
+   "en": "Chance to Gain Combo Count",
+   "enFull": "Chance to Gain Combo Count",
+   "alias": [
+    "概率不获得连击数"
+   ],
+   "row": 30
+  },
+  {
+   "key": "ammoEff",
+   "cn": "弹药效率",
+   "short": "弹药效率",
+   "en": "Ammo Efficiency",
+   "enFull": "Ammo Efficiency",
+   "alias": [
+    "弹药效率"
+   ],
+   "row": 47
+  },
+  {
+   "key": "magReload",
+   "cn": "收起武器时弹匣每秒自动装填",
+   "short": "收起自动装填",
+   "en": "Magazine Reload While Holstered",
+   "enFull": "Magazine Reload While Holstered",
+   "alias": [
+    "收起武器时弹匣每秒自动装填"
+   ],
+   "row": 48
+  }
+ ]
+}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Warframe 紫卡模拟器 V10 · 离线单文件工具</title>
+<style>
+:root{
+  --bg:#f7f8fa; --card:#fff; --bd:#e3e6ec; --tx:#1a1d24; --mut:#6b7280;
+  --acc:#7c5cff; --acc-t:#fff; --code:#f2f3f7;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#12141a; --card:#191c24; --bd:#2a2f3a; --tx:#e6e8ee; --mut:#9aa2b1; --code:#14171f; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);
+  font:15px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:32px 20px 64px}
+h1{font-size:26px;margin:0 0 6px;letter-spacing:-.01em}
+.sub{color:var(--mut);margin:0 0 24px}
+h2{font-size:18px;margin:32px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--bd)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:18px 20px;margin:14px 0}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.btn{display:inline-block;background:var(--acc);color:var(--acc-t);text-decoration:none;
+  padding:10px 16px;border-radius:9px;font-weight:600;font-size:14px}
+.btn.ghost{background:transparent;color:var(--tx);border:1px solid var(--bd)}
+.tag{display:inline-block;background:var(--code);border:1px solid var(--bd);border-radius:6px;
+  padding:1px 7px;font-size:12px;color:var(--mut);margin-left:6px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--bd);vertical-align:top}
+th{color:var(--mut);font-weight:600}
+code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px}
+pre{background:var(--code);border:1px solid var(--bd);border-radius:9px;padding:14px;overflow:auto;margin:10px 0}
+code.inl{background:var(--code);border:1px solid var(--bd);border-radius:5px;padding:1px 5px}
+ul{margin:8px 0;padding-left:22px}
+li{margin:3px 0}
+a{color:var(--acc)}
+.foot{color:var(--mut);font-size:13px;margin-top:36px;border-top:1px solid var(--bd);padding-top:14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:640px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Warframe 紫卡模拟器 V10</h1>
+<p class="sub">面向《Warframe（星际战甲）》紫卡 / 裂罅 Mod 的<strong>离线单文件</strong>工具：双击即开、断网可用，OCR 与收益引擎全部内嵌。</p>
+
+<div class="card">
+  <strong>直接打开成品</strong><span class="tag">无需安装 · 无需联网</span>
+  <div class="btns">
+    <a class="btn" href="web/产物/20261031紫卡模拟器V10.html">主版 · 15 MB</a>
+    <a class="btn ghost" href="web/产物/识别流程原理讲解_鳄神案例.html">识别流程原理讲解 · 3.0 MB</a>
+  </div>
+  <p style="color:var(--mut);font-size:13px;margin:12px 0 0">
+    都是自包含单文件（JS / CSS / OCR 模型 / ONNX 运行时全部内联），下载后双击即可用。
+    也可以在 GitHub Pages 上直接点开 —— 首次加载较慢（十几 MB），之后走浏览器缓存。
+  </p>
+</div>
+
+<h2>怎么做的</h2>
+<ul>
+  <li><strong>单文件离线</strong>：构建时把 <code>源码/</code> 拼成一份 HTML，JS / CSS / OCR 模型 / ONNX 运行时全部内联，识别过程不发任何网络请求。</li>
+  <li><strong>名字只有一张表</strong>：武器 / 词条 / 类型 / 变体词 / 派系 / 别名全部收进 <code>源码/数据/names.json</code>，代码里不再各写一份；构建时逐字段比对，表和数据不一致直接构建失败。</li>
+  <li><strong>词条名是一个键，不是一段文字</strong>：「暴击几率」只写在命名表里，引擎 / 面板 / OCR / 价表都只写键 <code>cc</code>（<code>ZN('cc')</code> / <code>SE('cc')</code> / <code>ZKC.statMap('short')</code>）；「暴击率」「Crit Chance」「CC」以及市场挂单里的「弹夹容量」「终结伤害」都登记成同一个键的别名。</li>
+  <li><strong>任何写法都落到同一样东西</strong>：武器名 <code>ZKC.matchWeapons</code>、词条名 <code>ZKC.matchStat</code> 各自一套归一化——全角半角、大小写、连字符、<code>damage vs./to/for corpus</code> 与「对科普斯的伤害」等价；只写本体名自动落到本体。</li>
+  <li><strong>双重倾向口径</strong>：一份产物同时带「全库统一 1.2」与「各武器历史倾向」两态，目录底「倾向口径」页内切换，计算与区间表跟着重算。</li>
+  <li><strong>行情比价按服取池</strong>：国际服与国服各一个在售挂单池，估哪个服就在哪个服的挂单里比；同一套同款匹配 + 相似度加权，负词条按严重度四档折价，国服价格截到 300 上限。</li>
+  <li><strong>行情库只存键</strong>：组合榜 / 单词条榜存 slug，显示名从命名表取；样本去头尾 25% 极值、数值取整。</li>
+</ul>
+
+<h2>七个功能分区</h2>
+<table>
+  <tr><th>分区</th><th>用途</th></tr>
+  <tr><td>01 倾向数值区间表</td><td>每把武器的倾向值与各词条数值区间</td></tr>
+  <tr><td>02 分析识别计算器</td><td>粘紫卡截图 → 本地 OCR 识别武器 / 等级 / 四条词条与数值 → 自动填入计算器</td></tr>
+  <tr><td>03 开卡洗卡融合模拟</td><td>随机开卡、继续洗、融合；统计次数与辣椒（Kuva）消耗，双卡对比</td></tr>
+  <tr><td>04 紫卡收益计算器</td><td>选武器 → 配卡 → 填词条，给出相对「不带这张卡」的收益与每条边际</td></tr>
+  <tr><td>05 洗卡左右建议器</td><td>左右两张候选卡各识别一次，同一套引擎现场算，判断留哪张</td></tr>
+  <tr><td>06 紫卡价值表</td><td>成交价快照：中位价、均价、未洗 / 已洗、最高单笔、流动性、近 8 周变动；另含单词条热度榜与词条组合价格排名，双服切换</td></tr>
+  <tr><td>07 口径与词汇</td><td>数值怎么算、哪些词条不会出现、名词含义</td></tr>
+</table>
+<p style="color:var(--mut);font-size:13px">另外：三语言界面（国服 / 国际服 / English）、暗亮双主题、移动端适配。</p>
+
+<h2>自己构建</h2>
+<p>需要 Python 3 与 Node.js 22（仅构建期校验用）：</p>
+<pre>cd web
+
+# 0) 清注释（新增源文件要先登记到 构建/squeeze_src.py 的 BUILD_FILES）
+python 构建/squeeze_src.py --apply
+
+# 1) 组装源码 → 中间产物（第 1 步的输出还没嵌 OCR 运行时，必须接第 2 步）
+OCR_VER=v6 GZ_MODELS=1 python 构建/build.py 产物/20261031紫卡模拟器V10.html
+
+# 2) 内嵌 OCR 模型 + 去注释 → 最终交付件
+python 构建/embed-ort.py --src 产物/20261031紫卡模拟器V10.html \
+                          --out 产物/20261031紫卡模拟器V10.html --strip</pre>
+<p style="color:var(--mut);font-size:13px">
+  两步即可：第 1 步产出的是未嵌 OCR 运行时的中间态，第 2 步才内嵌运行时并去注释。
+</p>
+
+<h2>仓库结构</h2>
+<pre>warframe-riven-toolkit/
+├── index.html      ← 本页（GitHub Pages 入口）
+├── README.md       ← 项目总览
+├── docs/           ← 口径 / 方法论 / 踩坑记录 / 事实清单
+├── scripts/        ← 独立小工具
+├── tools/          ← Excel（xlsm + 宏）数据维护工具
+└── web/            ← 网页版
+    ├── 源码/       ← 前端唯一源码（公共 / 数据 / 引擎 / 框架 / 识别 / 资源 / 填表）
+    ├── 构建/       ← build.py / embed-ort.py / squeeze_src.py …
+    ├── 数据/       ← 武器库与价值表（构建期源）
+    ├── 产物/       ← 交付的单文件 HTML
+    ├── dist/       ← 英文名分发版（同构建，英文文件名便于分享）
+    ├── 调试/       ← 无头 Chrome 回归探针（run_all.cjs 总入口）
+    └── 测试/       ← 填表回归测试件与卡图</pre>
+<p style="color:var(--mut);font-size:13px">
+  <code class="inl">web/运行时/</code>（ONNX 缓存 14 MB）、思源黑体 ttf（20 MB）、<code class="inl">tools/备份/</code> 已按 .gitignore 省略，不入库也不影响使用与重建。
+</p>
+
+<h2>数据口径</h2>
+<ul>
+  <li>武器 <strong>637 把</strong>（本体 396 / 变体·有本体 218 / 变体·无本体 23）；开卡池 = 本体 + 变体·无本体 = <strong>419 把</strong>。</li>
+  <li>词条 <strong>51 条</strong>；融合配方 <strong>23 条</strong>。</li>
+  <li>行情库 <strong>27,942 条</strong>在售挂单（国际服 · 420 把武器）/<strong>2,349 条</strong>（国服 · 289 把）。</li>
+  <li>倾向默认全库统一按 <strong>1.2</strong>；页内「倾向口径」可切到按每把武器历史倾向计算，刷新后保持。</li>
+</ul>
+
+<h2>文档</h2>
+<ul>
+  <li><a href="README.md">README.md</a> —— 项目总览、快速开始、构建与回归</li>
+  <li><a href="docs/README.md">docs/README.md</a> —— 子工程文档（口径 / 注意事项 / 文档索引）</li>
+  <li><a href="docs/CHANGELOG.md">docs/CHANGELOG.md</a> —— 项目事实清单</li>
+  <li><a href="docs/04_踩坑总表.md">docs/04_踩坑总表.md</a> —— 最完整的口径与坑点记录</li>
+  <li><a href="docs/06_识别与挂单_对比riven-image-assistant.md">docs/06_识别与挂单_对比riven-image-assistant.md</a> —— 与同类工具在识别 / 挂单上的对比</li>
+  <li><a href="web/README.md">web/README.md</a> —— 网页版实现原理与回归用法</li>
+</ul>
+
+<p class="foot">
+  当前所有内容仅供学习与个人使用；如需公开分发或二次开发，请先确认授权与许可证。<br>
+  本页为静态页面，不加载任何外部资源。
+</p>
+
+</div>
+</body>
+</html>
