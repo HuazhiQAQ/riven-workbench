@@ -59,8 +59,7 @@ riven-workbench/                 ← 仓库根（英文，便于 GitHub / Pages 
 │   ├── 02_数据更新传播清单.md
 │   ├── 03_表结构速查.md
 │   ├── 04_踩坑总表.md           ← 最完整的口径与坑点记录（按功能分区）
-│   ├── 05_输入框规则汇总.md
-│   └── 06_识别与挂单_对比riven-image-assistant.md  ← 与同类工具在识别 / 挂单上的对比
+│   └── 05_输入框规则汇总.md
 ├── scripts/                     ← 独立小工具
 │   └── wm_strip.py              ← WM 脚本构建期注释剥离器
 ├── tools/                       ← Excel 数据维护工具（说明见下方「Tools excel 表」）
