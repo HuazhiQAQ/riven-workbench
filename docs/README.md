@@ -91,7 +91,7 @@
 │   ├── 构建/                          build.py embed-ort.py squeeze_src.py strip_html.py export.py gen-basedata.py gen_names.py pricedb_slim.py pricedb_fixcombos.py _audit_js.py
 │   ├── 数据/                          构建期源（data.json / basedata.json）
 │   ├── 产物/                          ★ 交付的 HTML（单文件）
-│   ├── dist/                          英文名分发版（riven-sim-web.html）
+│   ├── dist/                          英文名分发版（riven-workbench-web.html）
 │   ├── 调试/                          无头 Chrome 回归探针（run_all.cjs 总入口 / cdp.cjs / _probe_*.cjs / lang_e2e.cjs）
 │   └── 测试/                          WM 填表回归测试件与卡图
 └── tools/
@@ -255,7 +255,7 @@ $PY 融合数值验证.py            $X 24          ★ 融合产物数值是不
   - `embed-ort.py` 内嵌的 ONNX 运行时优先读本地 `运行时/`；该目录已从仓库省略（约 14 MB 二进制缓存），
     重建时加 `--force-download` 从 CDN 拉取（需联网）。交付 HTML 本身已内嵌 ONNX，断网可用。
   - `export.py`（从 xlsm 导出 `数据/*.json`）只在数据源变了时才需要先跑。
-  - `build.py` 不带路径参数时默认写 `web/dist/riven-sim-web.html`。
+  - `build.py` 不带路径参数时默认写 `web/dist/riven-workbench-web.html`。
 - **配色**：正面 = 绿、负面 = 红（`--pos*` / `--neg*` 全局一对）
 - **两条看数字看不出的口径**：派系（行 16-18/42-44）1.45 是**倍率**，参与公式的是 +45；
   后坐力（行 25）**方向相反**，正面＝降低（负）、负面＝增加（正）。详见 `04_踩坑总表.md` Ⅰ 节

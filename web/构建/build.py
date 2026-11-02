@@ -4,8 +4,8 @@
   20261026 起 Tesseract / PaddleOCR 两条联网引擎已整条下线：实现、接口、
     文案都从 src/ocr/ocr.js 里删掉了（不再有"入口即抛错"的桩），OCR 只走
     内嵌的 onnxruntime-web 一条路。
-  python build.py                 -> riven-sim-web.html   含双卡对比（默认）
-  python build.py --plain         -> riven-sim-web-plain.html（备用版）
+  python build.py                 -> riven-workbench-web.html   含双卡对比（默认）
+  python build.py --plain         -> riven-workbench-web-plain.html（备用版）
   python build.py <目标路径>       （--plain 也适用）
   ⚠ 本脚本产出的是中间件（还没有内嵌 ONNX 运行时）。交付前必须再跑：
       python build/embed-ort.py --src <上一步产物> --out <xxx-完全离线.html>
@@ -55,8 +55,8 @@ _POS = [a for a in sys.argv[1:] if not a.startswith('--')]
 # 默认输出到脚本自己旁边（工具包归档里能直接跑）；
 # 要覆盖正式交付文件就显式传路径：python build.py <目标.html>
 OUT = (_POS[0] if _POS
-       else os.path.join(SRC, 'dist', 'riven-sim-web.html' if REAL
-                        else 'riven-sim-web-plain.html'))
+       else os.path.join(SRC, 'dist', 'riven-workbench-web.html' if REAL
+                        else 'riven-workbench-web-plain.html'))
 
 
 # 归档版把 src/ 下的目录改成了中文名（源码/公共/填表/…），但本脚本里全是 src/xxx 的老写法。

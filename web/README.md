@@ -67,7 +67,7 @@ python 构建/embed-ort.py --src 产物/20261031紫卡模拟器V10.html \
                           --out 产物/20261031紫卡模拟器V10.html --strip
 ```
 
-> `build.py` 不带路径参数时默认写 `dist/riven-sim-web.html`（英文名分发版）。
+> `build.py` 不带路径参数时默认写 `dist/riven-workbench-web.html`（英文名分发版）。
 > 第 2 步产物是**未嵌 OCR 运行时的中间态**，必须接第 3 步。
 
 > `embed-ort.py` 内嵌的 ONNX 运行时优先读取本地的 `运行时/ort/`；该目录已从仓库省略（约 14 MB 的二进制缓存），重建时加 `--force-download` 即可从 CDN 拉取（需联网）。交付的 `产物/*.html` 本身已内嵌 ONNX，断网也能用。

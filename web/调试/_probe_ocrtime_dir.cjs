@@ -9,7 +9,7 @@ const { openPage, toFileUrl } = require('./cdp.cjs');
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 const DIR = process.argv[2] || 'D:/桌面/紫卡测试';
-const FILE = process.argv[3] || path.join(__dirname, '..', 'dist', '20261029-riven-sim-v8.html');
+const FILE = process.argv[3] || path.join(__dirname, '..', 'dist', '20261029-riven-workbench-v8.html');
 const SKIP = new Set(['A.png', 'B.png']); // 单字母测试对，排除
 
 function mimeOf(n) {

@@ -16,7 +16,7 @@
 | 文件 | 说明 |
 |------|------|
 | `web/产物/20261031紫卡模拟器V10.html` | **主版**：双服行情参考 + 页内「倾向口径」切换，约 15 MB |
-| `web/dist/riven-sim-web.html` | **英文名分发版**：同一份构建，英文文件名便于分享，约 15 MB |
+| `web/dist/riven-workbench-web.html` | **英文名分发版**：同一份构建，英文文件名便于分享，约 15 MB |
 | `web/产物/识别流程原理讲解_鳄神案例.html` | OCR 识别流程原理讲解页（18 步，图文自包含） |
 
 三份都是自包含单文件（JS / CSS / OCR 模型 / ONNX 运行时全部内联），**断网可用**，不需要任何服务器。
@@ -46,7 +46,7 @@
 ## 目录结构
 
 ```
-warframe-riven-sim/              ← 仓库根（英文，便于 GitHub / Pages 使用）
+riven-workbench/                 ← 仓库根（英文，便于 GitHub / Pages 使用）
 ├── index.html                   ← 仓库首页（GitHub Pages 入口，可直接打开成品）
 ├── README.md                    ← 本文件（项目总览）
 ├── .gitignore                   ← 不入库项（缓存 / 备份 / 大字体）
@@ -70,7 +70,7 @@ warframe-riven-sim/              ← 仓库根（英文，便于 GitHub / Pages 
     ├── 构建/                    ← build.py / embed-ort.py / squeeze_src.py / strip_html.py 等
     ├── 数据/                    ← 构建期源数据 + 命名表 names.json
     ├── 产物/                    ← 交付的 HTML（单文件，可单独分发）
-    ├── dist/                    ← 英文名分发版（riven-sim-web.html）
+    ├── dist/                    ← 英文名分发版（riven-workbench-web.html）
     ├── 调试/                    ← 无头 Chrome 回归探针（run_all.cjs 为总入口）
     └── 测试/                    ← 填表回归测试件与卡图
 ```
@@ -145,7 +145,7 @@ var MKEY = ZKC.statMap('short');    // 面板简称表：整体由表生成
 web/产物/20261031紫卡模拟器V10.html
 ```
 
-这是一份自包含单文件网页（JS / CSS / OCR 模型全部内联），断网也能用。另有 `web/dist/riven-sim-web.html`（英文名分发版，同一构建）与 `web/产物/识别流程原理讲解_鳄神案例.html`（识别流程原理讲解）。倾向口径（全库统一 1.2 / 各武器历史倾向）为**页内切换**，不单独出文件。
+这是一份自包含单文件网页（JS / CSS / OCR 模型全部内联），断网也能用。另有 `web/dist/riven-workbench-web.html`（英文名分发版，同一构建）与 `web/产物/识别流程原理讲解_鳄神案例.html`（识别流程原理讲解）。倾向口径（全库统一 1.2 / 各武器历史倾向）为**页内切换**，不单独出文件。
 
 ### 网页版构建（更新数据后重建单文件 HTML）
 
@@ -167,7 +167,7 @@ python 构建/embed-ort.py --src 产物/20261031紫卡模拟器V10.html \
 
 > 第 1 步输出的是**未嵌 OCR 运行时的中间态**，并会覆盖同名产物，必须接第 2 步。
 >
-> `build.py` 不带路径参数时默认输出到 `web/dist/riven-sim-web.html`；要更新正式交付件就显式传 `产物/20261031紫卡模拟器V10.html`。
+> `build.py` 不带路径参数时默认输出到 `web/dist/riven-workbench-web.html`；要更新正式交付件就显式传 `产物/20261031紫卡模拟器V10.html`。
 >
 > `embed-ort.py` 内嵌的 ONNX 运行时优先读取本地的 `运行时/`；该目录已从仓库省略（约 14 MB 的 wasm 缓存），重建时加 `--force-download` 即可从 CDN 拉取（需联网）。交付的 `产物/*.html` 本身已内嵌 ONNX，断网可用。
 >
