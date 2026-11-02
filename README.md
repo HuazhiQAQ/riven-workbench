@@ -46,7 +46,7 @@
 ## 目录结构
 
 ```
-warframe-riven-toolkit/          ← 仓库根（英文，便于 GitHub / Pages 使用）
+warframe-riven-sim/              ← 仓库根（英文，便于 GitHub / Pages 使用）
 ├── index.html                   ← 仓库首页（GitHub Pages 入口，可直接打开成品）
 ├── README.md                    ← 本文件（项目总览）
 ├── .gitignore                   ← 不入库项（缓存 / 备份 / 大字体）
