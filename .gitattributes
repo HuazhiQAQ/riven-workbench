@@ -3,6 +3,11 @@
 web/产物/*.html linguist-generated=true -diff -text
 web/dist/*.html linguist-generated=true -diff -text
 
+# 站点首页就是成品本身（GitHub Pages 根路径直出模拟器）。
+# 必须是 -text：core.autocrlf=true 会把 CRLF 归一化，字节一变就和 产物/ 那份
+# 各自存一份 15 MB blob（标了 -text 两份内容相同，git 按 sha 去重，只存一份）。
+/index.html linguist-generated=true -diff -text
+
 # 二进制资源：不要做换行转换 / 不要尝试 diff
 *.onnx binary
 *.xlsm binary

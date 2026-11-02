@@ -21,7 +21,7 @@
 
 三份都是自包含单文件（JS / CSS / OCR 模型 / ONNX 运行时全部内联），**断网可用**，不需要任何服务器。
 
-仓库根目录另有一份 [`index.html`](index.html)：开启 GitHub Pages 后它就是项目首页；本地双击打开也一样能看，不加载任何外部资源。
+仓库根目录的 [`index.html`](index.html) **就是主版成品的副本**：开启 GitHub Pages 后，站点根路径直接打开模拟器，不用再点一次。构建方法 / 目录结构 / 数据口径这些说明写在 [`about.html`](about.html)，它是文档页，不是入口。
 
 ---
 
@@ -47,7 +47,8 @@
 
 ```
 riven-workbench/                 ← 仓库根（英文，便于 GitHub / Pages 使用）
-├── index.html                   ← 仓库首页（GitHub Pages 入口，可直接打开成品）
+├── index.html                   ← 站点首页 = 主版成品副本（Pages 根路径直出模拟器）
+├── about.html                   ← 说明页（构建方法 / 目录结构 / 数据口径）
 ├── README.md                    ← 本文件（项目总览）
 ├── .gitignore                   ← 不入库项（缓存 / 备份 / 大字体）
 ├── .gitattributes               ← 成品标记为生成物，不做行尾转换
@@ -163,7 +164,12 @@ OCR_VER=v6 GZ_MODELS=1 python 构建/build.py 产物/20261031紫卡模拟器V10.
 # 2) 内嵌 OCR 运行时并去掉注释 → 最终交付件
 python 构建/embed-ort.py --src 产物/20261031紫卡模拟器V10.html \
                           --out 产物/20261031紫卡模拟器V10.html --strip
+
+# 3) 同步到仓库根，作为站点首页（GitHub Pages 根路径直出的就是它）
+cp 产物/20261031紫卡模拟器V10.html ../index.html
 ```
+
+> **第 3 步不能漏**：根 `index.html` 是主版的**副本**，站点根路径直出的是它。只更新 `产物/` 而不同步，线上仍是旧版。两份内容相同时 git 按 sha 去重，仓库不会因此多存一份 15 MB（`.gitattributes` 里给 `/index.html` 标了 `-text`，防止 `core.autocrlf` 改字节导致去重失效）。
 
 > 第 1 步输出的是**未嵌 OCR 运行时的中间态**，并会覆盖同名产物，必须接第 2 步。
 >
