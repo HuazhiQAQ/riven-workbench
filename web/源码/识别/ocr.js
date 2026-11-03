@@ -3482,6 +3482,80 @@ function affixConflicted(a) {
       conflicts: lastConflicts
     };
   }
+  window.__dbgOn = false;
+  var __dbgData = null;
+  function setDbg(html, isHtml) {
+    var d = document.getElementById('__dbgbox');
+    if (!d) {
+      d = document.createElement('div');
+      d.id = '__dbgbox';
+      d.style.cssText = 'position:fixed;left:8px;bottom:44px;z-index:99999;max-width:720px;max-height:60vh;overflow:auto;background:#111;color:#7fff9a;font:12px/1.5 monospace;padding:8px;border:1px solid #444;white-space:pre-wrap;border-radius:6px;';
+      document.body.appendChild(d);
+    }
+    if (isHtml) { d.textContent = ''; d.innerHTML = html; }
+    else { d.textContent = html; }
+    d.style.display = window.__dbgOn ? 'block' : 'none';
+  }
+  function __dbgPaint() {
+    if (!window.__dbgOn) return;
+    if (!__dbgData) { setDbg('还没有识别结果 —— 先识别一张截图。', false); return; }
+    var html = '【原始行·预判组合:' + __dbgData.combo + '·分界线y:' + __dbgData.divY + '】\n' + __dbgData.rows.join('\n');
+    var S = __dbgData.step;
+    if (S) {
+      html += '\n\n=== ①对齐后 ===\n';
+      html += '<img src="' + S.aligned + '" style="max-width:200px;display:block;">\n';
+      html += '=== ②二值掩膜（颜色掩膜）===\n';
+      html += '<img src="' + S.mask + '" style="max-width:200px;display:block;">\n';
+      html += '=== ③④分界线+分区框（红线=分界线，黄框=分区，绿框=det文字框）===\n';
+      html += '<img src="' + S.zones + '" style="max-width:200px;display:block;">\n';
+    }
+    var P = window.__ocrLast;
+    if (P) {
+      var _e = function (s) {
+        return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+          return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c];
+        });
+      };
+      html += '\n\n=== 识别明细（本机推理）===\n';
+      html += '引擎：' + _e(P.engine) + '\n';
+      html += '模型：' + _e(P.model) + '\n';
+      html += 'det输入 ' + _e(P.detInput) + '　阈值 ' + P.detTh + '　置信下限 ' + P.confMin + '\n';
+      html += '文字框 ' + P.boxes + ' → 行组 ' + P.groups + ' → 保留 ' + P.lines + ' 行（丢弃 ' + P.dropped + '）\n';
+      html += '耗时 ' + Math.round(P.ms.total) + 'ms（加载 ' + Math.round(P.ms.load)
+        + ' · det ' + Math.round(P.ms.det) + ' · rec ' + Math.round(P.ms.rec) + '）\n';
+      html += '预判组合 ' + _e(P.combo) + '　分界线 y ' + P.divY
+        + '　极性 ' + _e(P.pol ? (P.pol.pol + (P.pol.lowConf ? '（低置信）' : '')) : '未识别') + '\n';
+      html += '<table style="border-collapse:collapse;font-size:11px;margin-top:4px;">'
+        + '<tr style="color:#8af"><th align="left">y</th><th align="left">x</th>'
+        + '<th align="left">conf</th><th align="left">zone</th><th align="left">text</th></tr>';
+      for (var _pi = 0; _pi < P.items.length; _pi++) {
+        var _it = P.items[_pi];
+        html += '<tr><td>' + _it.y + '</td><td>' + _it.x + '</td>'
+          + '<td>' + (Number(_it.conf) || 0).toFixed(2) + '</td>'
+          + '<td>' + _e(_it.zone || '—') + '</td>'
+          + '<td>' + _e(_it.text) + '</td></tr>';
+      }
+      html += '</table>';
+    }
+    setDbg(html, true);
+  }
+  function ensureDbgBtn() {
+    var b = document.getElementById('ocrDbgBtn');
+    if (b) return b;
+    b = document.createElement('button');
+    b.id = 'ocrDbgBtn';
+    b.type = 'button';
+    b.textContent = '显示识别';
+    b.style.cssText = 'position:fixed;left:max(8px,env(safe-area-inset-left));bottom:max(8px,env(safe-area-inset-bottom));z-index:100000;transform:none;background:#222;color:#7fff9a;font:12px/1.4 monospace;padding:4px 10px;border:1px solid #444;border-radius:6px;cursor:pointer;';
+    b.onclick = function () {
+      window.__dbgOn = !window.__dbgOn;
+      b.textContent = window.__dbgOn ? '隐藏识别' : '显示识别';
+      if (window.__dbgOn) __dbgPaint();
+      else { var d = document.getElementById('__dbgbox'); if (d) d.style.display = 'none'; }
+    };
+    document.body.appendChild(b);
+    return b;
+  }
   function recognize(opts) {
     opts = opts || {};
     lastConflicts = { level: null, name: null, affix: [] };
@@ -3503,6 +3577,13 @@ function affixConflicted(a) {
         if (req === OCR_REQ) currentImage = templated;   // 仅当本请求仍是最新时才改写全局
         var rows = res.rows;
         var c = classifyWithGlobal(rows);
+        try {
+          window.__dbgRows = rows.map(function (r) { return r.yc.toFixed(0) + ':' + r.text; });
+          ensureDbgBtn();
+          __dbgData = { rows: window.__dbgRows, combo: window.__comboGuess || '?',
+                        divY: window.__divY || '?', step: window.__stepImages || null };
+          __dbgPaint();          /* 面板没开时直接返回，不拼 HTML */
+        } catch (e) { ZKHTML.warn('识别/ocr.js:4411', e); }
         var _ftRows = (res && res.rows) ? res.rows.slice() : [];
         var polInfo = (res && res.pol) || null;
         var finish = function () {
@@ -3700,4 +3781,5 @@ function affixConflicted(a) {
       }
     }
   };
+  try { ensureDbgBtn(); } catch (e) { ZKHTML.warn('识别/ocr.js:4663', e); }
 })();
